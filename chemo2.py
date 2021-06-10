@@ -1,4 +1,40 @@
-def Capox():
+import json
+
+def Chemo(rbodysurf,  chemoType):
+    chemoFile = open(chemoType, "r")
+    chemoJson = json.loads(chemoFile.read())
+    chemoFile.close()
+                   
+                   
+    for i in chemoJson["Chemo"] :
+        print(i["Name"], " ", 
+          i["Dosage"], 
+          i["DosageMetric"], " .....",
+          i["Dosage"]*rbodysurf,
+          "mg D",
+          i["Day"])
+        
+    print ("NC", chemoJson["NC"], "deň")
+    
+    Day1 = chemoJson["Day1"]["Instructions"]
+    C1 = chemoJson["Chemo"]
+    
+    print (chemoJson["Day1"]["Premed"]["Note"])
+    
+    for x in range(len(chemoJson["Chemo"])):
+        print (Day1[x]["Name"], C1[x]["Dosage"]*rbodysurf, Day1[x]["Inst"] )
+    
+
+     
+                    
+                      
+    
+    
+    
+    
+    
+
+def Capox(rbodysurf):
     print("""
 Oxaliplatina 130mg/m2 .......""",130*rbodysurf,""" mg D1
 kapecitabín 1000mg/m2 BID....""",2000*rbodysurf,""" mg D1-D14
@@ -10,7 +46,7 @@ kapecitabín 1000mg/m2 BID....""",2000*rbodysurf,""" mg D1-D14
 2. Oxaliplatina """, 130*rbodysurf,""" mg v 500ml 5%GLC iv
 3. Kapecitabín """, 2000*rbodysurf, """mg p.o. rozdeliť na 2 dávky""")
     
-def CapIri():
+def CapIri(rbodysurf):
     print("""
 Irinotekan 175mg/m2 .......""",175*rbodysurf,""" mg D1
 kapecitabín 1000mg/m2 BID....""",2000*rbodysurf,""" mg D2-D8
@@ -22,7 +58,7 @@ kapecitabín 1000mg/m2 BID....""",2000*rbodysurf,""" mg D2-D8
 2. Irinotekan """, 175*rbodysurf,""" mg v 500ml FR iv
 3. Kapecitabín """, 2000*rbodysurf, """mg p.o. rozdeliť na 2 dávky""")
 
-def DDPGem():
+def DDPGem(rbodysurf):
     a=80*rbodysurf
     b=a//50
     c=a%50
@@ -48,7 +84,7 @@ gemcitabín 1000mg/m2 ....""",int(1000*rbodysurf),""" mg D1, D8
 
 
 
-def chemorozc():
+def chemorozc(rbodysurf):
     q=str(input("""Akú chemoterapiu chcete podať?
 a)CapOx
 b)CapIri
@@ -56,29 +92,27 @@ c)DDP/Gemcitabín
 d)FOLFIRINOX\n """))
 
     if q=="a":
-        Capox()
+        Chemo(rbodysurf,"Capox.json")
     elif q=="b":
-        CapIri()
+        CapIri(rbodysurf)
     elif q=="c":
-        DDPGem()
+        DDPGem(rbodysurf)
     elif q=="d":
-        FFRNX()
+        FFRNX(rbodysurf)
     else:
         print("\nzadaj a- d !!\n")
-        chemorozc()
+        chemorozc(rbodysurf)
 
 
-def bsa():
-    global rbodysurf
-    bodysurf= (w**0.425)*(h**0.725)*0.007184
+def bsa(weight, height):
+    bodysurf= (weight**0.425)*(height**0.725)*0.007184
     rbodysurf= round(bodysurf,2)
     print("""Telesný povrch je:""", rbodysurf,"""m2
                                           """)
-    chemorozc()
+    chemorozc(rbodysurf)
     
 def inpt():
-    global w
-    global h
+    
     while True:
         try:
             w=int(input("Zadajte hmotnosť (kg):   "))
@@ -105,7 +139,7 @@ def inpt():
             break
             
            
-    bsa()
+    bsa(w, h)
     
 print("""-------Vitajte v programe ChemoPy v1.1 !! -------------------
 Program kedykoľvek ukončíte kombináciou CTRL-C """)
