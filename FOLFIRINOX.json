@@ -1,0 +1,52 @@
+{
+    "Chemo": [
+        {
+            "Name": "oxaliplatina",
+            "Dosage": 80,
+            "DosageMetric": "mg/m2",
+            "Day": "1"
+        },
+        {
+            "Name": "irinotecan",
+            "Dosage": 135,
+            "DosageMetric": "mg/m2",
+            "Day": "1"
+        },
+        {
+            "Name": "leukovorin",
+            "Dosage": 400,
+            "DosageMetric": "mg/m2",
+            "Day": "1"
+        },
+        {
+            "Name": "5-FU",
+            "Dosage": 2400,
+            "DosageMetric": "mg/m2",
+            "Day": "/46 hodin"
+        }
+    ],
+    "NC": "14",
+    "Day1": {
+        "Premed": {
+            "Note": "Onsetrogen 8mg v 250ml FR, Dexona 8mg iv, Nolpaza 40mg p.o."
+        },
+        "Instructions": [
+            {
+                "Name": "oxaliplatina",
+                "Inst": "v 500ml 5%GLC iv"
+            },
+            {
+                "Name": "irinotecan",
+                "Inst": "v 500ml FR iv"
+            },
+            {
+                "Name": "leukovorin",
+                "Inst": "v 500ml FR iv"
+            },
+            {
+                "Name": "5-FU",
+                "Inst": "kivi/46 hodin"
+            }
+        ]
+    }
+}

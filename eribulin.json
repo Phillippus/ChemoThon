@@ -1,0 +1,1 @@
+{"Chemo": [{"Name": "eribulin", "Dosage": 1, "DosageMetric": "mg/m2", "Day": "1,8"}], "NC": "22", "Day1": {"Premed": {"Note": "Granisetron 2 tbl p.o."}, "Instructions": [{"Name": "eribulin", "Inst": "v 250ml FR iv"}]}}

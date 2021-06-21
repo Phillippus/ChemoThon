@@ -1,0 +1,1 @@
+{"Chemo": [{"Name": "gemcitabin", "Dosage": 1200, "DosageMetric": "mg/m2", "Day": "1,8"}], "NC": "21", "Day1": {"Premed": {"Note": "Granegis 2 tbl p.o."}, "Instructions": [{"Name": "gemcitabin", "Inst": "v 500ml FR iv"}]}}

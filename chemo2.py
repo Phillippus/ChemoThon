@@ -87,14 +87,14 @@ gemcitabín 1000mg/m2 ....""",int(1000*rbodysurf),""" mg D1, D8
 def chemorozc(rbodysurf):
     q=str(input("""Akú chemoterapiu chcete podať?
 a)CapOx
-b)CapIri
+b)BevCap
 c)DDP/Gemcitabín
 d)FOLFIRINOX\n """))
 
     if q=="a":
         Chemo(rbodysurf,"Capox.json")
     elif q=="b":
-        CapIri(rbodysurf)
+        Chemo(rbodysurf,"CapBev.json")
     elif q=="c":
         DDPGem(rbodysurf)
     elif q=="d":
