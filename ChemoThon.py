@@ -1,6 +1,7 @@
 import json
 
 def Chemo(rbodysurf,  chemoType):
+    """Táto funkcia rozpisuje jednoduché chemoterapie s priamou umerou"""
     chemoFile = open(chemoType, "r")
     chemoJson = json.loads(chemoFile.read())
     chemoFile.close()
@@ -8,9 +9,9 @@ def Chemo(rbodysurf,  chemoType):
                    
     for i in chemoJson["Chemo"] :
         print(i["Name"], " ", 
-          i["Dosage"], 
-          i["DosageMetric"], " .....",
-          i["Dosage"]*rbodysurf,
+          round(i["Dosage"],2),
+          i["DosageMetric"],".........",
+          round(i["Dosage"]*rbodysurf,2),
           "mg D",
           i["Day"])
         
@@ -25,10 +26,85 @@ def Chemo(rbodysurf,  chemoType):
     print (chemoJson["Day1"]["Premed"]["Note"])
     
     for x in range(len(chemoJson["Chemo"])):
-        print (Day1[x]["Name"], C1[x]["Dosage"]*rbodysurf,"mg", Day1[x]["Inst"] )
+        print (Day1[x]["Name"], round(C1[x]["Dosage"]*rbodysurf,2),"mg", Day1[x]["Inst"] )
+    
+def ChemoMass(weight, chemoType):
+    """Táto funkcia rozpisuje chemoterapie/ biologika podľa hmotnosti"""
+    chemoFile = open(chemoType, "r")
+    chemoJson = json.loads(chemoFile.read())
+    chemoFile.close()
+                   
+                   
+    for i in chemoJson["Chemo"] :
+        print(i["Name"], " ", 
+          round(i["Dosage"],2),
+          i["DosageMetric"],".........",
+          round(i["Dosage"]*weight,2),
+          "mg D",
+          i["Day"])
         
+    print ("""         
+                       NC""", chemoJson["NC"], """. deň
+                                            """)
+    
+    Day1 = chemoJson["Day1"]["Instructions"]
+    C1 = chemoJson["Chemo"]
+    
+    print("                                     D1")
+    print (chemoJson["Day1"]["Premed"]["Note"])
+    
+    for x in range(len(chemoJson["Chemo"])):
+        print (Day1[x]["Name"], round(C1[x]["Dosage"]*weight,2),"mg", Day1[x]["Inst"] )
+        
+def Chemo5FU(rbodysurf,  chemoType):
+    """Táto funkcia rozpisuje chemoterapie s kontinualnym 5FU"""
+    chemoFile = open(chemoType, "r")
+    chemoJson = json.loads(chemoFile.read())
+    chemoFile.close()
+               
+                
+                   
+    for i in chemoJson["Chemo"] :
+        print(i["Name"], " ", 
+          round(i["Dosage"],2),
+          i["DosageMetric"],".........",
+          round(i["Dosage"]*rbodysurf,2),
+          "mg D",
+          i["Day"])
+        
+    
+    
+    if chemoType=="FLOT.json":
+        dos5FU= 2600
+        dos15FU=2600
+        day5FU= "24 hodin"
+        day15FU="24 hodin"
+        
+    else:
+        dos5FU= 2400
+        dos15FU= 1200
+        day5FU= "48 hodin"
+        day15FU="24 hodin"
+        
+    print("""5-fluoruracil""",dos5FU,"""/m2......""",rbodysurf*dos5FU,"""mg/""", day5FU)
+    print ("""         
+                       NC""", chemoJson["NC"], """. deň
+                                            """)
+       
+    Day1 = chemoJson["Day1"]["Instructions"]
+    C1 = chemoJson["Chemo"]
+    
+    print("                                     D1")
+    print (chemoJson["Day1"]["Premed"]["Note"])
+    
+    for x in range(len(chemoJson["Chemo"])):
+        print (Day1[x]["Name"], round(C1[x]["Dosage"]*rbodysurf,2),"mg", Day1[x]["Inst"] )
+    print("""5-fluoruracil""",rbodysurf*dos15FU,"""mg/kivi""",day15FU)
+            
+                   
 def ChemoDDP(rbodysurf,  chemoType):
-    #Táto funkcia slúži pre chemoterapie s DDP
+    """Táto funkcia slúži pre chemoterapie s DDP"""
+       
     chemoFile = open(chemoType, "r")
     chemoJson = json.loads(chemoFile.read())
     chemoFile.close()
@@ -38,7 +114,7 @@ def ChemoDDP(rbodysurf,  chemoType):
         print(i["Name"], " ", 
           i["Dosage"], 
           i["DosageMetric"], " .....",
-          i["Dosage"]*rbodysurf,
+          round(i["Dosage"]*rbodysurf,2),
           "mg D",
           i["Day"])
         
@@ -51,7 +127,7 @@ def ChemoDDP(rbodysurf,  chemoType):
                                           """)
     print ("1. ",chemoJson["Day1"]["Premed"]["Note"])
 
-    a=80*rbodysurf
+    a=round(80*rbodysurf,2)
     b=a//50
     c=a%50
     rng=int(b)
@@ -69,7 +145,7 @@ def ChemoDDP(rbodysurf,  chemoType):
         print (ordo+2,".",Day1[x]["Name"], C1[x]["Dosage"]*rbodysurf,"mg", Day1[x]["Inst"] )
         
 def ChemoCBDCA(rbodysurf,chemoType):
-    #Táto funkcia slúži pre rozpis chemoterapie obsahujúcu karboplatinu
+    """Táto funkcia slúži pre rozpis chemoterapie obsahujúcu karboplatinu"""
     chemoFile = open(chemoType, "r")
     chemoJson = json.loads(chemoFile.read())
     chemoFile.close()
@@ -120,8 +196,138 @@ def ChemoCBDCA(rbodysurf,chemoType):
     print (chemoJson["Day1"]["Premed"]["Note"])
     print("CBDCA",(CrCl+25)*AUC,"mg v 500ml FR iv" )
     for x in range(len(chemoJson["Chemo"])):
-        print (Day1[x]["Name"], C1[x]["Dosage"]*rbodysurf,"mg", Day1[x]["Inst"] )
+        print (Day1[x]["Name"], round(C1[x]["Dosage"]*rbodysurf,2),"mg", Day1[x]["Inst"] )
 
+
+def platinum5FU(rbodysurf):
+    """Táto chemoterapia sluzi na rozpis chemoterapie s platinou a 5FU"""
+    
+    a=80*rbodysurf
+    b=a//50
+    c=a%50
+    rng=int(b)
+    
+       
+    whichPt=str(input(""" Ktorá Platina?
+a) Cisplatina 
+b) Karboplatina\n"""))
+    
+    if whichPt=="a":
+        print("""DDP 80mg/m2................""",80*rbodysurf,"""mg  D1""")
+        print("""5-fluoruracil 1000mg/m2.........""", 1000*rbodysurf,"""mg D1-D4""")
+        print("""      
+                                             NC 21.deň
+                                                          
+                                                          D1
+                                                          
+1. Dexametazon 8mg iv, Pantoprazol 40 mg p.o., Onsetrogen 8mg v 250ml FR iv""")
+        for ordo in range(2,rng+2):
+            print(ordo, """. Cisplatina 50mg v 500ml RR iv""")
+            ordo+=1
+        print(ordo,""". Cisplatina""",int(c),"""mg v 500ml RR iv""")
+        print(ordo+1,""". Manitol 10% 250ml iv""")
+        print(ordo+2,""". 5-fluoruracil""",rbodysurf*1000,"""mg na 24 hodin/ kivi""")
+        
+    elif whichPt=="b":
+        while True:
+            try:
+                CrCl=int(input("Zadajte hodnotu clearance v ml/min     "))
+                assert 0 < CrCl < 250
+            
+            except ValueError:
+                print("Musíte zadať celé číslo!" )
+            except AssertionError:
+                print("Povolené hodnoty sú od 1 do 250!")
+            else:
+                break
+        
+        while True:
+            try:
+                AUC=int(input("Zadajte hodnotu AUC 2-6    "))
+                assert 1 < AUC < 7
+            
+            except ValueError:
+                print("Musíte zadať celé číslo!" )
+            except AssertionError:
+                print("Povolené hodnoty sú od 2 do 6!")
+            else:
+                break    
+    
+        print("""CBDCA AUC""",AUC,"""............""",(CrCl+25)*AUC,"""mg  D1
+5-fluoruracil 1000mg/m2..............""",rbodysurf*1000,"""mg  D1-D4""")     
+        print("""      
+                                             NC 21.deň
+                                                          
+                                                          D1
+Dexametazon 8mg iv, Pantoprazol 40 mg p.o., Onsetrogen 8mg v 250ml FR iv""")
+        print("""CBDCA AUC""",AUC,"""............""",(CrCl+25)*AUC,"""mg  D1""") 
+        print("""5-fluoruracil""",rbodysurf*1000,"""mg na 24 hodin/ kivi""")
+        
+def ChemoIfo(rbodysurf,dose, otherCHT):
+    ifo=int(dose*rbodysurf)
+    mesna=ifo*0.8
+    ifocycle=ifo//2000
+    mesnacycle=ifocycle+1
+    iforemnant=ifo%2000
+    mesnainit=1200
+    mesnaend=800
+    
+    
+    
+    if otherCHT==True:
+        print("""epirubicin 60mg/m2........""",60*rbodysurf,"""mg D1, D2
+ifosfamid 3000mg/m2..........""",ifo,"""mg D1,D2,D3
+mesna 0.8 x ifosfamid........""",mesna,"""mg D1,D2,D3
+              
+                                        NC 21. den
+                                                        
+                                                        D1
+                                                            """)
+        
+        print("""Ondasetron 8mg iv, Dexametazon 8mg iv, Pantoprazol 40mg p.o.""")
+        print("""Epirubicin""",60*rbodysurf,"""mg v 500ml FR iv""")
+        print("""MESNA""",mesnainit,"""mg v 100ml FR /4hodiny""")
+        if iforemnant>200:
+            mesnacont=(mesna-2000)//ifocycle
+            for cycifo in range(0,ifocycle):
+                print("""Ifosfamid 2000mg v 500ml FR iv""")
+                print("""MESNA""",mesnacont,"""mg v 100ml FR iv/ 4 hodiny""")
+            print("""Ifosfamid""",iforemnant,"""mg 500ml FR iv""")
+            print("""MESNA 800mg v 100ml FR iv/ 4 hodiny""")   
+        else: 
+            mesnacont=(mesna-1200)//ifocycle
+            for cycifo in range(0,ifocycle):
+                print("""Ifosfamid 2000mg v 500ml FR iv""")
+                print("""MESNA""",mesnacont,"""mg v 100ml FR iv/ 4 hodiny""")
+    
+   
+   
+    else:
+        print("""ifosfamid 3000mg/m2..........""",ifo,"""mg D1,D2,D3
+mesna 0.8 x ifosfamid........""",mesna,"""mg D1,D2,D3
+              
+                                        NC 21. den
+                                                        
+                                                        D1
+                                                            """)
+        
+        print("""Ondasetron 8mg iv, Dexametazon 8mg iv, Pantoprazol 40mg p.o.""")
+        print("""MESNA""",mesnainit,"""mg v 100ml FR /4hodiny""")
+        if iforemnant>200:
+            mesnacont=(mesna-2000)//ifocycle
+            for cycifo in range(0,ifocycle):
+                print("""Ifosfamid 2000mg v 500ml FR iv""")
+                print("""MESNA""",mesnacont,"""mg v 100ml FR iv/ 4 hodiny""")
+            print("""Ifosfamid""",iforemnant,"""mg 500ml FR iv""")
+            print("""MESNA 800mg v 100ml FR iv/ 4 hodiny""")   
+        else: 
+            mesnacont=(mesna-1200)//ifocycle
+            for cycifo in range(0,ifocycle):
+                print("""Ifosfamid 2000mg v 500ml FR iv""")
+                print("""MESNA""",mesnacont,"""mg v 100ml FR iv/ 4 hodiny""")
+             
+              
+    
 def hematology(rbodysurf):
     """Tato funkcia ponuka chemoterapie pouzivane v hematoonkologii"""
     hem=str(input("""Aku chemoterapiu chcete podat?  
@@ -140,7 +346,7 @@ g) Rituximab\n"""))
     elif hem=="c":
         Chemo(rbodysurf,"miniCHOP.json")
     elif hem=="d":
-        ChemoDDP(rbodysurf,"DHAP.json")
+        print("Sorry, DHAP je pre mna prilis komplikovany, mozno v dalsej verzii")
     elif hem=="e":
         Chemo(rbodysurf,"bendamustin.json")
     elif hem=="f":
@@ -198,8 +404,213 @@ m) TD-M1\n"""))
         print("""Musite zadat a-m!""")
         breast(rbodysurf)
 
-                
-def diagnosis(rbodysurf):
+def lung(rbodysurf):
+    """Tato funkcia ponuka chemoterapie pouzivane v liecbe karcinomu pluc"""
+    lng=str(input("""Aku chemoterapiu chcete podat?
+a)CBDCA + paclitaxel
+b)CBDCA + pemetrexed
+c)DDP + gemcitabine
+d)CBDCA + gemcitabine
+e)DDP + etoposide
+f)Topotecan + G-CSF\n"""))
+    
+    if lng=="a":
+        ChemoCBDCA(rbodysurf,"paclitaxel3weekly.json")
+    elif lng=="b":    
+        ChemoCBDCA(rbodysurf,"pemetrexed.json")
+    elif lng=="c":
+        ChemoDDP(rbodysurf,"gemcitabine.json")
+    elif lng=="d":
+        ChemoCBDCA(rbodysurf,"gemcitabine.json")
+    elif lng=="e":
+        ChemoDDP(rbodysurf,"etoposide.json")
+    elif lng=="f":
+        Chemo(rbodysurf,"topotecan.json")
+    else: 
+        print("""Musite zadat a-f!""")
+        lung(rbodysurf)
+        
+def firstcetux(rbodysurf):
+    ctx=str(input("Prvé podanie cetuximabu (a/n)?  "))
+    if ctx=="a":
+        Chemo(rbodysurf,"1cetuximab.json")
+    elif ctx=="n":
+        Chemo(rbodysurf,"elsecetuximab.json")
+        
+def colorectal(rbodysurf, weight):
+    """Táto funkcia rozpisuje chemoterapie pouzivane v liecbe kolorektalneho karcinomu"""
+    crc=str(input("""Aku chemoterapiu chcete podat?
+a)FOLFOX
+b)FOLFIRI
+c)CapOX
+d)CapIri
+e)capecitabine 
+f)bevacizumab3W
+g)bevacizumab2w
+h)cetuximab
+i)panitumumab
+j)trifluridine/tipiracil
+k)irinotecan
+l)FOLFIRINOX\n"""))
+    
+    if crc=="a":
+        Chemo5FU(rbodysurf,"FOLFOX.json")
+    elif crc=="b":
+        Chemo5FU(rbodysurf,"FOLFIRI.json")
+    elif crc=="c":
+        Chemo(rbodysurf,"Capox.json")
+    elif crc=="d":
+        Chemo(rbodysurf,"Capiri.json")
+    elif crc=="e":
+        Chemo(rbodysurf,"capecitabine.json")
+    elif crc=="f":
+        ChemoMass(weight,"bevacizumab3w.json")
+    elif crc=="g":
+        ChemoMass(weight,"bevacizumab2w.json")
+    elif crc=="h":
+        ctx=str(input("Prvé podanie cetuximabu (a/n)?  "))
+        if ctx=="a":
+            Chemo(rbodysurf,"1cetuximab.json")
+        elif ctx=="n":
+            Chemo(rbodysurf,"elsecetuximab.json")
+        else:
+            print("Ano alebo nie!")
+            colorectal(rbodysurf)
+            
+            
+    elif crc=="i":
+        ChemoMass(weight,"panitumumab.json")
+    elif crc=="j":
+        Chemo(rbodysurf,"tritipi.json")
+    elif crc=="k":
+        Chemo(rbodysurf,"irinotecan.json")
+    elif crc=="l":
+        Chemo5FU(rbodysurf,"FOLFIRINOX.json")
+    else:
+        print("""Musíte zadať a-l!! """)
+        colorectal(rbodysurf)
+            
+def gastrointestinal(rbodysurf):
+    """Táto funkcia rozpisuje chemoterapie pouzivane v liecbe gastrointestinalnych malignit"""
+    git=str(input("""Aku chemoterapiu chcete podat?
+a)Pt/5-FU
+b)FLOT
+c)EOX
+d)paclitaxel weekly
+e)FOLFIRINOX
+f)gemcitabin/ capecitabine
+g)gemcitabin/ nab- paclitaxel
+h)peglip irinotekan/ 5-FU
+i)gemcitabin
+j)mitomycin/ 5-FU\n"""))
+    
+    if git=="a":
+        platinum5FU(rbodysurf)
+    elif git=="b":
+        Chemo5FU(rbodysurf,"FLOT.json")
+    elif git=="c":
+        Chemo(rbodysurf,"EOX.json")
+    elif git=="d":
+        Chemo(rbodysurf,"paclitaxelweekly.json")
+    elif git=="e":
+        Chemo5FU(rbodysurf,"FOLFIRINOX.json")
+    elif git=="f":
+        Chemo(rbodysurf,"gemcap.json")
+    elif git=="g":
+        Chemo(rbodysurf,"gemnabpcl.json")
+    elif git=="h":
+        Chemo5FU(rbodysurf,"peglipiri5FU.json")
+    elif git=="i":
+        Chemo(rbodysurf,"gemcitabine3.json")
+    elif git=="j":
+        Chemo5FU(rbodysurf,"mtc5FU.json")
+    else:
+        print("""Musíte zadať a-j!! """)
+        gastrointestinal(rbodysurf)
+        
+def headandneck(rbodysurf): 
+    """Táto funkcia rozpisuje chemoterapie pouzivane v liecbe nadorov hlavy a krku"""
+    han=str(input("""Aku chemoterapiu chcete podat?
+a)Pt/5-FU
+b)cetuximab
+c)paclitaxel weekly
+d)metotrexat\n"""))
+            
+    if han=="a":       
+        platinum5FU(rbodysurf)
+    elif han=="b":
+        ctx=str(input("Prvé podanie cetuximabu (a/n)?  "))
+        if ctx=="a":
+            Chemo(rbodysurf,"1cetuximab.json")
+        elif ctx=="n":
+            Chemo(rbodysurf,"elsecetuximab.json")
+        else:
+            print("Ano alebo nie!")
+            headandneck(rbodysurf) 
+    elif han=="c":
+        Chemo(rbodysurf,"paclitaxelweekly.json")
+    elif han=="d":
+        Chemo(rbodysurf,"metotrexate.json")       
+    else:
+        print("""Musíte zadať a-d!! """)
+        headandneck(rbodysurf)
+
+def sarcnet(rbodysurf):
+    """Táto funkcia rozpisuje chemoterapie a biologickú liečbu sarkómov a CNS a neuroendokrinnych tumorov"""
+    
+    snet=str(input("""Aku chemoterapiu chcete podat?
+a)ifosfamid/ epirubicin
+b)ifosfamid
+c)trabectedin
+d)doxorubicin
+e)paclitaxel weekly
+f)CBDCA/paclitaxel
+g)DDP/etoposid
+h)CBDCA/etoposid
+i)dakarbazin 5 dnovy
+j)temozolomid 
+k)lomustine (CCNU)\n"""))
+
+    if snet=="a":
+        ChemoIfo(rbodysurf,3000,True)
+    elif snet=="b":
+        ChemoIfo(rbodysurf,3000,True)
+    elif snet=="c":
+        Chemo(rbodysurf,"trabectedin.json")
+    elif snet=="d":
+        Chemo(rbodysurf,"doxorubicin.json")
+    elif snet=="e":
+        Chemo(rbodysurf,"paclitaxelweekly.json")
+    elif snet=="f":
+        ChemoCBDCA(rbodysurf,"paclitaxel3weekly.json")    
+    elif snet=="g":
+        ChemoDDP(rbodysurf,"etoposide.json")
+    elif snet=="h":
+        ChemoCBDCA(rbodysurf,"etoposide.json")
+    elif snet=="i":
+        Chemo(rbodysurf,"dacarbazine.json")
+    elif snet=="j":
+        temozolomide=str(input("""Temozolomid je:
+a) v ramci chemoRAT
+b) solo 150mg/m2
+c) solo 200mg/m2\n"""))
+        if temozolomide=="a":
+            Chemo(rbodysurf,"temozolomideRAT.json")
+        elif temozolomide=="b":
+            Chemo(rbodysurf,"temozolomide150.json")
+        elif temozolomide=="c":
+            Chemo(rbodysurf,"temozolomide200.json")
+        else:
+            print("Zadajte a, b alebo c!!")
+            sarcnet(rbodysurf)
+    elif snet=="k":
+        Chemo(rbodysurf,"CCNU.json")
+    else:
+        print("""Musíte zadať a-k!!""")
+        sarcnet(rbodysurf)
+            
+            
+def diagnosis(rbodysurf,weight):
     """Tato funkcia urobi prvu triaz podla diagnozy"""
     while True:
         try:
@@ -210,7 +621,7 @@ def diagnosis(rbodysurf):
 4.) kolorektalny karcinom
 5.) ine GIT malignity
 6.) karcinom hlavy a krku
-7.) sarkomy
+7.) sarkomy, NET a CNS tumory
 8.) karcinom prostaty
 9.) ine urogenitalne malignity
 10.) gynekologicke malignity
@@ -223,8 +634,8 @@ def diagnosis(rbodysurf):
             diagnosis()
         
         except AssertionError:
-            print("Povolene hodnotry su od 1 do 12!")
-            diagnosis()
+          print("Povolene hodnotry su od 1 do 12!")
+          diagnosis()
         else:
             break
         
@@ -236,13 +647,13 @@ def diagnosis(rbodysurf):
     elif x==3:
         lung(rbodysurf)
     elif x==4:
-        colorectal(rbodysurf)
+        colorectal(rbodysurf,weight)
     elif x==5:
-        git(rbodysurf)
+        gastrointestinal(rbodysurf)
     elif x==6:
         headandneck(rbodysurf)
     elif x==7:
-        sarcoma(rbodysurf)
+        sarcnet(rbodysurf)
     elif x==8:
         prostate(rbodysurf)
     elif x==9:
@@ -258,7 +669,7 @@ def bsa(weight, height):
     rbodysurf= round(bodysurf,2)
     print("""Telesný povrch je:""", rbodysurf,"""m2
                                           """)
-    diagnosis(rbodysurf)
+    diagnosis(rbodysurf, weight)
     
 def inpt():
     

@@ -1,16 +1,26 @@
 {
     "Chemo": [
         {
-            "Name": "ARA-C",
-            "Dosage": 2000,
-            "DosageMetric": "mg/m2",
-            "Day": "2"
+            "1Name": "ARA-C",
+            "1Dosage": 2000,
+            "1DosageMetric": "mg/m2",
+            "1Day": "2"
         },
         {
-            "Name": "Dexametazon",
-            "Dosage": 40,
-            "DosageMetric": "mg flat dose",
-            "Day": "1-4"
+            "1Name": "ARA-C",
+            "1Dosage": 2000,
+            "1DosageMetric": "mg/m2",
+            "1Day": "2"
+        }
+            
+    ],
+    "FlatChemo": [
+        {
+            "2Name": "Dexametazon",
+            "2Dosage2": 40,
+            "2DosageMetric2": "mg flat dose",
+            "2Day": "1-4"
+            
         }
     ],
     "NC": "22",
