@@ -79,14 +79,20 @@ def Chemo5FU(rbodysurf,  chemoType):
         dos15FU=2600
         day5FU= "24 hodin"
         day15FU="24 hodin"
-        
+    
+    elif chemoType=="mtc5FU.json":
+        dos5FU= 1000
+        dos15FU= 1000
+        day5FU= "D1-4"
+        day15FU="24 hodin"
+    
     else:
         dos5FU= 2400
         dos15FU= 1200
         day5FU= "48 hodin"
         day15FU="24 hodin"
         
-    print("""5-fluoruracil""",dos5FU,"""/m2......""",rbodysurf*dos5FU,"""mg/""", day5FU)
+    print("""5-fluoruracil""",dos5FU,"""mg/m2......""",rbodysurf*dos5FU,"""mg/""", day5FU)
     print ("""         
                        NC""", chemoJson["NC"], """. deň
                                             """)
@@ -608,6 +614,17 @@ c) solo 200mg/m2\n"""))
     else:
         print("""Musíte zadať a-k!!""")
         sarcnet(rbodysurf)
+
+def urogenital(rbodysurf):
+    """Táto funkcia rozpisuje chemoterapie urogenitálnych tumorov"""
+    urog=str(input("""Aku chemoterapiu chcete podať? 
+a) docetaxel + prednison
+b) cabazitaxel + prednison
+c) DDP/ gemcitabin
+d) vinflunin
+e) BEP
+f) TIP
+g) """))
             
             
 def diagnosis(rbodysurf,weight):
@@ -622,10 +639,9 @@ def diagnosis(rbodysurf,weight):
 5.) ine GIT malignity
 6.) karcinom hlavy a krku
 7.) sarkomy, NET a CNS tumory
-8.) karcinom prostaty
-9.) ine urogenitalne malignity
-10.) gynekologicke malignity
-11.) imunoterapia
+8.) urogenitalne malignity
+9.) gynekologicke malignity
+10.) imunoterapia
 """))
             assert 0 < x < 13
   
@@ -655,13 +671,12 @@ def diagnosis(rbodysurf,weight):
     elif x==7:
         sarcnet(rbodysurf)
     elif x==8:
-        prostate(rbodysurf)
-    elif x==9:
         urogenital(rbodysurf)
+    elif x==9:
+        gynecology(rbodysurf)
     elif x==10:
-        female(rbodysurf)
-    elif x==11:
         immunotherapy(rbodysurf)
+  
     
 
 def bsa(weight, height):
