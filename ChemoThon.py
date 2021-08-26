@@ -214,7 +214,7 @@ def platinum5FU(rbodysurf):
     rng=int(b)
     
        
-    whichPt=str(input(""" Ktorá Platina?
+    whichPt=str(input(""" Ktorá platina?
 a) Cisplatina 
 b) Karboplatina\n"""))
     
@@ -375,6 +375,38 @@ mesna 0.8 x ifosfamid........""",mesna,"""mg D1,D2,D3
             for cycifo in range(0,ifocycle):
                 print("""Ifosfamid 2000mg v 500ml FR iv""")
                 print("""MESNA""",mesnacont,"""mg v 100ml FR iv/ 4 hodiny""")
+                
+
+def DHAP(rbodysurf):
+    """Táto funkcia je len a len pre DHAP"""
+    DDP=round(rbodysurf*100,2)
+    cycle=DDP//50
+    remnant=DDP%50
+    iremnant=int(remnant)
+    icycle=int(cycle)
+    print("""cisplatina 100mg/m2........""",100*rbodysurf,"""mg D1
+cytarabin 2000mg/m2 BID.......""",2000*rbodysurf,"""mg a 12 hodin D2
+prednison 40mg ....................40mg D1-D4
+          
+                                        NC 21. deň
+                                                  
+                                            D1
+                                            
+1. Ondasetron 8mg v 250ml FR iv, Dexametazon 8mg iv, Pantoprazol 40mg p.o.""")
+    
+    for ordo in range(2,icycle+2):
+        print(ordo,""". cisplatina 50mg v 500ml RR iv""")
+        ordo+=1
+    if iremnant>0:    
+        print(ordo,""". cisplatina """,iremnant,"""mg v 500ml RR iv""")
+        print(ordo+1,""". manitol 10% 250ml iv""")
+        print(ordo+2,""". prednison 40mg tbl p.o. """)
+        
+    else:
+        print(ordo,""". manitol 10% 250ml iv""")
+        print(ordo+1,""". prednison 40mg tbl p.o. """)
+    
+
              
               
     
@@ -396,7 +428,7 @@ g) Rituximab\n"""))
     elif hem=="c":
         Flatdoser(rbodysurf,"miniCHOP.json","flatminivincristin.json" )
     elif hem=="d":
-        print("Sorry, DHAP je pre mna prilis komplikovany, mozno v dalsej verzii")
+        DHAP(rbodysurf)
     elif hem=="e":
         Chemo(rbodysurf,"bendamustin.json")
     elif hem=="f":
@@ -803,5 +835,9 @@ def inpt():
     bsa(w, h)
     
 print("""-------Vitajte v programe ChemoThon v1.0 !! -------------------
+Program rozpisuje najbežnejšie chemoterapie podľa povrchu alebo hmotnosti
+Dávky je nutné upraviť podľa aktuálne dostupných balení liečiv
+Autor nezodpovedá za prípadné škody spôsobené jeho použitím !
+Pripomienky posielajte na filip.kohutek@fntn.sk
 Program kedykoľvek ukončíte kombináciou CTRL-C """)
 inpt()
