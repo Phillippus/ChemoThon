@@ -2,7 +2,7 @@ import json
 
 def Chemo(rbodysurf,  chemoType):
     """Táto funkcia rozpisuje jednoduché chemoterapie s priamou umerou"""
-    chemoFile = open(chemoType, "r")
+    chemoFile = open('data/' + chemoType, "r")
     chemoJson = json.loads(chemoFile.read())
     chemoFile.close()
                    
@@ -58,7 +58,7 @@ def ChemoMass(weight, chemoType):
         
 def Chemo5FU(rbodysurf,  chemoType):
     """Táto funkcia rozpisuje chemoterapie s kontinualnym 5FU"""
-    chemoFile = open(chemoType, "r")
+    chemoFile = open('data/'+chemoType, "r")
     chemoJson = json.loads(chemoFile.read())
     chemoFile.close()
                
@@ -111,7 +111,7 @@ def Chemo5FU(rbodysurf,  chemoType):
 def ChemoDDP(rbodysurf,  chemoType):
     """Táto funkcia slúži pre chemoterapie s DDP"""
        
-    chemoFile = open(chemoType, "r")
+    chemoFile = open('data/'+chemoType, "r")
     chemoJson = json.loads(chemoFile.read())
     chemoFile.close()
     
@@ -152,7 +152,7 @@ def ChemoDDP(rbodysurf,  chemoType):
         
 def ChemoCBDCA(rbodysurf,chemoType):
     """Táto funkcia slúži pre rozpis chemoterapie obsahujúcu karboplatinu"""
-    chemoFile = open(chemoType, "r")
+    chemoFile = open('data/'+chemoType, "r")
     chemoJson = json.loads(chemoFile.read())
     chemoFile.close()
     
@@ -270,11 +270,11 @@ Dexametazon 8mg iv, Pantoprazol 40 mg p.o., Ondasetron 8mg v 250ml FR iv""")
         print("""5-fluoruracil""",rbodysurf*1000,"""mg na 24 hodin/ kivi""")
 
 def Flatdoser(rbodysurf,chemoType, chemoFlat):
-    chemoFile = open(chemoType, "r")
+    chemoFile = open('data/'+chemoType, "r")
     chemoJson = json.loads(chemoFile.read())
     chemoFile.close()
     
-    chemoFile2 = open(chemoFlat, "r")
+    chemoFile2 = open('data/'+chemoFlat, "r")
     chemoJson2 = json.loads(chemoFile2.read())
     chemoFile2.close()
     
@@ -530,7 +530,7 @@ k)irinotecan
 l)FOLFIRINOX\n"""))
     
     if crc=="a":
-        Chemo5FU(rbodysurf,"FOLFOX.json")
+        Chemo5FU(rbodysurf,"data/FOLFOX.json")
     elif crc=="b":
         Chemo5FU(rbodysurf,"FOLFIRI.json")
     elif crc=="c":
