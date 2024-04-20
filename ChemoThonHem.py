@@ -92,7 +92,7 @@ def DHAP(rbodysurf):
     if iremnant > 0:
         st.write(f"{ordo}. cisplatina {iremnant} mg v 500ml RR iv")
         st.write(f"{ordo + 1}. manitol 10% 250ml iv")
-        st.write(f"{ordo + 2}. prednison 40mg tableta p.o.")
+        st.write(f"{ordo + 2}. dexametazon 40mg tableta p.o.")
     else:
         st.write(f"{ordo}. manitol 10% 250ml iv")
         st.write(f"{ordo + 1}. dexametazon 40mg tableta p.o.")
