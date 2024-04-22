@@ -108,7 +108,7 @@ def main():
     st.write(" ")
     st.write("         Vitajte v programe ChemoThon!")
     st.write("""Program rozpisuje najbežnejšie chemoterapie podľa povrchu alebo hmotnosti. 
-    Najskôr si vypočítajte BSA a potom sa Vám sprístupní tlačidlo pre výpočet chemoterapie
+    Najskôr si vypočítajte BSA a potom sa Vám sprístupní tlačidlo pre výpočet chemoterapie.
     Dávky je nutné upraviť podľa aktuálne dostupných balení liečiv.
     Autor nezodpovedá za prípadné škody spôsobené jeho použitím!
     Pripomienky a požiadavky na úpravu posielajte na filip.kohutek@fntn.sk""")
