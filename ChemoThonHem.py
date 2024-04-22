@@ -108,19 +108,19 @@ def main():
     st.write(" ")
     st.write("-------------Vitajte v programe ChemoThon! -------------------")
     st.write("""Program rozpisuje najbežnejšie chemoterapie podľa povrchu alebo hmotnosti.
-Dávky je nutné upraviť podľa aktuálne dostupných balení liečiv.
-Autor nezodpovedá za prípadné škody spôsobené jeho použitím!
-Pripomienky a požiadavky na úpravu posielajte na filip.kohutek@fntn.sk""")
-    weight = st.sidebar.number_input("Zadajte hmotnosť (kg):", min_value=1, max_value=250, value=70, step=1)
-    height = st.sidebar.number_input("Zadajte výšku (cm):", min_value=1, max_value=250, value=170, step=1)
+    Dávky je nutné upraviť podľa aktuálne dostupných balení liečiv.
+    Autor nezodpovedá za prípadné škody spôsobené jeho použitím!
+    Pripomienky a požiadavky na úpravu posielajte na filip.kohutek@fntn.sk""")
+
+    weight = st.number_input("Zadajte hmotnosť (kg):", min_value=1, max_value=250, value=70, step=1)
+    height = st.number_input("Zadajte výšku (cm):", min_value=1, max_value=250, value=170, step=1)
     
-    if st.sidebar.button("Vypočítať BSA"):
+    if st.button("Vypočítať BSA"):
         rbodysurf = calculate_bsa(weight, height)
         st.session_state['rbodysurf'] = rbodysurf
-        st.sidebar.write(f"Vypočítaný telesný povrch (BSA): {rbodysurf} m²")
-    
+
     if 'rbodysurf' in st.session_state:
-        st.write(f"Calculated Body Surface Area (BSA): {st.session_state['rbodysurf']} m²")  # Display BSA persistently
+        st.write(f"Vypočítaný telesný povrch (BSA): {st.session_state['rbodysurf']} m²")  # Display BSA persistently
 
     chemo_options = {
         "ABVD": ("ABVD.json", None),
