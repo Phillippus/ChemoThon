@@ -17,7 +17,7 @@ def Chemo(rbodysurf, chemoType):
     """ Function to handle simple chemotherapies with direct dosing. """
     chemo_json = load_json('data/' + chemoType)
     if chemo_json:
-        st.write(f"### Chemotherapy Protocol: {chemoType.replace('.json', '')}")
+        st.write(f"### Rozpis chemoterapie: {chemoType.replace('.json', '')}")
         for chemo in chemo_json["Chemo"]:
             dosage = round(chemo["Dosage"] * rbodysurf, 2)
             st.write(f"{chemo['Name']} {chemo['Dosage']} {chemo['DosageMetric']} ......... {dosage} mg D{chemo['Day']}")
@@ -36,7 +36,7 @@ def ChemoMass(weight, chemoType):
     """ Function to handle chemotherapy/biologics based on weight. """
     chemo_json = load_json('data/' + chemoType)  # Ensure the 'data/' prefix is here
     if chemo_json:
-        st.write(f"### Chemotherapy Protocol: {chemoType.replace('.json', '')}")
+        st.write(f"### Rozpis chemoterapie: {chemoType.replace('.json', '')}")
         for chemo in chemo_json["Chemo"]:
             dosage = round(chemo["Dosage"] * weight)
             st.write(f"{chemo['Name']} {chemo['Dosage']} {chemo['DosageMetric']} ......... {dosage} mg D{chemo['Day']}")
@@ -62,7 +62,7 @@ def Chemo5FU(rbodysurf, chemoType):
         st.error("Failed to load chemotherapy data.")
         return
 
-    st.write(f"### Chemotherapy Protocol: {chemoType.replace('.json', '')}")
+    st.write(f"### Rozpis chemoterapie: {chemoType.replace('.json', '')}")
     
     # Prepare a dictionary for easy dosage retrieval
     dosage_dict = {chemo['Name']: round(chemo['Dosage'] * rbodysurf) for chemo in chemo_json["Chemo"]}
