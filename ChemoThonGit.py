@@ -148,7 +148,7 @@ def bsa(weight, height):
 
 # Hlavná vstupná funkcia pre hmotnosť a výšku
 def main():
-    st.title("Vitajte v programe ChemoThon v1.0")
+    st.title("          ChemoThon- GastrointestinalSK (excl. CrC) v 2.0")
     st.write("""
     Program rozpisuje najbežnejšie chemoterapie podľa povrchu alebo hmotnosti.
     Dávky je nutné upraviť podľa aktuálne dostupných balení liečiv.
