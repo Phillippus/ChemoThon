@@ -171,7 +171,7 @@ def sarcnet(rbodysurf):
 
 # Main input function for weight and height
 def main():
-    st.title("ChemoThon v1.0 - Sarkómy, CNS a Neuroendokrinné tumory")
+    st.title("ChemoThon Sarcoma, CNS and NET SK v2.0")
     st.write("""
     Program rozpisuje najbežnejšie chemoterapie podľa povrchu alebo hmotnosti.
     Dávky je nutné upraviť podľa aktuálne dostupných balení liečiv.
