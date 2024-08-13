@@ -23,7 +23,7 @@ def Chemo(rbodysurf, chemoType):
     for x in range(len(chemoJson["Chemo"])):
         st.write(f"{Day1[x]['Name']} {round(C1[x]['Dosage'] * rbodysurf, 2)} mg {Day1[x]['Inst']}")
 
-# Funkcia pre chemoterapiu s 5FU
+# Function for chemotherapy with 5FU
 def Chemo5FU(rbodysurf, chemoType):
     """Táto funkcia rozpisuje chemoterapie s kontinuálnym 5FU"""
     with open('data/' + chemoType, "r") as chemoFile:
@@ -55,16 +55,16 @@ def Chemo5FU(rbodysurf, chemoType):
     Day1 = chemoJson["Day1"]["Instructions"]
     C1 = chemoJson["Chemo"]
     
-    st.write("D1- premedikácia:")
+    st.write("D1 - premedikácia:")
     st.write(chemoJson["Day1"]["Premed"]["Note"])
     
-    st.write("D1- chemoterapia:")
+    st.write("D1 - chemoterapia:")
     for x in range(len(chemoJson["Chemo"])):
         st.write(f"{Day1[x]['Name']} {round(C1[x]['Dosage'] * rbodysurf, 2)} mg {Day1[x]['Inst']}")
     
     st.write(f"5-fluoruracil {rbodysurf * dos15FU} mg/kivi {day15FU}")
 
-# Funkcia pre chemoterapiu platinum + 5FUdef platinum5FU(rbodysurf):
+# Function for platinum + 5FU chemotherapy
 def platinum5FU(rbodysurf):
     """Táto chemoterapia slúži na rozpis chemoterapie s platinou a 5FU"""
     
@@ -111,9 +111,10 @@ def platinum5FU(rbodysurf):
     else:
         st.warning("Prosím, vyberte platinu pre pokračovanie.")
 
-# Hlavná funkcia pre gastrointestinálne malignity
+# Main function for gastrointestinal malignancies
 def gastrointestinal(rbodysurf):
     """Táto funkcia rozpisuje chemoterapie používané v liečbe gastrointestinálnych malignít"""
+
     chemo_options = {
         "Vyberte chemoterapiu": None,
         "Pt/5-FU": platinum5FU,
@@ -140,34 +141,37 @@ def gastrointestinal(rbodysurf):
             else:
                 Chemo(rbodysurf, chemo_file)
 
-# Funkcia na výpočet telesného povrchu (BSA)
+# Function to calculate Body Surface Area (BSA)
 def bsa(weight, height):
     bodysurf = (weight**0.425) * (height**0.725) * 0.007184
     rbodysurf = round(bodysurf, 2)
     return rbodysurf
 
-# Hlavná vstupná funkcia pre hmotnosť a výšku
+# Main input function for weight and height
 def main():
-    st.title("          ChemoThon- GastrointestinalSK (excl. CrC) v 2.0")
+    st.title("ChemoThon - GastrointestinalSK (excl. CrC) v2.0")
     st.write("""
-    Program rozpisuje najbežnejšie chemoterapie podľa povrchu alebo hmotnosti.
+       Program rozpisuje najbežnejšie chemoterapie podľa povrchu alebo hmotnosti.
     Dávky je nutné upraviť podľa aktuálne dostupných balení liečiv.
     Autor nezodpovedá za prípadné škody spôsobené jeho použitím!
     Pripomienky posielajte na filip.kohutek@fntn.sk
     Program kedykoľvek ukončíte zatvorením okna.
     """)
 
-    # Krok 1: Vstup hmotnosti a výšky
-    weight = st.number_input("Zadajte hmotnosť (kg):", min_value=1, max_value=250, value=70)
-    height = st.number_input("Zadajte výšku (cm):", min_value=1, max_value=250, value=170)
+    # Step 1: Input weight and height
+    weight = st.number_input("Zadajte hmotnosť (kg):", min_value=1, max_value=250, value=None)
+    height = st.number_input("Zadajte výšku (cm):", min_value=1, max_value=250, value=None)
 
     if st.button("Vypočítať telesný povrch"):
         rbodysurf = bsa(weight, height)
         st.session_state.rbodysurf = rbodysurf
-        st.write(f"Telesný povrch je: {rbodysurf} m²")
         st.session_state.show_chemo_selection = True
 
-    # Krok 2: Výber chemoterapie, ak je BSA vypočítané
+    # Display the BSA if it's already calculated, and only once
+    if 'rbodysurf' in st.session_state:
+        st.write(f"Telesný povrch je: {st.session_state.rbodysurf} m²")
+
+    # Step 2: Chemotherapy selection if BSA is calculated
     if st.session_state.get("show_chemo_selection", False):
         st.write("Teraz vyberte chemoterapiu:")
         gastrointestinal(st.session_state.rbodysurf)
