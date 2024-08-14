@@ -47,8 +47,8 @@ def main():
     Autor nezodpovedá za prípadné škody spôsobené jeho použitím!
     Pripomienky a požiadavky na úpravu posielajte na filip.kohutek@fntn.sk""")
 
-    weight = st.number_input("Zadajte hmotnosť (kg):", min_value=1, max_value=250, value=0, step=1)
-    height = st.number_input("Zadajte výšku (cm):", min_value=1, max_value=250, value=0, step=1)
+    weight = st.number_input("Zadajte hmotnosť (kg):", min_value=1, max_value=250, step=1)
+    height = st.number_input("Zadajte výšku (cm):", min_value=1, max_value=250, step=1)
     
     if st.button("Vypočítať BSA"):
         rbodysurf = calculate_bsa(weight, height)
