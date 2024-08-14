@@ -21,7 +21,7 @@ def display_chemotherapy_details(rbodysurf, filename):
         st.write(f"### Protokol {regimen_name}")
         for chemo in chemo_json['Chemo']:
             dosage = round(chemo['Dosage'] * rbodysurf, 2)
-            st.write(f"{chemo['Name']} {chemo['Dosage']} mg/m2 ......... {dosage} mg D {chemo['Day']}")
+            st.write(f"{chemo['Name']} {chemo['Dosage']} mg/m² ......... {dosage} mg D {chemo['Day']}")
 
         st.write(f"                       NC {chemo_json.get('NC', 'Nie je určené')} . deň")
         st.write(" ")
@@ -40,42 +40,40 @@ def calculate_bsa(weight, height):
 
 def main():
     st.title("ChemoThon - BreastSK v. 2.0")
-    st.write("         Vitajte v programe ChemoThon!")
+    st.write("Vitajte v programe ChemoThon!")
     st.write("""Program rozpisuje najbežnejšie chemoterapie podľa povrchu alebo hmotnosti. 
     Najskôr si vypočítajte BSA a potom sa Vám sprístupní tlačidlo pre výpočet chemoterapie.
     Dávky je nutné upraviť podľa aktuálne dostupných balení liečiv.
     Autor nezodpovedá za prípadné škody spôsobené jeho použitím!
     Pripomienky a požiadavky na úpravu posielajte na filip.kohutek@fntn.sk""")
 
-    weight = st.number_input("Zadajte hmotnosť (kg):", min_value=1, max_value=250, value=70, step=1)
-    height = st.number_input("Zadajte výšku (cm):", min_value=1, max_value=250, value=170, step=1)
+    weight = st.number_input("Zadajte hmotnosť (kg):", min_value=1, max_value=250, value=0, step=1)
+    height = st.number_input("Zadajte výšku (cm):", min_value=1, max_value=250, value=0, step=1)
     
     if st.button("Vypočítať BSA"):
         rbodysurf = calculate_bsa(weight, height)
         st.session_state['rbodysurf'] = rbodysurf
+        st.write(f"Vypočítaný telesný povrch (BSA): {rbodysurf} m²")
+        
+        chemo_options = {
+            "EC": "EC.json",
+            "AC": "AC.json",
+            "Dose-dense AC": "dd-AC.json",
+            "Docetaxel": "docetaxelbreast.json",
+            "Weekly Paclitaxel": "paclitaxelweekly.json",
+            "Capecitabine": "capecitabine.json",
+            "Gemcitabine": "gemcitabine.json",
+            "Weekly Vinorelbine": "vinorelbinweekly.json",
+            "Eribulin": "eribulin.json",
+            "Pegylated Liposomal Doxorubicin": "pegdoxo.json",
+            "TDM-1": "TDM1.json"
+        }
 
-    if 'rbodysurf' in st.session_state:
-        st.write(f"Vypočítaný telesný povrch (BSA): {st.session_state['rbodysurf']} m²")
+        chemo_name = st.selectbox("Vyberte chemoterapeutický režim:", list(chemo_options.keys()))
 
-    chemo_options = {
-        "EC": "EC.json",
-        "AC": "AC.json",
-        "Dose-dense AC": "dd-AC.json",
-        "Docetaxel": "docetaxelbreast.json",
-        "Weekly Paclitaxel": "paclitaxelweekly.json",
-        "Capecitabine": "capecitabine.json",
-        "Gemcitabine": "gemcitabine.json",
-        "Weekly Vinorelbine": "vinorelbinweekly.json",
-        "Eribulin": "eribulin.json",
-        "Pegylated Liposomal Doxorubicin": "pegdoxo.json",
-        "TDM-1": "TDM1.json"
-    }
-
-    chemo_name = st.selectbox("Vyberte chemoterapeutický režim:", list(chemo_options.keys()))
-
-    if 'rbodysurf' in st.session_state and st.button('Zobraziť protokol chemoterapie'):
-        selected_filename = chemo_options[chemo_name]
-        display_chemotherapy_details(st.session_state['rbodysurf'], selected_filename)
+        if st.button('Zobraziť protokol chemoterapie'):
+            selected_filename = chemo_options[chemo_name]
+            display_chemotherapy_details(rbodysurf, selected_filename)
 
 if __name__ == "__main__":
     main()
