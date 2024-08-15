@@ -54,7 +54,8 @@ def main():
         rbodysurf = calculate_bsa(weight, height)
         st.session_state['rbodysurf'] = rbodysurf
         st.write(f"Vypočítaný telesný povrch (BSA): {rbodysurf} m²")
-        
+
+    if 'rbodysurf' in st.session_state:
         chemo_options = {
             "EC": "EC.json",
             "AC": "AC.json",
@@ -73,7 +74,7 @@ def main():
 
         if st.button('Zobraziť protokol chemoterapie'):
             selected_filename = chemo_options[chemo_name]
-            display_chemotherapy_details(rbodysurf, selected_filename)
+            display_chemotherapy_details(st.session_state['rbodysurf'], selected_filename)
 
 if __name__ == "__main__":
     main()
