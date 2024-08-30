@@ -42,7 +42,7 @@ Autor nezodpovedá za prípadné škody spôsobené jeho použitím !
 Pripomienky posielajte na filip.kohutek@fntn.sk""")
 
 # Načítanie údajov
-immunotherapy_data = load_immunotherapy_data("data/immunotherapy.json")
+immunotherapy_data = load_immunotherapy_data("data/Immunotherapy.json")
 
 # Sekcia pre výber imunoterapie
 st.header("Výber imunoterapie")
