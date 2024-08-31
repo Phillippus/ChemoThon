@@ -119,7 +119,7 @@ def urogenital(rbodysurf):
     
     if chemo_choice == "Docetaxel + Prednison":
         Flatdoser(rbodysurf, "docetaxelprostate.json", "flatprednison3w.json")
-    eliif chemo_choice == "Docetaxel + Darolutamid":
+    elif chemo_choice == "Docetaxel + Darolutamid":
         Flatdoser(rbodysurf, "docetaxelprostate.json", "flatdarolutamide4w.json")    
     elif chemo_choice == "Cabazitaxel + Prednison":
         Flatdoser(rbodysurf, "cabazitaxel.json", "flatprednison3w.json")
