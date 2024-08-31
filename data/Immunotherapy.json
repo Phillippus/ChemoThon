@@ -52,13 +52,6 @@
       },
       {
         "name": "Durvalumab (Imfinzi)",
-        "regimen name": "Durvalumab 3 weekly kombinácia s tremelimumabom a chemoterapiou",
-        "dosage": "1500 mg",
-        "frequency": "21 dní",
-        "administration": "na 60 minút"
-      },
-      {
-        "name": "Durvalumab (Imfinzi)",
         "regimen name": "Durvalumab 3 weekly karboplatinou a paklitaxelom",
         "dosage": "1120 mg",
         "frequency": "21 dní",
