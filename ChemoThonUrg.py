@@ -83,7 +83,7 @@ def ChemoCBDCA(rbodysurf, chemoType):
             st.write(f"{chemoJson['Day1']['Instructions'][x]['Name']} {round(chemoJson['Chemo'][x]['Dosage'] * rbodysurf, 2)} mg {chemoJson['Day1']['Instructions'][x]['Inst']}")
 
 # Function for chemotherapy with flat dosages
-def Flatdoser(rbodysurf, chemoType, chemoFlat):
+def Flatdoser(rbodysurf, chemoType, chemoFlat=None):
     with open('data/' + chemoType, "r") as chemoFile:
         chemoJson = json.loads(chemoFile.read())
     
