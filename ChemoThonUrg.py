@@ -115,7 +115,7 @@ def Flatdoser(rbodysurf, chemoType, chemoFlat):
 # Main function for urogenital tumors
 def urogenital(rbodysurf):
     """Táto funkcia rozpisuje chemoterapie urogenitálnych tumorov"""
-    chemo_choice = st.selectbox("Vyberte chemoterapiu:", ["Vyberte chemoterapiu", "Docetaxel + Prednison","Docetaxel + Darolutamid", "Cabazitaxel + Prednison", "Abirateron (CRPC) + Prednison","Abirateron (HSPC) + Prednison", "Pt/ Gemcitabin", "Vinflunin", "BEP"])
+    chemo_choice = st.selectbox("Vyberte chemoterapiu:", ["Vyberte chemoterapiu", "Docetaxel + Prednison","Docetaxel + Darolutamid", "Cabazitaxel + Prednison", "Abirateron (CRPC) + Prednison","Abirateron (HSPC) + Prednison","Enzalutamid", "Pt/ Gemcitabin", "Vinflunin", "BEP"])
     
     if chemo_choice == "Docetaxel + Prednison":
         Flatdoser(rbodysurf, "docetaxelprostate.json", "flatprednison3w.json")
@@ -126,7 +126,9 @@ def urogenital(rbodysurf):
     elif chemo_choice == "Abirateron (CRPC) + Prednison":
         Flatdoser(1, "flatabirateron.json", "flatprednison4w.json")
     elif chemo_choice == "Abirateron (HSPC) + Prednison":
-        Flatdoser(1, "flatabirateron.json", "flatprednisonHSPC4w.json")    
+        Flatdoser(1, "flatabirateron.json", "flatprednisonHSPC4w.json")
+    elif chemo_choice == "Enzalutamid":
+        Flatdoser(1, "flatenzalutamide4w.json")
     elif chemo_choice == "Pt/ Gemcitabin":
         Ptdecis = st.selectbox("Ktorá platina?", ["Vyberte platinu", "Cisplatina", "Karboplatina"])
         if Ptdecis == "Cisplatina":
