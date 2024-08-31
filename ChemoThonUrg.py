@@ -121,8 +121,10 @@ def urogenital(rbodysurf):
         Flatdoser(rbodysurf, "docetaxelprostate.json", "flatprednison3w.json")
     elif chemo_choice == "Cabazitaxel + Prednison":
         Flatdoser(rbodysurf, "cabazitaxel.json", "flatprednison3w.json")
-    elif chemo_choice == "Abirateron + Prednison":
+    elif chemo_choice == "Abirateron (CRPC) + Prednison":
         Flatdoser(1, "flatabirateron.json", "flatprednison4w.json")
+    elif chemo_choice == "Abirateron (HSPC) + Prednison":
+        Flatdoser(1, "flatabirateron.json", "flatprednisonHSPC4w.json")    
     elif chemo_choice == "Pt/ Gemcitabin":
         Ptdecis = st.selectbox("Ktorá platina?", ["Vyberte platinu", "Cisplatina", "Karboplatina"])
         if Ptdecis == "Cisplatina":
