@@ -35,7 +35,7 @@ def generate_prescription(selected_drug, weight=None):
 # Názov aplikácie
 st.title("""ImmunoThon v. 1.0
          
-Vitajte v programe Immunothon!         
+Vitajte v programe ImmunoThon!         
 Program rozpisuje najbežnejšie imunoterapie ako flat-dose alebo podľa hmotnosti.
 Dávky je nutné upraviť podľa aktuálne dostupných balení liečiv.
 Autor nezodpovedá za prípadné škody spôsobené jeho použitím!
