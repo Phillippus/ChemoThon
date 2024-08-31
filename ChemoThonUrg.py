@@ -129,7 +129,7 @@ def urogenital(rbodysurf):
     elif chemo_choice == "Abirateron (HSPC) + Prednison":
         Flatdoser(1, "flatabirateron.json", "flatprednisonHSPC4w.json")
     elif chemo_choice == "Enzalutamid":
-        Flatdoser(1, "flatenzalutamide4w.json")
+        Flatdoser(1, "flatenzalutamide4w.json", None)
     elif chemo_choice == "Pt/ Gemcitabin":
         Ptdecis = st.selectbox("Ktorá platina?", ["Vyberte platinu", "Cisplatina", "Karboplatina"])
         if Ptdecis == "Cisplatina":
