@@ -87,8 +87,9 @@ def Flatdoser(rbodysurf, chemoType, chemoFlat=None):
     with open('data/' + chemoType, "r") as chemoFile:
         chemoJson = json.loads(chemoFile.read())
     
-    with open('data/' + chemoFlat, "r") as chemoFile2:
-        chemoJson2 = json.loads(chemoFile2.read())
+    if chemoFlat:  # Check if chemoFlat is not None
+        with open('data/' + chemoFlat, "r") as chemoFile2:
+            chemoJson2 = json.loads(chemoFile2.read())
     
     st.write("Rozpis chemoterapie:")
     for i in chemoJson["Chemo"]:
