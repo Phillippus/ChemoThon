@@ -87,31 +87,40 @@ def Flatdoser(rbodysurf, chemoType, chemoFlat=None):
     with open('data/' + chemoType, "r") as chemoFile:
         chemoJson = json.loads(chemoFile.read())
     
-    if chemoFlat:  # Check if chemoFlat is not None
+    # Initialize chemoJson2 to avoid UnboundLocalError
+    chemoJson2 = None
+
+    # Only load chemoFlat if it is provided
+    if chemoFlat:
         with open('data/' + chemoFlat, "r") as chemoFile2:
             chemoJson2 = json.loads(chemoFile2.read())
     
     st.write("Rozpis chemoterapie:")
     for i in chemoJson["Chemo"]:
         st.write(f"{i['Name']} {round(i['Dosage'], 2)} {i['DosageMetric']}......... {round(i['Dosage'] * rbodysurf, 2)} mg D{i['Day']}")
-    
-    for i in chemoJson2["Chemo"]:
-        st.write(f"{i['Name']} {round(i['Dosage'], 2)} {i['DosageMetric']}......... {round(i['Dosage'], 2)} mg D{i['Day']}")
+
+    # Only display information from chemoJson2 if it is loaded
+    if chemoJson2:
+        for i in chemoJson2["Chemo"]:
+            st.write(f"{i['Name']} {round(i['Dosage'], 2)} {i['DosageMetric']}......... {round(i['Dosage'], 2)} mg D{i['Day']}")
         
     st.write(f"NC {chemoJson['NC']} . deň")
     
     Day1 = chemoJson["Day1"]["Instructions"]
-    DayF1 = chemoJson2["Day1"]["Instructions"]
     C1 = chemoJson["Chemo"]
-    CF = chemoJson2["Chemo"]
-    
+
     st.write("D1")
     st.write(chemoJson["Day1"]["Premed"]["Note"])
-    
+
     for x in range(len(chemoJson["Chemo"])):
         st.write(f"{Day1[x]['Name']} {round(C1[x]['Dosage'] * rbodysurf, 2)} mg {Day1[x]['Inst']}")
-    for y in range(len(chemoJson2["Chemo"])):
-        st.write(f"{DayF1[y]['Name']} {round(CF[y]['Dosage'], 2)} mg {DayF1[y]['Inst']}")
+
+    # Process additional instructions if chemoJson2 is loaded
+    if chemoJson2:
+        DayF1 = chemoJson2["Day1"]["Instructions"]
+        CF = chemoJson2["Chemo"]
+        for y in range(len(chemoJson2["Chemo"])):
+            st.write(f"{DayF1[y]['Name']} {round(CF[y]['Dosage'], 2)} mg {DayF1[y]['Inst']}")
 
 # Main function for urogenital tumors
 def urogenital(rbodysurf):
@@ -129,7 +138,7 @@ def urogenital(rbodysurf):
     elif chemo_choice == "Abirateron (HSPC) + Prednison":
         Flatdoser(1, "flatabirateron.json", "flatprednisonHSPC4w.json")
     elif chemo_choice == "Enzalutamid":
-        Flatdoser(1, "flatenzalutamide4w.json", None)
+        Flatdoser(1, "flatenzalutamide4w.json", None)  # Provide None explicitly
     elif chemo_choice == "Pt/ Gemcitabin":
         Ptdecis = st.selectbox("Ktorá platina?", ["Vyberte platinu", "Cisplatina", "Karboplatina"])
         if Ptdecis == "Cisplatina":
@@ -157,8 +166,11 @@ def main():
     height = st.number_input("Zadajte výšku (cm):", min_value=1, max_value=250, value=None)
 
     if st.button("Vypočítať telesný povrch"):
-        rbodysurf = bsa(weight, height)
-        st.session_state.rbodysurf = rbodysurf
+        if weight and height:
+            rbodysurf = bsa(weight, height)
+            st.session_state.rbodysurf = rbodysurf
+        else:
+            st.error("Prosím, zadajte hmotnosť a výšku pre výpočet telesného povrchu.")
 
     # Always display the BSA if it has been calculated
     if 'rbodysurf' in st.session_state:
