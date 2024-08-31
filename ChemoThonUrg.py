@@ -115,10 +115,12 @@ def Flatdoser(rbodysurf, chemoType, chemoFlat):
 # Main function for urogenital tumors
 def urogenital(rbodysurf):
     """Táto funkcia rozpisuje chemoterapie urogenitálnych tumorov"""
-    chemo_choice = st.selectbox("Vyberte chemoterapiu:", ["Vyberte chemoterapiu", "Docetaxel + Prednison", "Cabazitaxel + Prednison", "Abirateron (CRPC) + Prednison","Abirateron (HSPC) + Prednison", "Pt/ Gemcitabin", "Vinflunin", "BEP"])
+    chemo_choice = st.selectbox("Vyberte chemoterapiu:", ["Vyberte chemoterapiu", "Docetaxel + Prednison","Docetaxel + Darolutamid", "Cabazitaxel + Prednison", "Abirateron (CRPC) + Prednison","Abirateron (HSPC) + Prednison", "Pt/ Gemcitabin", "Vinflunin", "BEP"])
     
     if chemo_choice == "Docetaxel + Prednison":
         Flatdoser(rbodysurf, "docetaxelprostate.json", "flatprednison3w.json")
+    eliif chemo_choice == "Docetaxel + Darolutamid":
+        Flatdoser(rbodysurf, "docetaxelprostate.json", "flatdarolutamide4w.json")    
     elif chemo_choice == "Cabazitaxel + Prednison":
         Flatdoser(rbodysurf, "cabazitaxel.json", "flatprednison3w.json")
     elif chemo_choice == "Abirateron (CRPC) + Prednison":
