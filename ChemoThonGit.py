@@ -124,7 +124,7 @@ def gastrointestinal(rbodysurf):
         "FOLFIRINOX": "FOLFIRINOX.json",
         "Gemcitabin/ Capecitabine": "gemcap.json",
         "Gemcitabin/ Nab-Paclitaxel": "gemnabpcl.json",
-        "Peglip Irinotekan/ 5-FU": "peglipiri5FU.json",
+        "NALIRI/ 5-FU": "peglipiri5FU.json",
         "NALIRIFOX": "NALIRIFOX.json",
         "Gemcitabin": "gemcitabin4w.json",
         "Mitomycin/ 5-FU": "mtc5FU.json"
@@ -137,7 +137,7 @@ def gastrointestinal(rbodysurf):
             platinum5FU(rbodysurf)
         else:
             chemo_file = chemo_options[chemo_choice]
-            if chemo_choice in ["FLOT", "FOLFIRINOX", "Peglip Irinotekan/ 5-FU", "NALIRIFOX", "Mitomycin/ 5-FU"]:
+            if chemo_choice in ["FLOT", "FOLFIRINOX", "NALIRI/ 5-FU", "NALIRIFOX", "Mitomycin/ 5-FU"]:
                 Chemo5FU(rbodysurf, chemo_file)
             else:
                 Chemo(rbodysurf, chemo_file)
