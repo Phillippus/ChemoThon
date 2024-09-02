@@ -125,6 +125,7 @@ def gastrointestinal(rbodysurf):
         "Gemcitabin/ Capecitabine": "gemcap.json",
         "Gemcitabin/ Nab-Paclitaxel": "gemnabpcl.json",
         "Peglip Irinotekan/ 5-FU": "peglipiri5FU.json",
+        "NALIRIFOX": "NALIRIFOX.json",
         "Gemcitabin": "gemcitabin4w.json",
         "Mitomycin/ 5-FU": "mtc5FU.json"
     }
