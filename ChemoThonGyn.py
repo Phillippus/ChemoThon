@@ -54,7 +54,7 @@ def Chemo(rbodysurf, chemoType):
 # Main function for gynecology chemotherapy
 def gynecology(rbodysurf):
     """Táto funkcia rozpisuje chemoterapie gynekologických tumorov"""
-    chemo_choice = st.selectbox("Akú chemoterapiu chcete podať?", ["Vyberte chemoterapiu", "CBDCA/ paclitaxel","INTERLACE CBDCA/paclitaxel", "Topotecan + G-CSF", "PEG-doxorubicin", "CBDCA/ PEG-doxorubicin", "CBDCA/ gemcitabin"])
+    chemo_choice = st.selectbox("Akú chemoterapiu chcete podať?", ["  ", "CBDCA/ paclitaxel","INTERLACE CBDCA/paclitaxel", "Topotecan + G-CSF", "PEG-doxorubicin", "CBDCA/ PEG-doxorubicin", "CBDCA/ gemcitabin"])
 
     if chemo_choice == "CBDCA/ paclitaxel":
         ChemoCBDCA(rbodysurf, "paclitaxel3weekly.json")
