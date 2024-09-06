@@ -23,6 +23,27 @@ def Chemo(rbodysurf, chemoType):
     for x in range(len(chemoJson["Chemo"])):
         st.write(f"{Day1[x]['Name']} {round(C1[x]['Dosage'] * rbodysurf, 2)} mg {Day1[x]['Inst']}")
 
+def ChemoCBDCA(rbodysurf, chemoType):
+    """Táto funkcia slúži pre rozpis chemoterapie obsahujúcu karboplatinu"""
+    with open('data/' + chemoType, "r") as chemoFile:
+        chemoJson = json.loads(chemoFile.read())
+
+    CrCl = st.number_input("Zadajte hodnotu clearance v ml/min", min_value=1, max_value=250, value=None)
+    AUC = st.number_input("Zadajte hodnotu AUC 2-6 (CROSS režim: AUC=2)", min_value=2, max_value=6, value=None)
+
+    if CrCl is not None and AUC is not None:
+        st.write(f"CBDCA AUC {AUC}............ {(CrCl + 25) * AUC} mg  D1")
+        for i in chemoJson["Chemo"]:
+            st.write(f"{i['Name']} {i['Dosage']} {i['DosageMetric']} ..... {round(i['Dosage'] * rbodysurf, 2)} mg D{i['Day']}")
+
+        st.write(f"NC {chemoJson['NC']} . deň")
+
+        st.write("D1")
+        st.write(chemoJson["Day1"]["Premed"]["Note"])
+        st.write(f"CBDCA {(CrCl + 25) * AUC} mg v 500ml FR iv")
+        for x in range(len(chemoJson["Chemo"])):
+            st.write(f"{chemoJson['Day1']['Instructions'][x]['Name']} {round(chemoJson['Chemo'][x]['Dosage'] * rbodysurf, 2)} mg {chemoJson['Day1']['Instructions'][x]['Inst']}")
+
 # Function for chemotherapy with 5FU
 def Chemo5FU(rbodysurf, chemoType):
     """Táto funkcia rozpisuje chemoterapie s kontinuálnym 5FU"""
@@ -121,6 +142,7 @@ def gastrointestinal(rbodysurf):
         "FLOT": "FLOT.json",
         "EOX": "EOX.json",
         "Paclitaxel weekly": "paclitaxelweekly.json",
+        "CROSS režim": "paclitaxel50weekly.json",
         "FOLFIRINOX": "FOLFIRINOX.json",
         "Gemcitabin/ Capecitabine": "gemcap.json",
         "Gemcitabin/ Nab-Paclitaxel": "gemnabpcl.json",
@@ -139,6 +161,8 @@ def gastrointestinal(rbodysurf):
             chemo_file = chemo_options[chemo_choice]
             if chemo_choice in ["FLOT", "FOLFIRINOX", "NALIRI/ 5-FU", "NALIRIFOX", "Mitomycin/ 5-FU"]:
                 Chemo5FU(rbodysurf, chemo_file)
+            elif chemo_choice in ["CROSS režim"]:
+                ChemoCBDCA(rbodysurf, chemo_file)
             else:
                 Chemo(rbodysurf, chemo_file)
 
