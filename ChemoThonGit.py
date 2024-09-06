@@ -137,7 +137,7 @@ def gastrointestinal(rbodysurf):
     """Táto funkcia rozpisuje chemoterapie používané v liečbe gastrointestinálnych malignít"""
 
     chemo_options = {
-        "Vyberte chemoterapiu": None,
+        " ": None,
         "Pt/5-FU": platinum5FU,
         "FLOT": "FLOT.json",
         "EOX": "EOX.json",
