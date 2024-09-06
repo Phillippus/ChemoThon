@@ -14,7 +14,7 @@ def ChemoCBDCA(rbodysurf, chemoType):
         chemoJson = json.loads(chemoFile.read())
 
     CrCl = st.number_input("Zadajte hodnotu clearance v ml/min", min_value=1, max_value=250, value=None)
-    AUC = st.number_input("Zadajte hodnotu AUC 2-6", min_value=2, max_value=6, value=None)
+    AUC = st.number_input("Zadajte hodnotu AUC 2-6 (INTERLACE: AUC=2)", min_value=2, max_value=6, value=None)
 
     if CrCl is not None and AUC is not None:
         st.write(f"CBDCA AUC {AUC}............ {(CrCl + 25) * AUC} mg  D1")
@@ -54,10 +54,12 @@ def Chemo(rbodysurf, chemoType):
 # Main function for gynecology chemotherapy
 def gynecology(rbodysurf):
     """Táto funkcia rozpisuje chemoterapie gynekologických tumorov"""
-    chemo_choice = st.selectbox("Akú chemoterapiu chcete podať?", ["Vyberte chemoterapiu", "CBDCA/ paclitaxel", "Topotecan + G-CSF", "PEG-doxorubicin", "CBDCA/ PEG-doxorubicin", "CBDCA/ gemcitabin"])
+    chemo_choice = st.selectbox("Akú chemoterapiu chcete podať?", ["Vyberte chemoterapiu", "CBDCA/ paclitaxel","INTERLACE CBDCA/paclitaxel", "Topotecan + G-CSF", "PEG-doxorubicin", "CBDCA/ PEG-doxorubicin", "CBDCA/ gemcitabin"])
 
     if chemo_choice == "CBDCA/ paclitaxel":
         ChemoCBDCA(rbodysurf, "paclitaxel3weekly.json")
+    elif chemo_choice == "INTERLACE CBDCA/paclitaxel":
+        ChemoCBDCA(rbodysurf, "paclitaxelweekly.json")
     elif chemo_choice == "Topotecan + G-CSF":
         Chemo(rbodysurf, "topotecan.json")
     elif chemo_choice == "PEG-doxorubicin":
