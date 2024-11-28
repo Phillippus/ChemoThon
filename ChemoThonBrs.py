@@ -87,7 +87,7 @@ def main():
 
         if st.button('Zobraziť protokol chemoterapie'):
             selected_filename = chemo_options[chemo_name]
-            display_chemotherapy_details(st.session_state['rbodysurf'], selected_filename)
+            display_chemotherapy_details(st.session_state['rbodysurf'], selected_filename, weight)
 
 if __name__ == "__main__":
     main()
