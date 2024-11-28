@@ -58,14 +58,17 @@ def main():
     Autor nezodpovedá za prípadné škody spôsobené jeho použitím!
     Pripomienky a požiadavky na úpravu posielajte na filip.kohutek@fntn.sk""")
 
+    # Inputs for weight and height
     weight = st.number_input("Zadajte hmotnosť (kg):", min_value=1, max_value=250, step=1, value=None)
     height = st.number_input("Zadajte výšku (cm):", min_value=1, max_value=250, step=1, value=None)
-    
+
+    # Calculate BSA
     if st.button("Vypočítať BSA") and weight is not None and height is not None:
         rbodysurf = calculate_bsa(weight, height)
         st.session_state['rbodysurf'] = rbodysurf
         st.write(f"Telesný povrch je: {rbodysurf} m²")
 
+    # Check if BSA is calculated
     if 'rbodysurf' in st.session_state:
         st.write(f"Telesný povrch (BSA): {st.session_state['rbodysurf']} m²")
 
@@ -85,9 +88,15 @@ def main():
 
         chemo_name = st.selectbox("Vyberte chemoterapeutický režim:", list(chemo_options.keys()))
 
-        if st.button('Zobraziť protokol chemoterapie'):
+        # Ensure weight is not None before calling the function
+        if st.button('Zobraziť protokol chemoterapie') and weight is not None:
             selected_filename = chemo_options[chemo_name]
-            display_chemotherapy_details(st.session_state['rbodysurf'], selected_filename, weight)
+            display_chemotherapy_details(
+                st.session_state['rbodysurf'], selected_filename, weight
+            )
+        else:
+            if weight is None:
+                st.error("Prosím, zadajte hmotnosť na výpočet chemoterapie.")
 
 if __name__ == "__main__":
     main()
