@@ -13,13 +13,18 @@ def load_json(filename):
         st.error("Chyba pri dekódovaní JSON. Skontrolujte formát súboru.")
         return None
 
-def display_chemotherapy_details(rbodysurf, chemoType):
-    """Displays detailed information about the chemotherapy regimen using body surface area."""
+def display_chemotherapy_details(rbodysurf, chemoType, weight):
+    """Displays detailed information about the chemotherapy regimen using body surface area or weight."""
     chemoJson = load_json(chemoType)
     if chemoJson:
         st.write(f"### Protokol {chemoType.replace('.json', '')}")
         for chemo in chemoJson["Chemo"]:
-            dosage = round(chemo["Dosage"] * rbodysurf, 2)
+            # Handle dosage calculation based on BSA or weight
+            if chemoType == "TDM1.json":
+                dosage = round(chemo["Dosage"] * weight, 2)  # TD-M1 is calculated using weight
+            else:
+                dosage = round(chemo["Dosage"] * rbodysurf, 2)  # Others use BSA
+            
             st.write(f"{chemo['Name']} {round(chemo['Dosage'], 2)} {chemo['DosageMetric']} ......... {dosage} mg D {chemo['Day']}")
 
         st.write(f"""         
@@ -31,7 +36,11 @@ def display_chemotherapy_details(rbodysurf, chemoType):
     
         for i in range(len(chemoJson["Chemo"])):
             drug_name = chemoJson["Day1"]["Instructions"][i]["Name"]
-            dosage = round(chemoJson["Chemo"][i]["Dosage"] * rbodysurf, 2)
+            if chemoType == "TDM1.json":
+                dosage = round(chemoJson["Chemo"][i]["Dosage"] * weight, 2)  # TD-M1
+            else:
+                dosage = round(chemoJson["Chemo"][i]["Dosage"] * rbodysurf, 2)  # Others
+            
             instruction = chemoJson["Day1"]["Instructions"][i]["Inst"]
             st.write(f"{drug_name} {dosage} mg {instruction}")
 
