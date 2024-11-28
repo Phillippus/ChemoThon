@@ -3,7 +3,7 @@
         {
             "Name": "TD-M1",
             "Dosage": 3.6,
-            "DosageMetric": "mg/m2",
+            "DosageMetric": "mg/kg",
             "Day": "1"
         }
     ],
