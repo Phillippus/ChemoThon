@@ -20,29 +20,27 @@ def display_chemotherapy_details(rbodysurf, chemoType, weight):
         st.write(f"### Protokol {chemoType.replace('.json', '')}")
         for chemo in chemoJson["Chemo"]:
             # Handle dosage calculation based on BSA or weight
-            if chemoType == "TDM1.json":
-                dosage = round(chemo["Dosage"] * weight, 2)  # TD-M1 is calculated using weight
+            if chemoType in ["TDM1.json", "TDx.json"]:
+                dosage = round(chemo["Dosage"] * weight, 2)  # Weight-based dosing
             else:
-                dosage = round(chemo["Dosage"] * rbodysurf, 2)  # Others use BSA
+                dosage = round(chemo["Dosage"] * rbodysurf, 2)  # BSA-based dosing
             
             st.write(f"{chemo['Name']} {round(chemo['Dosage'], 2)} {chemo['DosageMetric']} ......... {dosage} mg D {chemo['Day']}")
 
-        st.write(f"""         
-                       NC {chemoJson["NC"]} . deň
-                                            """)
-    
-        st.write("                                     D1")
+        st.write(f"NC {chemoJson['NC']} . deň")
+        st.write("D1")
         st.write(chemoJson["Day1"]["Premed"]["Note"])
-    
-        for i in range(len(chemoJson["Chemo"])):
-            drug_name = chemoJson["Day1"]["Instructions"][i]["Name"]
-            if chemoType == "TDM1.json":
-                dosage = round(chemoJson["Chemo"][i]["Dosage"] * weight, 2)  # TD-M1
-            else:
-                dosage = round(chemoJson["Chemo"][i]["Dosage"] * rbodysurf, 2)  # Others
-            
-            instruction = chemoJson["Day1"]["Instructions"][i]["Inst"]
-            st.write(f"{drug_name} {dosage} mg {instruction}")
+        
+        for instruction in chemoJson["Day1"]["Instructions"]:
+            drug_name = instruction["Name"]
+            chemo_entry = next((item for item in chemoJson["Chemo"] if item["Name"] == drug_name), None)
+            if chemo_entry:
+                if chemoType in ["TDM1.json", "TDx.json"]:
+                    dosage = round(chemo_entry["Dosage"] * weight, 2)  # Weight-based dosing
+                else:
+                    dosage = round(chemo_entry["Dosage"] * rbodysurf, 2)  # BSA-based dosing
+                
+                st.write(f"{drug_name} {dosage} mg {instruction['Inst']}")
 
 def calculate_bsa(weight, height):
     """Calculates body surface area using the DuBois formula."""
@@ -83,7 +81,8 @@ def main():
             "vinorelbin p.o. weekly": "vinorelbinweekly.json",
             "eribulin": "eribulin.json",
             "peg- doxorubicin": "pegdoxo.json",
-            "TD-M1": "TDM1.json"
+            "TD-M1": "TDM1.json",
+            "Trastuzumab-deruxtecan": "TDx.json"
         }
 
         chemo_name = st.selectbox("Vyberte chemoterapeutický režim:", list(chemo_options.keys()))
