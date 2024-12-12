@@ -136,7 +136,8 @@ def main():
         "Panitumumab": "panitumumab.json",
         "Trifluridine/Tipiracil": "tritipi.json",
         "Irinotecan": "irinotecan.json",
-        "FOLFIRINOX": "FOLFIRINOX.json"
+        "FOLFIRINOX": "FOLFIRINOX.json",
+        "MiXe": "MiXe.json"
     }
 
     selected_chemo = None
