@@ -1,21 +1,21 @@
 {
     "Chemo": [
         {
-            "Name": "abirateron",
-            "Dosage": 1000.0,
+            "Name": "prednison",
+            "Dosage": 5,
             "DosageMetric": "mg",
             "Day": "1-28"
         }
     ],
-    "NC": "28",
+    "NC": "21",
     "Day1": {
         "Premed": {
             "Note": ""
         },
         "Instructions": [
             {
-                "Name": "abirateron",
-                "Inst": "rozdeli\u0165 na 2x 500mg tbl p.o."
+                "Name": "prednison",
+                "Inst": "1tbl denne"
             }
         ]
     }

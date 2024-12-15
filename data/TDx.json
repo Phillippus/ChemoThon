@@ -1,8 +1,8 @@
 {
     "Chemo": [
         {
-            "Name": "TD-M1",
-            "Dosage": 3.6,
+            "Name": "Trastuzumab- deruxtecan",
+            "Dosage": 5.4,
             "DosageMetric": "mg/kg",
             "Day": "1"
         }
@@ -10,11 +10,11 @@
     "NC": "22",
     "Day1": {
         "Premed": {
-            "Note": "Granisetron 2mg p.o., "
+            "Note": "Granisetron 2mg p.o., Dexona 12mg iv, Pantoprazol 40mg p.o.  "
         },
         "Instructions": [
             {
-                "Name": "TD-M1",
+                "Name": "Trastuzumab- deruxtecan",
                 "Inst": "v 500ml FR /90 min iv"
             }
         ]

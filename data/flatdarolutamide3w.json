@@ -1,21 +1,21 @@
 {
     "Chemo": [
         {
-            "Name": "abirateron",
-            "Dosage": 1000.0,
+            "Name": "darolutamid",
+            "Dosage": 1200,
             "DosageMetric": "mg",
-            "Day": "1-28"
+            "Day": "1-21"
         }
     ],
-    "NC": "28",
+    "NC": "21",
     "Day1": {
         "Premed": {
             "Note": ""
         },
         "Instructions": [
             {
-                "Name": "abirateron",
-                "Inst": "rozdeli\u0165 na 2x 500mg tbl p.o."
+                "Name": "darolutamid",
+                "Inst": "-- 300mg tablety 2-0-2 p.o."
             }
         ]
     }
