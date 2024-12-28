@@ -33,7 +33,7 @@ def generate_day_prescription(day, gemcitabine_dose=None, cisplatin_dose=None):
     elif day == "D1":
         return f"""D1 CHT – dľa Dr.
 Omeprazol 20mg tbl 1-0-0
-Emend 125mg 1-0-0
+Aprepitant 125mg 1-0-0
 250ml FR 1/1 i.v.
 + 12mg DXM
 + 1amp Granisetron
