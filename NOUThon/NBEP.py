@@ -19,22 +19,30 @@ def generate_dose_summary(bsa, etoposid_dose, cisplatin_dose, bleomycin_dose):
 - **Bleomycín:** {bleomycin_dose} mg (flat dose) ... {bleomycin_dose} mg D1, D8, D15
 - **Etoposid:** 100 mg/m² ... {etoposid_dose:.2f} mg D1, D2, D3, D4, D5
 - **Cisplatina:** 20 mg/m² ... {cisplatin_dose:.2f} mg D1, D2, D3, D4, D5
-- **NC:** 21D
+- **NC:** D21
 """
 
 # Funkcia na generovanie predpisu pre jednotlivé dni
 def generate_day_prescription(day, etoposid_dose, cisplatin_dose, bleomycin_dose=30):
-    prescription = f"""
+    if day == "D0":
+        return """D0 CHT - Hydratácia
+1000ml FR 1/1 i.v.
+500ml Manitol 10% i.v.
+500ml FR 1/1 i.v.
++ 10ml KCl 7,5%
++ 5ml MgSO4 20%"""
+    elif day == "D1":
+        return f"""D1 CHT – dľa Dr.
 Omeprazol 20mg cps 1-0-0
 Metoklopramid 3x1 tbl
-Aprepitant {'125mg' if day == 'D1' else '80mg'} cps 1-0-0
+Aprepitant 125mg cps 1-0-0
 FR 500ml 1/1 i.v.
-+ DXM {'12mg' if day == 'D1' else '8mg'}
++ DXM 12mg
 + Granisetron 1amp
 Bleomycin {bleomycin_dose} mg
-+FR 100ml i.v.
++ FR 100ml i.v.
 Etoposid {etoposid_dose:.2f} mg
-+FR 500ml /90min
++ FR 500ml /90min
 500ml FR 1/1 i.v.
 + 10ml KCl 7,5%
 + 5ml MgSO4 20%
@@ -44,24 +52,41 @@ cDDP {cisplatin_dose:.2f} mg
 500ml GLC 5%
 + 10ml KCl 7,5%
 + 5ml MgSO4 20%"""
-
-    if day == "D0":
-        return """D0 CHT - Hydratácia
-1000ml FR 1/1 i.v.
-500ml Manitol 10% i.v.
+    elif day in ["D2", "D3", "D4", "D5"]:
+        return f"""{day} CHT
+Omeprazol 20mg cps 1-0-0
+Metoklopramid 3x1 tbl
+Aprepitant 80mg cps 1-0-0
+FR 500ml 1/1 i.v.
++ DXM 8mg
++ Granisetron 1amp
+Etoposid {etoposid_dose:.2f} mg
++ FR 500ml /90min
 500ml FR 1/1 i.v.
++ 10ml KCl 7,5%
++ 5ml MgSO4 20%
+cDDP {cisplatin_dose:.2f} mg
++ FR 500ml /60 min
+10% Manitol 500ml i.v.
+500ml GLC 5%
 + 10ml KCl 7,5%
 + 5ml MgSO4 20%"""
     elif day == "D6":
-        return """D6 CHT 
+        return """D6 CHT
 Aprepitant 80mg cps 1-0-0
 Pegfilgrastim inj. 0,6ml s.c. minimálne 24 hod po dotečení CHT"""
+    elif day in ["D8", "D15"]:
+        return f"""{day} CHT
+Granisetron 2mg p.o.
+Bleomycín 30mg
++ 250ml FR i.v.
++ 100ml FR preplach"""
     else:
-        return f"{day} CHT – dľa Dr, {prescription}"
+        return f"Invalid day: {day}"
 
 # Výpočet celého režimu
 def generate_full_prescription(etoposid_dose, cisplatin_dose, bleomycin_dose=30):
-    days = ["D0", "D1", "D2", "D3", "D4", "D5", "D6"]
+    days = ["D0", "D1", "D2", "D3", "D4", "D5", "D6", "D8", "D15"]
     full_prescription = "\n\n".join(
         generate_day_prescription(day, etoposid_dose, cisplatin_dose, bleomycin_dose) for day in days
     )
@@ -92,7 +117,7 @@ if weight and height:
 else:
     st.info("Zadajte hmotnosť a výšku pacienta na výpočet dávok.")
 
-options = ["D0", "D1", "D2", "D3", "D4", "D5", "D6", "Celý režim"]
+options = ["D0", "D1", "D2", "D3", "D4", "D5", "D6", "D8", "D15", "Celý režim"]
 choice = st.selectbox("Vyberte deň alebo celý režim", options)
 
 if st.button("Generovať predpis"):
