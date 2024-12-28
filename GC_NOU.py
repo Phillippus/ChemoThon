@@ -34,7 +34,7 @@ def main():
             - 500 ml FR 1/1 i.v. + 10 ml KCl 7,5% + 5 ml MgSO4 20%
         - **Deň 1:**
             - Omeprazol 20 mg tbl (1-0-0)
-            - Emend 125 mg (1-0-0)
+            - Aprepitant 125 mg (1-0-0)
             - 12 mg Dexametazón i.v.
             - 1 ampulka Granisetron i.v.
             - 250 ml FR 1/1 i.v. + Gemcitabín
