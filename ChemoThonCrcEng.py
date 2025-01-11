@@ -71,9 +71,9 @@ def main():
     if not data:
         return
 
-    # User input for weight and height
-    weight = st.number_input("Enter weight (kg):", min_value=1, max_value=200, step=1)
-    height = st.number_input("Enter height (cm):", min_value=1, max_value=250, step=1)
+    # User input for weight and height with default values
+    weight = st.number_input("Enter weight (kg):", min_value=1, max_value=200, step=1, value=70)
+    height = st.number_input("Enter height (cm):", min_value=1, max_value=250, step=1, value=180)
 
     # Calculate BSA
     if st.button("Calculate BSA") and weight and height:
