@@ -95,7 +95,12 @@ def display_chemotherapy_details(protocol, bsa, weight, crcl=None, auc=None):
 
 def main():
     st.title("ChemoThon Gastrointestinal (Except CRC) v 3.0 ENG")
-    st.write("This program prescribes chemotherapy regimens based on body surface area (BSA), weight, or AUC for carboplatin-based regimens.")
+    st.write("""Welcome to ChemoThon!
+This application provides assistance in prescribing chemotherapy regimens based on body surface area (BSA), weight, or AUC for carboplatin-based treatments.
+Please ensure that doses are adjusted to align with the packaging and protocols available in your country. Users bear full responsibility for applying this tool in clinical practice.
+
+We welcome your feedback to improve this app further. Feel free to reach out at filip.kohutek@fntn.sk.""")
+
 
     # Load chemotherapy data
     data = load_chemotherapy_data()
