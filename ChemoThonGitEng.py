@@ -13,6 +13,10 @@ def load_chemotherapy_data():
         st.error("Error decoding JSON. Please check the file format.")
         return None
 
+def calculate_bsa(weight, height):
+    """Calculates body surface area using the DuBois formula."""
+    return round((weight ** 0.425) * (height ** 0.725) * 0.007184, 2)
+
 def calculate_cisplatin_doses(total_dose):
     """Calculates the infusion breakdown for cisplatin when the dose exceeds 50 mg."""
     dose_split = []
@@ -30,16 +34,27 @@ def display_chemotherapy_details(protocol, bsa, weight, crcl=None, auc=None):
     st.write("#### Chemotherapy Drugs")
     calculated_doses = {}
     for drug in protocol.get("Chemo", []):
-        if drug["Name"] == "carboplatin":
+        if drug["Name"].lower() == "carboplatin":
+            # Calculate carboplatin dose if AUC and CrCl are provided
             if auc and crcl:
-                dose = (crcl + 25) * auc
+                dose = round((crcl + 25) * auc, 2)
             else:
                 dose = "requires AUC and CrCl"
+        elif drug["Name"].lower() == "cisplatin":
+            # Calculate cisplatin dose
+            dose = round(drug["Dosage"] * (weight if "mg/kg" in drug["DosageMetric"] else bsa), 2)
+        elif drug["Name"].lower() == "mitomycin":
+            # Calculate mitomycin dose and enforce the cap
+            dose = round(drug["Dosage"] * bsa, 2)
+            if dose > 20:  # Apply the cap for all Mitomycin regimens
+                st.error("⚠️ Dose of Mitomycin must not exceed 20 mg!")
+                dose = 20
         else:
+            # Calculate dose for other drugs using BSA or weight
             dose = round(drug["Dosage"] * (weight if "mg/kg" in drug["DosageMetric"] else bsa), 2)
         
-        calculated_doses[drug["Name"]] = dose
-        st.write(f"{drug['Name']} {drug['Dosage']} {drug['DosageMetric']} ......... {dose} mg D{drug['Day']}")
+        calculated_doses[drug["Name"].lower()] = dose
+        st.write(f"{drug['Name']} {drug['Dosage']} {drug['DosageMetric']} ......... {dose if isinstance(dose, (int, float)) else dose} mg D{drug['Day']}")
 
     st.write(f"**Next Cycle:** {protocol.get('NextCycle', 'Unknown')} days")
 
@@ -52,21 +67,31 @@ def display_chemotherapy_details(protocol, bsa, weight, crcl=None, auc=None):
     # Day 1 Chemotherapy Instructions
     st.write("#### Day 1 - Chemotherapy Instructions")
     for instruction in protocol.get("Day1", {}).get("Instructions", []):
-        drug_name = instruction.get("Name", "Unknown")
+        drug_name = instruction.get("Name", "Unknown").lower()
         calculated_dose = calculated_doses.get(drug_name, "dose unavailable")
-        if drug_name == "cisplatin" and isinstance(calculated_dose, (int, float)) and calculated_dose > 50:
-            cisplatin_split = calculate_cisplatin_doses(calculated_dose)
-            for i, dose_split in enumerate(cisplatin_split, start=1):
-                st.write(f"{drug_name} - {dose_split} mg in 500ml normal saline (NS), infusion {i}. {instruction.get('Instruction', '')}")
-        elif drug_name == "carboplatin" and isinstance(calculated_dose, (int, float)):
-            st.write(f"{drug_name} - {calculated_dose} mg, {instruction.get('Instruction', 'No instructions available.')}")
+
+        # Display carboplatin dose dynamically
+        if drug_name == "carboplatin" and isinstance(calculated_dose, (int, float)):
+            st.write(f"{instruction['Name']} - {calculated_dose} mg, {instruction.get('Instruction', 'No instructions available.')}")
+        elif drug_name == "carboplatin":
+            st.write(f"{instruction['Name']} - requires AUC and CrCl, {instruction.get('Instruction', 'No instructions available.')}")
+        
+        # Handle cisplatin dose splitting
+        elif drug_name == "cisplatin" and isinstance(calculated_dose, (int, float)):
+            if calculated_dose > 50:
+                cisplatin_split = calculate_cisplatin_doses(calculated_dose)
+                for i, dose_split in enumerate(cisplatin_split, start=1):
+                    st.write(f"{instruction['Name']} - {dose_split} mg in 500ml normal saline (NS), infusion {i}. {instruction.get('Instruction', '')}")
+                # Add Mannitol after the last Cisplatin infusion
+                st.write("Mannitol 10% 250 ml IV infusion - Administer after the last Cisplatin infusion.")
+            else:
+                st.write(f"{instruction['Name']} - {calculated_dose} mg in 500ml normal saline (NS), {instruction.get('Instruction', '')}")
+                # Add Mannitol after a single Cisplatin infusion
+                st.write("Mannitol 10% 250 ml IV infusion - Administer after the Cisplatin infusion.")
+        
+        # Handle other drugs
         else:
-            st.write(f"{drug_name} - {calculated_dose} mg, {instruction.get('Instruction', 'No instructions available.')}")
-
-
-def calculate_bsa(weight, height):
-    """Calculates body surface area using the DuBois formula."""
-    return round((weight ** 0.425) * (height ** 0.725) * 0.007184, 2)
+            st.write(f"{instruction['Name']} - {calculated_dose} mg, {instruction.get('Instruction', 'No instructions available.')}")
 
 def main():
     st.title("ChemoThon Gastrointestinal (Except CRC) v 3.0 ENG")
@@ -101,15 +126,22 @@ def main():
         chemo_names = [protocol["name"] for protocol in data["chemotherapies"]]
         selected_protocol_name = st.selectbox("Select a chemotherapy regimen:", chemo_names)
 
-        # Carboplatin inputs only for carboplatin-based regimens
+        # Input CrCl and AUC for carboplatin-based regimens
         crcl = None
         auc = None
-        if selected_protocol_name and "carboplatin" in selected_protocol_name.lower():
-            crcl = st.number_input("Enter CrCl (ml/min) for carboplatin (if applicable):", min_value=1, max_value=200, step=1, value=None, format="%d")
-            auc = st.number_input("Enter AUC for carboplatin (if applicable):", min_value=2, max_value=6, step=1, value=None, format="%d")
+        if selected_protocol_name:
+            protocol = next((p for p in data["chemotherapies"] if p["name"] == selected_protocol_name), None)
+            if protocol and any("carboplatin" in drug["Name"].lower() for drug in protocol.get("Chemo", [])):
+                crcl = st.number_input("Enter Creatinine Clearance (CrCl in mL/min):", min_value=1, max_value=200, step=1, value=None, format="%d")
+                if crcl is not None and crcl < 30:
+                    st.error("⚠️ Your patient seems to be platinum-ineligible!")
+                auc = st.number_input("Enter Area Under Curve (AUC, 2-6):", min_value=2, max_value=6, step=1, value=None, format="%d")
+
+                # Specific warning for CROSS regimen
+                if selected_protocol_name.lower() == "cross regimen" and auc != 2:
+                    st.warning("⚠️ For the CROSS regimen, the AUC value must be set to 2!")
 
         if st.button("Display Protocol"):
-            protocol = next((p for p in data["chemotherapies"] if p["name"] == selected_protocol_name), None)
             if protocol:
                 display_chemotherapy_details(protocol, st.session_state["bsa"], weight, crcl, auc)
             else:
