@@ -21,7 +21,7 @@ def display_chemotherapy_details(protocol, bsa, weight, crcl=None, auc=None):
     """Displays details of the selected chemotherapy protocol."""
     st.write(f"### Protocol: {protocol['name']}")
 
-    # Display basic prescription information
+    # Display Basic Prescription
     for drug in protocol.get("Chemo", []):
         if drug["Name"].lower() == "carboplatin":
             if auc and crcl:
@@ -41,25 +41,27 @@ def display_chemotherapy_details(protocol, bsa, weight, crcl=None, auc=None):
         st.write(premed_note)
 
     # Day 1 Chemotherapy Instructions
-    st.write("#### Day 1 - Chemotherapy Instructions")
+    st.write("#### Day 1 - Chemotherapy")
     for instruction in protocol.get("Day1", {}).get("Instructions", []):
         drug_name = instruction["Name"].lower()
         dose = None
-        if drug_name == "carboplatin" and auc and crcl:
-            dose = calculate_carboplatin_dose(crcl, auc)
-        elif drug_name == "carboplatin":
-            dose = "Requires AUC and CrCl"
-        elif drug_name in [drug["Name"].lower() for drug in protocol.get("Chemo", [])]:
-            # Find the matching drug from the "Chemo" list and calculate the dose
+
+        if drug_name == "carboplatin":
+            if auc and crcl:
+                dose = f"{calculate_carboplatin_dose(crcl, auc)} mg"  # Add "mg" explicitly
+            else:
+                dose = "Requires AUC and CrCl"
+        else:
+            # Calculate dose for other drugs using BSA
             matching_drug = next(
                 (drug for drug in protocol.get("Chemo", []) if drug["Name"].lower() == drug_name), None
             )
             if matching_drug and "Dosage" in matching_drug:
-                dose = round(matching_drug["Dosage"] * bsa, 2)
+                dose = f"{round(matching_drug['Dosage'] * bsa, 2)} mg"
 
         # Display the instruction with the calculated dose
         if dose:
-            st.write(f"{instruction['Name']} - {dose} mg, {instruction.get('Instruction', 'No instructions available.')}")
+            st.write(f"{instruction['Name']} - {dose}, {instruction.get('Instruction', 'No instructions available.')}")
         else:
             st.write(f"{instruction['Name']} - {instruction.get('Instruction', 'No instructions available.')}")
 
@@ -112,6 +114,10 @@ We welcome your feedback to improve this app further. Feel free to reach out at 
         st.subheader("Additional Parameters for Carboplatin")
         crcl = st.number_input("Enter Creatinine Clearance (CrCl in mL/min):", min_value=1, max_value=200, step=1, value=None)
         auc = st.number_input("Enter Area Under Curve (AUC, 2-6):", min_value=2, max_value=6, step=1, value=None)
+
+        # Check for platinum ineligibility if CrCl < 30
+        if crcl is not None and crcl < 30:
+            st.error("The patient seems to be platinum-ineligible!")
 
     # Display protocol details button
     with st.container():
