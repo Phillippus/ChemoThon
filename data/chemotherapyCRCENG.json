@@ -451,7 +451,7 @@
                 "Instructions": [
                     {
                         "Name": "mitomycin-C",
-                        "Instruction": "dilute in 250ml NS and infuse iv over 30 minutes. To be given every second cycle!"
+                        "Instruction": "dilute in 250ml NS and infuse iv over 30 minutes. To be given every other cycle!"
                     },
                     {
                         "Name": "capecitabine",
