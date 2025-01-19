@@ -64,7 +64,11 @@ def calculate_bsa(weight, height):
 
 def main():
     st.title("ChemoThon Colorectal v. 3.0 ENG")
-    st.write("This program prescribes chemotherapy regimens based on body surface area (BSA) or weight.")
+    st.write("""Welcome to ChemoThon!
+This application provides assistance in prescribing chemotherapy regimens based on body surface area (BSA) or weight,
+Please ensure that doses are adjusted to align with the packaging and protocols available in your country. Users bear full responsibility for applying this tool in clinical practice.
+
+We welcome your feedback to improve this app further. Feel free to reach out at filip.kohutek@fntn.sk.""")
 
     # Load chemotherapy data
     data = load_chemotherapy_data()
