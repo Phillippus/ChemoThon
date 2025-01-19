@@ -329,8 +329,38 @@
                     }
                 ]
             },
-            "name": "Cetuximab",
+            "name": "Cetuximab (Weekly)",
             "nc": 7
+        },
+        {
+            "Chemo": [
+                {
+                    "Name": "cetuximab",
+                    "Dosage": 400,
+                    "DosageMetric": "mg/m2",
+                    "Day": "1 (initial dose)"
+                },
+                {
+                    "Name": "cetuximab",
+                    "Dosage": 500,
+                    "DosageMetric": "mg/m2",
+                    "Day": "every 14 days"
+                }
+            ],
+            "NextCycle": "14",
+            "Day1": {
+                "Premed": {
+                    "Note": "Diphenhydramine 50mg/Bisulepine 1mg iv, Hydrocortisone 200mg, Pantoprazole 40mg p.o. iv 30 minutes before infusion."
+                },
+                "Instructions": [
+                    {
+                        "Name": "cetuximab",
+                        "Instruction": "Dilute in 250ml NS and infuse iv over 120 minutes for the initial dose. For subsequent doses, dilute in 250ml NS and infuse iv over 90 minutes. Monitor for infusion-related reactions."
+                    }
+                ]
+            },
+            "name": "Cetuximab (Biweekly)",
+            "nc": 14
         },
         {
             "Chemo": [
