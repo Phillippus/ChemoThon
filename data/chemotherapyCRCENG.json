@@ -35,11 +35,11 @@
                 "Instructions": [
                     {
                         "Name": "oxaliplatin",
-                        "Instruction": "dilute in 500ml D5W and infuse iv over 2 hours."
+                        "Instruction": "dilute in 500ml D5W and infuse iv over 1 hour."
                     },
                     {
                         "Name": "leucovorin",
-                        "Instruction": "administer concurrently with oxaliplatin in separate line."
+                        "Instruction": "dilute in 500ml NS and infuse iv over 1 hour."
                     },
                     {
                         "Name": "5-fluorouracil (bolus)",
@@ -93,8 +93,8 @@
                     },
                     {
                         "Name": "leucovorin",
-                        "Instruction": "administer concurrently with irinotecan in separate line."
-                    },
+                        "Instruction": "dilute in 500ml NS and infuse iv over 1 hour.",
+                    },    
                     {
                         "Name": "5-fluorouracil (bolus)",
                         "Instruction": "administer as a slow iv push immediately after leucovorin."
