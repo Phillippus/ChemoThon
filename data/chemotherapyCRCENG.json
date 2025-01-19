@@ -408,13 +408,13 @@
             "Chemo": [
                 {
                     "Name": "mitomycin-C",
-                    "Dosage": 6,
+                    "Dosage": 7,
                     "DosageMetric": "mg/m2",
                     "Day": "1"
                 },
                 {
                     "Name": "capecitabine",
-                    "Dosage": 1250,
+                    "Dosage": 2000,
                     "DosageMetric": "mg/m2",
                     "Day": "1-14"
                 }
@@ -422,16 +422,16 @@
             "NextCycle": "21",
             "Day1": {
                 "Premed": {
-                    "Note": "Metoclopramide 1 tablet p.o. before meals if needed."
+                    "Note": "Granisetron 2mg p.o. and Dexamethasone 8mg iv before administration."
                 },
                 "Instructions": [
                     {
                         "Name": "mitomycin-C",
-                        "Instruction": "dilute in 500ml NS and infuse iv over 30 minutes."
+                        "Instruction": "dilute in 250ml NS and infuse iv over 30 minutes. To be given every second cycle!"
                     },
                     {
                         "Name": "capecitabine",
-                        "Instruction": "take orally twice daily with meals. Ensure hydration and monitor for hand-foot syndrome."
+                        "Instruction": "divide into two daily doses. Ensure hydration and monitor for hand-foot syndrome."
                     }
                 ]
             },
