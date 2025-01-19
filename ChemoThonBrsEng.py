@@ -13,11 +13,17 @@ def load_chemotherapy_data():
         st.error("Error decoding JSON. Please check the file format.")
         return None
 
+def calculate_bsa(weight, height):
+    """Calculates body surface area using the DuBois formula."""
+    return round((weight**0.425) * (height**0.725) * 0.007184, 2)
+
 def display_chemotherapy_details(protocol, bsa, weight):
     """Displays details of the selected chemotherapy protocol."""
     st.write(f"### Protocol: {protocol['name']}")
     
+    # Display chemotherapy drugs with calculated doses
     if "Chemo" in protocol and protocol["Chemo"]:
+        st.write("#### Chemotherapy Drugs")
         for drug in protocol["Chemo"]:
             if "mg/kg" in drug["DosageMetric"]:
                 dosage = round(drug["Dosage"] * weight, 2)
@@ -27,27 +33,35 @@ def display_chemotherapy_details(protocol, bsa, weight):
     else:
         st.warning("No chemotherapy drugs found for this protocol.")
 
-    # Use a default value if "NextCycle" is missing
+    # Display Next Cycle
     next_cycle = protocol.get("NextCycle", "Unknown")
-    st.write(f"Next Cycle: {next_cycle} days")
+    st.write(f"**Next Cycle:** {next_cycle} days")
 
-    if "Day1" in protocol and "Premed" in protocol["Day1"]:
-        st.write("D1 - Premedication")
+    # Display Day 1 Premedication and Instructions
+    if "Day1" in protocol:
+        st.write("#### D1 - Premedication")
         premed_note = protocol["Day1"]["Premed"].get("Note", "No premedication details available.")
         st.write(premed_note.replace("Degan", "metoclopramide"))  # Adjust Degan to metoclopramide
         
-        if "Instructions" in protocol["Day1"] and protocol["Day1"]["Instructions"]:
+        if "Instructions" in protocol["Day1"]:
+            st.write("#### D1 - Chemotherapy Instructions")
             for instruction in protocol["Day1"]["Instructions"]:
                 instruction_text = instruction.get("Instruction", "No instructions available.").replace("tablet", "pill")
-                st.write(f"{instruction.get('Name', 'Unknown')} {instruction_text}")
+                drug_name = instruction.get("Name", "Unknown")
+                # Calculate Day 1 dose
+                drug = next((d for d in protocol["Chemo"] if d["Name"] == drug_name), None)
+                if drug:
+                    if "mg/kg" in drug["DosageMetric"]:
+                        dose = round(drug["Dosage"] * weight, 2)
+                    else:
+                        dose = round(drug["Dosage"] * bsa, 2)
+                    st.write(f"{drug_name} - {dose} mg, {instruction_text}")
+                else:
+                    st.write(f"{drug_name} - {instruction_text}")
         else:
             st.warning("No instructions available for Day 1.")
     else:
-        st.warning("No details found for Day 1 instructions.")
-        
-def calculate_bsa(weight, height):
-    """Calculates body surface area using the DuBois formula."""
-    return round((weight**0.425) * (height**0.725) * 0.007184, 2)
+        st.warning("No details found for Day 1.")
 
 def main():
     st.title("ChemoThon Breast v. 3.0 ENG")

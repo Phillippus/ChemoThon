@@ -114,7 +114,7 @@
             "NextCycle": "21",
             "Day1": {
                 "Premed": {
-                    "Note": "Dexamethasone 20mg iv, Dithiaden 1 ampoule iv, Nolpaza 1 ampoule iv, Granisetron 2 pills p.o."
+                    "Note": "Dexamethasone 20mg iv, Diphenhydramine 10mg iv/ Bisulepine 1mg iv, Pantoprazole 40mg p.o., Granisetron 2mg p.o."
                 },
                 "Instructions": [
                     {
@@ -138,7 +138,7 @@
             "NextCycle": "7",
             "Day1": {
                 "Premed": {
-                    "Note": "Dexamethasone 20mg iv, Dithiaden 1 ampoule iv, Pantoprazole 40mg p.o., Granisetron 2mg p.o."
+                    "Note": "Dexamethasone 20mg iv, Diphenhydramine 10mg iv/ Bisulepine 1mg iv, Pantoprazole 40mg p.o., Granisetron 2mg p.o."
                 },
                 "Instructions": [
                     {
@@ -162,7 +162,7 @@
             "NextCycle": "21",
             "Day1": {
                 "Premed": {
-                    "Note": "metoclopramide 1 pill p.p."
+                    "Note": "no standard premedication"
                 },
                 "Instructions": [
                     {
@@ -171,7 +171,7 @@
                     }
                 ]
             },
-            "name": "kapecitabin",
+            "name": "capecitabine",
             "nc": 21
         },
         {
@@ -186,7 +186,7 @@
             "NextCycle": "21",
             "Day1": {
                 "Premed": {
-                    "Note": "Granisetron 2 mg p.o."
+                    "Note": "no standard premedication"
                 },
                 "Instructions": [
                     {
@@ -195,7 +195,7 @@
                     }
                 ]
             },
-            "name": "gemcitabin",
+            "name": "gemcitabine",
             "nc": 21
         },
         {
@@ -210,7 +210,7 @@
             "NextCycle": "8",
             "Day1": {
                 "Premed": {
-                    "Note": "Granisetron 2mg p.o., metoclopramide 1 pill p.p."
+                    "Note": "no standard premedication"
                 },
                 "Instructions": [
                     {
@@ -226,7 +226,7 @@
             "Chemo": [
                 {
                     "Name": "eribulin",
-                    "Dosage": 1,
+                    "Dosage": 1.4,
                     "DosageMetric": "mg/m2",
                     "Day": "1,8"
                 }
@@ -234,7 +234,7 @@
             "NextCycle": "21",
             "Day1": {
                 "Premed": {
-                    "Note": "Granisetron 2 mg p.o."
+                    "Note": "Granisetron 2 mg p.o., Dexamethasone 8mg iv, Pantoprazole 40mg p.o."
                 },
                 "Instructions": [
                     {
@@ -258,7 +258,7 @@
             "NextCycle": "29",
             "Day1": {
                 "Premed": {
-                    "Note": "Granisetron 2 mg p.o."
+                    "Note": "Granisetron 2 mg p.o., Dexamethasone 8mg iv, Pantoprazole 40mg p.o."
                 },
                 "Instructions": [
                     {
