@@ -325,7 +325,7 @@
                 "Instructions": [
                     {
                         "Name": "cetuximab",
-                        "Instruction": "dilute in 250ml NS and infuse iv over 120 minutes for initial dose, 60 minutes for subsequent doses. Monitor for infusion-related reactions."
+                        "Instruction": "dilute in 500ml NS and infuse iv over 90 minutes for initial dose, 45 minutes for subsequent doses. Monitor for infusion-related reactions."
                     }
                 ]
             },
@@ -336,15 +336,9 @@
             "Chemo": [
                 {
                     "Name": "cetuximab",
-                    "Dosage": 400,
-                    "DosageMetric": "mg/m2",
-                    "Day": "1 (initial dose)"
-                },
-                {
-                    "Name": "cetuximab",
                     "Dosage": 500,
                     "DosageMetric": "mg/m2",
-                    "Day": "every 14 days"
+                    "Day": 1
                 }
             ],
             "NextCycle": "14",
@@ -355,7 +349,7 @@
                 "Instructions": [
                     {
                         "Name": "cetuximab",
-                        "Instruction": "Dilute in 250ml NS and infuse iv over 120 minutes for the initial dose. For subsequent doses, dilute in 250ml NS and infuse iv over 90 minutes. Monitor for infusion-related reactions."
+                        "Instruction": "Dilute in 500ml NS and infuse iv over 90 minutes for the initial dose. For subsequent doses, dilute in 500ml NS and infuse iv over 45 minutes. Monitor for infusion-related reactions."
                     }
                 ]
             },
