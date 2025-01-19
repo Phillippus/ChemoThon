@@ -118,7 +118,7 @@
                 },
                 {
                     "Name": "capecitabine",
-                    "Dosage": 1000,
+                    "Dosage": 2000,
                     "DosageMetric": "mg/m2",
                     "Day": "1-14"
                 }
@@ -131,11 +131,11 @@
                 "Instructions": [
                     {
                         "Name": "oxaliplatin",
-                        "Instruction": "dilute in 500ml D5W and infuse iv over 2 hours."
+                        "Instruction": "dilute in 500ml D5W and infuse iv over 1 hour."
                     },
                     {
                         "Name": "capecitabine",
-                        "Instruction": "take orally twice daily with meals. Ensure hydration and monitor for hand-foot syndrome."
+                        "Instruction": "divide into two daily doses. Ensure hydration and monitor for hand-foot syndrome."
                     }
                 ]
             },
@@ -146,7 +146,7 @@
             "Chemo": [
                 {
                     "Name": "capecitabine",
-                    "Dosage": 1250,
+                    "Dosage": 2000,
                     "DosageMetric": "mg/m2",
                     "Day": "1-14"
                 },
@@ -169,10 +169,10 @@
                     },
                     {
                         "Name": "capecitabine",
-                        "Instruction": "take orally twice daily with meals. Ensure hydration and monitor for hand-foot syndrome."
+                        "Instruction": "divide into two daily doses. Ensure hydration and monitor for hand-foot syndrome."
                     }
                 ]
-            },
+            },   
             "name": "CapIri",
             "nc": 21
         },
@@ -180,7 +180,7 @@
             "Chemo": [
                 {
                     "Name": "capecitabine",
-                    "Dosage": 1250,
+                    "Dosage": 2500,
                     "DosageMetric": "mg/m2",
                     "Day": "1-14"
                 }
@@ -188,12 +188,12 @@
             "NextCycle": "21",
             "Day1": {
                 "Premed": {
-                    "Note": "Metoclopramide 1 tablet p.o. before meals if needed."
+                    "Note": "No premedication required."
                 },
                 "Instructions": [
                     {
                         "Name": "capecitabine",
-                        "Instruction": "take orally twice daily with meals. Ensure hydration and monitor for hand-foot syndrome."
+                        "Instruction": "divide into two daily doses. Ensure hydration and monitor for hand-foot syndrome."
                     }
                 ]
             },
@@ -217,7 +217,7 @@
                 "Instructions": [
                     {
                         "Name": "bevacizumab",
-                        "Instruction": "dilute in 250ml NS and infuse iv over 30 minutes. Monitor for blood pressure and signs of proteinuria."
+                        "Instruction": "dilute in 500ml NS and infuse iv over 30 minutes. Monitor for blood pressure and signs of proteinuria."
                     }
                 ]
             },
@@ -241,7 +241,7 @@
                 "Instructions": [
                     {
                         "Name": "bevacizumab",
-                        "Instruction": "dilute in 250ml NS and infuse iv over 30 minutes. Monitor for blood pressure and signs of proteinuria."
+                        "Instruction": "dilute in 500ml NS and infuse iv over 30 minutes. Monitor for blood pressure and signs of proteinuria."
                     }
                 ]
             },
@@ -266,7 +266,7 @@
             "NextCycle": "7",
             "Day1": {
                 "Premed": {
-                    "Note": "Diphenhydramine 50mg, Hydrocortisone 200mg, Pantoprazole 40mg p.o. iv 30 minutes before infusion."
+                    "Note": "Diphenhydramine 50mg/Bisulepine 1mg iv, Hydrocortisone 200mg, Pantoprazole 40mg p.o. iv 30 minutes before infusion."
                 },
                 "Instructions": [
                     {
@@ -295,7 +295,7 @@
                 "Instructions": [
                     {
                         "Name": "panitumumab",
-                        "Instruction": "dilute in 250ml NS and infuse iv over 60 minutes. Monitor for skin rash and hypomagnesemia."
+                        "Instruction": "dilute in 500ml NS and infuse iv over 60 minutes. Monitor for skin rash and hypomagnesemia."
                     }
                 ]
             },
@@ -306,7 +306,7 @@
             "Chemo": [
                 {
                     "Name": "trifluridine/tipiracil",
-                    "Dosage": 35,
+                    "Dosage": 70,
                     "DosageMetric": "mg/m2",
                     "Day": "1-5, 8-12"
                 }
@@ -319,7 +319,7 @@
                 "Instructions": [
                     {
                         "Name": "trifluridine/tipiracil",
-                        "Instruction": "take orally twice daily. Swallow tablets whole with water."
+                        "Instruction": "divide into two daily doses. Swallow tablets whole with water."
                     }
                 ]
             },
@@ -330,12 +330,12 @@
             "Chemo": [
                 {
                     "Name": "irinotecan",
-                    "Dosage": 350,
+                    "Dosage": 125,
                     "DosageMetric": "mg/m2",
-                    "Day": "1"
+                    "Day": "1,8,15,22"
                 }
             ],
-            "NextCycle": "21",
+            "NextCycle": "42",
             "Day1": {
                 "Premed": {
                     "Note": "Granisetron 2mg p.o. and Dexamethasone 8mg iv before administration."
@@ -347,7 +347,7 @@
                     }
                 ]
             },
-            "name": "Irinotecan",
+            "name": "Irinotecan weekly",
             "nc": 21
         },
         {
@@ -360,18 +360,12 @@
                 },
                 {
                     "Name": "irinotecan",
-                    "Dosage": 180,
+                    "Dosage": 130,
                     "DosageMetric": "mg/m2",
                     "Day": "1"
                 },
                 {
                     "Name": "leucovorin",
-                    "Dosage": 400,
-                    "DosageMetric": "mg/m2",
-                    "Day": "1"
-                },
-                {
-                    "Name": "5-fluorouracil (bolus)",
                     "Dosage": 400,
                     "DosageMetric": "mg/m2",
                     "Day": "1"
@@ -391,19 +385,15 @@
                 "Instructions": [
                     {
                         "Name": "oxaliplatin",
-                        "Instruction": "dilute in 500ml D5W and infuse iv over 2 hours."
+                        "Instruction": "dilute in 500ml D5W and infuse iv over 1 hour."
                     },
                     {
                         "Name": "irinotecan",
-                        "Instruction": "dilute in 500ml NS and infuse iv over 90 minutes."
+                        "Instruction": "dilute in 500ml NS and infuse iv over 1 hour."
                     },
                     {
                         "Name": "leucovorin",
-                        "Instruction": "administer concurrently with oxaliplatin in separate line."
-                    },
-                    {
-                        "Name": "5-fluorouracil (bolus)",
-                        "Instruction": "administer as a slow iv push immediately after leucovorin."
+                        "Instruction": "dilute in 500ml NS and infuse iv over 1 hour."
                     },
                     {
                         "Name": "5-fluorouracil (infusion)",
