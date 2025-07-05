@@ -22,13 +22,15 @@ def display_chemotherapy_details(rbodysurf, chemoType, weight):
             # Fixed dose for X7/7 and trastuzumabsc
             if chemoType in ["capecitabineX77.json", "trastuzumabsc.json", "firstpertuzumab.json", "elsepertuzumab.json"]:
                 st.write(f"{chemo['Name']} {chemo['Dosage']} mg D {chemo['Day']}")
+                day1_dose = f"{chemo['Name']} {chemo['Dosage']} mg"
             elif chemoType in ["TDM1.json", "TDx.json", "Sacgov.json", "firsttrastuzumabiv.json", "elsetrastuzumabiv.json"]:
                 dosage = round(chemo["Dosage"] * weight, 2)
                 st.write(f"{chemo['Name']} {round(chemo['Dosage'], 2)} {chemo['DosageMetric']} ......... {dosage} mg D {chemo['Day']}")
+                day1_dose = f"{chemo['Name']} {dosage} mg"
             else:
                 dosage = round(chemo["Dosage"] * rbodysurf, 2)
                 st.write(f"{chemo['Name']} {round(chemo['Dosage'], 2)} {chemo['DosageMetric']} ......... {dosage} mg D {chemo['Day']}")
-            day1_dose = f"{chemo['Name']} {dosage} mg"
+                day1_dose = f"{chemo['Name']} {dosage} mg"
 
         st.write(f"NC {chemoJson['NC']} . deň")
         st.write("D1")
