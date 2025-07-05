@@ -28,7 +28,7 @@ def display_chemotherapy_details(protocol, bsa, weight):
             if isinstance(drug["Dosage"], str) and "/" in drug["Dosage"]:
                 try:
                     dose_parts = [float(part) for part in drug["Dosage"].split("/")]
-                    dosage = ", ".join([f"{round(d, 2)} mg" for d in dose_parts])
+                    dosage = " + ".join([f"{round(d, 2)} mg" for d in dose_parts])
                 except (ValueError, TypeError):
                     dosage = "N/A"
             elif drug["DosageMetric"] == "mg/m2":
@@ -71,7 +71,7 @@ def display_chemotherapy_details(protocol, bsa, weight):
                     if isinstance(drug["Dosage"], str) and "/" in drug["Dosage"]:
                         try:
                             dose_parts = [float(part) for part in drug["Dosage"].split("/")]
-                            dose = ", ".join([f"{round(d, 2)} mg" for d in dose_parts])
+                            dose = " + ".join([f"{round(d, 2)} mg" for d in dose_parts])
                         except (ValueError, TypeError):
                             dose = "N/A"
                     elif drug["DosageMetric"] == "mg/m2":
@@ -86,7 +86,10 @@ def display_chemotherapy_details(protocol, bsa, weight):
                             dose = round(float(drug["Dosage"]), 2)
                         except (TypeError, ValueError):
                             dose = drug["Dosage"]
-                    st.write(f"{drug_name} - {dose} mg, {instruction_text}")
+                    if isinstance(drug["Dosage"], str) and "/" in drug["Dosage"]:
+                        st.write(f"{drug_name} - {drug['Dosage']} mg, {instruction_text}")
+                    else:
+                        st.write(f"{drug_name} - {dose} mg, {instruction_text}")
                 else:
                     st.write(f"{drug_name} - {instruction_text}")
         else:
