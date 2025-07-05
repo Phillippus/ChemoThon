@@ -20,13 +20,17 @@ def display_chemotherapy_details(rbodysurf, chemoType, weight):
         st.write(f"### Protokol {chemoType.replace('.json', '')}")
         day1_dose = ""
         for chemo in chemoJson["Chemo"]:
-            # Fixed dose for X7/7 and trastuzumabsc
+            # Fixed dose for X7/7, trastuzumabsc, and pertuzumab combo fixed-dose
             if chemoType in ["capecitabineX77.json", "trastuzumabsc.json", "firstpertuzumab.json", "elsepertuzumab.json"]:
                 st.write(f"{chemo['Name']} {chemo['Dosage']} mg D {chemo['Day']}")
                 day1_dose = f"{chemo['Name']} {chemo['Dosage']} mg"
-            elif chemoType in ["TDM1.json", "TDx.json", "Sacgov.json", "firsttrastuzumabiv.json", "elsetrastuzumabiv.json", "firsttrastupertu.json", "elsetrastupertu.json"]:
+            elif chemoType in ["TDM1.json", "TDx.json", "Sacgov.json", "firsttrastuzumabiv.json", "elsetrastuzumabiv.json"]:
                 dosage = round(chemo["Dosage"] * weight, 2)
                 st.write(f"{chemo['Name']} {round(chemo['Dosage'], 2)} {chemo['DosageMetric']} ......... {dosage} mg D {chemo['Day']}")
+                day1_dose = f"{chemo['Name']} {dosage} mg"
+            elif chemoType in ["firsttrastupertu.json", "elsetrastupertu.json"]:
+                dosage = chemo["Dosage"]
+                st.write(f"{chemo['Name']} {dosage} mg D {chemo['Day']}")
                 day1_dose = f"{chemo['Name']} {dosage} mg"
             else:
                 dosage = round(chemo["Dosage"] * rbodysurf, 2)
@@ -41,8 +45,14 @@ def display_chemotherapy_details(rbodysurf, chemoType, weight):
             if instruction["Name"]:
                 chemo_entry = next((item for item in chemoJson["Chemo"] if item["Name"] == instruction["Name"]), None)
                 if chemo_entry:
-                    if chemoType in ["TDM1.json", "TDx.json", "Sacgov.json", "firsttrastuzumabiv.json", "elsetrastuzumabiv.json", "firsttrastupertu.json", "elsetrastupertu.json"]:
+                    if chemoType in ["TDM1.json", "TDx.json", "Sacgov.json", "firsttrastuzumabiv.json", "elsetrastuzumabiv.json"]:
                         dosage = round(chemo_entry["Dosage"] * weight, 2)
+                        if instruction['Name'] == chemo['Name']:
+                            st.write(f"{day1_dose} {instruction['Inst']}")
+                        else:
+                            st.write(f"{instruction['Name']} {instruction['Inst']}")
+                    elif chemoType in ["firsttrastupertu.json", "elsetrastupertu.json"]:
+                        dosage = chemo_entry["Dosage"]
                         if instruction['Name'] == chemo['Name']:
                             st.write(f"{day1_dose} {instruction['Inst']}")
                         else:
