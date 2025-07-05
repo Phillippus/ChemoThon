@@ -45,26 +45,16 @@ def display_chemotherapy_details(rbodysurf, chemoType, weight):
             if instruction["Name"]:
                 chemo_entry = next((item for item in chemoJson["Chemo"] if item["Name"] == instruction["Name"]), None)
                 if chemo_entry:
-                    if chemoType in ["TDM1.json", "TDx.json", "Sacgov.json", "firsttrastuzumabiv.json", "elsetrastuzumabiv.json"]:
+                    if chemoType in ["TDM1.json", "TDx.json", "Sacgov.json", "firsttrastuzumabiv.json", "elsettrastuzumabiv.json"]:
                         dosage = round(chemo_entry["Dosage"] * weight, 2)
-                        if instruction['Name'] == chemo['Name']:
-                            st.write(f"{day1_dose} {instruction['Inst']}")
-                        else:
-                            st.write(f"{instruction['Name']} {instruction['Inst']}")
+                        st.write(f"{instruction['Name']} {instruction['Inst']}")
                     elif chemoType in ["firsttrastupertu.json", "elsetrastupertu.json"]:
-                        dosage = chemo_entry["Dosage"]
-                        if instruction['Name'] == chemo['Name']:
-                            st.write(f"{day1_dose} {instruction['Inst']}")
-                        else:
-                            st.write(f"{instruction['Name']} {instruction['Inst']}")
+                        st.write(f"{instruction['Name']} {instruction['Inst']}")
                     elif chemoType in ["capecitabineX77.json", "trastuzumabsc.json", "firstpertuzumab.json", "elsepertuzumab.json"]:
                         st.write(f"{instruction['Name']} {instruction['Inst']}")
                     else:
                         dosage = round(chemo_entry["Dosage"] * rbodysurf, 2)
-                        if instruction['Name'] == chemo['Name']:
-                            st.write(f"{day1_dose} {instruction['Inst']}")
-                        else:
-                            st.write(f"{instruction['Name']} {instruction['Inst']}")
+                        st.write(f"{instruction['Name']} {instruction['Inst']}")
             else:
                 st.write(instruction["Inst"])
 
