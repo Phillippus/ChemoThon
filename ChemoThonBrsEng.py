@@ -31,7 +31,10 @@ def display_chemotherapy_details(protocol, bsa, weight):
                 dosage = round(drug["Dosage"] * weight, 2)
             else:
                 dosage = drug["Dosage"]
-            st.write(f"{drug['Name']} {drug['Dosage']} {drug['DosageMetric']} ......... {dosage} mg D {drug['Day']}")
+            if drug["DosageMetric"] in ["mg/m2", "mg/kg"]:
+                st.write(f"{drug['Name']} {drug['Dosage']} {drug['DosageMetric']} ......... {dosage} mg D {drug['Day']}")
+            else:
+                st.write(f"{drug['Name']} {dosage} mg D {drug['Day']}")
     else:
         st.warning("No chemotherapy drugs found for this protocol.")
 
