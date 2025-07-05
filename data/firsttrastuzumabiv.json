@@ -1,0 +1,22 @@
+{
+  "Chemo": [
+    {
+      "Name": "trastuzumab IV",
+      "Dosage": 8,
+      "DosageMetric": "mg/kg",
+      "Day": "1"
+    }
+  ],
+  "NC": "21",
+  "Day1": {
+    "Premed": {
+      "Note": "Bez premedikácie"
+    },
+    "Instructions": [
+      {
+        "Name": "trastuzumab IV",
+        "Inst": "v 250ml FR, 90 min prvá dávka, potom 30 min"
+      }
+    ]
+  }
+}

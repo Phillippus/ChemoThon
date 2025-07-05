@@ -20,10 +20,10 @@ def display_chemotherapy_details(rbodysurf, chemoType, weight):
         st.write(f"### Protokol {chemoType.replace('.json', '')}")
         for chemo in chemoJson["Chemo"]:
             # Fixed dose for X7/7 and trastuzumabsc
-            if chemoType in ["capecitabineX77.json", "trastuzumabsc.json", "trastuzumabiv.json", "firstpertuzumab.json", "elsepertuzumab.json"]:
+            if chemoType in ["capecitabineX77.json", "trastuzumabsc.json", "firstpertuzumab.json", "elsepertuzumab.json"]:
                 st.write(f"{chemo['Name']} {chemo['Dosage']} mg D {chemo['Day']}")
             else:
-                if chemoType in ["TDM1.json", "TDx.json", "Sacgov.json"]:
+                if chemoType in ["TDM1.json", "TDx.json", "Sacgov.json", "firsttrastuzumab.json", "elsetrastuzumab.json"]:
                     dosage = round(chemo["Dosage"] * weight, 2)
                 else:
                     dosage = round(chemo["Dosage"] * rbodysurf, 2)
@@ -40,7 +40,7 @@ def display_chemotherapy_details(rbodysurf, chemoType, weight):
                     if chemoType in ["TDM1.json", "TDx.json", "sacgov.json"]:
                         dosage = round(chemo_entry["Dosage"] * weight, 2)
                         st.write(f"{instruction['Name']} {dosage} mg {instruction['Inst']}")
-                    elif chemoType in ["capecitabineX77.json", "trastuzumabsc.json", "trastuzumabiv.json", "firstpertuzumab.json", "elsepertuzumab.json"]:
+                    elif chemoType in ["capecitabineX77.json", "trastuzumabsc.json", "firstpertuzumab.json", "elsepertuzumab.json"]:
                         st.write(f"{instruction['Name']} {instruction['Inst']}")
                     else:
                         dosage = round(chemo_entry["Dosage"] * rbodysurf, 2)
@@ -81,7 +81,7 @@ def main():
             "Pertuzumab": "firstpertuzumab.json",  # Default value, overridden by radio button
             "TD-M1": "TDM1.json",
             "Trastuzumab SC": "trastuzumabsc.json",
-            "Trastuzumab IV": "trastuzumabiv.json",
+            "Trastuzumab IV": "firsttrastuzumab.json",  # Default, overridden by radio
             "Trastuzumab-deruxtecan": "TDx.json",
             "capecitabin": "capecitabine.json",
             "capecitabin X7/7": "capecitabineX77.json",
@@ -103,6 +103,12 @@ def main():
                 selected_filename = "firstpertuzumab.json"
             else:
                 selected_filename = "elsepertuzumab.json"
+        elif chemo_name == "Trastuzumab IV":
+            trastuzumab_option = st.radio("Zvoľte typ podania trastuzumabu IV:", ["Prvé podanie", "Ďalšie podania"])
+            if trastuzumab_option == "Prvé podanie":
+                selected_filename = "firsttrastuzumab.json"
+            else:
+                selected_filename = "elsetrastuzumab.json"
         else:
             selected_filename = chemo_options[chemo_name]
 
