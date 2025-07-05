@@ -28,6 +28,7 @@ def display_chemotherapy_details(rbodysurf, chemoType, weight):
                 else:
                     dosage = round(chemo["Dosage"] * rbodysurf, 2)
                 st.write(f"{chemo['Name']} {round(chemo['Dosage'], 2)} {chemo['DosageMetric']} ......... {dosage} mg D {chemo['Day']}")
+                day1_dose = f"{chemo['Name']} {dosage} mg"
 
         st.write(f"NC {chemoJson['NC']} . deň")
         st.write("D1")
@@ -39,12 +40,18 @@ def display_chemotherapy_details(rbodysurf, chemoType, weight):
                 if chemo_entry:
                     if chemoType in ["TDM1.json", "TDx.json", "Sacgov.json", "firsttrastuzumabiv.json", "elsetrastuzumabiv.json"]:
                         dosage = round(chemo_entry["Dosage"] * weight, 2)
-                        st.write(f"{instruction['Name']} {dosage} mg {instruction['Inst']}")
+                        if instruction['Name'] == chemo['Name']:
+                            st.write(f"{day1_dose} {instruction['Inst']}")
+                        else:
+                            st.write(f"{instruction['Name']} {instruction['Inst']}")
                     elif chemoType in ["capecitabineX77.json", "trastuzumabsc.json", "firstpertuzumab.json", "elsepertuzumab.json"]:
                         st.write(f"{instruction['Name']} {instruction['Inst']}")
                     else:
                         dosage = round(chemo_entry["Dosage"] * rbodysurf, 2)
-                        st.write(f"{instruction['Name']} {dosage} mg {instruction['Inst']}")
+                        if instruction['Name'] == chemo['Name']:
+                            st.write(f"{day1_dose} {instruction['Inst']}")
+                        else:
+                            st.write(f"{instruction['Name']} {instruction['Inst']}")
             else:
                 st.write(instruction["Inst"])
 

@@ -1,7 +1,7 @@
 {
   "Chemo": [
     {
-      "Name": "trastuzumab IV",
+      "Name": "trastuzumab i.v",
       "Dosage": 8,
       "DosageMetric": "mg/kg",
       "Day": "1"
@@ -14,7 +14,7 @@
     },
     "Instructions": [
       {
-        "Name": "trastuzumab IV",
+        "Name": "trastuzumab i.v",
         "Inst": "v 500ml FR/ 90 min"
       }
     ]
