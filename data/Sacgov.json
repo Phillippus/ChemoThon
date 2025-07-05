@@ -1,0 +1,22 @@
+{
+  "Chemo": [
+    {
+      "Name": "Sacituzumab govitecan",
+      "Dosage": 10,
+      "DosageMetric": "mg/kg",
+      "Day": "1, 8"
+    }
+  ],
+  "NC": "21",
+  "Day1": {
+    "Premed": {
+      "Note": "Palonosetron/Netupitant 300mg/0.5mg, Dexametazon 8mg iv, Pantoprazol 40mg p.o."
+      },
+    "Instructions": [
+      {
+        "Name": "Sacituzumab govitecan",
+        "Inst": "v 500ml FR pomaly iv počas prvá infúzia počas 3 hodín, ďalšie počas 1-2 hodiny "
+      }
+    ]
+  }
+}

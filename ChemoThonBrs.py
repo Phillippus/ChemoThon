@@ -23,7 +23,7 @@ def display_chemotherapy_details(rbodysurf, chemoType, weight):
             if chemoType == "capecitabineX77.json":
                 st.write(f"{chemo['Name']} {chemo['Dosage']} D {chemo['Day']}")
             else:
-                if chemoType in ["TDM1.json", "TDx.json"]:
+                if chemoType in ["TDM1.json", "TDx.json", "sacgov.json"]:
                     dosage = round(chemo["Dosage"] * weight, 2)
                 else:
                     dosage = round(chemo["Dosage"] * rbodysurf, 2)
@@ -37,7 +37,7 @@ def display_chemotherapy_details(rbodysurf, chemoType, weight):
             if instruction["Name"]:
                 chemo_entry = next((item for item in chemoJson["Chemo"] if item["Name"] == instruction["Name"]), None)
                 if chemo_entry:
-                    if chemoType in ["TDM1.json", "TDx.json"]:
+                    if chemoType in ["TDM1.json", "TDx.json", "sacgov.json"]:
                         dosage = round(chemo_entry["Dosage"] * weight, 2)
                     elif chemoType == "capecitabineX77.json":
                         dosage = chemo_entry["Dosage"]
@@ -62,7 +62,7 @@ def main():
     Dávky je nutné upraviť podľa aktuálne dostupných balení liečiv.
     Autor nezodpovedá za prípadné škody spôsobené jeho použitím!
     Imunoterapiu nájdete na stránke https://immunothon.streamlit.app.
-    Pripomienky a požiadavky na úpravu posielajte na filip.kohutek@fntn.sk""")
+    Pripomienky a požiadavky na úrpavu posielajte na filip.kohutek@fntn.sk""")
 
     weight = st.number_input("Zadajte hmotnosť (kg):", min_value=1, max_value=250, step=1, value=None)
     height = st.number_input("Zadajte výšku (cm):", min_value=1, max_value=250, step=1, value=None)
@@ -88,7 +88,8 @@ def main():
             "eribulin": "eribulin.json",
             "peg- doxorubicin": "pegdoxo.json",
             "TD-M1": "TDM1.json",
-            "Trastuzumab-deruxtecan": "TDx.json"
+            "Trastuzumab-deruxtecan": "TDx.json",
+            "Sacituzumab govitecan": "sacgov.json"
         }
 
         chemo_name = st.selectbox("Vyberte chemoterapeutický režim:", list(chemo_options.keys()))
