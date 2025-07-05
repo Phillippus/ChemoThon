@@ -100,7 +100,8 @@ def main():
             "paclitaxel": "paclitaxelweekly.json",
             "peg- doxorubicin": "pegdoxo.json",
             "Sacituzumab govitecan": "Sacgov.json",
-            "vinorelbin p.o. weekly": "vinorelbinweekly.json"
+            "vinorelbin p.o. weekly": "vinorelbinweekly.json",
+            "Trastuzumab/Pertuzumab": "firsttrastupertu.json",
         }
 
         chemo_name = st.selectbox("Vyberte chemoterapeutický režim:", list(chemo_options.keys()))
@@ -118,8 +119,16 @@ def main():
                 selected_filename = "firsttrastuzumabiv.json"
             else:
                 selected_filename = "elsetrastuzumabiv.json"
+
+        if chemo_name == "Trastuzumab/Pertuzumab":
+            combo_option = st.radio("Zvoľte typ podania trastuzumabu/pertuzumabu:", ["Prvé podanie", "Ďalšie podania"])
+            if combo_option == "Prvé podanie":
+                selected_filename = "firsttrastupertu.json"
+            else:
+                selected_filename = "elsetrastupertu.json"
+
         else:
-            if chemo_name != "Pertuzumab":
+            if chemo_name != "Pertuzumab" and chemo_name != "Trastuzumab IV" and chemo_name != "Trastuzumab/Pertuzumab":
                 selected_filename = chemo_options[chemo_name]
 
         if st.button('Zobraziť protokol chemoterapie') and weight is not None:
