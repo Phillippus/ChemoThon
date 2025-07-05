@@ -25,12 +25,12 @@ def display_chemotherapy_details(protocol, bsa, weight):
     if "Chemo" in protocol and protocol["Chemo"]:
         st.write("#### Chemotherapy Drugs")
         for drug in protocol["Chemo"]:
-            if drug["DosageMetric"] in ["mg/kg"]:
-                dosage = round(drug["Dosage"] * weight, 2)
-            elif drug["DosageMetric"] in ["mg"]:
-                dosage = round(drug["Dosage"], 2)  # flat dose
-            else:
+            if drug["DosageMetric"] == "mg/m2":
                 dosage = round(drug["Dosage"] * bsa, 2)
+            elif drug["DosageMetric"] == "mg/kg":
+                dosage = round(drug["Dosage"] * weight, 2)
+            else:
+                dosage = drug["Dosage"]
             st.write(f"{drug['Name']} {drug['Dosage']} {drug['DosageMetric']} ......... {dosage} mg D {drug['Day']}")
     else:
         st.warning("No chemotherapy drugs found for this protocol.")
@@ -53,12 +53,12 @@ def display_chemotherapy_details(protocol, bsa, weight):
                 # Calculate Day 1 dose
                 drug = next((d for d in protocol["Chemo"] if d["Name"] == drug_name), None)
                 if drug:
-                    if drug["DosageMetric"] in ["mg/kg"]:
-                        dose = round(drug["Dosage"] * weight, 2)
-                    elif drug["DosageMetric"] in ["mg"]:
-                        dose = round(drug["Dosage"], 2)
-                    else:
+                    if drug["DosageMetric"] == "mg/m2":
                         dose = round(drug["Dosage"] * bsa, 2)
+                    elif drug["DosageMetric"] == "mg/kg":
+                        dose = round(drug["Dosage"] * weight, 2)
+                    else:
+                        dose = drug["Dosage"]
                     st.write(f"{drug_name} - {dose} mg, {instruction_text}")
                 else:
                     st.write(f"{drug_name} - {instruction_text}")
