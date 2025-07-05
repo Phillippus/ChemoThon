@@ -27,7 +27,7 @@ def display_chemotherapy_details(rbodysurf, chemoType, weight):
             elif chemoType in ["TDM1.json", "TDx.json", "Sacgov.json", "firsttrastuzumabiv.json", "elsettrastuzumabiv.json"]:
                 dosage = round(chemo["Dosage"] * weight, 2)
                 st.write(f"{chemo['Name']} {chemo['Dosage']} {chemo['DosageMetric']} ......... {dosage} mg D {chemo['Day']}")
-                day1_dose = f"{chemo['Name']} {dosage} mg"
+                day1_dose = f"{chemo['Name']} {chemo['Dosage']} {chemo['DosageMetric']} ......... {dosage} mg D {chemo['Day']}"
             elif chemoType in ["firsttrastupertu.json", "elsetrastupertu.json"]:
                 dosage = chemo["Dosage"]
                 st.write(f"{chemo['Name']} {dosage} mg D {chemo['Day']}")
@@ -47,7 +47,7 @@ def display_chemotherapy_details(rbodysurf, chemoType, weight):
                 if chemo_entry:
                     if chemoType in ["TDM1.json", "TDx.json", "Sacgov.json", "firsttrastuzumabiv.json", "elsettrastuzumabiv.json"]:
                         dosage = round(chemo_entry["Dosage"] * weight, 2)
-                        st.write(f"{instruction['Name']} {instruction['Inst']}")
+                        st.write(f"{instruction['Name']} {dosage} mg {instruction['Inst']}")
                     elif chemoType in ["firsttrastupertu.json", "elsetrastupertu.json"]:
                         st.write(f"{instruction['Name']} {instruction['Inst']}")
                     elif chemoType in ["capecitabineX77.json", "trastuzumabsc.json", "firstpertuzumab.json", "elsepertuzumab.json"]:
