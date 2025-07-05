@@ -37,7 +37,7 @@ def display_chemotherapy_details(rbodysurf, chemoType, weight):
             if instruction["Name"]:
                 chemo_entry = next((item for item in chemoJson["Chemo"] if item["Name"] == instruction["Name"]), None)
                 if chemo_entry:
-                    if chemoType in ["TDM1.json", "TDx.json", "sacgov.json"]:
+                    if chemoType in ["TDM1.json", "TDx.json", "Sacgov.json", "firsttrastuzumab.json", "elsetrastuzumab.json"]:
                         dosage = round(chemo_entry["Dosage"] * weight, 2)
                         st.write(f"{instruction['Name']} {dosage} mg {instruction['Inst']}")
                     elif chemoType in ["capecitabineX77.json", "trastuzumabsc.json", "firstpertuzumab.json", "elsepertuzumab.json"]:
@@ -81,7 +81,7 @@ def main():
             "Pertuzumab": "firstpertuzumab.json",  # Default value, overridden by radio button
             "TD-M1": "TDM1.json",
             "Trastuzumab SC": "trastuzumabsc.json",
-            "Trastuzumab IV": "firsttrastuzumab.json",  # Default, overridden by radio
+            "Trastuzumab IV": "firsttrastuzumab.json",
             "Trastuzumab-deruxtecan": "TDx.json",
             "capecitabin": "capecitabine.json",
             "capecitabin X7/7": "capecitabineX77.json",
@@ -96,21 +96,22 @@ def main():
 
         chemo_name = st.selectbox("Vyberte chemoterapeutický režim:", list(chemo_options.keys()))
 
-        # Handle special case for Pertuzumab
         if chemo_name == "Pertuzumab":
             pertuzumab_option = st.radio("Zvoľte typ podania pertuzumabu:", ["Prvé podanie", "Ďalšie podania"])
             if pertuzumab_option == "Prvé podanie":
                 selected_filename = "firstpertuzumab.json"
             else:
                 selected_filename = "elsepertuzumab.json"
-        elif chemo_name == "Trastuzumab IV":
+
+        if chemo_name == "Trastuzumab IV":
             trastuzumab_option = st.radio("Zvoľte typ podania trastuzumabu IV:", ["Prvé podanie", "Ďalšie podania"])
             if trastuzumab_option == "Prvé podanie":
                 selected_filename = "firsttrastuzumab.json"
             else:
                 selected_filename = "elsetrastuzumab.json"
         else:
-            selected_filename = chemo_options[chemo_name]
+            if chemo_name != "Pertuzumab":
+                selected_filename = chemo_options[chemo_name]
 
         if st.button('Zobraziť protokol chemoterapie') and weight is not None:
             display_chemotherapy_details(
