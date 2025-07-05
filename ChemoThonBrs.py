@@ -31,16 +31,17 @@ def display_chemotherapy_details(rbodysurf, chemoType, weight):
         st.write("D1")
         st.write(chemoJson["Day1"]["Premed"]["Note"])
         
-       for instruction in chemoJson["Day1"]["Instructions"]:
-    if instruction["Name"]:
-        chemo_entry = next((item for item in chemoJson["Chemo"] if item["Name"] == instruction["Name"]), None)
-        if chemo_entry:
-            dosage = round(chemo_entry["Dosage"] * rbodysurf, 2)
-            st.write(f"{instruction['Name']} {dosage} mg {instruction['Inst']}")
-    else:
-        st.write(instruction["Inst"])
-                
-                st.write(f"{drug_name} {dosage} mg {instruction['Inst']}")
+    for instruction in chemoJson["Day1"]["Instructions"]:
+        if instruction["Name"]:
+            chemo_entry = next((item for item in chemoJson["Chemo"] if item["Name"] == instruction["Name"]), None)
+            if chemo_entry:
+                if chemoType in ["TDM1.json", "TDx.json"]:
+                    dosage = round(chemo_entry["Dosage"] * weight, 2)
+                else:
+                    dosage = round(chemo_entry["Dosage"] * rbodysurf, 2)
+                st.write(f"{instruction['Name']} {dosage} mg {instruction['Inst']}")
+        else:
+            st.write(instruction["Inst"])
 
 def calculate_bsa(weight, height):
     """Calculates body surface area using the DuBois formula."""
