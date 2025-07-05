@@ -49,8 +49,7 @@ def display_chemotherapy_details(rbodysurf, chemoType, weight):
                         dosage = round(chemo_entry["Dosage"] * weight, 2)
                         st.write(f"{instruction['Name']} {dosage} mg {instruction['Inst']}")
                     elif chemoType in ["firsttrastupertu.json", "elsetrastupertu.json"]:
-                        dosage = chemo_entry["Dosage"]
-                        st.write(f"{instruction['Name']} {dosage} mg {instruction['Inst']}")
+                        st.write(f"{instruction['Name']} {instruction['Inst']}")
                     elif chemoType in ["capecitabineX77.json", "trastuzumabsc.json", "firstpertuzumab.json", "elsepertuzumab.json"]:
                         st.write(f"{instruction['Name']} {instruction['Inst']}")
                     else:
