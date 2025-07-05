@@ -18,12 +18,13 @@ def display_chemotherapy_details(rbodysurf, chemoType, weight):
     chemoJson = load_json(chemoType)
     if chemoJson:
         st.write(f"### Protokol {chemoType.replace('.json', '')}")
+        day1_dose = ""
         for chemo in chemoJson["Chemo"]:
             # Fixed dose for X7/7 and trastuzumabsc
             if chemoType in ["capecitabineX77.json", "trastuzumabsc.json", "firstpertuzumab.json", "elsepertuzumab.json"]:
                 st.write(f"{chemo['Name']} {chemo['Dosage']} mg D {chemo['Day']}")
                 day1_dose = f"{chemo['Name']} {chemo['Dosage']} mg"
-            elif chemoType in ["TDM1.json", "TDx.json", "Sacgov.json", "firsttrastuzumabiv.json", "elsetrastuzumabiv.json"]:
+            elif chemoType in ["TDM1.json", "TDx.json", "Sacgov.json", "firsttrastuzumabiv.json", "elsetrastuzumabiv.json", "firsttrastupertu.json", "elsetrastupertu.json"]:
                 dosage = round(chemo["Dosage"] * weight, 2)
                 st.write(f"{chemo['Name']} {round(chemo['Dosage'], 2)} {chemo['DosageMetric']} ......... {dosage} mg D {chemo['Day']}")
                 day1_dose = f"{chemo['Name']} {dosage} mg"
@@ -40,7 +41,7 @@ def display_chemotherapy_details(rbodysurf, chemoType, weight):
             if instruction["Name"]:
                 chemo_entry = next((item for item in chemoJson["Chemo"] if item["Name"] == instruction["Name"]), None)
                 if chemo_entry:
-                    if chemoType in ["TDM1.json", "TDx.json", "Sacgov.json", "firsttrastuzumabiv.json", "elsetrastuzumabiv.json"]:
+                    if chemoType in ["TDM1.json", "TDx.json", "Sacgov.json", "firsttrastuzumabiv.json", "elsetrastuzumabiv.json", "firsttrastupertu.json", "elsetrastupertu.json"]:
                         dosage = round(chemo_entry["Dosage"] * weight, 2)
                         if instruction['Name'] == chemo['Name']:
                             st.write(f"{day1_dose} {instruction['Inst']}")
