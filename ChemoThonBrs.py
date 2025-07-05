@@ -21,7 +21,7 @@ def display_chemotherapy_details(rbodysurf, chemoType, weight):
         for chemo in chemoJson["Chemo"]:
             # Fixed dose for X7/7 and trastuzumabsc
             if chemoType in ["capecitabineX77.json", "trastuzumabsc.json", "firstpertuzumab.json", "elsepertuzumab.json"]:
-                st.write(f"{chemo['Name']} {chemo['Dosage']} D {chemo['Day']}")
+                st.write(f"{chemo['Name']} {chemo['Dosage']} mg D {chemo['Day']}")
             else:
                 if chemoType in ["TDM1.json", "TDx.json", "Sacgov.json"]:
                     dosage = round(chemo["Dosage"] * weight, 2)
@@ -41,8 +41,6 @@ def display_chemotherapy_details(rbodysurf, chemoType, weight):
                         dosage = round(chemo_entry["Dosage"] * weight, 2)
                     elif chemoType in ["capecitabineX77.json", "trastuzumabsc.json", "firstpertuzumab.json", "elsepertuzumab.json"]:
                         dosage = chemo_entry["Dosage"]
-                        st.write(f"{instruction['Inst']}")
-                        continue
                     else:
                         dosage = round(chemo_entry["Dosage"] * rbodysurf, 2)
                     st.write(f"{instruction['Name']} {dosage} mg {instruction['Inst']}")
@@ -79,7 +77,7 @@ def main():
             "AC": "AC.json",
             "DD-AC + G-CSF": "dd-AC.json",
             "EC": "EC.json",
-            "Pertuzumab": None,  # Placeholder for dynamic selection
+            "Pertuzumab": "firstpertuzumab.json",  # Default value, overridden by radio button
             "TD-M1": "TDM1.json",
             "Trastuzumab SC": "trastuzumabsc.json",
             "Trastuzumab-deruxtecan": "TDx.json",
