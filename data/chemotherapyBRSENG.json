@@ -420,8 +420,8 @@
         {
             "Chemo": [
                 {
-                    "Name": "trastuzumab/pertuzumab SC",
-                    "Dosage": "600/1200",
+                    "Name": "pertuzumab/trastuzumab",
+                    "Dosage": "1200/600",
                     "DosageMetric": "mg",
                     "Day": "1"
                 }
@@ -433,7 +433,8 @@
                 },
                 "Instructions": [
                     {
-                        "Instruction": "inject SC over 5-8 min (first adm.)"
+                        "Name": "pertuzumab/trastuzumab",
+                        "Instruction": "inject SC over 5–8 min (first adm.)"
                     }
                 ]
             },
@@ -444,7 +445,7 @@
         {
             "Chemo": [
                 {
-                    "Name": "trastuzumab/pertuzumab SC",
+                    "Name": "pertuzumab/trastuzumab",
                     "Dosage": "600/600",
                     "DosageMetric": "mg",
                     "Day": "1"
@@ -457,6 +458,7 @@
                 },
                 "Instructions": [
                     {
+                        "Name": "pertuzumab/trastuzumab",
                         "Instruction": "inject SC over 5 min (subseq. adm.)"
                     }
                 ]
@@ -482,7 +484,7 @@
                 "Instructions": [
                     {
                         "Name": "sacituzumab govitecan",
-                        "Instruction": "in 500ml NS /60 min iv"
+                        "Instruction": "in 500ml NS iv /3 hours- first administration, 1-2 hrs subsequent"
                     }
                 ]
             },

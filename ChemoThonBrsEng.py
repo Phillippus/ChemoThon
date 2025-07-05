@@ -28,9 +28,9 @@ def display_chemotherapy_details(protocol, bsa, weight):
             if isinstance(drug["Dosage"], str) and "/" in drug["Dosage"]:
                 try:
                     dose_parts = [float(part) for part in drug["Dosage"].split("/")]
-                    dosage = ", ".join([f"{round(d, 2)} mg" for d in dose_parts])
-                except (ValueError, TypeError):
-                    dosage = "N/A"
+                    dosage = f"{round(dose_parts[0], 2)}/{round(dose_parts[1], 2)}mg"
+                except (ValueError, TypeError, IndexError):
+                    dosage = drug["Dosage"]
             elif drug["DosageMetric"] == "mg/m2":
                 dosage = round(drug["Dosage"] * bsa, 2)
             elif drug["DosageMetric"] == "mg/kg":
@@ -46,7 +46,8 @@ def display_chemotherapy_details(protocol, bsa, weight):
             if drug["DosageMetric"] in ["mg/m2", "mg/kg"]:
                 st.write(f"{drug['Name']} {drug['Dosage']} {drug['DosageMetric']} ......... {dosage} mg D {drug['Day']}")
             else:
-                st.write(f"{drug['Name']} {dosage} mg D {drug['Day']}")
+                dose_str = dosage if isinstance(dosage, str) and "mg" in dosage else f"{dosage}mg"
+                st.write(f"{drug['Name']} {dose_str} D {drug['Day']}")
     else:
         st.warning("No chemotherapy drugs found for this protocol.")
 
@@ -71,9 +72,9 @@ def display_chemotherapy_details(protocol, bsa, weight):
                     if isinstance(drug["Dosage"], str) and "/" in drug["Dosage"]:
                         try:
                             dose_parts = [float(part) for part in drug["Dosage"].split("/")]
-                            dose = ", ".join([f"{round(d, 2)} mg" for d in dose_parts])
-                        except (ValueError, TypeError):
-                            dose = "N/A"
+                            dose = f"{round(dose_parts[0], 2)}/{round(dose_parts[1], 2)}mg"
+                        except (ValueError, TypeError, IndexError):
+                            dose = drug["Dosage"]
                     elif drug["DosageMetric"] == "mg/m2":
                         dose = round(drug["Dosage"] * bsa, 2)
                     elif drug["DosageMetric"] == "mg/kg":
@@ -86,7 +87,8 @@ def display_chemotherapy_details(protocol, bsa, weight):
                             dose = round(float(drug["Dosage"]), 2)
                         except (TypeError, ValueError):
                             dose = drug["Dosage"]
-                    st.write(f"{drug_name} - {dose} mg, {instruction_text}")
+                    dose_str = dose if isinstance(dose, str) and "mg" in dose else f"{dose}mg"
+                    st.write(f"{drug_name} - {dose_str}, {instruction_text}")
                 else:
                     st.write(f"{drug_name} - {instruction_text}")
         else:
