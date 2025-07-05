@@ -23,7 +23,7 @@ def display_chemotherapy_details(rbodysurf, chemoType, weight):
             if chemoType == "capecitabineX77.json":
                 st.write(f"{chemo['Name']} {chemo['Dosage']} D {chemo['Day']}")
             else:
-                if chemoType in ["TDM1.json", "TDx.json", "sacgov.json"]:
+                if chemoType in ["TDM1.json", "TDx.json", "Sacgov.json"]:
                     dosage = round(chemo["Dosage"] * weight, 2)
                 else:
                     dosage = round(chemo["Dosage"] * rbodysurf, 2)
