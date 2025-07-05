@@ -1,7 +1,7 @@
 {
   "Chemo": [
     {
-      "Name": "trastuzumab/pertuzumab SC",
+      "Name": "pertuzumab/trastuzumab SC",
       "Dosage": "1200/600",
       "DosageMetric": "mg",
       "Day": "1"
@@ -14,7 +14,7 @@
     },
     "Instructions": [
       {
-        "Name": "trastuzumab/pertuzumab SC",
+        "Name": "pertuzumab/trastuzumab SC",
         "Inst": "1200/600 mg s.c. do stehna, pomalá subkutánna injekcia, cca 5 min"
       }
     ]
