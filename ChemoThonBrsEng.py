@@ -97,11 +97,12 @@ def display_chemotherapy_details(protocol, bsa, weight):
         st.warning("No details found for Day 1.")
 
 def main():
-    st.title("ChemoThon Breast v. 3.0 ENG")
+    st.title("ChemoThon Breast v. 3.2 ENG")
     st.write("""Welcome to ChemoThon!
 This application provides assistance in prescribing chemotherapy regimens based on body surface area (BSA) or weight,
 Please ensure that doses are adjusted to align with the packaging and protocols available in your country. Users bear full responsibility for applying this tool in clinical practice.
-
+Immunotherapy can be found at https://immunothoneng.streamlit.app
+             
 We welcome your feedback to improve this app further. Feel free to reach out at filip.kohutek@fntn.sk.""")
 
     # Load chemotherapy data
