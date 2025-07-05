@@ -318,6 +318,187 @@
             "name": "Trastuzumab-deruxtecan",
             "nc": 21
         }
+        ,
+        {
+            "Chemo": [
+                {
+                    "Name": "trastuzumab",
+                    "Dosage": 8,
+                    "DosageMetric": "mg/kg",
+                    "Day": "1"
+                }
+            ],
+            "NextCycle": "21",
+            "Day1": {
+                "Premed": {
+                    "Note": "Granisetron 2mg p.o., Dexamethasone 8mg iv, Pantoprazole 40mg p.o."
+                },
+                "Instructions": [
+                    {
+                        "Name": "trastuzumab",
+                        "Instruction": "in 250ml NS /90 min iv"
+                    }
+                ]
+            },
+            "name": "Trastuzumab iv (first adm.)",
+            "nc": 21
+        },
+        {
+            "Chemo": [
+                {
+                    "Name": "trastuzumab",
+                    "Dosage": 6,
+                    "DosageMetric": "mg/kg",
+                    "Day": "1"
+                }
+            ],
+            "NextCycle": "21",
+            "Day1": {
+                "Premed": {
+                    "Note": "Granisetron 2mg p.o., Dexamethasone 8mg iv, Pantoprazole 40mg p.o."
+                },
+                "Instructions": [
+                    {
+                        "Name": "trastuzumab",
+                        "Instruction": "in 250ml NS /30 min iv"
+                    }
+                ]
+            },
+            "name": "Trastuzumab iv (subseq. adm.)",
+            "nc": 21
+        },
+        {
+            "Chemo": [
+                {
+                    "Name": "pertuzumab",
+                    "Dosage": 840,
+                    "DosageMetric": "mg",
+                    "Day": "1"
+                }
+            ],
+            "NextCycle": "21",
+            "Day1": {
+                "Premed": {
+                    "Note": "Granisetron 2mg p.o., Dexamethasone 8mg iv, Pantoprazole 40mg p.o."
+                },
+                "Instructions": [
+                    {
+                        "Name": "pertuzumab",
+                        "Instruction": "in 250ml NS /60 min iv"
+                    }
+                ]
+            },
+            "name": "Pertuzumab (first adm.)",
+            "nc": 21
+        },
+        {
+            "Chemo": [
+                {
+                    "Name": "pertuzumab",
+                    "Dosage": 420,
+                    "DosageMetric": "mg",
+                    "Day": "1"
+                }
+            ],
+            "NextCycle": "21",
+            "Day1": {
+                "Premed": {
+                    "Note": "Granisetron 2mg p.o., Dexamethasone 8mg iv, Pantoprazole 40mg p.o."
+                },
+                "Instructions": [
+                    {
+                        "Name": "pertuzumab",
+                        "Instruction": "in 250ml NS /30-60 min iv"
+                    }
+                ]
+            },
+            "name": "Pertuzumab (subseq. adm.)",
+            "nc": 21
+        },
+        {
+            "Chemo": [
+                {
+                    "Name": "trastuzumab",
+                    "Dosage": 600,
+                    "DosageMetric": "mg",
+                    "Day": "1"
+                },
+                {
+                    "Name": "pertuzumab",
+                    "Dosage": 600,
+                    "DosageMetric": "mg",
+                    "Day": "1"
+                }
+            ],
+            "NextCycle": "21",
+            "Day1": {
+                "Premed": {
+                    "Note": "Granisetron 2mg p.o., Dexamethasone 8mg iv, Pantoprazole 40mg p.o."
+                },
+                "Instructions": [
+                    {
+                        "Name": "trastuzumab/pertuzumab SC",
+                        "Instruction": "inject SC over 5-8 min (first adm.)"
+                    }
+                ]
+            },
+            "name": "Trastuzumab/pertuzumab SC (first adm.)",
+            "nc": 21
+        },
+        {
+            "Chemo": [
+                {
+                    "Name": "trastuzumab",
+                    "Dosage": 600,
+                    "DosageMetric": "mg",
+                    "Day": "1"
+                },
+                {
+                    "Name": "pertuzumab",
+                    "Dosage": 600,
+                    "DosageMetric": "mg",
+                    "Day": "1"
+                }
+            ],
+            "NextCycle": "21",
+            "Day1": {
+                "Premed": {
+                    "Note": "Granisetron 2mg p.o., Dexamethasone 8mg iv, Pantoprazole 40mg p.o."
+                },
+                "Instructions": [
+                    {
+                        "Name": "trastuzumab/pertuzumab SC",
+                        "Instruction": "inject SC over 5 min (subseq. adm.)"
+                    }
+                ]
+            },
+            "name": "Trastuzumab/pertuzumab SC (subseq. adm.)",
+            "nc": 21
+        },
+        {
+            "Chemo": [
+                {
+                    "Name": "sacituzumab govitecan",
+                    "Dosage": 10,
+                    "DosageMetric": "mg/kg",
+                    "Day": "1,8"
+                }
+            ],
+            "NextCycle": "21",
+            "Day1": {
+                "Premed": {
+                    "Note": "Granisetron 2mg p.o., Dexamethasone 8mg iv, Pantoprazole 40mg p.o."
+                },
+                "Instructions": [
+                    {
+                        "Name": "sacituzumab govitecan",
+                        "Instruction": "in 500ml NS /60 min iv"
+                    }
+                ]
+            },
+            "name": "Sacituzumab govitecan",
+            "nc": 21
+        }
     ]
 }
                    
