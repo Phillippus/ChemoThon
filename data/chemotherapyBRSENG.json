@@ -389,7 +389,8 @@
                 ]
             },
             "name": "Pertuzumab (first adm.)",
-            "nc": 21
+            "nc": 21,
+            "FixedDose": true
         },
         {
             "Chemo": [
@@ -413,7 +414,8 @@
                 ]
             },
             "name": "Pertuzumab (subseq. adm.)",
-            "nc": 21
+            "nc": 21,
+            "FixedDose": true
         },
         {
             "Chemo": [
@@ -431,13 +433,13 @@
                 },
                 "Instructions": [
                     {
-                        "Name": "trastuzumab/pertuzumab SC",
                         "Instruction": "inject SC over 5-8 min (first adm.)"
                     }
                 ]
             },
             "name": "Trastuzumab/pertuzumab SC (first adm.)",
-            "nc": 21
+            "nc": 21,
+            "FixedDose": true
         },
         {
             "Chemo": [
@@ -455,13 +457,13 @@
                 },
                 "Instructions": [
                     {
-                        "Name": "trastuzumab/pertuzumab SC",
                         "Instruction": "inject SC over 5 min (subseq. adm.)"
                     }
                 ]
             },
             "name": "Trastuzumab/pertuzumab SC (subseq. adm.)",
-            "nc": 21
+            "nc": 21,
+            "FixedDose": true
         },
         {
             "Chemo": [
