@@ -15,11 +15,7 @@
     "Instructions": [
       {
         "Name": "docetaxel",
-        "Inst": "- prvych 30mg v 500ml FR iv/ 45 min, nasledne zvysok na 60min"
-      },
-      {
-        "Name": "pegfilgrastim alebo lipegfilgrastim",
-        "Inst": "6mg sc 24–48 hodín po dotečení chemoterapie"
+        "Inst": "- prvych 30mg v 500ml FR iv/ 45 min, nasledne zvysok na 60min\n pegfilgrastim alebo lipegfilgrastim 6mg sc 24–48 hodín po dotečení"
       }
     ]
   }
