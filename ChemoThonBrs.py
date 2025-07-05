@@ -19,21 +19,20 @@ def display_chemotherapy_details(rbodysurf, chemoType, weight):
     if chemoJson:
         st.write(f"### Protokol {chemoType.replace('.json', '')}")
         for chemo in chemoJson["Chemo"]:
-            # Display fixed dose without calculations
+            # Fixed dose for X7/7
             if chemoType == "capecitabineX77.json":
-                st.write(f"{chemo['Name']} {chemo['Dosage']} {chemo['DosageMetric']} D {chemo['Day']}")
+                st.write(f"{chemo['Name']} {chemo['Dosage']} D {chemo['Day']}")
             else:
                 if chemoType in ["TDM1.json", "TDx.json"]:
-                    dosage = round(chemo["Dosage"] * weight, 2)  # Weight-based dosing
+                    dosage = round(chemo["Dosage"] * weight, 2)
                 else:
-                    dosage = round(chemo["Dosage"] * rbodysurf, 2)  # BSA-based dosing
-                
+                    dosage = round(chemo["Dosage"] * rbodysurf, 2)
                 st.write(f"{chemo['Name']} {round(chemo['Dosage'], 2)} {chemo['DosageMetric']} ......... {dosage} mg D {chemo['Day']}")
 
         st.write(f"NC {chemoJson['NC']} . deň")
         st.write("D1")
         st.write(chemoJson["Day1"]["Premed"]["Note"])
-        
+
         for instruction in chemoJson["Day1"]["Instructions"]:
             if instruction["Name"]:
                 chemo_entry = next((item for item in chemoJson["Chemo"] if item["Name"] == instruction["Name"]), None)
@@ -42,12 +41,12 @@ def display_chemotherapy_details(rbodysurf, chemoType, weight):
                         dosage = round(chemo_entry["Dosage"] * weight, 2)
                     elif chemoType == "capecitabineX77.json":
                         dosage = chemo_entry["Dosage"]
+                        st.write(f"{instruction['Inst']}")
+                        continue
                     else:
                         dosage = round(chemo_entry["Dosage"] * rbodysurf, 2)
-
                     st.write(f"{instruction['Name']} {dosage} mg {instruction['Inst']}")
             else:
-                # Instructions not tied to a specific drug (e.g. G-CSF)
                 st.write(instruction["Inst"])
 
 def calculate_bsa(weight, height):
@@ -65,17 +64,14 @@ def main():
     Imunoterapiu nájdete na stránke https://immunothon.streamlit.app
     Pripomienky a požiadavky na úpravu posielajte na filip.kohutek@fntn.sk""")
 
-    # Inputs for weight and height
     weight = st.number_input("Zadajte hmotnosť (kg):", min_value=1, max_value=250, step=1, value=None)
     height = st.number_input("Zadajte výšku (cm):", min_value=1, max_value=250, step=1, value=None)
 
-    # Calculate BSA
     if st.button("Vypočítať BSA") and weight is not None and height is not None:
         rbodysurf = calculate_bsa(weight, height)
         st.session_state['rbodysurf'] = rbodysurf
         st.write(f"Telesný povrch je: {rbodysurf} m²")
 
-    # Check if BSA is calculated
     if 'rbodysurf' in st.session_state:
         st.write(f"Telesný povrch (BSA): {st.session_state['rbodysurf']} m²")
 
