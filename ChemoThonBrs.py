@@ -64,7 +64,7 @@ def calculate_bsa(weight, height):
     return round(bodysurf, 2)
 
 def main():
-    st.title("ChemoThon - BreastSK v. 2.0")
+    st.title("ChemoThon - BreastSK v. 2.2")
     st.write("Vitajte v programe ChemoThon!")
     st.write("""Program rozpisuje najbežnejšie chemoterapie podľa povrchu alebo hmotnosti. 
     Najskôr si vypočítajte BSA a potom sa Vám sprístupní tlačidlo pre výpočet chemoterapie.
