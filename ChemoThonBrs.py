@@ -54,7 +54,8 @@ def main():
     st.write("""Program rozpisuje najbežnejšie chemoterapie podľa povrchu alebo hmotnosti. 
     Najskôr si vypočítajte BSA a potom sa Vám sprístupní tlačidlo pre výpočet chemoterapie.
     Dávky je nutné upraviť podľa aktuálne dostupných balení liečiv.
-    Autor nezodpovedá za prípadné škody spôsobené jeho použitím!
+    Autor nezodpovedá za prípadné škody spôsobené jeho použitím! V prípade potreby podania imunoterapie prejdite 
+    na https://immunothon.streamlit.app
     Pripomienky a požiadavky na úpravu posielajte na filip.kohutek@fntn.sk""")
 
     # Inputs for weight and height
