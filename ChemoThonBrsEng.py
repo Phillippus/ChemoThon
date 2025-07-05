@@ -99,16 +99,20 @@ We welcome your feedback to improve this app further. Feel free to reach out at 
         st.session_state['bsa'] = bsa
         st.write(f"Body Surface Area: {bsa} m²")
 
+    if not weight or not height:
+        st.warning("Please enter both weight and height to calculate BSA.")
+        return
+
     # Select chemotherapy regimen
     if 'bsa' in st.session_state:
         bsa = st.session_state['bsa']
-        chemo_names = [protocol["name"] for protocol in data["chemotherapies"]]
+        chemo_names = [protocol["name"] for protocol in data.get("chemotherapies", [])]
         # Sorting logic: non-biological first, then biological
         def is_biological(name):
             name_lower = name.lower()
             return any(keyword in name_lower for keyword in ["trastuzumab", "pertuzumab", "govitecan", "deruxtecan", "td-m1"])
 
-        chemo_names = [protocol["name"] for protocol in data["chemotherapies"]]
+        chemo_names = [protocol["name"] for protocol in data.get("chemotherapies", [])]
         chemo_names_sorted = sorted([name for name in chemo_names if not is_biological(name)])
         bio_names_sorted = sorted([name for name in chemo_names if is_biological(name)])
         sorted_names = chemo_names_sorted + bio_names_sorted
