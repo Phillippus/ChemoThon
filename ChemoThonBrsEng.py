@@ -28,7 +28,10 @@ def display_chemotherapy_details(protocol, bsa, weight):
             if drug["DosageMetric"] == "mg/m2":
                 dosage = round(drug["Dosage"] * bsa, 2)
             elif drug["DosageMetric"] == "mg/kg":
-                dosage = round(drug["Dosage"] * weight, 2)
+                try:
+                    dosage = round(float(drug["Dosage"]) * weight, 2)
+                except (KeyError, TypeError, ValueError):
+                    dosage = "N/A"
             else:
                 dosage = drug["Dosage"]
             if drug["DosageMetric"] in ["mg/m2", "mg/kg"]:
@@ -59,7 +62,10 @@ def display_chemotherapy_details(protocol, bsa, weight):
                     if drug["DosageMetric"] == "mg/m2":
                         dose = round(drug["Dosage"] * bsa, 2)
                     elif drug["DosageMetric"] == "mg/kg":
-                        dose = round(drug["Dosage"] * weight, 2)
+                        try:
+                            dose = round(float(drug["Dosage"]) * weight, 2)
+                        except (KeyError, TypeError, ValueError):
+                            dose = "N/A"
                     else:
                         dose = drug["Dosage"]
                     st.write(f"{drug_name} - {dose} mg, {instruction_text}")
@@ -102,6 +108,7 @@ We welcome your feedback to improve this app further. Feel free to reach out at 
             name_lower = name.lower()
             return any(keyword in name_lower for keyword in ["trastuzumab", "pertuzumab", "govitecan", "deruxtecan", "td-m1"])
 
+        chemo_names = [protocol["name"] for protocol in data["chemotherapies"]]
         chemo_names_sorted = sorted([name for name in chemo_names if not is_biological(name)])
         bio_names_sorted = sorted([name for name in chemo_names if is_biological(name)])
         sorted_names = chemo_names_sorted + bio_names_sorted
