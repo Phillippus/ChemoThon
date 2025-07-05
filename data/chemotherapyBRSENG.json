@@ -119,7 +119,7 @@
                 "Instructions": [
                     {
                         "Name": "docetaxel",
-                        "Instruction": "30mg in 500ml NS iv/ 45 min, then the rest over 60 min"
+                        "Instruction": "infuse in 500ml NS: first portion over 45 min, then the rest over 60 min"
                     }
                 ]
             },
@@ -143,7 +143,7 @@
                 "Instructions": [
                     {
                         "Name": "paclitaxel",
-                        "Instruction": "first 30mg /500ml NS/ 45 min, the rest in 500ml NS/ 60 minutes"
+                        "Instruction": "infuse in 500ml NS: initial portion over 45 min, remainder over 60 min"
                     }
                 ]
             },
@@ -336,7 +336,7 @@
                 "Instructions": [
                     {
                         "Name": "trastuzumab",
-                        "Instruction": "in 250ml NS /90 min iv"
+                        "Instruction": "in 250ml NS over 90 min iv"
                     }
                 ]
             },
@@ -360,7 +360,7 @@
                 "Instructions": [
                     {
                         "Name": "trastuzumab",
-                        "Instruction": "in 250ml NS /30 min iv"
+                        "Instruction": "in 250ml NS over 30 min iv"
                     }
                 ]
             },
@@ -384,7 +384,7 @@
                 "Instructions": [
                     {
                         "Name": "pertuzumab",
-                        "Instruction": "in 250ml NS /60 min iv"
+                        "Instruction": "in 250ml NS over 60 min iv"
                     }
                 ]
             },
@@ -409,7 +409,7 @@
                 "Instructions": [
                     {
                         "Name": "pertuzumab",
-                        "Instruction": "in 250ml NS /30-60 min iv"
+                        "Instruction": "in 250ml NS over 30–60 min iv"
                     }
                 ]
             },
