@@ -10,11 +10,11 @@
     "NC": "22",
     "Day1": {
         "Premed": {
-            "Note": "Granisetron 2mg p.o., Dexona 12mg iv, Pantoprazol 40mg p.o.  "
+            "Note": "Palonosetron/Netupitant 300mg/0.5mg p.o., Dexametazon 12mg iv, Pantoprazol 40mg p.o.  "
         },
         "Instructions": [
             {
-                "Name": "Trastuzumab- deruxtecan",
+                "Name": "Trastuzumab- deruxtecan (Enhertu)",
                 "Inst": "v 500ml FR /90 min iv"
             }
         ]
