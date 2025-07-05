@@ -43,7 +43,27 @@ def platinum5FU(rbodysurf):
             st.write(f"CBDCA AUC {AUC}............ {(CrCl + 25) * AUC} mg  D1") 
             st.write(f"5-fluoruracil {rbodysurf * 1000} mg na 24 hodín/kivi")
 
-# Function for basic chemotherapy
+# Function for biweekly cetuximab 500mg/m²
+def cetuximabBiweekly(rbodysurf):
+    """Cetuximab 500mg/m² podávaný každé 2 týždne"""
+    with open('data/cetuximab2w500.json', 'r') as chemoFile:
+        chemoJson = json.loads(chemoFile.read())
+
+    st.write("Rozpis chemoterapie:")
+    for i in chemoJson["Chemo"]:
+        dose = round(i["Dosage"] * rbodysurf, 2)
+        st.write(f"{i['Name']} {i['Dosage']} {i['DosageMetric']} .......... {dose} mg D{i['Day']}")
+
+    st.write(f"NC {chemoJson['NC']} . deň")
+
+    st.write("D1 - premedikácia:")
+    st.write(chemoJson["Day1"]["Premed"]["Note"])
+
+    st.write("D1 - chemoterapia:")
+    for x in range(len(chemoJson["Chemo"])):
+        dose = round(chemoJson["Chemo"][x]["Dosage"] * rbodysurf, 2)
+        st.write(f"{chemoJson['Day1']['Instructions'][x]['Name']} {dose} mg {chemoJson['Day1']['Instructions'][x]['Inst']}")# Function for basic chemotherapy
+
 def Chemo(rbodysurf, chemoType):
     """Táto funkcia rozpisuje jednoduché chemoterapie s priamou úmerou"""
     with open('data/' + chemoType, "r") as chemoFile:
@@ -68,16 +88,25 @@ def Chemo(rbodysurf, chemoType):
 # Function for head and neck cancer chemotherapy
 def headandneck(rbodysurf): 
     """Táto funkcia rozpisuje chemoterapie používané v liečbe nádorov hlavy a krku"""
-    chemo_choice = st.selectbox("Vyberte chemoterapiu:", ["Vyberte chemoterapiu", "Pt/5-FU", "Cetuximab", "Paclitaxel weekly", "Metotrexat"])
+    chemo_choice = st.selectbox("Vyberte chemoterapiu:", [
+        "Vyberte chemoterapiu",
+        "Pt/5-FU",
+        "Cetuximab (weekly)",
+        "Cetuximab (biweekly)",
+        "Paclitaxel weekly",
+        "Metotrexat"
+    ])
     
     if chemo_choice == "Pt/5-FU":
         platinum5FU(rbodysurf)
-    elif chemo_choice == "Cetuximab":
+    elif chemo_choice == "Cetuximab (weekly)":
         ctx_choice = st.selectbox("Prvé podanie cetuximabu?", ["Vyberte možnosť", "Áno", "Nie"])
         if ctx_choice == "Áno":
             Chemo(rbodysurf, "1cetuximab.json")
         elif ctx_choice == "Nie":
             Chemo(rbodysurf, "elsecetuximab.json")
+    elif chemo_choice == "Cetuximab (biweekly)":
+        cetuximabBiweekly(rbodysurf)
     elif chemo_choice == "Paclitaxel weekly":
         Chemo(rbodysurf, "paclitaxelweekly.json")
     elif chemo_choice == "Metotrexat":
