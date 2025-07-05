@@ -20,7 +20,7 @@ def display_chemotherapy_details(rbodysurf, chemoType, weight):
         st.write(f"### Protokol {chemoType.replace('.json', '')}")
         for chemo in chemoJson["Chemo"]:
             # Fixed dose for X7/7 and trastuzumabsc
-            if chemoType in ["capecitabineX77.json", "trastuzumabsc.json"]:
+            if chemoType in ["capecitabineX77.json", "trastuzumabsc.json", "firstpertuzumab.json", "elsepertuzumab.json"]:
                 st.write(f"{chemo['Name']} {chemo['Dosage']} D {chemo['Day']}")
             else:
                 if chemoType in ["TDM1.json", "TDx.json", "Sacgov.json"]:
@@ -39,7 +39,7 @@ def display_chemotherapy_details(rbodysurf, chemoType, weight):
                 if chemo_entry:
                     if chemoType in ["TDM1.json", "TDx.json", "sacgov.json"]:
                         dosage = round(chemo_entry["Dosage"] * weight, 2)
-                    elif chemoType in ["capecitabineX77.json", "trastuzumabsc.json"]:
+                    elif chemoType in ["capecitabineX77.json", "trastuzumabsc.json", "firstpertuzumab.json", "elsepertuzumab.json"]:
                         dosage = chemo_entry["Dosage"]
                         st.write(f"{instruction['Inst']}")
                         continue
@@ -76,22 +76,22 @@ def main():
         st.write(f"Telesný povrch (BSA): {st.session_state['rbodysurf']} m²")
 
         chemo_options = {
-            "EC": "EC.json",
             "AC": "AC.json",
-            "dd-AC + G-CSF": "dd-AC.json",
-            "docetaxel + G-CSF": "docetaxelbreast.json",
-            "paclitaxel": "paclitaxelweekly.json",
-            "kapecitabin": "capecitabine.json",
-            "kapecitabin X7/7": "capecitabineX77.json",
-            "gemcitabin": "gemcitabine.json",
-            "vinorelbin p.o. weekly": "vinorelbinweekly.json",
-            "eribulin": "eribulin.json",
-            "peg- doxorubicin": "pegdoxo.json",
+            "DD-AC + G-CSF": "dd-AC.json",
+            "EC": "EC.json",
+            "Pertuzumab": None,  # Placeholder for dynamic selection
             "TD-M1": "TDM1.json",
-            "Trastuzumab-deruxtecan": "TDx.json",
-            "Sacituzumab govitecan": "Sacgov.json",
             "Trastuzumab SC": "trastuzumabsc.json",
-            "Pertuzumab": "pertuzumab",  # Placeholder for dynamic selection
+            "Trastuzumab-deruxtecan": "TDx.json",
+            "capecitabin": "capecitabine.json",
+            "capecitabin X7/7": "capecitabineX77.json",
+            "docetaxel + G-CSF": "docetaxelbreast.json",
+            "eribulin": "eribulin.json",
+            "gemcitabin": "gemcitabine.json",
+            "paclitaxel": "paclitaxelweekly.json",
+            "peg- doxorubicin": "pegdoxo.json",
+            "Sacituzumab govitecan": "Sacgov.json",
+            "vinorelbin p.o. weekly": "vinorelbinweekly.json"
         }
 
         chemo_name = st.selectbox("Vyberte chemoterapeutický režim:", list(chemo_options.keys()))
@@ -104,7 +104,6 @@ def main():
             else:
                 selected_filename = "elsepertuzumab.json"
         else:
-            # selected_filename = chemo_options[chemo_name]
             selected_filename = chemo_options[chemo_name]
 
         if st.button('Zobraziť protokol chemoterapie') and weight is not None:
