@@ -89,7 +89,7 @@ def main():
             "peg- doxorubicin": "pegdoxo.json",
             "TD-M1": "TDM1.json",
             "Trastuzumab-deruxtecan": "TDx.json",
-            "Sacituzumab govitecan": "sacgov.json"
+            "Sacituzumab govitecan": "Sacgov.json"
         }
 
         chemo_name = st.selectbox("Vyberte chemoterapeutický režim:", list(chemo_options.keys()))
