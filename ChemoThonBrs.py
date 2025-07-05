@@ -61,7 +61,7 @@ def main():
     Najskôr si vypočítajte BSA a potom sa Vám sprístupní tlačidlo pre výpočet chemoterapie.
     Dávky je nutné upraviť podľa aktuálne dostupných balení liečiv.
     Autor nezodpovedá za prípadné škody spôsobené jeho použitím!
-    Imunoterapiu nájdete na stránke https://immunothon.streamlit.app
+    Imunoterapiu nájdete na stránke https://immunothon.streamlit.app.
     Pripomienky a požiadavky na úpravu posielajte na filip.kohutek@fntn.sk""")
 
     weight = st.number_input("Zadajte hmotnosť (kg):", min_value=1, max_value=250, step=1, value=None)
