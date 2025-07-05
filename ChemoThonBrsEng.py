@@ -69,11 +69,7 @@ def display_chemotherapy_details(protocol, bsa, weight):
                 drug = next((d for d in protocol["Chemo"] if d["Name"] == drug_name), None)
                 if drug:
                     if isinstance(drug["Dosage"], str) and "/" in drug["Dosage"]:
-                        try:
-                            dose_parts = [float(part) for part in drug["Dosage"].split("/")]
-                            dose = " + ".join([f"{round(d, 2)} mg" for d in dose_parts])
-                        except (ValueError, TypeError):
-                            dose = "N/A"
+                        dose = drug["Dosage"]  # Use raw text for fixed combo doses
                     elif drug["DosageMetric"] == "mg/m2":
                         dose = round(drug["Dosage"] * bsa, 2)
                     elif drug["DosageMetric"] == "mg/kg":
@@ -86,10 +82,7 @@ def display_chemotherapy_details(protocol, bsa, weight):
                             dose = round(float(drug["Dosage"]), 2)
                         except (TypeError, ValueError):
                             dose = drug["Dosage"]
-                    if isinstance(drug["Dosage"], str) and "/" in drug["Dosage"]:
-                        st.write(f"{drug_name} - {drug['Dosage']} mg, {instruction_text}")
-                    else:
-                        st.write(f"{drug_name} - {dose} mg, {instruction_text}")
+                    st.write(f"{drug_name} - {dose} mg, {instruction_text}")
                 else:
                     st.write(f"{drug_name} - {instruction_text}")
         else:
