@@ -19,17 +19,17 @@ def display_chemotherapy_details(rbodysurf, chemoType, weight):
     if chemoJson:
         st.write(f"### Protokol {chemoType.replace('.json', '')}")
         for chemo in chemoJson["Chemo"]:
-            # Handle dosage calculation based on BSA or weight
-            if chemoType in ["TDM1.json", "TDx.json"]:
-                dosage = round(chemo["Dosage"] * weight, 2)  # Weight-based dosing
+            if chemoType == "capecitabineX77.json":
+                dosage = chemo["Dosage"]
+            elif chemoType in ["TDM1.json", "TDx.json"]:
+                dosage = round(chemo["Dosage"] * weight, 2)
             else:
-                dosage = round(chemo["Dosage"] * rbodysurf, 2)  # BSA-based dosing
-            
-            st.write(f"{chemo['Name']} {round(chemo['Dosage'], 2)} {chemo['DosageMetric']} ......... {dosage} mg D {chemo['Day']}")
+                dosage = round(chemo["Dosage"] * rbodysurf, 2)
 
-        st.write(f"NC {chemoJson['NC']} . deň")
-        st.write("D1")
-        st.write(chemoJson["Day1"]["Premed"]["Note"])
+    st.write(f"{chemo['Name']} {round(chemo['Dosage'], 2)} {chemo['DosageMetric']} ......... {dosage} mg D {chemo['Day']}")
+    st.write(f"NC {chemoJson['NC']} . deň")
+    st.write("D1")
+    st.write(chemoJson["Day1"]["Premed"]["Note"])
         
     for instruction in chemoJson["Day1"]["Instructions"]:
         if instruction["Name"]:
@@ -79,6 +79,7 @@ def main():
             "docetaxel + G-CSF": "docetaxelbreast.json",
             "paclitaxel": "paclitaxelweekly.json",
             "kapecitabin": "capecitabine.json",
+            "kapecitabin X7/7": "capecitabineX77.json",
             "gemcitabin": "gemcitabine.json",
             "vinorelbin p.o. weekly": "vinorelbinweekly.json",
             "eribulin": "eribulin.json",
