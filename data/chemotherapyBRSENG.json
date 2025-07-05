@@ -418,14 +418,8 @@
         {
             "Chemo": [
                 {
-                    "Name": "trastuzumab",
-                    "Dosage": 600,
-                    "DosageMetric": "mg",
-                    "Day": "1"
-                },
-                {
-                    "Name": "pertuzumab",
-                    "Dosage": 1200,
+                    "Name": "trastuzumab/pertuzumab SC",
+                    "Dosage": "600/1200",
                     "DosageMetric": "mg",
                     "Day": "1"
                 }
@@ -448,14 +442,8 @@
         {
             "Chemo": [
                 {
-                    "Name": "trastuzumab",
-                    "Dosage": 600,
-                    "DosageMetric": "mg",
-                    "Day": "1"
-                },
-                {
-                    "Name": "pertuzumab",
-                    "Dosage": 600,
+                    "Name": "trastuzumab/pertuzumab SC",
+                    "Dosage": "600/600",
                     "DosageMetric": "mg",
                     "Day": "1"
                 }

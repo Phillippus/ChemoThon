@@ -97,7 +97,16 @@ We welcome your feedback to improve this app further. Feel free to reach out at 
     if 'bsa' in st.session_state:
         bsa = st.session_state['bsa']
         chemo_names = [protocol["name"] for protocol in data["chemotherapies"]]
-        selected_protocol_name = st.selectbox("Select a chemotherapy regimen:", chemo_names)
+        # Sorting logic: non-biological first, then biological
+        def is_biological(name):
+            name_lower = name.lower()
+            return any(keyword in name_lower for keyword in ["trastuzumab", "pertuzumab", "govitecan", "deruxtecan", "td-m1"])
+
+        chemo_names_sorted = sorted([name for name in chemo_names if not is_biological(name)])
+        bio_names_sorted = sorted([name for name in chemo_names if is_biological(name)])
+        sorted_names = chemo_names_sorted + bio_names_sorted
+
+        selected_protocol_name = st.selectbox("Select a chemotherapy regimen:", sorted_names)
 
         if st.button("Display Protocol") and weight:
             protocol = next((p for p in data["chemotherapies"] if p["name"] == selected_protocol_name), None)
