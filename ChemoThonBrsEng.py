@@ -28,7 +28,7 @@ def display_chemotherapy_details(protocol, bsa, weight):
             if isinstance(drug["Dosage"], str) and "/" in drug["Dosage"]:
                 try:
                     dose_parts = [float(part) for part in drug["Dosage"].split("/")]
-                    dosage = " + ".join([f"{round(d, 2)} mg" for d in dose_parts])
+                    dosage = " + ".join([f"{round(d, 2)} mg" if isinstance(d, (int, float)) else str(d) for d in dose_parts])
                 except (ValueError, TypeError):
                     dosage = "N/A"
             elif drug["DosageMetric"] == "mg/m2":
