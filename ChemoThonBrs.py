@@ -19,29 +19,36 @@ def display_chemotherapy_details(rbodysurf, chemoType, weight):
     if chemoJson:
         st.write(f"### Protokol {chemoType.replace('.json', '')}")
         for chemo in chemoJson["Chemo"]:
+            # Display fixed dose without calculations
             if chemoType == "capecitabineX77.json":
-                dosage = chemo["Dosage"]
-            elif chemoType in ["TDM1.json", "TDx.json"]:
-                dosage = round(chemo["Dosage"] * weight, 2)
+                st.write(f"{chemo['Name']} {chemo['Dosage']} {chemo['DosageMetric']} D {chemo['Day']}")
             else:
-                dosage = round(chemo["Dosage"] * rbodysurf, 2)
-
-    st.write(f"{chemo['Name']} {round(chemo['Dosage'], 2)} {chemo['DosageMetric']} ......... {dosage} mg D {chemo['Day']}")
-    st.write(f"NC {chemoJson['NC']} . deň")
-    st.write("D1")
-    st.write(chemoJson["Day1"]["Premed"]["Note"])
-        
-    for instruction in chemoJson["Day1"]["Instructions"]:
-        if instruction["Name"]:
-            chemo_entry = next((item for item in chemoJson["Chemo"] if item["Name"] == instruction["Name"]), None)
-            if chemo_entry:
                 if chemoType in ["TDM1.json", "TDx.json"]:
-                    dosage = round(chemo_entry["Dosage"] * weight, 2)
+                    dosage = round(chemo["Dosage"] * weight, 2)  # Weight-based dosing
                 else:
-                    dosage = round(chemo_entry["Dosage"] * rbodysurf, 2)
-                st.write(f"{instruction['Name']} {dosage} mg {instruction['Inst']}")
-        else:
-            st.write(instruction["Inst"])
+                    dosage = round(chemo["Dosage"] * rbodysurf, 2)  # BSA-based dosing
+                
+                st.write(f"{chemo['Name']} {round(chemo['Dosage'], 2)} {chemo['DosageMetric']} ......... {dosage} mg D {chemo['Day']}")
+
+        st.write(f"NC {chemoJson['NC']} . deň")
+        st.write("D1")
+        st.write(chemoJson["Day1"]["Premed"]["Note"])
+        
+        for instruction in chemoJson["Day1"]["Instructions"]:
+            if instruction["Name"]:
+                chemo_entry = next((item for item in chemoJson["Chemo"] if item["Name"] == instruction["Name"]), None)
+                if chemo_entry:
+                    if chemoType in ["TDM1.json", "TDx.json"]:
+                        dosage = round(chemo_entry["Dosage"] * weight, 2)
+                    elif chemoType == "capecitabineX77.json":
+                        dosage = chemo_entry["Dosage"]
+                    else:
+                        dosage = round(chemo_entry["Dosage"] * rbodysurf, 2)
+
+                    st.write(f"{instruction['Name']} {dosage} mg {instruction['Inst']}")
+            else:
+                # Instructions not tied to a specific drug (e.g. G-CSF)
+                st.write(instruction["Inst"])
 
 def calculate_bsa(weight, height):
     """Calculates body surface area using the DuBois formula."""
@@ -54,8 +61,8 @@ def main():
     st.write("""Program rozpisuje najbežnejšie chemoterapie podľa povrchu alebo hmotnosti. 
     Najskôr si vypočítajte BSA a potom sa Vám sprístupní tlačidlo pre výpočet chemoterapie.
     Dávky je nutné upraviť podľa aktuálne dostupných balení liečiv.
-    Autor nezodpovedá za prípadné škody spôsobené jeho použitím! V prípade potreby podania imunoterapie prejdite 
-    na https://immunothon.streamlit.app. 
+    Autor nezodpovedá za prípadné škody spôsobené jeho použitím!
+    Imunoterapiu nájdete na stránke https://immunothon.streamlit.app
     Pripomienky a požiadavky na úpravu posielajte na filip.kohutek@fntn.sk""")
 
     # Inputs for weight and height
@@ -90,7 +97,6 @@ def main():
 
         chemo_name = st.selectbox("Vyberte chemoterapeutický režim:", list(chemo_options.keys()))
 
-        # Ensure weight is not None before calling the function
         if st.button('Zobraziť protokol chemoterapie') and weight is not None:
             selected_filename = chemo_options[chemo_name]
             display_chemotherapy_details(
