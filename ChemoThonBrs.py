@@ -48,8 +48,9 @@ def display_chemotherapy_details(rbodysurf, chemoType, weight):
                     if chemoType in ["TDM1.json", "TDx.json", "Sacgov.json", "firsttrastuzumabiv.json", "elsettrastuzumabiv.json"]:
                         dosage = round(chemo_entry["Dosage"] * weight, 2)
                         st.write(f"{instruction['Name']} {dosage} mg {instruction['Inst']}")
-                    elif chemoType in ["firsttrastupertu.json", "elsetrastupertu.json"]:
-                        st.write(f"{instruction['Name']} {instruction['Inst']}")
+                    elif chemoType in ["firsttrastuzumabiv.json", "elsettrastuzumabiv.json"]:
+                        dosage = round(chemo_entry["Dosage"] * weight, 2)
+                        st.write(f"{instruction['Name']} {dosage} mg {instruction['Inst']}")
                     elif chemoType in ["capecitabineX77.json", "trastuzumabsc.json", "firstpertuzumab.json", "elsepertuzumab.json"]:
                         st.write(f"{instruction['Name']} {instruction['Inst']}")
                     else:
@@ -119,7 +120,7 @@ def main():
             if trastuzumab_option == "Prvé podanie":
                 selected_filename = "firsttrastuzumabiv.json"
             else:
-                selected_filename = "elsetrastuzumabiv.json"
+                selected_filename = "elsettrastuzumabiv.json"
 
         if chemo_name == "Trastuzumab/Pertuzumab":
             combo_option = st.radio("Zvoľte typ podania trastuzumabu/pertuzumabu:", ["Prvé podanie", "Ďalšie podania"])
