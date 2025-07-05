@@ -18,7 +18,7 @@
             "NextCycle": "21",
             "Day1": {
                 "Premed": {
-                    "Note": "Granisetron 2 mg, Dexamethasone 8mg iv, Pantoprazole 40mg p.o."
+                    "Note": "Palonosetrone/Netupitant 300mg/0.5mg p.o., Dexamethasone 8mg iv, Pantoprazole 40mg p.o."
                 },
                 "Instructions": [
                     {
@@ -52,7 +52,7 @@
             "NextCycle": "21",
             "Day1": {
                 "Premed": {
-                    "Note": "Granisetron 2 mg, Dexamethasone 8mg iv, Pantoprazole 40mg p.o."
+                    "Note": "Palonosetrone/Netupitant 300mg/0.5mg p.o., Dexamethasone 8mg iv, Pantoprazole 40mg p.o."
                 },
                 "Instructions": [
                     {
@@ -86,7 +86,7 @@
             "NextCycle": "14",
             "Day1": {
                 "Premed": {
-                    "Note": "Dexamethasone 8mg iv, Granisetron 2 mg p.o., Pantoprazole 40mg p.o."
+                    "Note": "Palonosetrone/Netupitant 300mg/0.5mg p.o., Dexamethasone 8mg iv, Pantoprazole 40mg p.o."
                 },
                 "Instructions": [
                     {
@@ -282,7 +282,7 @@
             "NextCycle": "21",
             "Day1": {
                 "Premed": {
-                    "Note": "Granisetron 2mg p.o."
+                    "Note": "Granisetron 2 mg p.o., Dexamethasone 8mg iv, Pantoprazole 40mg p.o."
                 },
                 "Instructions": [
                     {
@@ -306,7 +306,7 @@
             "NextCycle": "21",
             "Day1": {
                 "Premed": {
-                    "Note": "Granisetron 2mg p.o., Dexamethasone 12mg iv, Pantoprazole 40mg p.o."
+                    "Note": "Palonosetrone/Netupitant 300mg/0.5mg p.o., Dexamethasone 8mg iv, Pantoprazole 40mg p.o."
                 },
                 "Instructions": [
                     {
@@ -331,7 +331,7 @@
             "NextCycle": "21",
             "Day1": {
                 "Premed": {
-                    "Note": "Granisetron 2mg p.o., Dexamethasone 8mg iv, Pantoprazole 40mg p.o."
+                    "Note": "No premedication"
                 },
                 "Instructions": [
                     {
@@ -355,7 +355,7 @@
             "NextCycle": "21",
             "Day1": {
                 "Premed": {
-                    "Note": "Granisetron 2mg p.o., Dexamethasone 8mg iv, Pantoprazole 40mg p.o."
+                    "Note": "No premedication"
                 },
                 "Instructions": [
                     {
@@ -379,7 +379,7 @@
             "NextCycle": "21",
             "Day1": {
                 "Premed": {
-                    "Note": "Granisetron 2mg p.o., Dexamethasone 8mg iv, Pantoprazole 40mg p.o."
+                    "Note": "No premedication"
                 },
                 "Instructions": [
                     {
@@ -403,7 +403,7 @@
             "NextCycle": "21",
             "Day1": {
                 "Premed": {
-                    "Note": "Granisetron 2mg p.o., Dexamethasone 8mg iv, Pantoprazole 40mg p.o."
+                    "Note": "No premedication"
                 },
                 "Instructions": [
                     {
@@ -425,7 +425,7 @@
                 },
                 {
                     "Name": "pertuzumab",
-                    "Dosage": 600,
+                    "Dosage": 1200,
                     "DosageMetric": "mg",
                     "Day": "1"
                 }
@@ -487,7 +487,7 @@
             "NextCycle": "21",
             "Day1": {
                 "Premed": {
-                    "Note": "Granisetron 2mg p.o., Dexamethasone 8mg iv, Pantoprazole 40mg p.o."
+                    "Note": "Palonosetrone/Netupitant 300mg/0.5mg p.o., Dexamethasone 4mg iv, Pantoprazole 40mg p.o."
                 },
                 "Instructions": [
                     {

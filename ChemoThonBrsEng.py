@@ -25,8 +25,10 @@ def display_chemotherapy_details(protocol, bsa, weight):
     if "Chemo" in protocol and protocol["Chemo"]:
         st.write("#### Chemotherapy Drugs")
         for drug in protocol["Chemo"]:
-            if "mg/kg" in drug["DosageMetric"]:
+            if drug["DosageMetric"] in ["mg/kg"]:
                 dosage = round(drug["Dosage"] * weight, 2)
+            elif drug["DosageMetric"] in ["mg"]:
+                dosage = round(drug["Dosage"], 2)  # flat dose
             else:
                 dosage = round(drug["Dosage"] * bsa, 2)
             st.write(f"{drug['Name']} {drug['Dosage']} {drug['DosageMetric']} ......... {dosage} mg D {drug['Day']}")
@@ -51,8 +53,10 @@ def display_chemotherapy_details(protocol, bsa, weight):
                 # Calculate Day 1 dose
                 drug = next((d for d in protocol["Chemo"] if d["Name"] == drug_name), None)
                 if drug:
-                    if "mg/kg" in drug["DosageMetric"]:
+                    if drug["DosageMetric"] in ["mg/kg"]:
                         dose = round(drug["Dosage"] * weight, 2)
+                    elif drug["DosageMetric"] in ["mg"]:
+                        dose = round(drug["Dosage"], 2)
                     else:
                         dose = round(drug["Dosage"] * bsa, 2)
                     st.write(f"{drug_name} - {dose} mg, {instruction_text}")
