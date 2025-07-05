@@ -120,7 +120,7 @@ def main():
             if trastuzumab_option == "Prvé podanie":
                 selected_filename = "firsttrastuzumabiv.json"
             else:
-                selected_filename = "elsettrastuzumabiv.json"
+                selected_filename = "elsetrastuzumabiv.json"
 
         if chemo_name == "Trastuzumab/Pertuzumab":
             combo_option = st.radio("Zvoľte typ podania trastuzumabu/pertuzumabu:", ["Prvé podanie", "Ďalšie podania"])
