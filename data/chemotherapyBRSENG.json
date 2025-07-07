@@ -177,6 +177,30 @@
         {
             "Chemo": [
                 {
+                    "Name": "capecitabine",
+                    "Dosage": 3000,
+                    "DosageMetric": "mg",
+                    "Day": "1-7"
+                }
+            ],
+            "NextCycle": "14",
+            "Day1": {
+                "Premed": {
+                    "Note": "No premedication"
+                },
+                "Instructions": [
+                    {
+                        "Name": "capecitabine",
+                        "Instruction": "divided into two doses, taken within 30 minutes after meals, 7 days on, 7 days off"
+                    }
+                ]
+            },
+            "name": "capecitabine X7/7 regimen",
+            "nc": 14
+        },
+        {
+            "Chemo": [
+                {
                     "Name": "gemcitabine",
                     "Dosage": 1200,
                     "DosageMetric": "mg/m2",
