@@ -133,6 +133,34 @@
         "dosage": "400 mg",
         "frequency": "42 dní",
         "administration": "na 30 minút"
+      },
+      {
+        "name": "Dostarlimab (Jemperli)",
+        "regimen name": "Dostarlimab 3 weekly (indukcia, 4 cykly)",
+        "dosage": "500 mg",
+        "frequency": "21 dní",
+        "administration": "na 30 minút"
+      },
+      {
+        "name": "Dostarlimab (Jemperli)",
+        "regimen name": "Dostarlimab 6 weekly (udržiavacia)",
+        "dosage": "1000 mg",
+        "frequency": "42 dní",
+        "administration": "na 30 minút"
+      },
+      {
+        "name": "Tremelimumab (Imjudo)",
+        "regimen name": "Tremelimumab 300mg jednorazová dávka (STRIDE D1C1)",
+        "dosage": "300 mg",
+        "frequency": "D1C1 – jednorazová dávka",
+        "administration": "na 60 minút"
+      },
+      {
+        "name": "Tislelizumab (Tevimbra)",
+        "regimen name": "Tislelizumab 3 weekly",
+        "dosage": "200 mg",
+        "frequency": "21 dní",
+        "administration": "na 30 minút"
       }
     ]
   }

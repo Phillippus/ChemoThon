@@ -33,7 +33,7 @@ def generate_prescription(selected_drug, weight=None):
     return prescription
 
 # Application title
-st.title("""ImmunoThonEng v. 1.0
+st.title("""ImmunoThonEng v. 2.0
          
 Welcome to the ImmunoThon Program!         
 This tool generates common immunotherapy prescriptions using flat-dose or weight-based dosing.

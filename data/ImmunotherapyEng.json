@@ -133,6 +133,34 @@
         "dosage": "400 mg",
         "frequency": "42 days",
         "administration": "over 30 minutes"
+      },
+      {
+        "name": "Dostarlimab (Jemperli)",
+        "regimen name": "Dostarlimab 3 weekly (induction, 4 cycles)",
+        "dosage": "500 mg",
+        "frequency": "21 days",
+        "administration": "over 30 minutes"
+      },
+      {
+        "name": "Dostarlimab (Jemperli)",
+        "regimen name": "Dostarlimab 6 weekly (maintenance)",
+        "dosage": "1000 mg",
+        "frequency": "42 days",
+        "administration": "over 30 minutes"
+      },
+      {
+        "name": "Tremelimumab (Imjudo)",
+        "regimen name": "Tremelimumab 300mg single dose (STRIDE D1C1)",
+        "dosage": "300 mg",
+        "frequency": "D1C1 – single dose only",
+        "administration": "over 60 minutes"
+      },
+      {
+        "name": "Tislelizumab (Tevimbra)",
+        "regimen name": "Tislelizumab 3 weekly",
+        "dosage": "200 mg",
+        "frequency": "21 days",
+        "administration": "over 30 minutes"
       }
     ]
   }
