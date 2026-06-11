@@ -106,7 +106,7 @@ def calculate_bsa(weight, height):
 
 
 def main():
-    st.title("ChemoThon - ColorectalSK v. 2.0")
+    st.title("ChemoThon - ColorectalSK v. 2.1")
     st.write(" ")
     st.write("         Vitajte v programe ChemoThon!")
     st.write("""Program rozpisuje najbežnejšie chemoterapie podľa povrchu alebo hmotnosti. 
@@ -167,3 +167,29 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+
+# ===== Zdroje / Sources (pridané 2026-06, aditívne) =====
+with st.expander("📚 Zdroje k režimom / Sources"):
+    st.markdown("""**Kľúčové referencie – kolorektálny karcinóm**
+
+Guidelines: [ESMO](https://www.esmo.org/guidelines/esmo-clinical-practice-guidelines-gastrointestinal-cancers) · [NCCN](https://www.nccn.org/guidelines/category_1). Vždy overte podľa aktuálnej verzie guidelines a dostupných balení liečiv. Stav: jún 2026.
+
+- **FOLFOX** — de Gramont et al., J Clin Oncol 2000; adjuvant MOSAIC – André et al., NEJM 2004.
+- **FOLFIRI** — Douillard et al., Lancet 2000.
+- **CapOX (XELOX)** — NO16968 – Schmoll et al., J Clin Oncol 2011.
+- **CapIRI** — Fuchs et al., J Clin Oncol 2007 (BICC-C).
+- **Kapecitabín** — X-ACT – Twelves et al., NEJM 2005.
+- **FOLFIRINOX** — Použitie pri agresívnom mCRC; analogicky Conroy et al., NEJM 2011.
+- **Bevacizumab** — Hurwitz et al., NEJM 2004.
+- **Cetuximab (RAS wt)** — CRYSTAL – Van Cutsem et al., NEJM 2009.
+- **Panitumumab (RAS wt)** — PRIME – Douillard et al., J Clin Oncol 2010.
+- **Trifluridín/tipiracil (TAS-102)** — RECOURSE – Mayer et al., NEJM 2015; +bevacizumab SUNLIGHT – Prager et al., NEJM 2023.
+- **Irinotekan** — Monoterapia 2. línia – Cunningham et al., Lancet 1998.
+- **MiXe (mitomycín/kapecitabín)** — Inštitucionálny záchranný režim; ESMO mCRC guideline.
+
+**Aktuálne štandardy na zváženie (zatiaľ mimo nástroja):**
+- Encorafenib + cetuximab pri BRAF V600E – BEACON CRC, NEJM 2019.
+- Pembrolizumab 1. línia pri MSI-H/dMMR – KEYNOTE-177, NEJM 2020.
+- Fruquintinib v ďalších líniách – FRESCO-2, Lancet 2023.""")

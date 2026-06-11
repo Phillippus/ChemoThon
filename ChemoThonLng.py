@@ -108,7 +108,7 @@ def bsa(weight, height):
     return rbodysurf
 
 def main():
-    st.title("          ChemoThon- LungSK v 2.0")
+    st.title("          ChemoThon- LungSK v 2.1")
     st.write("""
     Program rozpisuje najbežnejšie chemoterapie podľa povrchu alebo hmotnosti.
     Dávky je nutné upraviť podľa aktuálne dostupných balení liečiv.
@@ -135,3 +135,22 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+
+# ===== Zdroje / Sources (pridané 2026-06, aditívne) =====
+with st.expander("📚 Zdroje k režimom / Sources"):
+    st.markdown("""**Kľúčové referencie – nádory pľúc**
+
+Guidelines: [ESMO](https://www.esmo.org/guidelines/esmo-clinical-practice-guidelines-lung-and-chest-tumours) · [NCCN](https://www.nccn.org/guidelines/category_1). Vždy overte podľa aktuálnej verzie guidelines a dostupných balení liečiv. Stav: jún 2026.
+
+- **CBDCA / paklitaxel** — ECOG 1594 – Schiller et al., NEJM 2002.
+- **Cisplatina / pemetrexed (neskvamózny)** — Scagliotti et al., J Clin Oncol 2008.
+- **Gemcitabín / cisplatina** — ECOG 1594; štandardná platina-dubleta.
+- **Gemcitabín / karboplatina** — Platina-dubleta pri NSCLC – NCCN NSCLC.
+- **Etopozid / platina (SCLC)** — Štandard pre SCLC; + atezolizumab IMpower133, NEJM 2018.
+- **Topotekan (SCLC, 2. línia)** — O'Brien et al., J Clin Oncol 2006.
+
+**Aktuálne štandardy na zváženie (zatiaľ mimo nástroja):**
+- Pridanie PD-(L)1 inhibítora k chemoterapii v 1. línii (KEYNOTE-189/407, IMpower).
+- Pri EGFR/ALK/ROS1 a iných cieľoch – cielená liečba pred chemoterapiou (osimertinib, alektinib...).""")

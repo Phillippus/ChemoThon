@@ -162,7 +162,7 @@ def urogenital(rbodysurf):
 
 # Main input function for weight and height
 def main():
-    st.title("ChemoThon UrogenitalSK v 2.1")
+    st.title("ChemoThon UrogenitalSK v 2.2")
     st.write("""
     Program rozpisuje najbežnejšie chemoterapie podľa povrchu alebo hmotnosti.
     Dávky je nutné upraviť podľa aktuálne dostupných balení liečiv.
@@ -193,3 +193,30 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+
+# ===== Zdroje / Sources (pridané 2026-06, aditívne) =====
+with st.expander("📚 Zdroje k režimom / Sources"):
+    st.markdown("""**Kľúčové referencie – urogenitálne nádory**
+
+Guidelines: [ESMO](https://www.esmo.org/guidelines/esmo-clinical-practice-guidelines-genitourinary-cancers) · [NCCN](https://www.nccn.org/guidelines/category_1). Vždy overte podľa aktuálnej verzie guidelines a dostupných balení liečiv. Stav: jún 2026.
+
+- **Docetaxel + prednizón (mCRPC)** — TAX327 – Tannock et al., NEJM 2004.
+- **Mitoxantrón + prednizón** — Paliatívny – Tannock et al., J Clin Oncol 1996.
+- **Docetaxel + darolutamid (mHSPC)** — ARASENS – Smith et al., NEJM 2022.
+- **Kabazitaxel + prednizón** — TROPIC – de Bono et al., Lancet 2010; CARD – de Wit et al., NEJM 2019.
+- **Abiraterón + prednizón (CRPC)** — COU-AA-301 – de Bono et al., NEJM 2011; COU-AA-302 – Ryan et al., NEJM 2013.
+- **Abiraterón + prednizón (HSPC)** — LATITUDE – Fizazi et al., NEJM 2017; STAMPEDE – James et al., NEJM 2017.
+- **Enzalutamid** — PREVAIL – Beer et al., NEJM 2014; ARCHES – Armstrong et al., J Clin Oncol 2019.
+- **Darolutamid** — ARAMIS (nmCRPC) – Fizazi et al., NEJM 2019.
+- **Apalutamid** — SPARTAN (nmCRPC) – Smith et al., NEJM 2018; TITAN (mHSPC) – Chi et al., NEJM 2019.
+- **Cisplatina/karboplatina + gemcitabín (urotel)** — von der Maase et al., J Clin Oncol 2000/2005.
+- **Vinflunín (urotel, 2. línia)** — Bellmunt et al., J Clin Oncol 2009.
+- **BEP (germinatívne nádory)** — Williams et al., NEJM 1987; Einhorn – štandard.
+
+**Aktuálne štandardy na zváženie (zatiaľ mimo nástroja):**
+- Enfortumab vedotín + pembrolizumab 1. línia metastatického urotelu – EV-302, NEJM 2024.
+- Lutéciové [177Lu]Lu-PSMA-617 pri PSMA+ mCRPC – VISION, NEJM 2021.
+- Olaparib pri HRR-mutovanom mCRPC – PROfound, NEJM 2020; + abiraterón PROpel.
+- Nivolumab adjuvantne pri vysokorizikovom urotelovom karcinóme – CheckMate-274, NEJM 2021.""")

@@ -171,7 +171,7 @@ def sarcnet(rbodysurf):
 
 # Main input function for weight and height
 def main():
-    st.title("ChemoThon Sarcoma, CNS and NET SK v2.0")
+    st.title("ChemoThon Sarcoma, CNS and NET SK v2.1")
     st.write("""
     Program rozpisuje najbežnejšie chemoterapie podľa povrchu alebo hmotnosti.
     Dávky je nutné upraviť podľa aktuálne dostupných balení liečiv.
@@ -199,3 +199,25 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+
+# ===== Zdroje / Sources (pridané 2026-06, aditívne) =====
+with st.expander("📚 Zdroje k režimom / Sources"):
+    st.markdown("""**Kľúčové referencie – sarkómy, CNS a NET**
+
+Guidelines: [ESMO](https://www.esmo.org/guidelines/esmo-clinical-practice-guidelines-sarcoma-and-gist) · [NCCN](https://www.nccn.org/guidelines/category_1). Vždy overte podľa aktuálnej verzie guidelines a dostupných balení liečiv. Stav: jún 2026.
+
+- **Doxorubicín (1. línia STS)** — Judson et al., Lancet Oncol 2014 (EORTC 62012).
+- **Ifosfamid / doxorubicín (epirubicín)** — EORTC 62012 – Judson et al., Lancet Oncol 2014.
+- **Ifosfamid (high-dose)** — Záchranná liečba STS – ESMO sarcoma guideline.
+- **Trabektedín** — Demetri et al., J Clin Oncol 2016 (liposarkóm/leiomyosarkóm).
+- **Paklitaxel weekly (angiosarkóm)** — Penel et al., J Clin Oncol 2008 (ANGIOTAX).
+- **CBDCA / paklitaxel** — ESMO – vybrané indikácie.
+- **DDP / etopozid; CBDCA / etopozid (NET G3 / SCLC-like)** — Moertel et al.; NORDIC NEC – Sorbye et al., Ann Oncol 2013.
+- **Dakarbazín (5-dňový)** — DTIC pri leiomyosarkóme/melanóme – ESMO.
+- **Temozolomid** — Stupp et al., NEJM 2005 (gliblastóm, +RT); CAPTEM pri NET.
+- **Lomustín (CCNU)** — Rekurentný gliblastóm – Wick et al., NEJM 2017 (kontrolné rameno).
+
+**Aktuálne štandardy na zváženie (zatiaľ mimo nástroja):**
+- Capecitabín + temozolomid (CAPTEM) pri pankreatických NET – Kunz et al., J Clin Oncol 2023 (ECOG-ACRIN E2211).""")

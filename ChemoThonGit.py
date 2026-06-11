@@ -201,7 +201,7 @@ def bsa(weight, height):
 
 # Main input function for weight and height
 def main():
-    st.title("ChemoThon - GastrointestinalSK (excl. CrC) v2.0")
+    st.title("ChemoThon - GastrointestinalSK (excl. CrC) v2.1")
     st.write("""
        Program rozpisuje najbežnejšie chemoterapie podľa povrchu alebo hmotnosti.
     Dávky je nutné upraviť podľa aktuálne dostupných balení liečiv.
@@ -231,3 +231,29 @@ def main():
 if __name__ == "__main__":
     main()
        
+
+
+
+# ===== Zdroje / Sources (pridané 2026-06, aditívne) =====
+with st.expander("📚 Zdroje k režimom / Sources"):
+    st.markdown("""**Kľúčové referencie – GI nádory (mimo CRC)**
+
+Guidelines: [ESMO](https://www.esmo.org/guidelines/esmo-clinical-practice-guidelines-gastrointestinal-cancers) · [NCCN](https://www.nccn.org/guidelines/category_1). Vždy overte podľa aktuálnej verzie guidelines a dostupných balení liečiv. Stav: jún 2026.
+
+- **FLOT (perioperačne)** — FLOT4 – Al-Batran et al., Lancet 2019.
+- **EOX / ECX** — REAL-2 – Cunningham et al., NEJM 2008.
+- **Paklitaxel weekly (gastrický, 2. línia)** — +ramucirumab RAINBOW – Wilke et al., Lancet Oncol 2014.
+- **CROSS (karboplatina/paklitaxel + RT)** — van Hagen et al., NEJM 2012 (CROSS).
+- **FOLFIRINOX (pankreas)** — Conroy et al., NEJM 2011 (PRODIGE 4/ACCORD 11).
+- **Gemcitabín / kapecitabín** — Cunningham et al., J Clin Oncol 2009.
+- **Gemcitabín / nab-paklitaxel** — MPACT – Von Hoff et al., NEJM 2013.
+- **NALIRI / 5-FU (lipozomálny irinotekan)** — NAPOLI-1 – Wang-Gillam et al., Lancet 2016.
+- **NALIRIFOX** — NAPOLI-3 – Wainberg et al., Lancet 2023.
+- **Gemcitabín (monoterapia)** — Burris et al., J Clin Oncol 1997.
+- **Mitomycín / 5-FU (anál)** — Nigro / RTOG 98-11 – Ajani et al., JAMA 2008.
+
+**Aktuálne štandardy na zváženie (zatiaľ mimo nástroja):**
+- Nivolumab + chemoterapia 1. línia gastrický (PD-L1 CPS≥5) – CheckMate-649, Lancet 2021.
+- Pembrolizumab + trastuzumab + chemo pri HER2+ gastrickom – KEYNOTE-811, Nature 2024.
+- Trastuzumab-deruxtecan pri HER2+ gastrickom (2. línia) – DESTINY-Gastric01, NEJM 2020.
+- Zolbetuximab + chemo pri CLDN18.2+ – SPOTLIGHT/GLOW, Lancet 2023.""")

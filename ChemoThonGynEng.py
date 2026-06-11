@@ -70,7 +70,7 @@ def calculate_bsa(weight, height):
     return round((weight ** 0.425) * (height ** 0.725) * 0.007184, 2)
 
 def main():
-    st.title("ChemoThon  Gynecology  v 3.0 ENG")
+    st.title("ChemoThon  Gynecology  v 3.1 ENG")
     st.write("""Welcome to ChemoThon!
 This application provides assistance in prescribing chemotherapy regimens based on body surface area (BSA), weight, or AUC for carboplatin-based treatments.
 Please ensure that doses are adjusted to align with the packaging and protocols available in your country. Users bear full responsibility for applying this tool in clinical practice.
@@ -130,3 +130,25 @@ We welcome your feedback to improve this app further. Feel free to reach out at 
 
 if __name__ == "__main__":
     main()
+
+
+
+# ===== Zdroje / Sources (pridané 2026-06, aditívne) =====
+with st.expander("📚 Zdroje k režimom / Sources"):
+    st.markdown("""**Key references – gynaecological cancers**
+
+Guidelines: [ESMO](https://www.esmo.org/guidelines/esmo-clinical-practice-guidelines-gynaecological-cancers) · [NCCN](https://www.nccn.org/guidelines/category_1). Always verify against the current guideline version and available drug vial sizes. As of: June 2026.
+
+- **CBDCA / paklitaxel** — GOG-158 – Ozols et al., J Clin Oncol 2003; ICON3.
+- **INTERLACE (indukčná CBDCA/paklitaxel, cervix)** — INTERLACE – McCormack et al., Lancet 2024.
+- **Cisplatina / paklitaxel (cervix)** — GOG-240 – Tewari et al., NEJM 2014 (so/bez bevacizumabu).
+- **Topotekan + G-CSF** — Topotekan pri relapse ovaria – ten Bokkel Huinink et al., J Clin Oncol 1997.
+- **PEG-doxorubicín** — PLD pri rekurentnom ovariu – Gordon et al., J Clin Oncol 2001.
+- **CBDCA / PEG-doxorubicín** — CALYPSO – Pujade-Lauraine et al., J Clin Oncol 2010.
+- **CBDCA / gemcitabín** — Pfisterer et al., J Clin Oncol 2006 (AGO-OVAR/ICON4-like).
+- **Bevacizumab 15 mg/kg** — GOG-218 – Burger et al., NEJM 2011; ICON7 – Perren et al., NEJM 2011.
+
+**Current standards to consider (not yet in tool):**
+- PARP inhibítory v udržiavaní (olaparib SOLO-1; niraparib PRIMA) – NEJM 2018/2019.
+- Dostarlimab / pembrolizumab + chemo pri endometriálnom karcinóme – RUBY / NRG-GY018, NEJM 2023.
+- Mirvetuximab soravtansin pri FRα+ platina-rezistentnom ovariu – MIRASOL, NEJM 2023.""")

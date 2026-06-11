@@ -133,7 +133,7 @@ def calculate_bsa(weight, height):
 
 def main():
     """Main function to run the Streamlit app."""
-    st.title("ChemoThon - HematologySK v. 2.1")
+    st.title("ChemoThon - HematologySK v. 2.2")
     st.write(" ")
     st.write("         Vitajte v programe ChemoThon!")
     st.write("""Program rozpisuje najbežnejšie chemoterapie podľa povrchu alebo hmotnosti.
@@ -189,3 +189,27 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+
+# ===== Zdroje / Sources (pridané 2026-06, aditívne) =====
+with st.expander("📚 Zdroje k režimom / Sources"):
+    st.markdown("""**Kľúčové referencie – hematologické malignity**
+
+Guidelines: [ESMO](https://www.esmo.org/guidelines/esmo-clinical-practice-guidelines-haematological-malignancies) · [NCCN](https://www.nccn.org/guidelines/category_1). Vždy overte podľa aktuálnej verzie guidelines a dostupných balení liečiv. Stav: jún 2026.
+
+- **ABVD (Hodgkin)** — Canellos et al., NEJM 1992; eskalovaný BEACOPP – Diehl et al., NEJM 2003.
+- **R-CHOP (DLBCL)** — GELA LNH-98.5 – Coiffier et al., NEJM 2002.
+- **CHOP (bez R)** — Fisher et al., NEJM 1993.
+- **R-miniCHOP (>80 r.)** — Peyrade et al., Lancet Oncol 2011.
+- **R-CVP (indolentné NHL)** — Marcus et al., Blood 2005.
+- **R-Bendamustín (BR)** — StiL NHL1 – Rummel et al., Lancet 2013; BRIGHT – Flinn et al., Blood 2014.
+- **Bendamustín (monoterapia)** — CLL/relaps – Knauf et al., J Clin Oncol 2009.
+- **R-DHAP / DHAP (salvage)** — Velasquez et al., Blood 1988; CORAL – Gisselbrecht et al., J Clin Oncol 2010.
+- **R-Gemox / Gemox** — El Gnaoui et al., Ann Oncol 2007.
+- **GDP (gemcitabín/cisplatina/dex)** — NCIC-CTG LY.12 – Crump et al., J Clin Oncol 2014.
+- **Rituximab (monoterapia)** — McLaughlin et al., J Clin Oncol 1998.
+
+**Aktuálne štandardy na zváženie (zatiaľ mimo nástroja):**
+- Pola-R-CHP pri DLBCL 1. línia – POLARIX, NEJM 2022.
+- Brentuximab vedotín + AVD pri pokročilom Hodgkinovi – ECHELON-1, NEJM 2018/2022.""")

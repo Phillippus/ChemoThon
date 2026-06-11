@@ -120,7 +120,7 @@ def bsa(weight, height):
 
 # Main input function for weight and height
 def main():
-    st.title("ChemoThon Head and NeckSK v2.0")
+    st.title("ChemoThon Head and NeckSK v2.1")
     st.write("""
     Program rozpisuje najbežnejšie chemoterapie podľa povrchu alebo hmotnosti.
     Dávky je nutné upraviť podľa aktuálne dostupných balení liečiv.
@@ -148,3 +148,19 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+
+# ===== Zdroje / Sources (pridané 2026-06, aditívne) =====
+with st.expander("📚 Zdroje k režimom / Sources"):
+    st.markdown("""**Kľúčové referencie – nádory hlavy a krku**
+
+Guidelines: [ESMO](https://www.esmo.org/guidelines/esmo-clinical-practice-guidelines-head-and-neck-cancers) · [NCCN](https://www.nccn.org/guidelines/category_1). Vždy overte podľa aktuálnej verzie guidelines a dostupných balení liečiv. Stav: jún 2026.
+
+- **Pt / 5-FU + cetuximab** — EXTREME – Vermorken et al., NEJM 2008.
+- **Cetuximab (weekly / biweekly)** — Bonner et al., NEJM 2006 (+RT); EXTREME pre weekly.
+- **Paklitaxel weekly** — Paliatívna monoterapia – NCCN Head & Neck.
+- **Metotrexát** — Štandardná paliatívna 2. línia – Forastiere et al., J Clin Oncol 1992.
+
+**Aktuálne štandardy na zváženie (zatiaľ mimo nástroja):**
+- Pembrolizumab ± chemo 1. línia R/M HNSCC (CPS≥1) – KEYNOTE-048, Lancet 2019.""")

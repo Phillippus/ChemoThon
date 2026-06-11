@@ -63,7 +63,7 @@ def calculate_bsa(weight, height):
     return round((weight ** 0.425) * (height ** 0.725) * 0.007184, 2)
 
 def main():
-    st.title("ChemoThon Colorectal v. 3.0 ENG")
+    st.title("ChemoThon Colorectal v. 3.1 ENG")
     st.write("""Welcome to ChemoThon!
 This application provides assistance in prescribing chemotherapy regimens based on body surface area (BSA) or weight,
 Please ensure that doses are adjusted to align with the packaging and protocols available in your country. Users bear full responsibility for applying this tool in clinical practice.
@@ -107,3 +107,29 @@ We welcome your feedback to improve this app further. Feel free to reach out at 
 
 if __name__ == "__main__":
     main()
+
+
+
+# ===== Zdroje / Sources (pridané 2026-06, aditívne) =====
+with st.expander("📚 Zdroje k režimom / Sources"):
+    st.markdown("""**Key references – colorectal cancer**
+
+Guidelines: [ESMO](https://www.esmo.org/guidelines/esmo-clinical-practice-guidelines-gastrointestinal-cancers) · [NCCN](https://www.nccn.org/guidelines/category_1). Always verify against the current guideline version and available drug vial sizes. As of: June 2026.
+
+- **FOLFOX** — de Gramont et al., J Clin Oncol 2000; adjuvant MOSAIC – André et al., NEJM 2004.
+- **FOLFIRI** — Douillard et al., Lancet 2000.
+- **CapOX (XELOX)** — NO16968 – Schmoll et al., J Clin Oncol 2011.
+- **CapIRI** — Fuchs et al., J Clin Oncol 2007 (BICC-C).
+- **Kapecitabín** — X-ACT – Twelves et al., NEJM 2005.
+- **FOLFIRINOX** — Použitie pri agresívnom mCRC; analogicky Conroy et al., NEJM 2011.
+- **Bevacizumab** — Hurwitz et al., NEJM 2004.
+- **Cetuximab (RAS wt)** — CRYSTAL – Van Cutsem et al., NEJM 2009.
+- **Panitumumab (RAS wt)** — PRIME – Douillard et al., J Clin Oncol 2010.
+- **Trifluridín/tipiracil (TAS-102)** — RECOURSE – Mayer et al., NEJM 2015; +bevacizumab SUNLIGHT – Prager et al., NEJM 2023.
+- **Irinotekan** — Monoterapia 2. línia – Cunningham et al., Lancet 1998.
+- **MiXe (mitomycín/kapecitabín)** — Inštitucionálny záchranný režim; ESMO mCRC guideline.
+
+**Current standards to consider (not yet in tool):**
+- Encorafenib + cetuximab pri BRAF V600E – BEACON CRC, NEJM 2019.
+- Pembrolizumab 1. línia pri MSI-H/dMMR – KEYNOTE-177, NEJM 2020.
+- Fruquintinib v ďalších líniách – FRESCO-2, Lancet 2023.""")

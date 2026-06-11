@@ -216,7 +216,7 @@ def display_chemotherapy_details(protocol, bsa, weight):
         st.warning("No details found for Day 1.")
 
 def main():
-    st.title("ChemoThon Head and Neck v. 3.0 ENG")
+    st.title("ChemoThon Head and Neck v. 3.1 ENG")
     st.write("""Welcome to ChemoThon!
 This application provides assistance in prescribing chemotherapy regimens based on body surface area (BSA) or weight.
 Please ensure that doses are adjusted to align with the packaging and protocols available in your country. Users bear full responsibility for applying this tool in clinical practice.
@@ -313,3 +313,19 @@ We welcome your feedback to improve this app further. Feel free to reach out at 
 
 if __name__ == "__main__":
     main()
+
+
+
+# ===== Zdroje / Sources (pridané 2026-06, aditívne) =====
+with st.expander("📚 Zdroje k režimom / Sources"):
+    st.markdown("""**Key references – head & neck cancers**
+
+Guidelines: [ESMO](https://www.esmo.org/guidelines/esmo-clinical-practice-guidelines-head-and-neck-cancers) · [NCCN](https://www.nccn.org/guidelines/category_1). Always verify against the current guideline version and available drug vial sizes. As of: June 2026.
+
+- **Pt / 5-FU + cetuximab** — EXTREME – Vermorken et al., NEJM 2008.
+- **Cetuximab (weekly / biweekly)** — Bonner et al., NEJM 2006 (+RT); EXTREME pre weekly.
+- **Paklitaxel weekly** — Paliatívna monoterapia – NCCN Head & Neck.
+- **Metotrexát** — Štandardná paliatívna 2. línia – Forastiere et al., J Clin Oncol 1992.
+
+**Current standards to consider (not yet in tool):**
+- Pembrolizumab ± chemo 1. línia R/M HNSCC (CPS≥1) – KEYNOTE-048, Lancet 2019.""")

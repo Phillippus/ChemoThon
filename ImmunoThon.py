@@ -33,7 +33,7 @@ def generate_prescription(selected_drug, weight=None):
     return prescription
 
 # Názov aplikácie
-st.title("""ImmunoThon v. 2.0
+st.title("""ImmunoThon v. 2.1
          
 Vitajte v programe ImmunoThon!         
 Program rozpisuje najbežnejšie imunoterapie ako flat-dose alebo podľa hmotnosti.
@@ -69,3 +69,26 @@ if selected_drug:
         prescription = generate_prescription(selected_drug, weight)
         st.subheader("Predpis imunoterapie:")
         st.markdown(prescription)
+
+
+
+# ===== Zdroje / Sources (pridané 2026-06, aditívne) =====
+with st.expander("📚 Zdroje k režimom / Sources"):
+    st.markdown("""**Kľúčové referencie – imunoterapia**
+
+Guidelines: [ESMO](https://www.esmo.org/guidelines) · [NCCN](https://www.nccn.org/guidelines/category_1). Vždy overte podľa aktuálnej verzie guidelines a dostupných balení liečiv. Stav: jún 2026.
+
+- **Pembrolizumab (3-/6-weekly)** — KEYNOTE-024/189/048 a i.; flat 200 mg q3w / 400 mg q6w – Lala et al., 2020.
+- **Nivolumab (2-/4-weekly)** — CheckMate série; flat 240 mg q2w / 480 mg q4w – Zhao et al., Ann Oncol 2017.
+- **Atezolizumab (2-/3-/4-weekly)** — OAK/IMpower; 840 q2w / 1200 q3w / 1680 q4w – Morrissey et al., 2019.
+- **Durvalumab** — PACIFIC – Antonia et al., NEJM 2017; CASPIAN – Paz-Ares et al., Lancet 2019.
+- **Avelumab** — JAVELIN Bladder 100 (udržiavanie) – Powles et al., NEJM 2020.
+- **Cemiplimab** — EMPOWER-Lung 1; CSCC – Migden et al., NEJM 2018.
+- **Ipilimumab + nivolumab** — CheckMate-067 (melanóm) – Larkin et al., NEJM 2015/2019.
+- **Dostarlimab** — RUBY (endometrium) – Mirza et al., NEJM 2023; GARNET.
+- **Tremelimumab (STRIDE)** — HIMALAYA (HCC) – Abou-Alfa et al., NEJM Evid 2022.
+- **Tislelizumab** — RATIONALE-302/305 – ezofág/gastrický.
+
+**Aktuálne štandardy na zváženie (zatiaľ mimo nástroja):**
+- Dávkovanie flat-dose overte podľa SmPC; mg/kg režimy prepočítajte na hmotnosť.
+- Nové: nivolumab + ipilimumab pri MSI-H mCRC (CheckMate-8HW, 2024).""")

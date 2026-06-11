@@ -64,7 +64,7 @@ def calculate_bsa(weight, height):
     return round(bodysurf, 2)
 
 def main():
-    st.title("ChemoThon - BreastSK v. 2.2")
+    st.title("ChemoThon - BreastSK v. 2.3")
     st.write("Vitajte v programe ChemoThon!")
     st.write("""Program rozpisuje najbežnejšie chemoterapie podľa povrchu alebo hmotnosti. 
     Najskôr si vypočítajte BSA a potom sa Vám sprístupní tlačidlo pre výpočet chemoterapie.
@@ -142,3 +142,31 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+
+# ===== Zdroje / Sources (pridané 2026-06, aditívne) =====
+with st.expander("📚 Zdroje k režimom / Sources"):
+    st.markdown("""**Kľúčové referencie – karcinóm prsníka**
+
+Guidelines: [ESMO](https://www.esmo.org/guidelines/esmo-clinical-practice-guidelines-breast-cancer) · [NCCN](https://www.nccn.org/guidelines/category_1). Vždy overte podľa aktuálnej verzie guidelines a dostupných balení liečiv. Stav: jún 2026.
+
+- **AC / EC** — Antracyklínový základ; NSABP B-15/B-23; EBCTCG meta-analýza, Lancet 2012.
+- **dd-AC (dose-dense) + G-CSF** — CALGB 9741 – Citron et al., J Clin Oncol 2003.
+- **Pertuzumab + trastuzumab + docetaxel** — CLEOPATRA – Swain et al., NEJM 2015; adjuvant APHINITY – von Minckwitz et al., NEJM 2017.
+- **T-DM1 (trastuzumab emtansín)** — EMILIA – Verma et al., NEJM 2012; adjuvant KATHERINE – von Minckwitz et al., NEJM 2019.
+- **Trastuzumab IV/SC** — HERA – Piccart-Gebhart et al., NEJM 2005; SC: HannaH – Ismael et al., Lancet Oncol 2012.
+- **Trastuzumab-deruxtecan (T-DXd)** — DESTINY-Breast03 – Cortés et al., NEJM 2022; HER2-low: DESTINY-Breast04 – Modi et al., NEJM 2022.
+- **Sacituzumab govitecan** — ASCENT (mTNBC) – Bardia et al., NEJM 2021; TROPiCS-02 (HR+) – Rugo et al., Lancet 2023.
+- **Eribulín** — EMBRACE – Cortes et al., Lancet 2011.
+- **Paklitaxel weekly** — CALGB 9840 – Seidman et al., J Clin Oncol 2008.
+- **Docetaxel** — Štandardný taxán; NCCN Breast Cancer.
+- **Kapecitabín / X7/7 (metronomický)** — Kapecitabín monoterapia – NCCN; metronomický režim – inštitucionálny.
+- **Gemcitabín** — Paklitaxel/gemcitabín – Albain et al., J Clin Oncol 2008.
+- **PEG-doxorubicín (lipozomálny)** — Pegylovaný lipozomálny doxorubicín – O'Brien et al., Ann Oncol 2004.
+- **Vinorelbín p.o. weekly** — Perorálny vinorelbín – NCCN Breast Cancer.
+
+**Aktuálne štandardy na zváženie (zatiaľ mimo nástroja):**
+- CDK4/6 inhibítory (palbociklib/ribociklib/abemaciklib) pri HR+/HER2− – PALOMA/MONALEESA/MONARCH.
+- Capivasertib + fulvestrant (PIK3CA/AKT1/PTEN) – CAPItello-291, NEJM 2023.
+- Trastuzumab-deruxtecan pri HER2-low/ultralow – DESTINY-Breast06, NEJM 2024.""")

@@ -94,7 +94,7 @@ def display_chemotherapy_details(protocol, bsa, weight, crcl=None, auc=None):
             st.write(f"{instruction['Name']} - {calculated_dose} mg, {instruction.get('Instruction', 'No instructions available.')}")
 
 def main():
-    st.title("ChemoThon Gastrointestinal (Except CRC) v 3.0 ENG")
+    st.title("ChemoThon Gastrointestinal (Except CRC) v 3.1 ENG")
     st.write("""Welcome to ChemoThon!
 This application provides assistance in prescribing chemotherapy regimens based on body surface area (BSA), weight, or AUC for carboplatin-based treatments.
 Please ensure that doses are adjusted to align with the packaging and protocols available in your country. Users bear full responsibility for applying this tool in clinical practice.
@@ -154,3 +154,29 @@ We welcome your feedback to improve this app further. Feel free to reach out at 
 
 if __name__ == "__main__":
     main()
+
+
+
+# ===== Zdroje / Sources (pridané 2026-06, aditívne) =====
+with st.expander("📚 Zdroje k režimom / Sources"):
+    st.markdown("""**Key references – GI cancers (excl. CRC)**
+
+Guidelines: [ESMO](https://www.esmo.org/guidelines/esmo-clinical-practice-guidelines-gastrointestinal-cancers) · [NCCN](https://www.nccn.org/guidelines/category_1). Always verify against the current guideline version and available drug vial sizes. As of: June 2026.
+
+- **FLOT (perioperačne)** — FLOT4 – Al-Batran et al., Lancet 2019.
+- **EOX / ECX** — REAL-2 – Cunningham et al., NEJM 2008.
+- **Paklitaxel weekly (gastrický, 2. línia)** — +ramucirumab RAINBOW – Wilke et al., Lancet Oncol 2014.
+- **CROSS (karboplatina/paklitaxel + RT)** — van Hagen et al., NEJM 2012 (CROSS).
+- **FOLFIRINOX (pankreas)** — Conroy et al., NEJM 2011 (PRODIGE 4/ACCORD 11).
+- **Gemcitabín / kapecitabín** — Cunningham et al., J Clin Oncol 2009.
+- **Gemcitabín / nab-paklitaxel** — MPACT – Von Hoff et al., NEJM 2013.
+- **NALIRI / 5-FU (lipozomálny irinotekan)** — NAPOLI-1 – Wang-Gillam et al., Lancet 2016.
+- **NALIRIFOX** — NAPOLI-3 – Wainberg et al., Lancet 2023.
+- **Gemcitabín (monoterapia)** — Burris et al., J Clin Oncol 1997.
+- **Mitomycín / 5-FU (anál)** — Nigro / RTOG 98-11 – Ajani et al., JAMA 2008.
+
+**Current standards to consider (not yet in tool):**
+- Nivolumab + chemoterapia 1. línia gastrický (PD-L1 CPS≥5) – CheckMate-649, Lancet 2021.
+- Pembrolizumab + trastuzumab + chemo pri HER2+ gastrickom – KEYNOTE-811, Nature 2024.
+- Trastuzumab-deruxtecan pri HER2+ gastrickom (2. línia) – DESTINY-Gastric01, NEJM 2020.
+- Zolbetuximab + chemo pri CLDN18.2+ – SPOTLIGHT/GLOW, Lancet 2023.""")
