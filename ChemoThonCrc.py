@@ -106,7 +106,7 @@ def calculate_bsa(weight, height):
 
 
 def main():
-    st.title("ChemoThon - ColorectalSK v. 2.1")
+    st.title("ChemoThon - ColorectalSK v. 2.2")
     st.write(" ")
     st.write("         Vitajte v programe ChemoThon!")
     st.write("""Program rozpisuje najbežnejšie chemoterapie podľa povrchu alebo hmotnosti. 
@@ -137,7 +137,11 @@ def main():
         "Trifluridine/Tipiracil": "tritipi.json",
         "Irinotecan": "irinotecan.json",
         "FOLFIRINOX": "FOLFIRINOX.json",
-        "MiXe": "MiXe.json"
+        "MiXe": "MiXe.json",
+        # --- Nové (2026-06) ---
+        "Encorafenib + Cetuximab (BRAF V600E, BEACON CRC)": "encorafenib_cetuximab.json",
+        "Pembrolizumab (MSI-H/dMMR, KEYNOTE-177)": "pembrolizumab_msiH.json",
+        "TAS-102 + Bevacizumab (SUNLIGHT)": "tritipi_bev.json",
     }
 
     selected_chemo = None
@@ -190,6 +194,6 @@ Guidelines: [ESMO](https://www.esmo.org/guidelines/esmo-clinical-practice-guidel
 - **MiXe (mitomycín/kapecitabín)** — Inštitucionálny záchranný režim; ESMO mCRC guideline.
 
 **Aktuálne štandardy na zváženie (zatiaľ mimo nástroja):**
-- Encorafenib + cetuximab pri BRAF V600E – BEACON CRC, NEJM 2019.
-- Pembrolizumab 1. línia pri MSI-H/dMMR – KEYNOTE-177, NEJM 2020.
-- Fruquintinib v ďalších líniách – FRESCO-2, Lancet 2023.""")
+- **Encorafenib + cetuximab pri BRAF V600E – BEACON CRC (Kopetz, NEJM 2019) → teraz v nástroji.**
+- **Pembrolizumab pri MSI-H/dMMR – KEYNOTE-177 (André, NEJM 2020) → teraz v nástroji.**
+- **TAS-102 + bevacizumab – SUNLIGHT (Prager, NEJM 2023) → teraz v nástroji.** Fruquintinib – FRESCO-2, Lancet 2023.""")

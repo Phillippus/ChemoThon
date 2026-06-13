@@ -125,7 +125,12 @@ def Flatdoser(rbodysurf, chemoType, chemoFlat=None):
 # Main function for urogenital tumors
 def urogenital(rbodysurf):
     """Táto funkcia rozpisuje chemoterapie urogenitálnych tumorov"""
-    chemo_choice = st.selectbox("Vyberte chemoterapiu:", [" ", "Docetaxel + Prednison", "Mitoxantron + Prednison","Docetaxel + Darolutamid", "Cabazitaxel + Prednison", "Abirateron (CRPC) + Prednison","Abirateron (HSPC) + Prednison","Enzalutamid","Darolutamid","Apalutamid","Pt/ Gemcitabin", "Vinflunin", "BEP"])
+    chemo_choice = st.selectbox("Vyberte chemoterapiu:", [" ", "Docetaxel + Prednison", "Mitoxantron + Prednison","Docetaxel + Darolutamid", "Cabazitaxel + Prednison", "Abirateron (CRPC) + Prednison","Abirateron (HSPC) + Prednison","Enzalutamid","Darolutamid","Apalutamid","Pt/ Gemcitabin", "Vinflunin", "BEP",
+        # --- Nové (2026-06) ---
+        "Enfortumab vedotín + Pembrolizumab (1. línia metast. urotel, EV-302)",
+        "Olaparib 300 mg BID (HRR+ mCRPC, PROfound)",
+        "Nivolumab 240 mg q2w adj. (urotel po cystektómii, CheckMate-274)",
+    ])
     
     if chemo_choice == "Docetaxel + Prednison":
         Flatdoser(rbodysurf, "docetaxelprostate.json", "flatprednison3w.json")
@@ -159,10 +164,31 @@ def urogenital(rbodysurf):
             Chemo(rbodysurf, "vinflunine280.json")
     elif chemo_choice == "BEP":
         Flatdoser(rbodysurf, "BEP.json", "flatbleomycin.json")
+    # --- Nové (2026-06) ---
+    elif chemo_choice == "Enfortumab vedotín + Pembrolizumab (1. línia metast. urotel, EV-302)":
+        if 'weight' in st.session_state:
+            weight_val = st.session_state.weight if 'weight' in st.session_state else None
+            st.write("### EV + Pembrolizumab (EV-302)")
+            import json as _j
+            ev = _j.load(open("data/enfortumab_vedotin.json", encoding="utf-8"))
+            if weight_val:
+                ev_dose = round(1.25 * weight_val, 2)
+                st.write(f"enfortumab vedotín 1.25 mg/kg ......... {ev_dose} mg D1, D8")
+            st.write("pembrolizumab 200 mg flat D1")
+            st.write("NC 21. deň")
+            st.write(ev["Day1"]["Premed"]["Note"])
+            for inst in ev["Day1"]["Instructions"]:
+                st.write(f"{inst['Inst']}")
+        else:
+            st.error("Najprv zadajte hmotnosť.")
+    elif chemo_choice == "Olaparib 300 mg BID (HRR+ mCRPC, PROfound)":
+        Chemo(rbodysurf, "olaparib_crpc.json")
+    elif chemo_choice == "Nivolumab 240 mg q2w adj. (urotel po cystektómii, CheckMate-274)":
+        Chemo(rbodysurf, "nivolumab_urothelial_adj.json")
 
 # Main input function for weight and height
 def main():
-    st.title("ChemoThon UrogenitalSK v 2.2")
+    st.title("ChemoThon UrogenitalSK v 2.3")
     st.write("""
     Program rozpisuje najbežnejšie chemoterapie podľa povrchu alebo hmotnosti.
     Dávky je nutné upraviť podľa aktuálne dostupných balení liečiv.

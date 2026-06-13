@@ -1,0 +1,24 @@
+{
+  "_source": "Makker V et al. NEJM 2022;386:437 (KEYNOTE-775/Study 309); SmPC Kisplyx",
+  "_revision": "2026-06-new",
+  "Chemo": [
+    {
+      "Name": "lenvatinib",
+      "Dosage": 20,
+      "DosageMetric": "mg flat dose",
+      "Day": "1 (denne kontinuálne)"
+    }
+  ],
+  "NC": "28",
+  "Day1": {
+    "Premed": {
+      "Note": "Bez premedikácie. V kombinácii s pembrolizumabom 200 mg q3w (SmPC). Indikácia: pokročilý endometriálny karcinóm (bez MSI-H/dMMR), po predchádzajúcej chemoterapii."
+    },
+    "Instructions": [
+      {
+        "Name": "lenvatinib",
+        "Inst": "20 mg p.o. 1× denne kontinuálne. Redukcia pri toxicite: 14 mg → 10 mg → 8 mg (SmPC)."
+      }
+    ]
+  }
+}

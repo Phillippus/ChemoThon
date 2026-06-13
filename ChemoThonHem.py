@@ -133,7 +133,7 @@ def calculate_bsa(weight, height):
 
 def main():
     """Main function to run the Streamlit app."""
-    st.title("ChemoThon - HematologySK v. 2.2")
+    st.title("ChemoThon - HematologySK v. 2.3")
     st.write(" ")
     st.write("         Vitajte v programe ChemoThon!")
     st.write("""Program rozpisuje najbežnejšie chemoterapie podľa povrchu alebo hmotnosti.
@@ -172,6 +172,9 @@ def main():
         "GDP (Gemcitabin + Cisplatina + Dex)": ("GDP.json", "flatdexametazon.json"),
         # --- Iné ---
         "Rituximab (monoterapia)": ("rituximab.json", None),
+        # --- Nové (2026-06) ---
+        "Pola-R-CHP (DLBCL 1. línia, POLARIX)": ("pola_rchp.json", None),
+        "BV-AVD (Hodgkin štádium III/IV, ECHELON-1)": ("bv_avd.json", None),
     }
 
     chemo_file = st.selectbox("Vyberte chemoterapeutický režim:", list(chemo_options.keys()))

@@ -176,7 +176,12 @@ def gastrointestinal(rbodysurf):
         "NALIRI/ 5-FU": "peglipiri5FU.json",
         "NALIRIFOX": "NALIRIFOX.json",
         "Gemcitabin": "gemcitabin4w.json",
-        "Mitomycin/ 5-FU": "mtc5FU.json"
+        "Mitomycin/ 5-FU": "mtc5FU.json",
+        # --- Nové (2026-06) ---
+        "Nivolumab 360 mg flat + FOLFOX/CAPOX (gastric, CheckMate-649)": "nivolumab_gastric.json",
+        "Trastuzumab-deruxtecan 6.4 mg/kg (HER2+ gastric, DESTINY-Gastric01)": "tdx_gastric.json",
+        "Ramucirumab 8 mg/kg q2w (gastric 2. línia, REGARD)": "ramucirumab.json",
+        "Ramucirumab + Paclitaxel weekly (gastric 2. línia, RAINBOW)": "ramucirumab_paclitaxel.json",
     }
     
     chemo_choice = st.selectbox("Vyberte chemoterapiu:", list(chemo_options.keys()))
@@ -201,7 +206,7 @@ def bsa(weight, height):
 
 # Main input function for weight and height
 def main():
-    st.title("ChemoThon - GastrointestinalSK (excl. CrC) v2.1")
+    st.title("ChemoThon - GastrointestinalSK (excl. CrC) v2.2")
     st.write("""
        Program rozpisuje najbežnejšie chemoterapie podľa povrchu alebo hmotnosti.
     Dávky je nutné upraviť podľa aktuálne dostupných balení liečiv.
@@ -253,7 +258,7 @@ Guidelines: [ESMO](https://www.esmo.org/guidelines/esmo-clinical-practice-guidel
 - **Mitomycín / 5-FU (anál)** — Nigro / RTOG 98-11 – Ajani et al., JAMA 2008.
 
 **Aktuálne štandardy na zváženie (zatiaľ mimo nástroja):**
-- Nivolumab + chemoterapia 1. línia gastrický (PD-L1 CPS≥5) – CheckMate-649, Lancet 2021.
+- **Nivolumab + chemoterapia (CPS≥5) – CheckMate-649, Lancet 2021 → teraz v nástroji.**
 - Pembrolizumab + trastuzumab + chemo pri HER2+ gastrickom – KEYNOTE-811, Nature 2024.
-- Trastuzumab-deruxtecan pri HER2+ gastrickom (2. línia) – DESTINY-Gastric01, NEJM 2020.
+- **T-DXd 6.4 mg/kg gastric – DESTINY-Gastric01, NEJM 2020 → teraz v nástroji.**
 - Zolbetuximab + chemo pri CLDN18.2+ – SPOTLIGHT/GLOW, Lancet 2023.""")

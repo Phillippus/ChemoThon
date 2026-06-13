@@ -94,7 +94,10 @@ def headandneck(rbodysurf):
         "Cetuximab (weekly)",
         "Cetuximab (biweekly)",
         "Paclitaxel weekly",
-        "Metotrexat"
+        "Metotrexat",
+        # --- Nové (2026-06) ---
+        "Pembrolizumab (R/M HNSCC, KEYNOTE-048)",
+        "Nivolumab 240 mg q2w (R/M HNSCC platina-refr., CheckMate-141)",
     ])
     
     if chemo_choice == "Pt/5-FU":
@@ -111,6 +114,10 @@ def headandneck(rbodysurf):
         Chemo(rbodysurf, "paclitaxelweekly.json")
     elif chemo_choice == "Metotrexat":
         Chemo(rbodysurf, "metotrexate.json")
+    elif chemo_choice == "Pembrolizumab (R/M HNSCC, KEYNOTE-048)":
+        Chemo(rbodysurf, "pembrolizumab_hnscc.json")
+    elif chemo_choice == "Nivolumab 240 mg q2w (R/M HNSCC platina-refr., CheckMate-141)":
+        Chemo(rbodysurf, "nivolumab_hnscc.json")
 
 # Function to calculate Body Surface Area (BSA)
 def bsa(weight, height):
@@ -120,7 +127,7 @@ def bsa(weight, height):
 
 # Main input function for weight and height
 def main():
-    st.title("ChemoThon Head and NeckSK v2.1")
+    st.title("ChemoThon Head and NeckSK v2.2")
     st.write("""
     Program rozpisuje najbežnejšie chemoterapie podľa povrchu alebo hmotnosti.
     Dávky je nutné upraviť podľa aktuálne dostupných balení liečiv.

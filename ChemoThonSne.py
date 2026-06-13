@@ -138,7 +138,12 @@ def ChemoIfo(rbodysurf, dose, otherCHT):
 # Main function for sarcomas, CNS, and neuroendocrine tumors
 def sarcnet(rbodysurf):
     """Táto funkcia rozpisuje chemoterapie a biologickú liečbu sarkómov a CNS a neuroendokrinnych tumorov"""
-    chemo_choice = st.selectbox("Vyberte chemoterapiu:", ["Vyberte chemoterapiu", "Ifosfamid/ Epirubicin", "Ifosfamid", "Trabectedin", "Doxorubicin", "Paclitaxel weekly", "CBDCA/ Paclitaxel", "DDP/ Etoposid", "CBDCA/ Etoposid", "Dakarbazin 5 dňový", "Temozolomid", "Lomustine (CCNU)"])
+    chemo_choice = st.selectbox("Vyberte chemoterapiu:", ["Vyberte chemoterapiu", "Ifosfamid/ Epirubicin", "Ifosfamid", "Trabectedin", "Doxorubicin", "Paclitaxel weekly", "CBDCA/ Paclitaxel", "DDP/ Etoposid", "CBDCA/ Etoposid", "Dakarbazin 5 dňový", "Temozolomid", "Lomustine (CCNU)",
+        # --- Nové (2026-06) ---
+        "CAPTEM (Kapecitabín + Temozolomid, pNET, E2211)",
+        "Pazopanib 800 mg/deň (STS, PALETTE)",
+        "Ifosfamid high-dose 2000 mg/m² D1-5",
+    ])
 
     if chemo_choice == "Ifosfamid/ Epirubicin":
         ChemoIfo(rbodysurf, 3000, True)
@@ -168,10 +173,16 @@ def sarcnet(rbodysurf):
             Chemo(rbodysurf, "temozolomide200.json")
     elif chemo_choice == "Lomustine (CCNU)":
         Chemo(rbodysurf, "CCNU.json")
+    elif chemo_choice == "CAPTEM (Kapecitabín + Temozolomid, pNET, E2211)":
+        Chemo(rbodysurf, "captem.json")
+    elif chemo_choice == "Pazopanib 800 mg/deň (STS, PALETTE)":
+        Chemo(rbodysurf, "pazopanib_sts.json")
+    elif chemo_choice == "Ifosfamid high-dose 2000 mg/m² D1-5":
+        Chemo(rbodysurf, "ifosfamid_high.json")
 
 # Main input function for weight and height
 def main():
-    st.title("ChemoThon Sarcoma, CNS and NET SK v2.1")
+    st.title("ChemoThon Sarcoma, CNS and NET SK v2.2")
     st.write("""
     Program rozpisuje najbežnejšie chemoterapie podľa povrchu alebo hmotnosti.
     Dávky je nutné upraviť podľa aktuálne dostupných balení liečiv.

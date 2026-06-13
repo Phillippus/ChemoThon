@@ -114,7 +114,11 @@ def gynecology(rbodysurf):
         "PEG-doxorubicin",
         "CBDCA/ PEG-doxorubicin",
         "CBDCA/ gemcitabin",
-        "Bevacizumab 15 mg/kg"
+        "Bevacizumab 15 mg/kg",
+        # --- Nové (2026-06) ---
+        "Mirvetuximab soravtansín 6 mg/kg (PROC FRα+, MIRASOL)",
+        "Lenvatinib 20 mg/deň (endometrium, KEYNOTE-775)",
+        "Pembrolizumab + CBDCA + Paclitaxel (endometrium, NRG-GY018)",
     ])
 
     if chemo_choice == "CBDCA/ paclitaxel":
@@ -136,10 +140,19 @@ def gynecology(rbodysurf):
             ChemoWeightBased(st.session_state.weight, "bevacizumab3w15.json")
         else:
             st.error("Najprv zadajte hmotnosť a výšku a stlačte tlačidlo na výpočet telesného povrchu.")
+    elif chemo_choice == "Mirvetuximab soravtansín 6 mg/kg (PROC FRα+, MIRASOL)":
+        if 'weight' in st.session_state:
+            ChemoWeightBased(st.session_state.weight, "mirvetuximab.json")
+        else:
+            st.error("Najprv zadajte hmotnosť a výšku.")
+    elif chemo_choice == "Lenvatinib 20 mg/deň (endometrium, KEYNOTE-775)":
+        Chemo(rbodysurf, "lenvatinib.json")
+    elif chemo_choice == "Pembrolizumab + CBDCA + Paclitaxel (endometrium, NRG-GY018)":
+        ChemoCBDCA(rbodysurf, "pembrolizumab_carboplatin_paclitaxel_gyn.json")
 
 # Main input function for weight and height
 def main():
-    st.title("        ChemoThon Gynecology v2.1")
+    st.title("        ChemoThon Gynecology v2.2")
     st.write("""
     Program rozpisuje najbežnejšie chemoterapie podľa povrchu alebo hmotnosti.
     Dávky je nutné upraviť podľa aktuálne dostupných balení liečiv.

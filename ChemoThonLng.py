@@ -78,13 +78,18 @@ def ChemoCBDCA(rbodysurf, chemoType):
 def lung(rbodysurf):
     """Tato funkcia ponuka chemoterapie pouzivane v liecbe karcinomu pluc"""
     chemo_options = [
-        "Vyberte chemoterapiu", 
-        "CBDCA + paclitaxel", 
-        "CBDCA + pemetrexed", 
-        "DDP + gemcitabine", 
-        "CBDCA + gemcitabine", 
-        "DDP + etoposide", 
-        "Topotecan + G-CSF"
+        "Vyberte chemoterapiu",
+        "CBDCA + paclitaxel",
+        "CBDCA + pemetrexed",
+        "DDP + gemcitabine",
+        "CBDCA + gemcitabine",
+        "DDP + etoposide",
+        "Topotecan + G-CSF",
+        # --- Nové (2026-06) ---
+        "Pembrolizumab + Pemetrexed + CBDCA (neskvamózny NSCLC, KEYNOTE-189)",
+        "Pembrolizumab + CBDCA + Nab-Paclitaxel (skvamózny NSCLC, KEYNOTE-407)",
+        "Durvalumab 1500 mg q4w (PACIFIC, udržiavanie po CRT štádium III)",
+        "Atezolizumab + Etoposid + CBDCA (SCLC 1. línia, IMpower133)",
     ]
     lng = st.selectbox("Vyberte chemoterapiu, ktorú chcete podať:", chemo_options)
 
@@ -101,6 +106,14 @@ def lung(rbodysurf):
             ChemoDDP(rbodysurf, "etoposide.json")
         elif lng == "Topotecan + G-CSF":
             Chemo(rbodysurf, "topotecan.json")
+        elif lng == "Pembrolizumab + Pemetrexed + CBDCA (neskvamózny NSCLC, KEYNOTE-189)":
+            ChemoCBDCA(rbodysurf, "pembrolizumab_pem_cbdca.json")
+        elif lng == "Pembrolizumab + CBDCA + Nab-Paclitaxel (skvamózny NSCLC, KEYNOTE-407)":
+            ChemoCBDCA(rbodysurf, "pembrolizumab_cbdca_nab.json")
+        elif lng == "Durvalumab 1500 mg q4w (PACIFIC, udržiavanie po CRT štádium III)":
+            Chemo(rbodysurf, "durvalumab_pacific.json")
+        elif lng == "Atezolizumab + Etoposid + CBDCA (SCLC 1. línia, IMpower133)":
+            ChemoCBDCA(rbodysurf, "atezolizumab_ep.json")
 
 def bsa(weight, height):
     bodysurf = (weight**0.425) * (height**0.725) * 0.007184
@@ -108,7 +121,7 @@ def bsa(weight, height):
     return rbodysurf
 
 def main():
-    st.title("          ChemoThon- LungSK v 2.1")
+    st.title("          ChemoThon- LungSK v 2.3")
     st.write("""
     Program rozpisuje najbežnejšie chemoterapie podľa povrchu alebo hmotnosti.
     Dávky je nutné upraviť podľa aktuálne dostupných balení liečiv.
