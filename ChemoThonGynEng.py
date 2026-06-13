@@ -69,8 +69,55 @@ def calculate_bsa(weight, height):
     """Calculates body surface area using the DuBois formula."""
     return round((weight ** 0.425) * (height ** 0.725) * 0.007184, 2)
 
+
+def display_simple_json(filename, bsa, weight=None):
+    """Display regimen from individual JSON file (flat-dose / BSA / weight-based)."""
+    try:
+        with open(f'data/{filename}', 'r') as f:
+            reg = json.load(f)
+    except Exception as e:
+        st.error(f"Error loading {filename}: {e}")
+        return
+    st.write("#### Chemotherapy Drugs")
+    for drug in reg.get("Chemo", []):
+        metric = drug.get("DosageMetric", "")
+        dosage = drug.get("Dosage", 0)
+        if "mg/kg" in metric and weight:
+            calculated = round(dosage * weight, 2)
+            st.write(f"{drug['Name']} {dosage} {metric} ......... {calculated} mg D{drug['Day']}")
+        elif "mg/m2" in metric:
+            calculated = round(dosage * bsa, 2)
+            st.write(f"{drug['Name']} {dosage} {metric} ......... {calculated} mg D{drug['Day']}")
+        else:
+            st.write(f"{drug['Name']} {dosage} {metric} D{drug['Day']}")
+    st.write(f"**Next Cycle:** {reg.get('NC', '?' )} days")
+    premed = reg.get("Day1", {}).get("Premed", {}).get("Note", "")
+    if premed:
+        st.write("#### D1 - Premedication")
+        st.write(premed)
+    instructions = reg.get("Day1", {}).get("Instructions", [])
+    if instructions:
+        st.write("#### D1 - Chemotherapy Instructions")
+        chemo_list = reg.get("Chemo", [])
+        for inst in instructions:
+            drug_name = inst.get("Name", "")
+            inst_text = inst.get("Inst", "")
+            drug = next((d for d in chemo_list if d["Name"] == drug_name), None)
+            if drug:
+                metric = drug.get("DosageMetric", "")
+                dosage = drug.get("Dosage", 0)
+                if "mg/kg" in metric and weight:
+                    calc_dose = round(dosage * weight, 2)
+                elif "mg/m2" in metric:
+                    calc_dose = round(dosage * bsa, 2)
+                else:
+                    calc_dose = dosage
+                st.write(f"{drug_name} - {calc_dose} mg, {inst_text}")
+            else:
+                st.write(f"{drug_name} - {inst_text}")
+
 def main():
-    st.title("ChemoThon  Gynecology  v 3.1 ENG")
+    st.title("ChemoThon  Gynecology  v 3.2 ENG")
     st.write("""Welcome to ChemoThon!
 This application provides assistance in prescribing chemotherapy regimens based on body surface area (BSA), weight, or AUC for carboplatin-based treatments.
 Please ensure that doses are adjusted to align with the packaging and protocols available in your country. Users bear full responsibility for applying this tool in clinical practice.
@@ -83,48 +130,54 @@ We welcome your feedback to improve this app further. Feel free to reach out at 
         return
 
     # User input for weight and height
-    with st.container():
-        st.subheader("Patient Information")
-        weight = st.number_input("Enter weight (kg):", min_value=1, max_value=200, step=1, value=None)
-        height = st.number_input("Enter height (cm):", min_value=1, max_value=250, step=1, value=None)
-
-    if not weight or not height:
-        st.warning("Please enter valid weight and height to proceed.")
-        return
+    weight = st.number_input("Enter weight (kg):", min_value=1, max_value=200, step=1, value=None)
+    height = st.number_input("Enter height (cm):", min_value=1, max_value=250, step=1, value=None)
 
     # Calculate BSA
-    bsa = calculate_bsa(weight, height)
-    st.success(f"Calculated BSA: {bsa} m²")
+    if st.button("Calculate BSA") and weight and height:
+        bsa_val = calculate_bsa(weight, height)
+        st.session_state['bsa'] = bsa_val
+        st.session_state['weight'] = weight
 
-    # Select chemotherapy regimen
-    st.subheader("Chemotherapy Regimen Selection")
-    chemo_names = ["Select a regimen..."] + [protocol["name"] for protocol in data["chemotherapies"]]
-    selected_protocol_name = st.selectbox("Select a chemotherapy regimen:", chemo_names, index=0)
+    if 'bsa' in st.session_state:
+        st.write(f"Body Surface Area (BSA): {st.session_state['bsa']} m²")
+        bsa = st.session_state['bsa']
+        weight_val = st.session_state.get('weight', weight) or weight
 
-    # Ensure a valid regimen is selected
-    if selected_protocol_name == "Select a regimen...":
-        st.warning("Please select a valid chemotherapy regimen to proceed.")
-        return
+        # New regimens (added 2026-06)
+        extra_new = [
+            "Mirvetuximab soravtansine 6 mg/kg (FRα+ platinum-resistant ovarian, MIRASOL)",
+            "Lenvatinib 20 mg/day (endometrial, KEYNOTE-775)",
+            "Pembrolizumab + Carboplatin + Paclitaxel (endometrial, NRG-GY018)",
+        ]
+        chemo_names = [protocol["name"] for protocol in data["chemotherapies"]]
+        selected_protocol_name = st.selectbox("Select a chemotherapy regimen:", chemo_names + extra_new)
 
-    # Check if Carboplatin is in the selected regimen
-    protocol = next((p for p in data["chemotherapies"] if p["name"] == selected_protocol_name), None)
-    crcl, auc = None, None
+        # Check if Carboplatin needed
+        protocol = None
+        crcl, auc = None, None
+        if selected_protocol_name not in extra_new:
+            protocol = next((p for p in data["chemotherapies"] if p["name"] == selected_protocol_name), None)
+            if protocol and any(drug["Name"].lower() == "carboplatin" for drug in protocol.get("Chemo", [])):
+                crcl = st.number_input("Enter Creatinine Clearance (CrCl in mL/min):", min_value=1, max_value=200, step=1, value=None)
+                auc = st.number_input("Enter Area Under Curve (AUC, 2-6):", min_value=2, max_value=6, step=1, value=None)
+                if crcl is not None and crcl < 30:
+                    st.error("The patient seems to be platinum-ineligible!")
+        elif selected_protocol_name == "Pembrolizumab + Carboplatin + Paclitaxel (endometrial, NRG-GY018)":
+            crcl = st.number_input("Enter Creatinine Clearance (CrCl in mL/min):", min_value=1, max_value=200, step=1, value=None)
+            auc = st.number_input("Enter AUC (typically 5):", min_value=2, max_value=6, step=1, value=None)
 
-    if protocol and any(drug["Name"].lower() == "carboplatin" for drug in protocol.get("Chemo", [])):
-        st.subheader("Additional Parameters for Carboplatin")
-        crcl = st.number_input("Enter Creatinine Clearance (CrCl in mL/min):", min_value=1, max_value=200, step=1, value=None)
-        auc = st.number_input("Enter Area Under Curve (AUC, 2-6):", min_value=2, max_value=6, step=1, value=None)
-
-        # Check for platinum ineligibility if CrCl < 30
-        if crcl is not None and crcl < 30:
-            st.error("The patient seems to be platinum-ineligible!")
-
-    # Display protocol details button
-    with st.container():
-        st.subheader("Display Chemotherapy Details")
         if st.button("Display Protocol"):
-            if protocol:
-                display_chemotherapy_details(protocol, bsa, weight, crcl, auc)
+            if selected_protocol_name == "Mirvetuximab soravtansine 6 mg/kg (FRα+ platinum-resistant ovarian, MIRASOL)":
+                display_simple_json("mirvetuximab.json", bsa, weight_val)
+            elif selected_protocol_name == "Lenvatinib 20 mg/day (endometrial, KEYNOTE-775)":
+                display_simple_json("lenvatinib.json", bsa, weight_val)
+            elif selected_protocol_name == "Pembrolizumab + Carboplatin + Paclitaxel (endometrial, NRG-GY018)":
+                display_simple_json("pembrolizumab_carboplatin_paclitaxel_gyn.json", bsa, weight_val)
+                if crcl and auc:
+                    st.write(f"Carboplatin AUC {auc} ......... {(crcl + 25) * auc} mg D1")
+            elif protocol:
+                display_chemotherapy_details(protocol, bsa, weight_val, crcl, auc)
             else:
                 st.error("Selected protocol not found.")
 
@@ -150,5 +203,6 @@ Guidelines: [ESMO](https://www.esmo.org/guidelines/esmo-clinical-practice-guidel
 
 **Current standards to consider (not yet in tool):**
 - PARP inhibítory v udržiavaní (olaparib SOLO-1; niraparib PRIMA) – NEJM 2018/2019.
-- Dostarlimab / pembrolizumab + chemo pri endometriálnom karcinóme – RUBY / NRG-GY018, NEJM 2023.
-- Mirvetuximab soravtansin pri FRα+ platina-rezistentnom ovariu – MIRASOL, NEJM 2023.""")
+- **Dostarlimab / pembrolizumab + chemo pri endometriálnom karcinóme** — RUBY / NRG-GY018, NEJM 2023 → pembrolizumab + CBDCA + paklitaxel teraz v nástroji.
+- **Mirvetuximab soravtansin pri FRα+ platina-rezistentnom ovariu** — MIRASOL, NEJM 2023 → teraz v nástroji.
+- **Lenvatinib + pembrolizumab pri endometriálnom karcinóme** — KEYNOTE-775, NEJM 2022 → teraz v nástroji.""")
