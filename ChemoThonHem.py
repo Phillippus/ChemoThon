@@ -152,43 +152,43 @@ def main():
     if 'rbodysurf' in st.session_state:
         st.write(f"Vypočítaný telesný povrch (BSA): {st.session_state['rbodysurf']} m²")
 
-    chemo_options = {
-        # --- Hodgkinov lymfóm ---
-        "ABVD": ("ABVD.json", None),
-        # --- Agresívne NHL (DLBCL) ---
-        "R-CHOP": ("RCHOP.json", "flatvincristin.json"),
-        "CHOP (bez R)": ("CHOP.json", "flatvincristin.json"),
-        "R-miniCHOP (elderly)": ("RminiCHOP.json", "flatminivincristin.json"),
-        "miniCHOP (bez R)": ("miniCHOP.json", "flatminivincristin.json"),
-        # --- Indolentné NHL / CLL ---
-        "R-CVP": ("RCVP.json", "flatvincristin.json"),
-        "R-Bendamustin (BR)": ("BR.json", None),
-        "Bendamustin (monoterapia 120mg/m2)": ("bendamustin.json", None),
-        # --- Záchranné režimy ---
-        "R-DHAP": ("RDHAP", None),
-        "DHAP": ("DHAP", None),
-        "R-Gemox": ("RGemox.json", None),
-        "Gemox": ("Gemox.json", None),
-        "GDP (Gemcitabin + Cisplatina + Dex)": ("GDP.json", "flatdexametazon.json"),
-        # --- Iné ---
-        "Rituximab (monoterapia)": ("rituximab.json", None),
-        # --- Nové (2026-06) ---
-        "Pola-R-CHP (DLBCL 1. línia, POLARIX)": ("pola_rchp.json", None),
-        "BV-AVD (Hodgkin štádium III/IV, ECHELON-1)": ("bv_avd.json", None),
-    }
+        chemo_options = {
+            # --- Hodgkinov lymfóm ---
+            "ABVD": ("ABVD.json", None),
+            # --- Agresívne NHL (DLBCL) ---
+            "R-CHOP": ("RCHOP.json", "flatvincristin.json"),
+            "CHOP (bez R)": ("CHOP.json", "flatvincristin.json"),
+            "R-miniCHOP (elderly)": ("RminiCHOP.json", "flatminivincristin.json"),
+            "miniCHOP (bez R)": ("miniCHOP.json", "flatminivincristin.json"),
+            # --- Indolentné NHL / CLL ---
+            "R-CVP": ("RCVP.json", "flatvincristin.json"),
+            "R-Bendamustin (BR)": ("BR.json", None),
+            "Bendamustin (monoterapia 120mg/m2)": ("bendamustin.json", None),
+            # --- Záchranné režimy ---
+            "R-DHAP": ("RDHAP", None),
+            "DHAP": ("DHAP", None),
+            "R-Gemox": ("RGemox.json", None),
+            "Gemox": ("Gemox.json", None),
+            "GDP (Gemcitabin + Cisplatina + Dex)": ("GDP.json", "flatdexametazon.json"),
+            # --- Iné ---
+            "Rituximab (monoterapia)": ("rituximab.json", None),
+            # --- Nové (2026-06) ---
+            "Pola-R-CHP (DLBCL 1. línia, POLARIX)": ("pola_rchp.json", None),
+            "BV-AVD (Hodgkin štádium III/IV, ECHELON-1)": ("bv_avd.json", None),
+        }
 
-    chemo_file = st.selectbox("Vyberte chemoterapeutický režim:", list(chemo_options.keys()))
+        chemo_file = st.selectbox("Vyberte chemoterapeutický režim:", list(chemo_options.keys()))
 
-    if 'rbodysurf' in st.session_state and st.button('Zobraziť protokol chemoterapie'):
-        selected_option = chemo_options[chemo_file]
-        if chemo_file == "DHAP":
-            DHAP(st.session_state['rbodysurf'])
-        elif chemo_file == "R-DHAP":
-            RDHAP(st.session_state['rbodysurf'])
-        elif selected_option[1]:  # Flatdoser ak existuje druhý JSON
-            Flatdoser(st.session_state['rbodysurf'], *selected_option)
-        else:
-            display_chemotherapy_details(st.session_state['rbodysurf'], selected_option[0])
+        if st.button('Zobraziť protokol chemoterapie'):
+            selected_option = chemo_options[chemo_file]
+            if chemo_file == "DHAP":
+                DHAP(st.session_state['rbodysurf'])
+            elif chemo_file == "R-DHAP":
+                RDHAP(st.session_state['rbodysurf'])
+            elif selected_option[1]:  # Flatdoser ak existuje druhý JSON
+                Flatdoser(st.session_state['rbodysurf'], *selected_option)
+            else:
+                display_chemotherapy_details(st.session_state['rbodysurf'], selected_option[0])
 
 if __name__ == "__main__":
     main()

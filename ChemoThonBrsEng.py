@@ -96,8 +96,55 @@ def display_chemotherapy_details(protocol, bsa, weight):
     else:
         st.warning("No details found for Day 1.")
 
+
+def display_simple_json(filename, bsa, weight=None):
+    """Display regimen from individual JSON file (flat-dose / BSA / weight-based)."""
+    try:
+        with open(f'data/{filename}', 'r') as f:
+            reg = json.load(f)
+    except Exception as e:
+        st.error(f"Error loading {filename}: {e}")
+        return
+    st.write("#### Chemotherapy Drugs")
+    for drug in reg.get("Chemo", []):
+        metric = drug.get("DosageMetric", "")
+        dosage = drug.get("Dosage", 0)
+        if "mg/kg" in metric and weight:
+            calculated = round(dosage * weight, 2)
+            st.write(f"{drug['Name']} {dosage} {metric} ......... {calculated} mg D{drug['Day']}")
+        elif "mg/m2" in metric:
+            calculated = round(dosage * bsa, 2)
+            st.write(f"{drug['Name']} {dosage} {metric} ......... {calculated} mg D{drug['Day']}")
+        else:
+            st.write(f"{drug['Name']} {dosage} {metric} D{drug['Day']}")
+    st.write(f"**Next Cycle:** {reg.get('NC', '?' )} days")
+    premed = reg.get("Day1", {}).get("Premed", {}).get("Note", "")
+    if premed:
+        st.write("#### D1 - Premedication")
+        st.write(premed)
+    instructions = reg.get("Day1", {}).get("Instructions", [])
+    if instructions:
+        st.write("#### D1 - Chemotherapy Instructions")
+        chemo_list = reg.get("Chemo", [])
+        for inst in instructions:
+            drug_name = inst.get("Name", "")
+            inst_text = inst.get("Inst", "")
+            drug = next((d for d in chemo_list if d["Name"] == drug_name), None)
+            if drug:
+                metric = drug.get("DosageMetric", "")
+                dosage = drug.get("Dosage", 0)
+                if "mg/kg" in metric and weight:
+                    calc_dose = round(dosage * weight, 2)
+                elif "mg/m2" in metric:
+                    calc_dose = round(dosage * bsa, 2)
+                else:
+                    calc_dose = dosage
+                st.write(f"{drug_name} - {calc_dose} mg, {inst_text}")
+            else:
+                st.write(f"{drug_name} - {inst_text}")
+
 def main():
-    st.title("ChemoThon Breast v. 3.3 ENG")
+    st.title("ChemoThon Breast v. 3.4 ENG")
     st.write("""Welcome to ChemoThon!
 This application provides assistance in prescribing chemotherapy regimens based on body surface area (BSA) or weight,
 Please ensure that doses are adjusted to align with the packaging and protocols available in your country. Users bear full responsibility for applying this tool in clinical practice.
@@ -116,18 +163,15 @@ We welcome your feedback to improve this app further. Feel free to reach out at 
 
     # Calculate BSA
     if st.button("Calculate BSA") and weight and height:
-        bsa = calculate_bsa(weight, height)
-        st.session_state['bsa'] = bsa
-        st.write(f"Body Surface Area: {bsa} m²")
+        bsa_val = calculate_bsa(weight, height)
+        st.session_state['bsa'] = bsa_val
+        st.session_state['weight'] = weight
 
-    if not weight or not height:
-        st.warning("Please enter both weight and height to calculate BSA.")
-        return
-
-    # Select chemotherapy regimen
     if 'bsa' in st.session_state:
+        st.write(f"Body Surface Area (BSA): {st.session_state['bsa']} m²")
         bsa = st.session_state['bsa']
-        chemo_names = [protocol["name"] for protocol in data.get("chemotherapies", [])]
+        weight_val = st.session_state.get('weight', weight) or weight
+
         # Sorting logic: non-biological first, then biological
         def is_biological(name):
             name_lower = name.lower()
@@ -136,18 +180,29 @@ We welcome your feedback to improve this app further. Feel free to reach out at 
         chemo_names = [protocol["name"] for protocol in data.get("chemotherapies", [])]
         chemo_names_sorted = sorted([name for name in chemo_names if not is_biological(name)])
         bio_names_sorted = sorted([name for name in chemo_names if is_biological(name)])
-        sorted_names = chemo_names_sorted + bio_names_sorted
+        # New regimens (added 2026-06)
+        extra_new = [
+            "Olaparib 300 mg BID (BRCA1/2+, OlympiAD/EMBRACA)",
+            "Abemaciclib 150 mg BID + ET (HR+/HER2−, monarchE/MONARCH-2)",
+            "Capivasertib 400 mg BID 4/3 + fulvestrant (PIK3CA/AKT1/PTEN, CAPItello-291)",
+        ]
+        sorted_names = chemo_names_sorted + bio_names_sorted + extra_new
 
         selected_protocol_name = st.selectbox("Select a chemotherapy regimen:", sorted_names)
 
-        if st.button("Display Protocol") and weight:
-            protocol = next((p for p in data["chemotherapies"] if p["name"] == selected_protocol_name), None)
-            if protocol:
-                display_chemotherapy_details(protocol, bsa, weight)
+        if st.button("Display Protocol"):
+            if selected_protocol_name == "Olaparib 300 mg BID (BRCA1/2+, OlympiAD/EMBRACA)":
+                display_simple_json("olaparib.json", bsa, weight_val)
+            elif selected_protocol_name == "Abemaciclib 150 mg BID + ET (HR+/HER2−, monarchE/MONARCH-2)":
+                display_simple_json("abemaciclib.json", bsa, weight_val)
+            elif selected_protocol_name == "Capivasertib 400 mg BID 4/3 + fulvestrant (PIK3CA/AKT1/PTEN, CAPItello-291)":
+                display_simple_json("capivasertib.json", bsa, weight_val)
             else:
-                st.error("Selected protocol not found in the data.")
-        elif not weight:
-            st.error("Please enter a weight to calculate the chemotherapy protocol.")
+                protocol = next((p for p in data["chemotherapies"] if p["name"] == selected_protocol_name), None)
+                if protocol:
+                    display_chemotherapy_details(protocol, bsa, weight_val)
+                else:
+                    st.error("Selected protocol not found in the data.")
 
 if __name__ == "__main__":
     main()
@@ -176,6 +231,7 @@ Guidelines: [ESMO](https://www.esmo.org/guidelines/esmo-clinical-practice-guidel
 - **Vinorelbín p.o. weekly** — Perorálny vinorelbín – NCCN Breast Cancer.
 
 **Current standards to consider (not yet in tool):**
-- CDK4/6 inhibítory (palbociklib/ribociklib/abemaciklib) pri HR+/HER2− – PALOMA/MONALEESA/MONARCH.
-- Capivasertib + fulvestrant (PIK3CA/AKT1/PTEN) – CAPItello-291, NEJM 2023.
+- **CDK4/6 inhibítory (palbociklib/ribociklib/abemaciklib) pri HR+/HER2−** — PALOMA/MONALEESA/MONARCH → abemaciklib teraz v nástroji.
+- **Capivasertib + fulvestrant (PIK3CA/AKT1/PTEN)** — CAPItello-291, NEJM 2023 → teraz v nástroji.
+- **Olaparib pri BRCA1/2-mutovanom mBC** — OlympiAD, NEJM 2017 → teraz v nástroji.
 - Trastuzumab-deruxtecan pri HER2-low/ultralow – DESTINY-Breast06, NEJM 2024.""")

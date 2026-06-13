@@ -62,8 +62,55 @@ def calculate_bsa(weight, height):
     """Calculates body surface area using the DuBois formula."""
     return round((weight ** 0.425) * (height ** 0.725) * 0.007184, 2)
 
+
+def display_simple_json(filename, bsa, weight=None):
+    """Display regimen from individual JSON file (flat-dose / BSA / weight-based)."""
+    try:
+        with open(f'data/{filename}', 'r') as f:
+            reg = json.load(f)
+    except Exception as e:
+        st.error(f"Error loading {filename}: {e}")
+        return
+    st.write("#### Chemotherapy Drugs")
+    for drug in reg.get("Chemo", []):
+        metric = drug.get("DosageMetric", "")
+        dosage = drug.get("Dosage", 0)
+        if "mg/kg" in metric and weight:
+            calculated = round(dosage * weight, 2)
+            st.write(f"{drug['Name']} {dosage} {metric} ......... {calculated} mg D{drug['Day']}")
+        elif "mg/m2" in metric:
+            calculated = round(dosage * bsa, 2)
+            st.write(f"{drug['Name']} {dosage} {metric} ......... {calculated} mg D{drug['Day']}")
+        else:
+            st.write(f"{drug['Name']} {dosage} {metric} D{drug['Day']}")
+    st.write(f"**Next Cycle:** {reg.get('NC', '?' )} days")
+    premed = reg.get("Day1", {}).get("Premed", {}).get("Note", "")
+    if premed:
+        st.write("#### D1 - Premedication")
+        st.write(premed)
+    instructions = reg.get("Day1", {}).get("Instructions", [])
+    if instructions:
+        st.write("#### D1 - Chemotherapy Instructions")
+        chemo_list = reg.get("Chemo", [])
+        for inst in instructions:
+            drug_name = inst.get("Name", "")
+            inst_text = inst.get("Inst", "")
+            drug = next((d for d in chemo_list if d["Name"] == drug_name), None)
+            if drug:
+                metric = drug.get("DosageMetric", "")
+                dosage = drug.get("Dosage", 0)
+                if "mg/kg" in metric and weight:
+                    calc_dose = round(dosage * weight, 2)
+                elif "mg/m2" in metric:
+                    calc_dose = round(dosage * bsa, 2)
+                else:
+                    calc_dose = dosage
+                st.write(f"{drug_name} - {calc_dose} mg, {inst_text}")
+            else:
+                st.write(f"{drug_name} - {inst_text}")
+
 def main():
-    st.title("ChemoThon Colorectal v. 3.1 ENG")
+    st.title("ChemoThon Colorectal v. 3.2 ENG")
     st.write("""Welcome to ChemoThon!
 This application provides assistance in prescribing chemotherapy regimens based on body surface area (BSA) or weight,
 Please ensure that doses are adjusted to align with the packaging and protocols available in your country. Users bear full responsibility for applying this tool in clinical practice.
@@ -75,35 +122,52 @@ We welcome your feedback to improve this app further. Feel free to reach out at 
     if not data:
         return
 
-    # User input for weight and height with default values
-    weight = st.number_input("Enter weight (kg):", min_value=1, max_value=200, step=1, value=70)
-    height = st.number_input("Enter height (cm):", min_value=1, max_value=250, step=1, value=180)
+    # User input for weight and height
+    weight = st.number_input("Enter weight (kg):", min_value=1, max_value=200, step=1, value=None)
+    height = st.number_input("Enter height (cm):", min_value=1, max_value=250, step=1, value=None)
 
     # Calculate BSA
     if st.button("Calculate BSA") and weight and height:
-        bsa = calculate_bsa(weight, height)
-        st.session_state['bsa'] = bsa
-        st.write(f"Calculated Body Surface Area (BSA): {bsa:.2f} m²")
+        bsa_val = calculate_bsa(weight, height)
+        st.session_state['bsa'] = bsa_val
+        st.session_state['weight'] = weight
 
     # Display available chemotherapy regimens
     if 'bsa' in st.session_state:
+        st.write(f"Body Surface Area (BSA): {st.session_state['bsa']:.2f} m²")
         bsa = st.session_state['bsa']
+        weight_val = st.session_state.get('weight', weight) or weight
+
         chemo_names = [protocol["name"] for protocol in data["chemotherapies"]]
-        selected_protocol_name = st.selectbox("Select a chemotherapy regimen:", chemo_names)
+        # New regimens (added 2026-06)
+        extra_new = [
+            "Encorafenib + Cetuximab (BRAF V600E mCRC, BEACON)",
+            "Pembrolizumab 200 mg flat q3w (MSI-H/dMMR, KEYNOTE-177)",
+            "TAS-102 + Bevacizumab 5 mg/kg q2w (3rd line, SUNLIGHT)",
+        ]
+        selected_protocol_name = st.selectbox("Select a chemotherapy regimen:", chemo_names + extra_new)
 
+        is_initial_dose = None
         if selected_protocol_name == "Cetuximab":
-            is_initial_dose = st.radio("Is this the initial dose?", ('Yes', 'No'))
-            is_initial_dose = True if is_initial_dose == "Yes" else False
+            is_initial_dose_str = st.radio("Is this the initial dose?", ('Yes', 'No'))
+            is_initial_dose = True if is_initial_dose_str == "Yes" else False
 
-        if st.button("Display Protocol") and weight:
-            protocol = next((p for p in data["chemotherapies"] if p["name"] == selected_protocol_name), None)
-            if protocol:
-                if selected_protocol_name == "Cetuximab":
-                    display_chemotherapy_details(protocol, bsa, weight, is_initial_dose)
-                else:
-                    display_chemotherapy_details(protocol, bsa, weight)
+        if st.button("Display Protocol"):
+            if selected_protocol_name == "Encorafenib + Cetuximab (BRAF V600E mCRC, BEACON)":
+                display_simple_json("encorafenib_cetuximab.json", bsa, weight_val)
+            elif selected_protocol_name == "Pembrolizumab 200 mg flat q3w (MSI-H/dMMR, KEYNOTE-177)":
+                display_simple_json("pembrolizumab_msiH.json", bsa, weight_val)
+            elif selected_protocol_name == "TAS-102 + Bevacizumab 5 mg/kg q2w (3rd line, SUNLIGHT)":
+                display_simple_json("tritipi_bev.json", bsa, weight_val)
             else:
-                st.error("Selected protocol not found in the data.")
+                protocol = next((p for p in data["chemotherapies"] if p["name"] == selected_protocol_name), None)
+                if protocol:
+                    if selected_protocol_name == "Cetuximab":
+                        display_chemotherapy_details(protocol, bsa, weight_val, is_initial_dose)
+                    else:
+                        display_chemotherapy_details(protocol, bsa, weight_val)
+                else:
+                    st.error("Selected protocol not found in the data.")
 
 if __name__ == "__main__":
     main()
@@ -130,6 +194,7 @@ Guidelines: [ESMO](https://www.esmo.org/guidelines/esmo-clinical-practice-guidel
 - **MiXe (mitomycín/kapecitabín)** — Inštitucionálny záchranný režim; ESMO mCRC guideline.
 
 **Current standards to consider (not yet in tool):**
-- Encorafenib + cetuximab pri BRAF V600E – BEACON CRC, NEJM 2019.
-- Pembrolizumab 1. línia pri MSI-H/dMMR – KEYNOTE-177, NEJM 2020.
+- **Encorafenib + cetuximab pri BRAF V600E** — BEACON CRC, NEJM 2019 → teraz v nástroji.
+- **Pembrolizumab 1. línia pri MSI-H/dMMR** — KEYNOTE-177, NEJM 2020 → teraz v nástroji.
+- **TAS-102 + bevacizumab (SUNLIGHT)** — Prager et al., NEJM 2023 → teraz v nástroji.
 - Fruquintinib v ďalších líniách – FRESCO-2, Lancet 2023.""")

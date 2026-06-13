@@ -93,8 +93,55 @@ def display_chemotherapy_details(protocol, bsa, weight, crcl=None, auc=None):
         else:
             st.write(f"{instruction['Name']} - {calculated_dose} mg, {instruction.get('Instruction', 'No instructions available.')}")
 
+
+def display_simple_json(filename, bsa, weight=None):
+    """Display regimen from individual JSON file (flat-dose / BSA / weight-based)."""
+    try:
+        with open(f'data/{filename}', 'r') as f:
+            reg = json.load(f)
+    except Exception as e:
+        st.error(f"Error loading {filename}: {e}")
+        return
+    st.write("#### Chemotherapy Drugs")
+    for drug in reg.get("Chemo", []):
+        metric = drug.get("DosageMetric", "")
+        dosage = drug.get("Dosage", 0)
+        if "mg/kg" in metric and weight:
+            calculated = round(dosage * weight, 2)
+            st.write(f"{drug['Name']} {dosage} {metric} ......... {calculated} mg D{drug['Day']}")
+        elif "mg/m2" in metric:
+            calculated = round(dosage * bsa, 2)
+            st.write(f"{drug['Name']} {dosage} {metric} ......... {calculated} mg D{drug['Day']}")
+        else:
+            st.write(f"{drug['Name']} {dosage} {metric} D{drug['Day']}")
+    st.write(f"**Next Cycle:** {reg.get('NC', '?' )} days")
+    premed = reg.get("Day1", {}).get("Premed", {}).get("Note", "")
+    if premed:
+        st.write("#### D1 - Premedication")
+        st.write(premed)
+    instructions = reg.get("Day1", {}).get("Instructions", [])
+    if instructions:
+        st.write("#### D1 - Chemotherapy Instructions")
+        chemo_list = reg.get("Chemo", [])
+        for inst in instructions:
+            drug_name = inst.get("Name", "")
+            inst_text = inst.get("Inst", "")
+            drug = next((d for d in chemo_list if d["Name"] == drug_name), None)
+            if drug:
+                metric = drug.get("DosageMetric", "")
+                dosage = drug.get("Dosage", 0)
+                if "mg/kg" in metric and weight:
+                    calc_dose = round(dosage * weight, 2)
+                elif "mg/m2" in metric:
+                    calc_dose = round(dosage * bsa, 2)
+                else:
+                    calc_dose = dosage
+                st.write(f"{drug_name} - {calc_dose} mg, {inst_text}")
+            else:
+                st.write(f"{drug_name} - {inst_text}")
+
 def main():
-    st.title("ChemoThon Gastrointestinal (Except CRC) v 3.1 ENG")
+    st.title("ChemoThon Gastrointestinal (Except CRC) v 3.2 ENG")
     st.write("""Welcome to ChemoThon!
 This application provides assistance in prescribing chemotherapy regimens based on body surface area (BSA), weight, or AUC for carboplatin-based treatments.
 Please ensure that doses are adjusted to align with the packaging and protocols available in your country. Users bear full responsibility for applying this tool in clinical practice.
@@ -107,48 +154,56 @@ We welcome your feedback to improve this app further. Feel free to reach out at 
     if not data:
         return
 
-    # User input for weight and height without default values
+    # User input for weight and height
     weight = st.number_input("Enter weight (kg):", min_value=1, max_value=200, step=1, value=None, format="%d")
     height = st.number_input("Enter height (cm):", min_value=1, max_value=250, step=1, value=None, format="%d")
 
-    # Ensure inputs are provided before proceeding
-    if not weight or not height:
-        st.warning("Please enter valid weight and height to proceed.")
-        return
-
     # Calculate BSA
-    if "bsa" not in st.session_state:
-        st.session_state["bsa"] = None
-
-    if st.button("Calculate BSA"):
-        bsa = calculate_bsa(weight, height)
-        st.session_state['bsa'] = bsa
-        st.success(f"Calculated Body Surface Area (BSA): {bsa:.2f} m²")
+    if st.button("Calculate BSA") and weight and height:
+        bsa_val = calculate_bsa(weight, height)
+        st.session_state['bsa'] = bsa_val
+        st.session_state['weight'] = weight
 
     # Show chemotherapy regimen options after BSA is calculated
-    if st.session_state["bsa"]:
-        st.write(f"**Current BSA:** {st.session_state['bsa']:.2f} m²")
+    if st.session_state.get("bsa"):
+        st.write(f"**Body Surface Area (BSA):** {st.session_state['bsa']:.2f} m²")
+        weight_val = st.session_state.get('weight', weight) or weight
+
         chemo_names = [protocol["name"] for protocol in data["chemotherapies"]]
-        selected_protocol_name = st.selectbox("Select a chemotherapy regimen:", chemo_names)
+        # New regimens (added 2026-06)
+        extra_new = [
+            "Nivolumab 360 mg flat + FOLFOX/CAPOX (gastric/GEJ CPS≥5, CheckMate-649)",
+            "Trastuzumab-deruxtecan 6.4 mg/kg (HER2+ gastric 2L, DESTINY-Gastric01)",
+            "Ramucirumab 8 mg/kg q2w (gastric 2L, REGARD)",
+            "Ramucirumab + Paclitaxel weekly (gastric 2L, RAINBOW)",
+        ]
+        selected_protocol_name = st.selectbox("Select a chemotherapy regimen:", chemo_names + extra_new)
 
         # Input CrCl and AUC for carboplatin-based regimens
         crcl = None
         auc = None
-        if selected_protocol_name:
+        protocol = None
+        if selected_protocol_name not in extra_new:
             protocol = next((p for p in data["chemotherapies"] if p["name"] == selected_protocol_name), None)
             if protocol and any("carboplatin" in drug["Name"].lower() for drug in protocol.get("Chemo", [])):
                 crcl = st.number_input("Enter Creatinine Clearance (CrCl in mL/min):", min_value=1, max_value=200, step=1, value=None, format="%d")
                 if crcl is not None and crcl < 30:
                     st.error("⚠️ Your patient seems to be platinum-ineligible!")
                 auc = st.number_input("Enter Area Under Curve (AUC, 2-6):", min_value=2, max_value=6, step=1, value=None, format="%d")
-
-                # Specific warning for CROSS regimen
                 if selected_protocol_name.lower() == "cross regimen" and auc != 2:
                     st.warning("⚠️ For the CROSS regimen, the AUC value must be set to 2!")
 
         if st.button("Display Protocol"):
-            if protocol:
-                display_chemotherapy_details(protocol, st.session_state["bsa"], weight, crcl, auc)
+            if selected_protocol_name == "Nivolumab 360 mg flat + FOLFOX/CAPOX (gastric/GEJ CPS≥5, CheckMate-649)":
+                display_simple_json("nivolumab_gastric.json", st.session_state["bsa"], weight_val)
+            elif selected_protocol_name == "Trastuzumab-deruxtecan 6.4 mg/kg (HER2+ gastric 2L, DESTINY-Gastric01)":
+                display_simple_json("tdx_gastric.json", st.session_state["bsa"], weight_val)
+            elif selected_protocol_name == "Ramucirumab 8 mg/kg q2w (gastric 2L, REGARD)":
+                display_simple_json("ramucirumab.json", st.session_state["bsa"], weight_val)
+            elif selected_protocol_name == "Ramucirumab + Paclitaxel weekly (gastric 2L, RAINBOW)":
+                display_simple_json("ramucirumab_paclitaxel.json", st.session_state["bsa"], weight_val)
+            elif protocol:
+                display_chemotherapy_details(protocol, st.session_state["bsa"], weight_val, crcl, auc)
             else:
                 st.error("Selected protocol not found in the data.")
 
@@ -176,7 +231,8 @@ Guidelines: [ESMO](https://www.esmo.org/guidelines/esmo-clinical-practice-guidel
 - **Mitomycín / 5-FU (anál)** — Nigro / RTOG 98-11 – Ajani et al., JAMA 2008.
 
 **Current standards to consider (not yet in tool):**
-- Nivolumab + chemoterapia 1. línia gastrický (PD-L1 CPS≥5) – CheckMate-649, Lancet 2021.
+- **Nivolumab + chemoterapia (CPS≥5) gastrický** — CheckMate-649, Lancet 2021 → teraz v nástroji.
 - Pembrolizumab + trastuzumab + chemo pri HER2+ gastrickom – KEYNOTE-811, Nature 2024.
-- Trastuzumab-deruxtecan pri HER2+ gastrickom (2. línia) – DESTINY-Gastric01, NEJM 2020.
+- **T-DXd 6.4 mg/kg gastric** — DESTINY-Gastric01, NEJM 2020 → teraz v nástroji.
+- **Ramucirumab ± paklitaxel (gastric 2L)** — REGARD/RAINBOW → teraz v nástroji.
 - Zolbetuximab + chemo pri CLDN18.2+ – SPOTLIGHT/GLOW, Lancet 2023.""")

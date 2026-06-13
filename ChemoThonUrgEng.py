@@ -88,8 +88,55 @@ def display_chemotherapy_details(protocol, bsa, weight, auc=None, crcl=None):
     else:
         st.warning("No details found for Day 1.")
 
+
+def display_simple_json(filename, bsa, weight=None):
+    """Display regimen from individual JSON file (flat-dose / BSA / weight-based)."""
+    try:
+        with open(f'data/{filename}', 'r') as f:
+            reg = json.load(f)
+    except Exception as e:
+        st.error(f"Error loading {filename}: {e}")
+        return
+    st.write("#### Chemotherapy Drugs")
+    for drug in reg.get("Chemo", []):
+        metric = drug.get("DosageMetric", "")
+        dosage = drug.get("Dosage", 0)
+        if "mg/kg" in metric and weight:
+            calculated = round(dosage * weight, 2)
+            st.write(f"{drug['Name']} {dosage} {metric} ......... {calculated} mg D{drug['Day']}")
+        elif "mg/m2" in metric:
+            calculated = round(dosage * bsa, 2)
+            st.write(f"{drug['Name']} {dosage} {metric} ......... {calculated} mg D{drug['Day']}")
+        else:
+            st.write(f"{drug['Name']} {dosage} {metric} D{drug['Day']}")
+    st.write(f"**Next Cycle:** {reg.get('NC', '?' )} days")
+    premed = reg.get("Day1", {}).get("Premed", {}).get("Note", "")
+    if premed:
+        st.write("#### D1 - Premedication")
+        st.write(premed)
+    instructions = reg.get("Day1", {}).get("Instructions", [])
+    if instructions:
+        st.write("#### D1 - Chemotherapy Instructions")
+        chemo_list = reg.get("Chemo", [])
+        for inst in instructions:
+            drug_name = inst.get("Name", "")
+            inst_text = inst.get("Inst", "")
+            drug = next((d for d in chemo_list if d["Name"] == drug_name), None)
+            if drug:
+                metric = drug.get("DosageMetric", "")
+                dosage = drug.get("Dosage", 0)
+                if "mg/kg" in metric and weight:
+                    calc_dose = round(dosage * weight, 2)
+                elif "mg/m2" in metric:
+                    calc_dose = round(dosage * bsa, 2)
+                else:
+                    calc_dose = dosage
+                st.write(f"{drug_name} - {calc_dose} mg, {inst_text}")
+            else:
+                st.write(f"{drug_name} - {inst_text}")
+
 def main():
-    st.title("ChemoThon Urogenital v. 3.1 ENG")
+    st.title("ChemoThon Urogenital v. 3.2 ENG")
     st.write("""Welcome to ChemoThon! This application provides assistance in prescribing chemotherapy regimens based on body surface area (BSA), weight, or AUC for carboplatin-based treatments. Please ensure that doses are adjusted to align with the packaging and protocols available in your country. Users bear full responsibility for applying this tool in clinical practice.
 
 We welcome your feedback to improve this app further. Feel free to reach out at filip.kohutek@fntn.sk.
@@ -102,27 +149,47 @@ We welcome your feedback to improve this app further. Feel free to reach out at 
     weight = st.number_input("Enter weight (kg):", min_value=1, max_value=250, value=None, step=1)
     height = st.number_input("Enter height (cm):", min_value=1, max_value=250, value=None, step=1)
 
-    bsa = None
-    auc = None
-    crcl = None
+    if st.button("Calculate BSA") and weight and height:
+        bsa_val = calculate_bsa(weight, height)
+        st.session_state['bsa'] = bsa_val
+        st.session_state['weight'] = weight
 
-    if weight and height:
-        bsa = calculate_bsa(weight, height)
-        st.write(f"Body Surface Area: {bsa} m²")
+    if 'bsa' in st.session_state:
+        st.write(f"Body Surface Area (BSA): {st.session_state['bsa']} m²")
+        bsa = st.session_state['bsa']
+        weight_val = st.session_state.get('weight', weight) or weight
 
-    chemo_names = [protocol["name"] for protocol in data["chemotherapies"]]
-    selected_protocol_name = st.selectbox("Select a chemotherapy regimen:", [" "] + chemo_names)
+        chemo_names = [protocol["name"] for protocol in data["chemotherapies"]]
+        # New regimens (added 2026-06)
+        extra_new = [
+            "Enfortumab vedotin 1.25 mg/kg + Pembrolizumab 200 mg (1L metastatic urothelial, EV-302)",
+            "Olaparib 300 mg BID (HRR+ mCRPC, PROfound)",
+            "Nivolumab 240 mg q2w adjuvant (high-risk urothelial post-cystectomy, CheckMate-274)",
+        ]
+        selected_protocol_name = st.selectbox("Select a chemotherapy regimen:", [" "] + chemo_names + extra_new)
 
-    if "carboplatin" in selected_protocol_name.lower():
-        crcl = st.number_input("Enter Creatinine Clearance (ml/min):", min_value=10, max_value=200, value=None, step=1)
-        auc = st.number_input("Enter desired AUC (2-6):", min_value=2, max_value=6, value=None, step=1)
+        auc = None
+        crcl = None
+        if "carboplatin" in selected_protocol_name.lower():
+            crcl = st.number_input("Enter Creatinine Clearance (ml/min):", min_value=10, max_value=200, value=None, step=1)
+            auc = st.number_input("Enter desired AUC (2-6):", min_value=2, max_value=6, value=None, step=1)
 
-    if st.button("Display Protocol") and bsa and selected_protocol_name.strip():
-        protocol = next((p for p in data["chemotherapies"] if p["name"] == selected_protocol_name), None)
-        if protocol:
-            display_chemotherapy_details(protocol, bsa, weight, auc=auc, crcl=crcl)
-        else:
-            st.error("Selected protocol not found in the data.")
+        if st.button("Display Protocol") and selected_protocol_name.strip():
+            if selected_protocol_name == "Enfortumab vedotin 1.25 mg/kg + Pembrolizumab 200 mg (1L metastatic urothelial, EV-302)":
+                display_simple_json("enfortumab_vedotin.json", bsa, weight_val)
+                ev_dose = round(1.25 * weight_val, 2)
+                st.write(f"Enfortumab vedotin 1.25 mg/kg ......... {ev_dose} mg D1, D8")
+                st.write("Pembrolizumab 200 mg flat D1")
+            elif selected_protocol_name == "Olaparib 300 mg BID (HRR+ mCRPC, PROfound)":
+                display_simple_json("olaparib_crpc.json", bsa, weight_val)
+            elif selected_protocol_name == "Nivolumab 240 mg q2w adjuvant (high-risk urothelial post-cystectomy, CheckMate-274)":
+                display_simple_json("nivolumab_urothelial_adj.json", bsa, weight_val)
+            else:
+                protocol = next((p for p in data["chemotherapies"] if p["name"] == selected_protocol_name), None)
+                if protocol:
+                    display_chemotherapy_details(protocol, bsa, weight_val, auc=auc, crcl=crcl)
+                else:
+                    st.error("Selected protocol not found in the data.")
 
 if __name__ == "__main__":
     main()
@@ -149,7 +216,7 @@ Guidelines: [ESMO](https://www.esmo.org/guidelines/esmo-clinical-practice-guidel
 - **BEP (germinatívne nádory)** — Williams et al., NEJM 1987; Einhorn – štandard.
 
 **Current standards to consider (not yet in tool):**
-- Enfortumab vedotín + pembrolizumab 1. línia metastatického urotelu – EV-302, NEJM 2024.
+- **Enfortumab vedotín + pembrolizumab 1. línia** — EV-302, NEJM 2024 → teraz v nástroji.
 - Lutéciové [177Lu]Lu-PSMA-617 pri PSMA+ mCRPC – VISION, NEJM 2021.
-- Olaparib pri HRR-mutovanom mCRPC – PROfound, NEJM 2020; + abiraterón PROpel.
-- Nivolumab adjuvantne pri vysokorizikovom urotelovom karcinóme – CheckMate-274, NEJM 2021.""")
+- **Olaparib pri HRR-mutovanom mCRPC** — PROfound, NEJM 2020 → teraz v nástroji.
+- **Nivolumab adjuvantne (vysokorizikový urotelový karcinóm)** — CheckMate-274, NEJM 2021 → teraz v nástroji.""")

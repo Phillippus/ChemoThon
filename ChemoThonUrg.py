@@ -205,6 +205,7 @@ def main():
         if weight and height:
             rbodysurf = bsa(weight, height)
             st.session_state.rbodysurf = rbodysurf
+            st.session_state['weight'] = weight
         else:
             st.error("Prosím, zadajte hmotnosť a výšku pre výpočet telesného povrchu.")
 
