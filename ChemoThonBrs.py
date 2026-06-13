@@ -81,6 +81,7 @@ def main():
     if st.button("Vypočítať BSA") and weight is not None and height is not None:
         rbodysurf = calculate_bsa(weight, height)
         st.session_state['rbodysurf'] = rbodysurf
+        st.write(f"Telesný povrch je: {rbodysurf} m²")
 
     if 'rbodysurf' in st.session_state:
         st.write(f"Telesný povrch (BSA): {st.session_state['rbodysurf']} m²")
