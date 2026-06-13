@@ -1,5 +1,6 @@
 import streamlit as st
 import json
+from sk_to_eng import sk_to_eng
 
 def calculate_bsa(weight, height):
     """Calculates body surface area using the DuBois formula."""
@@ -26,14 +27,14 @@ def Chemo(bsa, filename):
     premed = reg.get("Day1", {}).get("Premed", {}).get("Note", "")
     if premed:
         st.write("#### D1 - Premedication")
-        st.write(premed)
+        st.write(sk_to_eng(premed))
     instructions = reg.get("Day1", {}).get("Instructions", [])
     if instructions:
         st.write("#### D1 - Chemotherapy")
         chemo_list = reg.get("Chemo", [])
         for inst in instructions:
             drug_name = inst.get("Name", "")
-            inst_text = inst.get("Inst", "")
+            inst_text = sk_to_eng(inst.get("Inst", ""))
             drug = next((d for d in chemo_list if d["Name"] == drug_name), None)
             if drug:
                 metric = drug.get("DosageMetric", "")
@@ -63,7 +64,7 @@ def ChemoDDP(bsa, filename):
     premed = reg.get("Day1", {}).get("Premed", {}).get("Note", "")
     if premed:
         st.write("#### D1 - Premedication")
-        st.write(premed)
+        st.write(sk_to_eng(premed))
     st.write("#### D1 - Chemotherapy")
     item = 1
     for _ in range(full_units):
@@ -80,7 +81,7 @@ def ChemoDDP(bsa, filename):
         drug = next((d for d in chemo_list if d["Name"] == drug_name), None)
         if drug:
             calc_dose = round(drug["Dosage"] * bsa, 2)
-            st.write(f"{item}. {drug_name} {calc_dose} mg {inst.get('Inst', '')}")
+            st.write(f"{item}. {drug_name} {calc_dose} mg {sk_to_eng(inst.get('Inst', ''))}") 
             item += 1
 
 def ChemoCBDCA(bsa, filename):
@@ -106,7 +107,7 @@ def ChemoCBDCA(bsa, filename):
         premed = reg.get("Day1", {}).get("Premed", {}).get("Note", "")
         if premed:
             st.write("#### D1 - Premedication")
-            st.write(premed)
+            st.write(sk_to_eng(premed))
         st.write("#### D1 - Chemotherapy")
         st.write(f"Carboplatin {cbdca_dose} mg in 500 ml glucose 5% iv over 30–60 min")
         chemo_list = reg.get("Chemo", [])
@@ -115,7 +116,7 @@ def ChemoCBDCA(bsa, filename):
             drug = next((d for d in chemo_list if d["Name"] == drug_name), None)
             if drug:
                 calc_dose = round(drug["Dosage"] * bsa, 2)
-                st.write(f"{drug_name} {calc_dose} mg {inst.get('Inst', '')}")
+                st.write(f"{drug_name} {calc_dose} mg {sk_to_eng(inst.get('Inst', ''))}") 
 
 def ChemoIfo(bsa, dose_per_m2, with_epirubicin):
     """Ifosfamide regimen with MESNA and optional epirubicin."""

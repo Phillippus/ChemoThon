@@ -1,5 +1,6 @@
 import streamlit as st
 import json
+from sk_to_eng import sk_to_eng
 
 def load_chemotherapy_data():
     """Loads all chemotherapy data from the consolidated JSON file."""
@@ -121,14 +122,14 @@ def display_simple_json(filename, bsa, weight=None):
     premed = reg.get("Day1", {}).get("Premed", {}).get("Note", "")
     if premed:
         st.write("#### D1 - Premedication")
-        st.write(premed)
+        st.write(sk_to_eng(premed))
     instructions = reg.get("Day1", {}).get("Instructions", [])
     if instructions:
         st.write("#### D1 - Chemotherapy Instructions")
         chemo_list = reg.get("Chemo", [])
         for inst in instructions:
             drug_name = inst.get("Name", "")
-            inst_text = inst.get("Inst", "")
+            inst_text = sk_to_eng(inst.get("Inst", ""))
             drug = next((d for d in chemo_list if d["Name"] == drug_name), None)
             if drug:
                 metric = drug.get("DosageMetric", "")

@@ -1,5 +1,6 @@
 import streamlit as st
 import json
+from sk_to_eng import sk_to_eng
 
 def calculate_bsa(weight, height):
     """Calculates body surface area using the DuBois formula."""
@@ -28,7 +29,7 @@ def display_chemotherapy_details(bsa, filename):
         st.write(f"{drug['Name']} {drug['Dosage']} mg/m² ......... {dosage} mg D{drug['Day']}")
     st.write(f"**Next Cycle:** {reg.get('NC', '?')} days")
     st.write("#### D1 - Premedication")
-    st.write(reg.get("Day1", {}).get("Premed", {}).get("Note", ""))
+    st.write(sk_to_eng(reg.get("Day1", {}).get("Premed", {}).get("Note", "")))
     st.write("#### D1 - Chemotherapy")
     chemo_list = reg.get("Chemo", [])
     for inst in reg.get("Day1", {}).get("Instructions", []):
@@ -36,7 +37,7 @@ def display_chemotherapy_details(bsa, filename):
         drug = next((d for d in chemo_list if d["Name"] == drug_name), None)
         if drug:
             calc_dose = round(drug["Dosage"] * bsa, 2)
-            st.write(f"{drug_name} {calc_dose} mg {inst.get('Inst', '')}")
+            st.write(f"{drug_name} {calc_dose} mg {sk_to_eng(inst.get('Inst', ''))}")
 
 def Flatdoser(bsa, chemo_file, flat_file=None):
     """Display regimen with BSA-based drugs + flat-dose component (e.g. vincristine)."""
@@ -53,7 +54,7 @@ def Flatdoser(bsa, chemo_file, flat_file=None):
             st.write(f"{drug['Name']} (flat dose) ......... {drug['Dosage']} mg D{drug['Day']}")
     st.write(f"**Next Cycle:** {reg.get('NC', '?')} days")
     st.write("#### D1 - Premedication")
-    st.write(reg.get("Day1", {}).get("Premed", {}).get("Note", ""))
+    st.write(sk_to_eng(reg.get("Day1", {}).get("Premed", {}).get("Note", "")))
     st.write("#### D1 - Chemotherapy")
     chemo_list = reg.get("Chemo", [])
     for inst in reg.get("Day1", {}).get("Instructions", []):
@@ -61,13 +62,13 @@ def Flatdoser(bsa, chemo_file, flat_file=None):
         drug = next((d for d in chemo_list if d["Name"] == drug_name), None)
         if drug:
             calc_dose = round(drug["Dosage"] * bsa, 2)
-            st.write(f"{drug_name} {calc_dose} mg {inst.get('Inst', '')}")
+            st.write(f"{drug_name} {calc_dose} mg {sk_to_eng(inst.get('Inst', ''))}")
     if flat:
         flat_chemo = flat.get("Chemo", [])
         for inst in flat.get("Day1", {}).get("Instructions", []):
             flat_drug = next((d for d in flat_chemo if d["Name"] == inst.get("Name", "")), None)
             if flat_drug:
-                st.write(f"{inst['Name']} (flat dose): {flat_drug['Dosage']} mg {inst.get('Inst', '')}")
+                st.write(f"{inst['Name']} (flat dose): {flat_drug['Dosage']} mg {sk_to_eng(inst.get('Inst', ''))}")
 
 def DHAP(bsa):
     """DHAP: cisplatin + cytarabine + dexamethasone."""
@@ -81,7 +82,7 @@ def DHAP(bsa):
     st.write("Dexamethasone 40 mg flat ......... 40 mg D1–D4")
     st.write("**Next Cycle:** 21 days")
     st.write("#### D1 - Premedication")
-    st.write("Granisetron 2 mg p.o., Dexamethasone 8 mg iv, Pantoprazole 40 mg p.o.")
+    st.write("Granisetron 2 mg p.o., Dexamethasone 8 mg iv, Pantoprazole 40 mg p.o., Dexamethasone 40 mg p.o. D1–D4")
     st.write("#### D1 - Chemotherapy")
     item = 1
     for _ in range(cycle):
