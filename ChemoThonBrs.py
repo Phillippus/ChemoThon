@@ -130,7 +130,8 @@ def main():
             "Olaparib 300 mg BID (gBRCA1/2+, KATHERINE/OlympiA)": "olaparib.json",
             "Abemaciclib 150 mg BID D1-28 (HR+/HER2−, monarchE/MONARCH-3)": "abemaciclib.json",
             "Palbociclib 125 mg D1-21 (HR+/HER2−, PALOMA)": "palbociclib.json",
-            "Ribociclib 600 mg D1-21 + 7d pauza (HR+/HER2−, MONALEESA)": "ribociclib.json",
+            "Ribociclib (HR+/HER2−, MONALEESA/NATALEE)": "ribociclib.json",
+            "Everolimus 10 mg/deň + Exemestan 25 mg/deň (HR+/HER2−, BOLERO-2)": "everolimus_exemestane.json",
             "Capivasertib 400 mg 4on/3off + fulvestrant (PIK3CA/AKT1/PTEN)": "capivasertib.json",
         }
 
@@ -145,6 +146,12 @@ def main():
         elif chemo_name == "Trastuzumab/Pertuzumab SC (Phesgo)":
             combo_option = st.radio("Zvoľte typ podania Phesgo:", ["Prvé podanie", "Ďalšie podania"])
             selected_filename = "firsttrastupertu.json" if combo_option == "Prvé podanie" else "elsetrastupertu.json"
+        elif chemo_name == "Ribociclib (HR+/HER2−, MONALEESA/NATALEE)":
+            ribo_option = st.radio(
+                "Zvoľte indikáciu ribociklibu:",
+                ["600 mg/deň D1-21 (metastatická, MONALEESA)", "400 mg/deň D1-21 (adjuvantná, NATALEE)"]
+            )
+            selected_filename = "ribociclib.json" if "600" in ribo_option else "ribociclib400.json"
         else:
             selected_filename = chemo_options[chemo_name]
 

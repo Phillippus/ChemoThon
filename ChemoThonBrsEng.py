@@ -185,7 +185,8 @@ We welcome your feedback to improve this app further. Feel free to reach out at 
         extra_new = [
             "Olaparib 300 mg BID (BRCA1/2+, OlympiAD/EMBRACA)",
             "Abemaciclib 150 mg BID + ET (HR+/HER2−, monarchE/MONARCH-2, D1-28 continuous)",
-            "Ribociclib 600 mg/day + ET (HR+/HER2−, MONALEESA, D1-21 then 7-day break)",
+            "Ribociclib (HR+/HER2−, MONALEESA/NATALEE)",
+            "Everolimus 10 mg/day + Exemestane 25 mg/day (HR+/HER2−, BOLERO-2)",
             "Capivasertib 400 mg BID 4/3 + fulvestrant (PIK3CA/AKT1/PTEN, CAPItello-291)",
             "Tucatinib 300 mg BID + Capecitabine (HER2+, HER2CLIMB)",
             "Neratinib 240 mg/day + Capecitabine (HER2+, NALA/ExteNET)",
@@ -194,13 +195,25 @@ We welcome your feedback to improve this app further. Feel free to reach out at 
 
         selected_protocol_name = st.selectbox("Select a chemotherapy regimen:", sorted_names)
 
+        # Ribociclib subdialog
+        ribo_file = None
+        if selected_protocol_name == "Ribociclib (HR+/HER2−, MONALEESA/NATALEE)":
+            ribo_option = st.radio(
+                "Select ribociclib indication:",
+                ["600 mg/day D1-21 (metastatic, MONALEESA)", "400 mg/day D1-21 (adjuvant, NATALEE)"]
+            )
+            ribo_file = "ribociclib.json" if "600" in ribo_option else "ribociclib400.json"
+
         if st.button("Display Protocol"):
             if selected_protocol_name == "Olaparib 300 mg BID (BRCA1/2+, OlympiAD/EMBRACA)":
                 display_simple_json("olaparib.json", bsa, weight_val)
             elif selected_protocol_name == "Abemaciclib 150 mg BID + ET (HR+/HER2−, monarchE/MONARCH-2, D1-28 continuous)":
                 display_simple_json("abemaciclib.json", bsa, weight_val)
-            elif selected_protocol_name == "Ribociclib 600 mg/day + ET (HR+/HER2−, MONALEESA, D1-21 then 7-day break)":
-                display_simple_json("ribociclib.json", bsa, weight_val)
+            elif selected_protocol_name == "Ribociclib (HR+/HER2−, MONALEESA/NATALEE)":
+                if ribo_file:
+                    display_simple_json(ribo_file, bsa, weight_val)
+            elif selected_protocol_name == "Everolimus 10 mg/day + Exemestane 25 mg/day (HR+/HER2−, BOLERO-2)":
+                display_simple_json("everolimus_exemestane.json", bsa, weight_val)
             elif selected_protocol_name == "Capivasertib 400 mg BID 4/3 + fulvestrant (PIK3CA/AKT1/PTEN, CAPItello-291)":
                 display_simple_json("capivasertib.json", bsa, weight_val)
             elif selected_protocol_name == "Tucatinib 300 mg BID + Capecitabine (HER2+, HER2CLIMB)":
