@@ -19,14 +19,25 @@ def load_json(filename):
         return None
 
 def display_chemotherapy_details(bsa, filename):
-    """Display BSA-based chemotherapy from individual JSON file."""
+    """Display BSA-based chemotherapy from individual JSON file (handles flat/mg/kg/BSA)."""
+    weight = st.session_state.get('weight_kg', None)
     reg = load_json(filename)
     if not reg:
         return
     st.write("#### Chemotherapy Drugs")
     for drug in reg.get("Chemo", []):
-        dosage = round(drug["Dosage"] * bsa, 2)
-        st.write(f"{drug['Name']} {drug['Dosage']} mg/m² ......... {dosage} mg D{drug['Day']}")
+        metric = drug.get("DosageMetric", "mg/m2")
+        if "flat" in metric.lower():
+            st.write(f"{drug['Name']} {drug['Dosage']} {metric} D{drug['Day']}")
+        elif "mg/kg" in metric:
+            if weight:
+                dosage = round(drug["Dosage"] * weight, 2)
+                st.write(f"{drug['Name']} {drug['Dosage']} {metric} ......... {dosage} mg D{drug['Day']}")
+            else:
+                st.write(f"{drug['Name']} {drug['Dosage']} {metric} ......... (enter weight) D{drug['Day']}")
+        else:
+            dosage = round(drug["Dosage"] * bsa, 2)
+            st.write(f"{drug['Name']} {drug['Dosage']} {metric} ......... {dosage} mg D{drug['Day']}")
     st.write(f"**Next Cycle:** {reg.get('NC', '?')} days")
     st.write("#### D1 - Premedication")
     st.write(sk_to_eng(reg.get("Day1", {}).get("Premed", {}).get("Note", "")))
@@ -36,8 +47,18 @@ def display_chemotherapy_details(bsa, filename):
         drug_name = inst.get("Name", "")
         drug = next((d for d in chemo_list if d["Name"] == drug_name), None)
         if drug:
-            calc_dose = round(drug["Dosage"] * bsa, 2)
-            st.write(f"{drug_name} {calc_dose} mg {sk_to_eng(inst.get('Inst', ''))}")
+            metric = drug.get("DosageMetric", "mg/m2")
+            if "flat" in metric.lower():
+                st.write(f"{drug_name} {drug['Dosage']} mg {sk_to_eng(inst.get('Inst', ''))}")
+            elif "mg/kg" in metric:
+                if weight:
+                    calc_dose = round(drug["Dosage"] * weight, 2)
+                    st.write(f"{drug_name} {calc_dose} mg {sk_to_eng(inst.get('Inst', ''))}")
+                else:
+                    st.write(f"{drug_name} {drug['Dosage']} mg/kg {sk_to_eng(inst.get('Inst', ''))}")
+            else:
+                calc_dose = round(drug["Dosage"] * bsa, 2)
+                st.write(f"{drug_name} {calc_dose} mg {sk_to_eng(inst.get('Inst', ''))}")
 
 def Flatdoser(bsa, chemo_file, flat_file=None):
     """Display regimen with BSA-based drugs + flat-dose component (e.g. vincristine)."""
@@ -51,7 +72,13 @@ def Flatdoser(bsa, chemo_file, flat_file=None):
         st.write(f"{drug['Name']} {drug['Dosage']} mg/m² ......... {dosage} mg D{drug['Day']}")
     if flat:
         for drug in flat.get("Chemo", []):
-            st.write(f"{drug['Name']} (flat dose) ......... {drug['Dosage']} mg D{drug['Day']}")
+            metric2 = drug.get("DosageMetric", "mg/m2")
+            if "mg/m2" in metric2 and "max" in metric2.lower():
+                raw = round(drug["Dosage"] * bsa, 2)
+                capped = min(raw, 2.0)
+                st.write(f"{drug['Name']} {drug['Dosage']} {metric2} ......... {capped} mg D{drug['Day']} (BSA dose: {raw} mg → capped at max 2 mg)")
+            else:
+                st.write(f"{drug['Name']} {metric2} ......... {drug['Dosage']} mg D{drug['Day']}")
     st.write(f"**Next Cycle:** {reg.get('NC', '?')} days")
     st.write("#### D1 - Premedication")
     st.write(sk_to_eng(reg.get("Day1", {}).get("Premed", {}).get("Note", "")))
@@ -68,7 +95,13 @@ def Flatdoser(bsa, chemo_file, flat_file=None):
         for inst in flat.get("Day1", {}).get("Instructions", []):
             flat_drug = next((d for d in flat_chemo if d["Name"] == inst.get("Name", "")), None)
             if flat_drug:
-                st.write(f"{inst['Name']} (flat dose): {flat_drug['Dosage']} mg {sk_to_eng(inst.get('Inst', ''))}")
+                metric2 = flat_drug.get("DosageMetric", "mg/m2")
+                if "mg/m2" in metric2 and "max" in metric2.lower():
+                    raw = round(flat_drug["Dosage"] * bsa, 2)
+                    capped = min(raw, 2.0)
+                    st.write(f"{inst['Name']} {capped} mg {sk_to_eng(inst.get('Inst', ''))}")
+                else:
+                    st.write(f"{inst['Name']} {flat_drug['Dosage']} mg {sk_to_eng(inst.get('Inst', ''))}")
 
 def DHAP(bsa):
     """DHAP: cisplatin + cytarabine + dexamethasone."""
@@ -82,7 +115,7 @@ def DHAP(bsa):
     st.write("Dexamethasone 40 mg flat ......... 40 mg D1–D4")
     st.write("**Next Cycle:** 21 days")
     st.write("#### D1 - Premedication")
-    st.write("Granisetron 2 mg p.o., Dexamethasone 8 mg iv, Pantoprazole 40 mg p.o., Dexamethasone 40 mg p.o. D1–D4")
+    st.write("Palonosetron 0.5mg/Netupitant 300mg (Akynzeo) p.o. 1h before chemo, Dexamethasone 12 mg i.v., Pantoprazole 40 mg p.o.")
     st.write("#### D1 - Chemotherapy")
     item = 1
     for _ in range(cycle):
@@ -109,7 +142,7 @@ def RDHAP(bsa):
     st.write("Dexamethasone 40 mg flat ......... 40 mg D1–D4")
     st.write("**Next Cycle:** 21 days")
     st.write("#### D1 - Premedication")
-    st.write("Hydrocortisone 100 mg iv, Chlorphenamine 1 amp iv, Pantoprazole 40 mg p.o., Granisetron 2 mg p.o.")
+    st.write("Hydrocortisone 100 mg iv, Chlorphenamine 1 amp iv, Pantoprazole 40 mg p.o., Palonosetron 0.5mg/Netupitant 300mg (Akynzeo) p.o. 1h before chemo, Dexamethasone 12 mg i.v.")
     st.write("#### D1 - Chemotherapy")
     st.write(f"1. Rituximab {ritux} mg in 500 ml NS iv (1st infusion: start 50 ml/h, step up; subsequent cycles: 100 ml/h)")
     ordo = 1
@@ -182,6 +215,7 @@ We welcome your feedback. Feel free to reach out at filip.kohutek@fntn.sk.""")
     if st.button("Calculate BSA") and weight and height:
         bsa_val = calculate_bsa(weight, height)
         st.session_state['bsa'] = bsa_val
+        st.session_state['weight_kg'] = weight
 
     if 'bsa' in st.session_state:
         st.write(f"Body Surface Area (BSA): {st.session_state['bsa']} m²")

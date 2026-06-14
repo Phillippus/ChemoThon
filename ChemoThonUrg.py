@@ -125,9 +125,10 @@ def Flatdoser(rbodysurf, chemoType, chemoFlat=None):
 # Main function for urogenital tumors
 def urogenital(rbodysurf):
     """Táto funkcia rozpisuje chemoterapie urogenitálnych tumorov"""
-    chemo_choice = st.selectbox("Vyberte chemoterapiu:", [" ", "Docetaxel + Prednison", "Mitoxantron + Prednison","Docetaxel + Darolutamid", "Cabazitaxel + Prednison", "Abirateron (CRPC) + Prednison","Abirateron (HSPC) + Prednison","Enzalutamid","Darolutamid","Apalutamid","Pt/ Gemcitabin", "Vinflunin", "BEP",
+    chemo_choice = st.selectbox("Vyberte chemoterapiu:", [" ", "Docetaxel + Prednison", "Mitoxantron + Prednison","Docetaxel + Darolutamid", "Cabazitaxel + Prednison", "Abirateron (CRPC) + Prednison","Abirateron (HSPC) + Prednison","Enzalutamid","Darolutamid","Apalutamid","Pt/ Gemcitabin", "Split-dose Cisplatina D1+D8", "Vinflunin", "BEP",
+        "Paclitaxel weekly (urotel / iné)",
         # --- Nové (2026-06) ---
-        "Enfortumab vedotín + Pembrolizumab (1. línia metast. urotel, EV-302)",
+        "Enfortumab vedotín + Pembrolizumab (EV-302, 1. línia urotel)",
         "Olaparib 300 mg BID (HRR+ mCRPC, PROfound)",
         "Nivolumab 240 mg q2w adj. (urotel po cystektómii, CheckMate-274)",
     ])
@@ -164,21 +165,45 @@ def urogenital(rbodysurf):
             Chemo(rbodysurf, "vinflunine280.json")
     elif chemo_choice == "BEP":
         Flatdoser(rbodysurf, "BEP.json", "flatbleomycin.json")
+    elif chemo_choice == "Split-dose Cisplatina D1+D8":
+        total_ddp_dose = round(70 * rbodysurf, 2)
+        half_dose = round(total_ddp_dose / 2, 2)
+        st.write("### Split-dose Cisplatina D1+D8 (urotelový karcinóm)")
+        st.write(f"cisplatina 70 mg/m2 celková dávka ......... {total_ddp_dose} mg")
+        st.write(f"D1: cisplatina {half_dose} mg (polovica celkovej dávky)")
+        st.write(f"D8: cisplatina {half_dose} mg (zvyšná polovica)")
+        st.write("NC 21. deň")
+        st.write("D1 + D8 premedikácia:")
+        st.write("Palonosetron 0.5mg/Netupitant 300mg (Akynzeo) p.o. 1h pred chemo, Dexametazón 12mg i.v., Pantoprazol 40mg p.o.")
+        st.write("Hydratácia: FR 500ml pred cisplatinou, Manitol 10% 250ml po cisplatine")
+        b = int(half_dose // 50); c = half_dose % 50
+        st.write(f"D1:")
+        for i in range(b):
+            st.write(f"  cisplatina 50mg v 500ml RR i.v.")
+        if c > 0:
+            st.write(f"  cisplatina {round(c,1)} mg v 500ml RR i.v.")
+        st.write("  Manitol 10% 250ml i.v.")
+        st.write(f"D8: opakovať rovnaký postup (cisplatina {half_dose} mg)")
+    elif chemo_choice == "Paclitaxel weekly (urotel / iné)":
+        Chemo(rbodysurf, "paclitaxelweekly.json")
     # --- Nové (2026-06) ---
-    elif chemo_choice == "Enfortumab vedotín + Pembrolizumab (1. línia metast. urotel, EV-302)":
+    elif chemo_choice == "Enfortumab vedotín + Pembrolizumab (EV-302, 1. línia urotel)":
         if 'weight' in st.session_state:
-            weight_val = st.session_state.weight if 'weight' in st.session_state else None
-            st.write("### EV + Pembrolizumab (EV-302)")
+            weight_val = st.session_state['weight']
             import json as _j
             ev = _j.load(open("data/enfortumab_vedotin.json", encoding="utf-8"))
-            if weight_val:
-                ev_dose = round(1.25 * weight_val, 2)
-                st.write(f"enfortumab vedotín 1.25 mg/kg ......... {ev_dose} mg D1, D8")
-            st.write("pembrolizumab 200 mg flat D1")
+            ev_dose = round(1.25 * weight_val, 2)
+            pembro_dose = 200
+            st.write("### Enfortumab vedotín + Pembrolizumab (EV-302)")
+            st.write(f"enfortumab vedotín 1.25 mg/kg ......... {ev_dose} mg D1, D8")
+            st.write(f"pembrolizumab 200 mg flat dose D1")
             st.write("NC 21. deň")
+            st.write("D1 - premedikácia:")
             st.write(ev["Day1"]["Premed"]["Note"])
-            for inst in ev["Day1"]["Instructions"]:
-                st.write(f"{inst['Inst']}")
+            st.write("D1 - chemoterapia:")
+            st.write(f"enfortumab vedotín {ev_dose} mg {ev['Day1']['Instructions'][0]['Inst']}")
+            st.write(f"pembrolizumab {pembro_dose} mg {ev['Day1']['Instructions'][1]['Inst']}")
+            st.write("D8: enfortumab vedotín bez pembrolizumabu (pembro len D1)")
         else:
             st.error("Najprv zadajte hmotnosť.")
     elif chemo_choice == "Olaparib 300 mg BID (HRR+ mCRPC, PROfound)":

@@ -184,8 +184,11 @@ We welcome your feedback to improve this app further. Feel free to reach out at 
         # New regimens (added 2026-06)
         extra_new = [
             "Olaparib 300 mg BID (BRCA1/2+, OlympiAD/EMBRACA)",
-            "Abemaciclib 150 mg BID + ET (HR+/HER2−, monarchE/MONARCH-2)",
+            "Abemaciclib 150 mg BID + ET (HR+/HER2−, monarchE/MONARCH-2, D1-28 continuous)",
+            "Ribociclib 600 mg/day + ET (HR+/HER2−, MONALEESA, D1-21 then 7-day break)",
             "Capivasertib 400 mg BID 4/3 + fulvestrant (PIK3CA/AKT1/PTEN, CAPItello-291)",
+            "Tucatinib 300 mg BID + Capecitabine (HER2+, HER2CLIMB)",
+            "Neratinib 240 mg/day + Capecitabine (HER2+, NALA/ExteNET)",
         ]
         sorted_names = chemo_names_sorted + bio_names_sorted + extra_new
 
@@ -194,10 +197,16 @@ We welcome your feedback to improve this app further. Feel free to reach out at 
         if st.button("Display Protocol"):
             if selected_protocol_name == "Olaparib 300 mg BID (BRCA1/2+, OlympiAD/EMBRACA)":
                 display_simple_json("olaparib.json", bsa, weight_val)
-            elif selected_protocol_name == "Abemaciclib 150 mg BID + ET (HR+/HER2−, monarchE/MONARCH-2)":
+            elif selected_protocol_name == "Abemaciclib 150 mg BID + ET (HR+/HER2−, monarchE/MONARCH-2, D1-28 continuous)":
                 display_simple_json("abemaciclib.json", bsa, weight_val)
+            elif selected_protocol_name == "Ribociclib 600 mg/day + ET (HR+/HER2−, MONALEESA, D1-21 then 7-day break)":
+                display_simple_json("ribociclib.json", bsa, weight_val)
             elif selected_protocol_name == "Capivasertib 400 mg BID 4/3 + fulvestrant (PIK3CA/AKT1/PTEN, CAPItello-291)":
                 display_simple_json("capivasertib.json", bsa, weight_val)
+            elif selected_protocol_name == "Tucatinib 300 mg BID + Capecitabine (HER2+, HER2CLIMB)":
+                display_simple_json("tucatinib.json", bsa, weight_val)
+            elif selected_protocol_name == "Neratinib 240 mg/day + Capecitabine (HER2+, NALA/ExteNET)":
+                display_simple_json("neratinib.json", bsa, weight_val)
             else:
                 protocol = next((p for p in data["chemotherapies"] if p["name"] == selected_protocol_name), None)
                 if protocol:

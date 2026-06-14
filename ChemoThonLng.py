@@ -1,15 +1,18 @@
 import streamlit as st
 import json
 
-# Mock functions for chemotherapy (replace these with actual implementations)
 def Chemo(rbodysurf, chemoType):
-    """Táto funkcia rozpisuje jednoduché chemoterapie s priamou umerou"""
+    """Táto funkcia rozpisuje jednoduché chemoterapie s priamou úmerou (BSA aj flat dose)"""
     with open('data/' + chemoType, "r") as chemoFile:
         chemoJson = json.loads(chemoFile.read())
 
-    st.write(f"Chemotherapy type: {chemoType}")
+    st.write(f"### Protokol: {chemoType.replace('.json', '')}")
     for i in chemoJson["Chemo"]:
-        st.write(f"{i['Name']}  {round(i['Dosage'], 2)} {i['DosageMetric']} .......... {round(i['Dosage'] * rbodysurf, 2)} mg D {i['Day']}")
+        metric = i.get('DosageMetric', 'mg/m2')
+        if 'flat' in metric.lower():
+            st.write(f"{i['Name']}  {i['Dosage']} {metric} D {i['Day']}")
+        else:
+            st.write(f"{i['Name']}  {round(i['Dosage'], 2)} {metric} .......... {round(i['Dosage'] * rbodysurf, 2)} mg D {i['Day']}")
 
     st.write(f"NC {chemoJson['NC']} . deň")
 
@@ -20,7 +23,11 @@ def Chemo(rbodysurf, chemoType):
     st.write(chemoJson["Day1"]["Premed"]["Note"])
 
     for x in range(len(chemoJson["Chemo"])):
-        st.write(f"{Day1[x]['Name']} {round(C1[x]['Dosage'] * rbodysurf, 2)} mg {Day1[x]['Inst']}")
+        metric = C1[x].get('DosageMetric', 'mg/m2')
+        if 'flat' in metric.lower():
+            st.write(f"{Day1[x]['Name']} {C1[x]['Dosage']} mg {Day1[x]['Inst']}")
+        else:
+            st.write(f"{Day1[x]['Name']} {round(C1[x]['Dosage'] * rbodysurf, 2)} mg {Day1[x]['Inst']}")
 
 def ChemoDDP(rbodysurf, chemoType):
     """Táto funkcia slúži pre chemoterapie s DDP"""
@@ -88,8 +95,11 @@ def lung(rbodysurf):
         # --- Nové (2026-06) ---
         "Pembrolizumab + Pemetrexed + CBDCA (neskvamózny NSCLC, KEYNOTE-189)",
         "Pembrolizumab + CBDCA + Nab-Paclitaxel (skvamózny NSCLC, KEYNOTE-407)",
-        "Durvalumab 1500 mg q4w (PACIFIC, udržiavanie po CRT štádium III)",
+        "Durvalumab 1500 mg flat q4w (PACIFIC, udržiavanie po CRT štádium III)",
         "Atezolizumab + Etoposid + CBDCA (SCLC 1. línia, IMpower133)",
+        # --- Nové 2026-06 doplnené ---
+        "Platina + Vinorelbin (adjuvantná, IALT/ANITA)",
+        "Dakarbazín 1000 mg/m2 D1 q21d",
     ]
     lng = st.selectbox("Vyberte chemoterapiu, ktorú chcete podať:", chemo_options)
 
@@ -110,8 +120,43 @@ def lung(rbodysurf):
             ChemoCBDCA(rbodysurf, "pembrolizumab_pem_cbdca.json")
         elif lng == "Pembrolizumab + CBDCA + Nab-Paclitaxel (skvamózny NSCLC, KEYNOTE-407)":
             ChemoCBDCA(rbodysurf, "pembrolizumab_cbdca_nab.json")
-        elif lng == "Durvalumab 1500 mg q4w (PACIFIC, udržiavanie po CRT štádium III)":
+        elif lng == "Durvalumab 1500 mg flat q4w (PACIFIC, udržiavanie po CRT štádium III)":
             Chemo(rbodysurf, "durvalumab_pacific.json")
+        elif lng == "Platina + Vinorelbin (adjuvantná, IALT/ANITA)":
+            pt_adj = st.selectbox("Ktorá platina?", ["Vyberte", "Cisplatina 75-80 mg/m2 D1 (IALT/ANITA)", "Karboplatina AUC 5-6 D1 (alternatíva)"], key="pt_adj_vin")
+            if pt_adj == "Cisplatina 75-80 mg/m2 D1 (IALT/ANITA)":
+                vin_dose = round(25 * rbodysurf, 2)
+                a = round(80 * rbodysurf, 2); b = int(a // 50); c = a % 50
+                st.write(f"### DDP + Vinorelbin (adjuvantná NSCLC)")
+                st.write(f"cisplatina 80 mg/m2 ......... {a} mg D1")
+                st.write(f"vinorelbin 25 mg/m2 ......... {vin_dose} mg D1, D8")
+                st.write("NC 28. deň")
+                import json as _j
+                vn = _j.load(open("data/vinorelbine_ddp_adj.json", encoding="utf-8"))
+                st.write(vn["Day1"]["Premed"]["Note"])
+                for i in range(b):
+                    st.write(f"cisplatina 50mg v 500ml RR i.v.")
+                if c > 0:
+                    st.write(f"cisplatina {int(c)} mg v 500ml RR i.v.")
+                st.write("Manitol 10% 250ml i.v.")
+                st.write(f"vinorelbin {vin_dose} mg v 125ml FR i.v./10 min D1, D8")
+            elif pt_adj == "Karboplatina AUC 5-6 D1 (alternatíva)":
+                CrCl_a = st.number_input("Clearance (ml/min):", min_value=1, max_value=250, value=None, key="crcl_adj")
+                AUC_a = st.number_input("AUC (5 alebo 6):", min_value=4, max_value=6, value=5, key="auc_adj")
+                vin_dose = round(25 * rbodysurf, 2)
+                if CrCl_a is not None:
+                    cbdca_dose = (CrCl_a + 25) * AUC_a
+                    st.write(f"### CBDCA + Vinorelbin (adjuvantná NSCLC)")
+                    st.write(f"karboplatina AUC {AUC_a} ......... {cbdca_dose} mg D1")
+                    st.write(f"vinorelbin 25 mg/m2 ......... {vin_dose} mg D1, D8")
+                    st.write("NC 28. deň")
+                    import json as _j
+                    vn = _j.load(open("data/vinorelbine_cbdca_adj.json", encoding="utf-8"))
+                    st.write(vn["Day1"]["Premed"]["Note"])
+                    st.write(f"karboplatina {cbdca_dose} mg v 500ml FR i.v./60 min")
+                    st.write(f"vinorelbin {vin_dose} mg v 125ml FR i.v./10 min D1, D8")
+        elif lng == "Dakarbazín 1000 mg/m2 D1 q21d":
+            Chemo(rbodysurf, "dacarbazine1000.json")
         elif lng == "Atezolizumab + Etoposid + CBDCA (SCLC 1. línia, IMpower133)":
             ChemoCBDCA(rbodysurf, "atezolizumab_ep.json")
 

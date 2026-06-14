@@ -163,9 +163,11 @@ We welcome your feedback to improve this app further. Feel free to reach out at 
         chemo_names = [protocol["name"] for protocol in data["chemotherapies"]]
         # New regimens (added 2026-06)
         extra_new = [
-            "Enfortumab vedotin 1.25 mg/kg + Pembrolizumab 200 mg (1L metastatic urothelial, EV-302)",
+            "Enfortumab Vedotin + Pembrolizumab (EV-302, 1L metastatic urothelial)",
             "Olaparib 300 mg BID (HRR+ mCRPC, PROfound)",
             "Nivolumab 240 mg q2w adjuvant (high-risk urothelial post-cystectomy, CheckMate-274)",
+            "Split-dose Cisplatin D1+D8",
+            "Paclitaxel weekly (urothelial / other)",
         ]
         selected_protocol_name = st.selectbox("Select a chemotherapy regimen:", [" "] + chemo_names + extra_new)
 
@@ -176,15 +178,43 @@ We welcome your feedback to improve this app further. Feel free to reach out at 
             auc = st.number_input("Enter desired AUC (2-6):", min_value=2, max_value=6, value=None, step=1)
 
         if st.button("Display Protocol") and selected_protocol_name.strip():
-            if selected_protocol_name == "Enfortumab vedotin 1.25 mg/kg + Pembrolizumab 200 mg (1L metastatic urothelial, EV-302)":
-                display_simple_json("enfortumab_vedotin.json", bsa, weight_val)
+            if selected_protocol_name == "Enfortumab Vedotin + Pembrolizumab (EV-302, 1L metastatic urothelial)":
+                import json as _j
+                ev = _j.load(open("data/enfortumab_vedotin.json", encoding="utf-8"))
                 ev_dose = round(1.25 * weight_val, 2)
-                st.write(f"Enfortumab vedotin 1.25 mg/kg ......... {ev_dose} mg D1, D8")
-                st.write("Pembrolizumab 200 mg flat D1")
+                pembro_dose = 200
+                st.write("#### Chemotherapy Drugs")
+                st.write(f"enfortumab vedotin 1.25 mg/kg ......... {ev_dose} mg D1, D8")
+                st.write(f"pembrolizumab 200 mg flat dose D1")
+                st.write(f"**Next Cycle:** 21 days")
+                st.write("#### D1 - Premedication")
+                st.write(sk_to_eng(ev["Day1"]["Premed"]["Note"]))
+                st.write("#### D1 - Chemotherapy Instructions")
+                st.write(f"enfortumab vedotin {ev_dose} mg {sk_to_eng(ev['Day1']['Instructions'][0]['Inst'])}")
+                st.write(f"pembrolizumab {pembro_dose} mg {sk_to_eng(ev['Day1']['Instructions'][1]['Inst'])}")
             elif selected_protocol_name == "Olaparib 300 mg BID (HRR+ mCRPC, PROfound)":
                 display_simple_json("olaparib_crpc.json", bsa, weight_val)
             elif selected_protocol_name == "Nivolumab 240 mg q2w adjuvant (high-risk urothelial post-cystectomy, CheckMate-274)":
                 display_simple_json("nivolumab_urothelial_adj.json", bsa, weight_val)
+            elif selected_protocol_name == "Split-dose Cisplatin D1+D8":
+                total = round(70 * bsa, 2)
+                half = round(total / 2, 2)
+                vials_d1 = int(half // 50)
+                rem_d1 = round(half % 50, 2)
+                st.write("#### Chemotherapy Drugs")
+                st.write(f"cisplatin 70 mg/m² total ......... {total} mg — split: {half} mg D1 + {half} mg D8")
+                st.write("**Next Cycle:** 21 days")
+                st.write("#### D1 - Premedication")
+                st.write("Palonosetron 0.5mg/Netupitant 300mg (Akynzeo) p.o. 1h before chemo, Dexamethasone 12 mg i.v., Pantoprazole 40 mg p.o. Hydration: NaCl 500 ml before + 500 ml after. Repeat D8.")
+                st.write("#### D1 (and D8) - Chemotherapy")
+                for i in range(vials_d1):
+                    st.write(f"cisplatin 50 mg in 500 ml normal saline i.v.")
+                if rem_d1 > 0:
+                    st.write(f"cisplatin {int(rem_d1)} mg in 500 ml normal saline i.v.")
+                st.write("Mannitol 10% 250 ml i.v.")
+                st.write(f"*(Repeat on D8: {half} mg split the same way)*")
+            elif selected_protocol_name == "Paclitaxel weekly (urothelial / other)":
+                display_simple_json("paclitaxelweekly.json", bsa, weight_val)
             else:
                 protocol = next((p for p in data["chemotherapies"] if p["name"] == selected_protocol_name), None)
                 if protocol:

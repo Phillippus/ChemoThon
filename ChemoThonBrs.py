@@ -34,9 +34,18 @@ def display_chemotherapy_details(rbodysurf, chemoType, weight):
                 st.write(f"{chemo['Name']} {dosage} mg D {chemo['Day']}")
                 day1_dose = f"{chemo['Name']} {dosage} mg"
             else:
-                dosage = round(chemo["Dosage"] * rbodysurf, 2)
-                st.write(f"{chemo['Name']} {round(chemo['Dosage'], 2)} {chemo['DosageMetric']} ......... {dosage} mg D {chemo['Day']}")
-                day1_dose = f"{chemo['Name']} {dosage} mg"
+                metric = chemo.get("DosageMetric", "mg/m2")
+                if "flat" in metric.lower():
+                    st.write(f"{chemo['Name']} {chemo['Dosage']} {metric} D {chemo['Day']}")
+                    day1_dose = f"{chemo['Name']} {chemo['Dosage']} mg"
+                elif "mg/kg" in metric:
+                    dosage = round(chemo["Dosage"] * weight, 2)
+                    st.write(f"{chemo['Name']} {chemo['Dosage']} {metric} ......... {dosage} mg D {chemo['Day']}")
+                    day1_dose = f"{chemo['Name']} {dosage} mg"
+                else:
+                    dosage = round(chemo["Dosage"] * rbodysurf, 2)
+                    st.write(f"{chemo['Name']} {round(chemo['Dosage'], 2)} {metric} ......... {dosage} mg D {chemo['Day']}")
+                    day1_dose = f"{chemo['Name']} {dosage} mg"
 
         st.write(f"NC {chemoJson['NC']} . deň")
         st.write("D1")
@@ -55,8 +64,15 @@ def display_chemotherapy_details(rbodysurf, chemoType, weight):
                                         "olaparib.json", "abemaciclib.json", "palbociclib.json", "ribociclib.json", "capivasertib.json"]:
                         st.write(f"{instruction['Name']} {instruction['Inst']}")
                     else:
-                        dosage = round(chemo_entry["Dosage"] * rbodysurf, 2)
-                        st.write(f"{instruction['Name']} {dosage} mg {instruction['Inst']}")
+                        metric = chemo_entry.get("DosageMetric", "mg/m2")
+                        if "flat" in metric.lower():
+                            st.write(f"{instruction['Name']} {chemo_entry['Dosage']} mg {instruction['Inst']}")
+                        elif "mg/kg" in metric:
+                            dosage = round(chemo_entry["Dosage"] * weight, 2)
+                            st.write(f"{instruction['Name']} {dosage} mg {instruction['Inst']}")
+                        else:
+                            dosage = round(chemo_entry["Dosage"] * rbodysurf, 2)
+                            st.write(f"{instruction['Name']} {dosage} mg {instruction['Inst']}")
             else:
                 st.write(instruction["Inst"])
 
@@ -107,11 +123,14 @@ def main():
             "Trastuzumab/Pertuzumab SC (Phesgo)": "firsttrastupertu.json",
             # --- Sacituzumab ---
             "Sacituzumab govitecan (TNBC / HR+)": "Sacgov.json",
+            # --- Anti-HER2 orálna/kombinácia ---
+            "Tucatinib 300mg BID + kapecitabín + trastuzumab (HER2CLIMB)": "tucatinib.json",
+            "Neratinib 240mg/deň + kapecitabín (NALA / ExteNET adjuvant)": "neratinib.json",
             # --- Cielená/orálna liečba (flat dose) ---
             "Olaparib 300 mg BID (gBRCA1/2+, KATHERINE/OlympiA)": "olaparib.json",
-            "Abemaciclib 150 mg BID (HR+/HER2−, monarchE/MONARCH-3)": "abemaciclib.json",
+            "Abemaciclib 150 mg BID D1-28 (HR+/HER2−, monarchE/MONARCH-3)": "abemaciclib.json",
             "Palbociclib 125 mg D1-21 (HR+/HER2−, PALOMA)": "palbociclib.json",
-            "Ribociclib 600 mg D1-21 (HR+/HER2−, MONALEESA)": "ribociclib.json",
+            "Ribociclib 600 mg D1-21 + 7d pauza (HR+/HER2−, MONALEESA)": "ribociclib.json",
             "Capivasertib 400 mg 4on/3off + fulvestrant (PIK3CA/AKT1/PTEN)": "capivasertib.json",
         }
 

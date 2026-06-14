@@ -148,7 +148,7 @@ We welcome your feedback to improve this app further. Feel free to reach out at 
         # New regimens (added 2026-06)
         extra_new = [
             "Mirvetuximab soravtansine 6 mg/kg (FRα+ platinum-resistant ovarian, MIRASOL)",
-            "Lenvatinib 20 mg/day (endometrial, KEYNOTE-775)",
+            "Lenvatinib 20 mg/day + Pembrolizumab (endometrial, KEYNOTE-775)",
             "Pembrolizumab + Carboplatin + Paclitaxel (endometrial, NRG-GY018)",
         ]
         chemo_names = [protocol["name"] for protocol in data["chemotherapies"]]
@@ -171,13 +171,19 @@ We welcome your feedback to improve this app further. Feel free to reach out at 
         if st.button("Display Protocol"):
             if selected_protocol_name == "Mirvetuximab soravtansine 6 mg/kg (FRα+ platinum-resistant ovarian, MIRASOL)":
                 display_simple_json("mirvetuximab.json", bsa, weight_val)
-            elif selected_protocol_name == "Lenvatinib 20 mg/day (endometrial, KEYNOTE-775)":
+            elif selected_protocol_name == "Lenvatinib 20 mg/day + Pembrolizumab (endometrial, KEYNOTE-775)":
                 display_simple_json("lenvatinib.json", bsa, weight_val)
+                st.write("---")
+                st.write("**Pembrolizumab (concurrent with lenvatinib):**")
+                st.write("pembrolizumab 200 mg flat dose in 100 ml NaCl i.v./30 min D1 q3w")
+                st.write("NC 21 days (pembrolizumab q3w, lenvatinib continuous D1-28)")
             elif selected_protocol_name == "Pembrolizumab + Carboplatin + Paclitaxel (endometrial, NRG-GY018)":
                 display_simple_json("pembrolizumab_carboplatin_paclitaxel_gyn.json", bsa, weight_val)
                 if crcl and auc:
                     st.write(f"Carboplatin AUC {auc} ......... {(crcl + 25) * auc} mg D1")
             elif protocol:
+                if selected_protocol_name == "INTERLACE CBDCA/Paclitaxel":
+                    st.info("⚠️ INTERLACE: 6 induction cycles of CBDCA/paclitaxel (AUC 2 / 80 mg/m²), then switch to cisplatin 40 mg/m² weekly during radiotherapy (alternative: flat dose cisplatin 50 mg weekly).")
                 display_chemotherapy_details(protocol, bsa, weight_val, crcl, auc)
             else:
                 st.error("Selected protocol not found.")

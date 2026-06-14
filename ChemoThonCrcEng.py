@@ -144,7 +144,8 @@ We welcome your feedback to improve this app further. Feel free to reach out at 
         extra_new = [
             "Encorafenib + Cetuximab (BRAF V600E mCRC, BEACON)",
             "Pembrolizumab 200 mg flat q3w (MSI-H/dMMR, KEYNOTE-177)",
-            "TAS-102 + Bevacizumab 5 mg/kg q2w (3rd line, SUNLIGHT)",
+            "Trifluridine/Tipiracil + Bevacizumab 5 mg/kg q2w (SUNLIGHT, 3rd line)",
+            "Fruquintinib 5 mg/day (FRESCO-2, ≥3rd line mCRC)",
         ]
         selected_protocol_name = st.selectbox("Select a chemotherapy regimen:", chemo_names + extra_new)
 
@@ -153,13 +154,46 @@ We welcome your feedback to improve this app further. Feel free to reach out at 
             is_initial_dose_str = st.radio("Is this the initial dose?", ('Yes', 'No'))
             is_initial_dose = True if is_initial_dose_str == "Yes" else False
 
+        # Encorafenib+cetuximab subdialog
+        encora_admin = None
+        if selected_protocol_name == "Encorafenib + Cetuximab (BRAF V600E mCRC, BEACON)":
+            encora_admin = st.radio("Cetuximab schedule:", [
+                "Weekly (1st administration, 400 mg/m²)",
+                "Weekly (subsequent, 250 mg/m²)",
+                "Biweekly (500 mg/m² q2w)",
+            ], key='encora_admin')
+
         if st.button("Display Protocol"):
             if selected_protocol_name == "Encorafenib + Cetuximab (BRAF V600E mCRC, BEACON)":
-                display_simple_json("encorafenib_cetuximab.json", bsa, weight_val)
+                import json as _j
+                enc = _j.load(open("data/encorafenib_cetuximab.json", encoding="utf-8"))
+                if encora_admin == "Weekly (1st administration, 400 mg/m²)":
+                    ctx_dose = round(400 * bsa, 2)
+                    ctx_label = f"400 mg/m² = {ctx_dose} mg (initial dose)"
+                    ctx_nc = "7 (weekly)"
+                elif encora_admin == "Weekly (subsequent, 250 mg/m²)":
+                    ctx_dose = round(250 * bsa, 2)
+                    ctx_label = f"250 mg/m² = {ctx_dose} mg (subsequent)"
+                    ctx_nc = "7 (weekly)"
+                else:
+                    ctx_dose = round(500 * bsa, 2)
+                    ctx_label = f"500 mg/m² = {ctx_dose} mg (biweekly)"
+                    ctx_nc = "14 (biweekly)"
+                st.write("#### Chemotherapy Drugs")
+                st.write(f"encorafenib 300 mg flat dose (oral, daily) D1-28")
+                st.write(f"cetuximab {ctx_label}")
+                st.write(f"**Next Cycle:** {ctx_nc} days")
+                st.write("#### D1 - Premedication")
+                st.write(sk_to_eng(enc["Day1"]["Premed"]["Note"]))
+                st.write("#### D1 - Chemotherapy Instructions")
+                st.write(f"1. cetuximab {ctx_dose} mg in 500 ml NaCl i.v./2h (1st administration) or /60 min (subsequent)")
+                st.write(f"2. encorafenib 300 mg p.o. once daily with or without food (continuous)")
             elif selected_protocol_name == "Pembrolizumab 200 mg flat q3w (MSI-H/dMMR, KEYNOTE-177)":
                 display_simple_json("pembrolizumab_msiH.json", bsa, weight_val)
-            elif selected_protocol_name == "TAS-102 + Bevacizumab 5 mg/kg q2w (3rd line, SUNLIGHT)":
+            elif selected_protocol_name == "Trifluridine/Tipiracil + Bevacizumab 5 mg/kg q2w (SUNLIGHT, 3rd line)":
                 display_simple_json("tritipi_bev.json", bsa, weight_val)
+            elif selected_protocol_name == "Fruquintinib 5 mg/day (FRESCO-2, ≥3rd line mCRC)":
+                display_simple_json("fruquitinib.json", bsa, weight_val)
             else:
                 protocol = next((p for p in data["chemotherapies"] if p["name"] == selected_protocol_name), None)
                 if protocol:

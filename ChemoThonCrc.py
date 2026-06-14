@@ -135,13 +135,14 @@ def main():
         "Cetuximab": "Cetuximab",  # Special handling required
         "Panitumumab": "panitumumab.json",
         "Trifluridine/Tipiracil": "tritipi.json",
+        "Trifluridine/Tipiracil + Bevacizumab (SUNLIGHT)": "tritipi_bev.json",
         "Irinotecan": "irinotecan.json",
         "FOLFIRINOX": "FOLFIRINOX.json",
         "MiXe": "MiXe.json",
         # --- Nové (2026-06) ---
         "Encorafenib + Cetuximab (BRAF V600E, BEACON CRC)": "encorafenib_cetuximab.json",
         "Pembrolizumab (MSI-H/dMMR, KEYNOTE-177)": "pembrolizumab_msiH.json",
-        "TAS-102 + Bevacizumab (SUNLIGHT)": "tritipi_bev.json",
+        "Fruquitinib 5 mg/deň (FRESCO-2, ≥3. línia mCRC)": "fruquitinib.json",
     }
 
     selected_chemo = None
@@ -150,14 +151,40 @@ def main():
 
         if selected_chemo == "Cetuximab":
             ctx = st.radio("Je to prvá dávka cetuximabu?", ('Áno', 'Nie'), key='cetuximab_admin')
+        elif selected_chemo == "Encorafenib + Cetuximab (BRAF V600E, BEACON CRC)":
+            encora_ctx = st.radio("Schéma cetuximabu:", ["Weekly (1. podanie)", "Weekly (ďalšie podania)", "Biweekly (500 mg/m2 q2w)"], key='encora_admin')
 
-    def execute_chemotherapy(option, cetuximab_first_admin=None):
+    def execute_chemotherapy(option, cetuximab_first_admin=None, encora_admin=None):
         rbodysurf = st.session_state['rbodysurf']
         if option in ["FOLFOX", "FOLFIRI", "FOLFIRINOX"]:
             Chemo5FU(rbodysurf, chemo_options[option])
         elif option == "Cetuximab":
             cetuximab_file = "1cetuximab.json" if cetuximab_first_admin == 'Áno' else "elsecetuximab.json"
             Chemo(rbodysurf, cetuximab_file)
+        elif option == "Encorafenib + Cetuximab (BRAF V600E, BEACON CRC)":
+            encora_dose_ctx = encora_admin or "Weekly (1. podanie)"
+            ctx_dose = round(400 * rbodysurf, 2) if "1. podanie" in encora_dose_ctx else (round(250 * rbodysurf, 2) if "Weekly" in encora_dose_ctx else round(500 * rbodysurf, 2))
+            ctx_label = "400 mg/m2 (1. dávka)" if "1. podanie" in encora_dose_ctx else ("250 mg/m2 weekly" if "Weekly" in encora_dose_ctx else "500 mg/m2 biweekly")
+            ctx_nc = "7" if "Weekly" in encora_dose_ctx else "14"
+            import json as _j
+            enc = _j.load(open("data/encorafenib_cetuximab.json", encoding="utf-8"))
+            st.write(f"### Encorafenib + Cetuximab (BEACON CRC) — {encora_dose_ctx}")
+            st.write(f"encorafenib 300 mg flat dose ......... 300 mg D1-28 (denne)")
+            st.write(f"cetuximab {ctx_label} ......... {ctx_dose} mg D1")
+            st.write(f"NC {ctx_nc} . deň")
+            st.write("D1 - premedikácia:")
+            st.write(enc["Day1"]["Premed"]["Note"])
+            st.write("D1 - chemoterapia:")
+            st.write(f"encorafenib 300 mg p.o. 1× denne kontinuálne")
+            st.write(f"cetuximab {ctx_dose} mg v 500ml FR i.v./{'2 h' if '1. podanie' in encora_dose_ctx else '60 min'}")
+        elif option == "Fruquitinib 5 mg/deň (FRESCO-2, ≥3. línia mCRC)":
+            import json as _j
+            fr = _j.load(open("data/fruquitinib.json", encoding="utf-8"))
+            st.write("### Fruquitinib (FRESCO-2)")
+            st.write("fruquitinib 5 mg flat dose D1-21 (pauza D22-28, NC=28)")
+            st.write(fr["Day1"]["Premed"]["Note"])
+            for inst in fr["Day1"]["Instructions"]:
+                st.write(inst["Inst"])
         elif "Bevacizumab" in option:
             ChemoMass(weight, chemo_options[option])
         else:
@@ -166,6 +193,8 @@ def main():
     if selected_chemo and st.button("Zobraziť protokol chemoterapie"):
         if selected_chemo == "Cetuximab":
             execute_chemotherapy(selected_chemo, cetuximab_first_admin=ctx)
+        elif selected_chemo == "Encorafenib + Cetuximab (BRAF V600E, BEACON CRC)":
+            execute_chemotherapy(selected_chemo, encora_admin=encora_ctx)
         else:
             execute_chemotherapy(selected_chemo)
 

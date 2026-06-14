@@ -28,7 +28,7 @@
   "NC": "21",
   "Day1": {
     "Premed": {
-      "Note": "Hydrocortison 100mg iv, Dithiaden 1amp iv, Pantoprazol 40mg p.o., Granisetron 2mg p.o."
+      "Note": "Hydrocortison 100mg i.v., Dithiaden 1amp i.v., Pantoprazol 40mg p.o., Palonosetron 0.5mg/Netupitant 300mg (Akynzeo) p.o. 1h pred chemo, Dexametazón 12mg i.v."
     },
     "Instructions": [
       {
@@ -50,5 +50,5 @@
     ]
   },
   "_source": "Peyrade F et al. Lancet Oncol 2011;12:460; BCCA LYRmCHOP",
-  "_revision": "2026-06 | Prednison: 40 mg/m2 → 40 mg flat (Peyrade trial)"
+  "_revision": "2026-06"
 }

@@ -15,13 +15,24 @@ def load_json(filename):
 
 def display_chemotherapy_details(rbodysurf, filename):
     """ Zobrazuje podrobné informácie o chemoterapeutickom režime s využitím telesného povrchu. """
+    weight = st.session_state.get('weight_kg', None)
     chemo_json = load_json(filename)
     if chemo_json:
         regimen_name = filename.replace('.json', '')
         st.write(f"### Protokol {regimen_name}")
         for chemo in chemo_json['Chemo']:
-            dosage = round(chemo['Dosage'] * rbodysurf, 2)
-            st.write(f"{chemo['Name']} {chemo['Dosage']} mg/m2 ......... {dosage} mg D {chemo['Day']}")
+            metric = chemo.get('DosageMetric', 'mg/m2')
+            if 'flat' in metric.lower():
+                st.write(f"{chemo['Name']} {chemo['Dosage']} {metric} D {chemo['Day']}")
+            elif 'mg/kg' in metric:
+                if weight:
+                    dosage = round(chemo['Dosage'] * weight, 2)
+                    st.write(f"{chemo['Name']} {chemo['Dosage']} {metric} ......... {dosage} mg D {chemo['Day']}")
+                else:
+                    st.write(f"{chemo['Name']} {chemo['Dosage']} {metric} ......... (zadajte hmotnosť) D {chemo['Day']}")
+            else:
+                dosage = round(chemo['Dosage'] * rbodysurf, 2)
+                st.write(f"{chemo['Name']} {chemo['Dosage']} {metric} ......... {dosage} mg D {chemo['Day']}")
 
         st.write(f"                       NC {chemo_json.get('NC', 'Nie je určené')} . deň")
         st.write(" ")
@@ -29,10 +40,20 @@ def display_chemotherapy_details(rbodysurf, filename):
         st.write(chemo_json['Day1']['Premed']['Note'])
         for instruction in chemo_json['Day1']['Instructions']:
             drug_name = instruction['Name']
-            dosage = next((item['Dosage'] for item in chemo_json['Chemo'] if item['Name'] == drug_name), None)
-            if dosage:
-                adjusted_dosage = round(dosage * rbodysurf, 2)
-                st.write(f"{drug_name} {adjusted_dosage} mg {instruction['Inst']}")
+            item = next((i for i in chemo_json['Chemo'] if i['Name'] == drug_name), None)
+            if item:
+                metric = item.get('DosageMetric', 'mg/m2')
+                if 'flat' in metric.lower():
+                    st.write(f"{drug_name} {item['Dosage']} mg {instruction['Inst']}")
+                elif 'mg/kg' in metric:
+                    if weight:
+                        adjusted = round(item['Dosage'] * weight, 2)
+                        st.write(f"{drug_name} {adjusted} mg {instruction['Inst']}")
+                    else:
+                        st.write(f"{drug_name} {item['Dosage']} mg/kg {instruction['Inst']}")
+                else:
+                    adjusted_dosage = round(item['Dosage'] * rbodysurf, 2)
+                    st.write(f"{drug_name} {adjusted_dosage} mg {instruction['Inst']}")
 
 
 def Flatdoser(rbodysurf, chemoType, chemoFlat):
@@ -49,7 +70,14 @@ def Flatdoser(rbodysurf, chemoType, chemoFlat):
             st.write(f"{chemo['Name']} {chemo['Dosage']} mg/m2 ......... {dosage} mg D {chemo['Day']}")
 
         for chemo in chemo_json2['Chemo']:
-            st.write(f"{chemo['Name']} (flat dose) ......... {chemo['Dosage']} mg D {chemo['Day']}")
+            metric2 = chemo.get('DosageMetric', 'mg/m2')
+            if 'mg/m2' in metric2 and 'max' in metric2.lower():
+                # Vincristine cap: calculate BSA-based dose, cap at 2mg
+                raw = round(chemo['Dosage'] * rbodysurf, 2)
+                capped = min(raw, 2.0)
+                st.write(f"{chemo['Name']} {chemo['Dosage']} {metric2} ......... {capped} mg D {chemo['Day']} (BSA: {raw} mg → cappované na max 2 mg)")
+            else:
+                st.write(f"{chemo['Name']} {metric2} ......... {chemo['Dosage']} mg D {chemo['Day']}")
 
         st.write(f"                       NC {chemo_json.get('NC', 'Nie je určené')} . deň")
 
@@ -65,9 +93,15 @@ def Flatdoser(rbodysurf, chemoType, chemoFlat):
                 st.write(f"{drug_name} {adjusted_dosage} mg {instruction['Inst']}")
 
         for instruction in chemo_json2['Day1']['Instructions']:
-            flat_dose = next((item['Dosage'] for item in chemo_json2['Chemo'] if item['Name'] == instruction['Name']), None)
-            if flat_dose:
-                st.write(f"{instruction['Name']} (flat dose): {flat_dose} mg {instruction['Inst']}")
+            item2 = next((i for i in chemo_json2['Chemo'] if i['Name'] == instruction['Name']), None)
+            if item2:
+                metric2 = item2.get('DosageMetric', 'mg/m2')
+                if 'mg/m2' in metric2 and 'max' in metric2.lower():
+                    raw = round(item2['Dosage'] * rbodysurf, 2)
+                    capped = min(raw, 2.0)
+                    st.write(f"{instruction['Name']} {capped} mg {instruction['Inst']}")
+                else:
+                    st.write(f"{instruction['Name']} {item2['Dosage']} mg {instruction['Inst']}")
 
 def DHAP(rbodysurf):
     """ DHAP: cisplatina + cytarabín + dexametazón """
@@ -81,7 +115,7 @@ def DHAP(rbodysurf):
     st.write("                                        NC 21. deň")
     st.write(" ")
     st.write("                                            D1")
-    st.write("1. Granisetron 2mg p.o., Dexametazon 8mg iv, Pantoprazol 40mg p.o.")
+    st.write("1. Palonosetron 0.5mg/Netupitant 300mg (Akynzeo) p.o. 1h pred chemo, Dexametazón 12mg i.v., Pantoprazol 40mg p.o.")
 
     ordo = 1
     for ordo in range(2, cycle + 2):
@@ -110,7 +144,7 @@ def RDHAP(rbodysurf):
     st.write("                                        NC 21. deň")
     st.write(" ")
     st.write("                                            D1")
-    st.write("1. Hydrocortison 100mg iv, Dithiaden 1amp iv, Pantoprazol 40mg p.o., Granisetron 2mg p.o.")
+    st.write("1. Hydrocortison 100mg iv, Dithiaden 1amp iv, Pantoprazol 40mg p.o., Palonosetron 0.5mg/Netupitant 300mg (Akynzeo) p.o. 1h pred chemo, Dexametazón 12mg i.v.")
     st.write(f"2. rituximab {ritux} mg v 500ml FR iv/ 1.infuzia: zacat 50ml/h, stupnovite zvysovat; dalsie cykly: 100ml/h")
 
     ordo = 2
@@ -148,6 +182,7 @@ def main():
     if st.button("Vypočítať BSA"):
         rbodysurf = calculate_bsa(weight, height)
         st.session_state['rbodysurf'] = rbodysurf
+        st.session_state['weight_kg'] = weight
 
     if 'rbodysurf' in st.session_state:
         st.write(f"Vypočítaný telesný povrch (BSA): {st.session_state['rbodysurf']} m²")
@@ -213,6 +248,5 @@ Guidelines: [ESMO](https://www.esmo.org/guidelines/esmo-clinical-practice-guidel
 - **GDP (gemcitabín/cisplatina/dex)** — NCIC-CTG LY.12 – Crump et al., J Clin Oncol 2014.
 - **Rituximab (monoterapia)** — McLaughlin et al., J Clin Oncol 1998.
 
-**Aktuálne štandardy na zváženie (zatiaľ mimo nástroja):**
-- Pola-R-CHP pri DLBCL 1. línia – POLARIX, NEJM 2022.
-- Brentuximab vedotín + AVD pri pokročilom Hodgkinovi – ECHELON-1, NEJM 2018/2022.""")
+- **Pola-R-CHP (POLARIX, DLBCL 1. línia)** — Tilly et al., NEJM 2022;386:351.
+- **BV-AVD (ECHELON-1, Hodgkin štádium III/IV)** — Connors et al., NEJM 2018; Ansell et al., NEJM 2022.""")

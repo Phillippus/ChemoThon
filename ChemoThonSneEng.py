@@ -168,7 +168,6 @@ def sarcnet(bsa):
         # --- New (2026-06) ---
         "CAPTEM (Capecitabine + Temozolomide, pNET, E2211)",
         "Pazopanib 800 mg/day (STS, PALETTE)",
-        "Ifosfamide high-dose 2000 mg/m² D1–5",
     ])
 
     if chemo_choice == "Ifosfamide + Epirubicin (3000 mg/m²)":
@@ -201,8 +200,6 @@ def sarcnet(bsa):
         Chemo(bsa, "captem.json")
     elif chemo_choice == "Pazopanib 800 mg/day (STS, PALETTE)":
         Chemo(bsa, "pazopanib_sts.json")
-    elif chemo_choice == "Ifosfamide high-dose 2000 mg/m² D1–5":
-        Chemo(bsa, "ifosfamid_high.json")
 
 def main():
     st.title("ChemoThon Sarcoma, CNS and NET ENG v 2.2")

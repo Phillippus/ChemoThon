@@ -118,7 +118,7 @@ def ChemoCBDCA(bsa, filename):
                 calc_dose = round(drug["Dosage"] * bsa, 2)
                 st.write(f"{drug_name} {calc_dose} mg {sk_to_eng(inst.get('Inst', ''))}") 
 
-def lung(bsa):
+def lung(bsa, weight=None):
     """Lung cancer chemotherapy regimen selector."""
     chemo_choice = st.selectbox("Select chemotherapy:", [
         " ",
@@ -134,6 +134,9 @@ def lung(bsa):
         "Pembrolizumab + Carboplatin + Nab-Paclitaxel (squamous NSCLC, KEYNOTE-407)",
         "Durvalumab 1500 mg flat q4w (stage III NSCLC maintenance after CRT, PACIFIC)",
         "Atezolizumab + Etoposide + Carboplatin (SCLC 1st line, IMpower133)",
+        # --- Added 2026-06 ---
+        "Platinum + Vinorelbine (adjuvant NSCLC, IALT/ANITA)",
+        "Dacarbazine 1000 mg/m² D1 q21d",
     ])
 
     if chemo_choice == "Carboplatin + Paclitaxel":
@@ -156,6 +159,49 @@ def lung(bsa):
         Chemo(bsa, "durvalumab_pacific.json")
     elif chemo_choice == "Atezolizumab + Etoposide + Carboplatin (SCLC 1st line, IMpower133)":
         ChemoCBDCA(bsa, "atezolizumab_ep.json")
+    elif chemo_choice == "Platinum + Vinorelbine (adjuvant NSCLC, IALT/ANITA)":
+        pt_adj = st.selectbox("Select platinum:", [
+            "Choose", "Cisplatin 80 mg/m² D1 (IALT/ANITA standard)", "Carboplatin AUC 5-6 D1 (alternative)"
+        ], key="pt_adj_vin")
+        if pt_adj == "Cisplatin 80 mg/m² D1 (IALT/ANITA standard)":
+            vin_dose = round(25 * bsa, 2)
+            ddp_dose = round(80 * bsa, 2)
+            ddp_vials = int(ddp_dose // 50)
+            ddp_rem = round(ddp_dose % 50, 2)
+            import json as _j
+            vn = _j.load(open("data/vinorelbine_ddp_adj.json", encoding="utf-8"))
+            st.write("#### Chemotherapy Drugs")
+            st.write(f"cisplatin 80 mg/m² ......... {ddp_dose} mg D1")
+            st.write(f"vinorelbine 25 mg/m² ......... {vin_dose} mg D1, D8")
+            st.write("**Next Cycle:** 28 days")
+            st.write("#### D1 - Premedication")
+            st.write(sk_to_eng(vn["Day1"]["Premed"]["Note"]))
+            st.write("#### D1 - Chemotherapy")
+            for i in range(ddp_vials):
+                st.write(f"cisplatin 50 mg in 500 ml normal saline i.v.")
+            if ddp_rem > 0:
+                st.write(f"cisplatin {int(ddp_rem)} mg in 500 ml normal saline i.v.")
+            st.write("Mannitol 10% 250 ml i.v.")
+            st.write(f"vinorelbine {vin_dose} mg in 125 ml NaCl i.v./10 min D1, D8")
+        elif pt_adj == "Carboplatin AUC 5-6 D1 (alternative)":
+            crcl_a = st.number_input("Creatinine Clearance (ml/min):", min_value=1, max_value=250, value=None, key="crcl_adj")
+            auc_a = st.number_input("AUC (5 or 6):", min_value=4, max_value=6, value=5, key="auc_adj")
+            vin_dose = round(25 * bsa, 2)
+            if crcl_a is not None:
+                cbdca_dose = (crcl_a + 25) * auc_a
+                import json as _j
+                vn = _j.load(open("data/vinorelbine_cbdca_adj.json", encoding="utf-8"))
+                st.write("#### Chemotherapy Drugs")
+                st.write(f"carboplatin AUC {auc_a} ......... {cbdca_dose} mg D1")
+                st.write(f"vinorelbine 25 mg/m² ......... {vin_dose} mg D1, D8")
+                st.write("**Next Cycle:** 28 days")
+                st.write("#### D1 - Premedication")
+                st.write(sk_to_eng(vn["Day1"]["Premed"]["Note"]))
+                st.write("#### D1 - Chemotherapy")
+                st.write(f"carboplatin {cbdca_dose} mg in 500 ml glucose 5% i.v./60 min")
+                st.write(f"vinorelbine {vin_dose} mg in 125 ml NaCl i.v./10 min D1, D8")
+    elif chemo_choice == "Dacarbazine 1000 mg/m² D1 q21d":
+        Chemo(bsa, "dacarbazine1000.json")
 
 def main():
     st.title("ChemoThon Lung ENG v 2.3")
@@ -172,13 +218,14 @@ We welcome your feedback. Feel free to reach out at filip.kohutek@fntn.sk.""")
     if st.button("Calculate BSA") and weight and height:
         bsa_val = calculate_bsa(weight, height)
         st.session_state['bsa'] = bsa_val
+        st.session_state['weight'] = weight
         st.session_state['show_chemo'] = True
 
     if 'bsa' in st.session_state:
         st.write(f"Body Surface Area (BSA): {st.session_state['bsa']} m²")
 
     if st.session_state.get("show_chemo", False):
-        lung(st.session_state['bsa'])
+        lung(st.session_state['bsa'], st.session_state.get('weight'))
 
 if __name__ == "__main__":
     main()

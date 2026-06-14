@@ -177,8 +177,24 @@ We welcome your feedback to improve this app further. Feel free to reach out at 
             "Trastuzumab-deruxtecan 6.4 mg/kg (HER2+ gastric 2L, DESTINY-Gastric01)",
             "Ramucirumab 8 mg/kg q2w (gastric 2L, REGARD)",
             "Ramucirumab + Paclitaxel weekly (gastric 2L, RAINBOW)",
+            "Platinum + Gemcitabine (biliary tract, ABC-02)",
+            "Platinum + Capecitabine + Trastuzumab (HER2+ gastric, ToGA)",
         ]
         selected_protocol_name = st.selectbox("Select a chemotherapy regimen:", chemo_names + extra_new)
+
+        # Biliary tract platinum subdialog
+        biliary_pt = None
+        if selected_protocol_name == "Platinum + Gemcitabine (biliary tract, ABC-02)":
+            biliary_pt = st.selectbox("Select platinum:", [
+                "Choose", "Cisplatin 25 mg/m² D1,8 (ABC-02 standard)", "Carboplatin AUC 5 D1 (alternative)"
+            ], key="biliary_pt")
+
+        # HER2+ gastric platinum subdialog
+        gastric_pt = None
+        if selected_protocol_name == "Platinum + Capecitabine + Trastuzumab (HER2+ gastric, ToGA)":
+            gastric_pt = st.selectbox("Select platinum:", [
+                "Choose", "Cisplatin 80 mg/m² D1 (ToGA standard)", "Carboplatin AUC 5 D1", "Oxaliplatin 130 mg/m² D1"
+            ], key="gastric_pt")
 
         # Input CrCl and AUC for carboplatin-based regimens
         crcl = None
@@ -193,6 +209,12 @@ We welcome your feedback to improve this app further. Feel free to reach out at 
                 auc = st.number_input("Enter Area Under Curve (AUC, 2-6):", min_value=2, max_value=6, step=1, value=None, format="%d")
                 if selected_protocol_name.lower() == "cross regimen" and auc != 2:
                     st.warning("⚠️ For the CROSS regimen, the AUC value must be set to 2!")
+        elif selected_protocol_name in ["Platinum + Gemcitabine (biliary tract, ABC-02)",
+                                         "Platinum + Capecitabine + Trastuzumab (HER2+ gastric, ToGA)"]:
+            if (biliary_pt and "Carboplatin" in (biliary_pt or "")) or (gastric_pt and "Carboplatin" in (gastric_pt or "")):
+                crcl = st.number_input("Enter Creatinine Clearance (CrCl in mL/min):", min_value=1, max_value=200, step=1, value=None, format="%d", key="crcl_new")
+                auc_val = st.number_input("Enter AUC (e.g. 5):", min_value=2, max_value=6, step=1, value=5, format="%d", key="auc_new")
+                auc = auc_val
 
         if st.button("Display Protocol"):
             if selected_protocol_name == "Nivolumab 360 mg flat + FOLFOX/CAPOX (gastric/GEJ CPS≥5, CheckMate-649)":
@@ -203,7 +225,86 @@ We welcome your feedback to improve this app further. Feel free to reach out at 
                 display_simple_json("ramucirumab.json", st.session_state["bsa"], weight_val)
             elif selected_protocol_name == "Ramucirumab + Paclitaxel weekly (gastric 2L, RAINBOW)":
                 display_simple_json("ramucirumab_paclitaxel.json", st.session_state["bsa"], weight_val)
+            elif selected_protocol_name == "Platinum + Gemcitabine (biliary tract, ABC-02)":
+                bsa_v = st.session_state["bsa"]
+                gem_dose = round(1000 * bsa_v, 2)
+                st.write("#### Chemotherapy Drugs")
+                st.write(f"gemcitabine 1000 mg/m² ......... {gem_dose} mg D1, D8")
+                if biliary_pt == "Cisplatin 25 mg/m² D1,8 (ABC-02 standard)":
+                    ddp_dose = round(25 * bsa_v, 2)
+                    ddp_vials = int(ddp_dose // 50)
+                    ddp_rem = round(ddp_dose % 50, 2)
+                    st.write(f"cisplatin 25 mg/m² ......... {ddp_dose} mg D1, D8")
+                    st.write("**Next Cycle:** 21 days")
+                    st.write("#### D1 - Premedication")
+                    st.write("Palonosetron 0.5mg/Netupitant 300mg (Akynzeo) p.o. 1h before chemo, Dexamethasone 12 mg i.v., Pantoprazole 40 mg p.o. Hydration: NaCl 500ml before cisplatin, Mannitol 10% 250ml after cisplatin. Indication: advanced/metastatic biliary tract cancer, 1st line (ABC-02).")
+                    st.write("#### D1 - Chemotherapy Instructions")
+                    for i in range(ddp_vials):
+                        st.write(f"cisplatin 50 mg in 500 ml NaCl i.v.")
+                    if ddp_rem > 0:
+                        st.write(f"cisplatin {int(ddp_rem)} mg in 500 ml NaCl i.v.")
+                    st.write("Mannitol 10% 250 ml i.v.")
+                    st.write(f"gemcitabine {gem_dose} mg in 250 ml NaCl i.v./30 min D1, D8")
+                elif biliary_pt == "Carboplatin AUC 5 D1 (alternative)" and crcl is not None:
+                    cbdca_dose = (crcl + 25) * auc
+                    st.write(f"carboplatin AUC {auc} ......... {cbdca_dose} mg D1")
+                    st.write("**Next Cycle:** 21 days")
+                    st.write("#### D1 - Premedication")
+                    st.write("Palonosetron 0.5mg/Netupitant 300mg (Akynzeo) p.o. 1h before chemo, Dexamethasone 12 mg i.v., Pantoprazole 40 mg p.o. Indication: advanced/metastatic biliary tract cancer (carboplatin alternative).")
+                    st.write("#### D1 - Chemotherapy Instructions")
+                    st.write(f"carboplatin {cbdca_dose} mg in 500 ml glucose i.v./60 min")
+                    st.write(f"gemcitabine {gem_dose} mg in 250 ml NaCl i.v./30 min D1, D8")
+                else:
+                    st.info("Please select a platinum option and enter CrCl if using carboplatin.")
+            elif selected_protocol_name == "Platinum + Capecitabine + Trastuzumab (HER2+ gastric, ToGA)":
+                bsa_v = st.session_state["bsa"]
+                cape_dose = round(1000 * bsa_v, 2)
+                trastu_load = round(8 * weight_val, 2)
+                trastu_maint = round(6 * weight_val, 2)
+                st.write("#### Chemotherapy Drugs")
+                st.write(f"capecitabine 1000 mg/m² ......... {cape_dose} mg BID D1-14")
+                st.write(f"trastuzumab 8 mg/kg (loading) / 6 mg/kg (subsequent) ......... {trastu_load} mg / {trastu_maint} mg D1")
+                if gastric_pt == "Cisplatin 80 mg/m² D1 (ToGA standard)":
+                    ddp_dose = round(80 * bsa_v, 2)
+                    ddp_vials = int(ddp_dose // 50)
+                    ddp_rem = round(ddp_dose % 50, 2)
+                    st.write(f"cisplatin 80 mg/m² ......... {ddp_dose} mg D1")
+                    st.write("**Next Cycle:** 21 days")
+                    st.write("#### D1 - Premedication")
+                    st.write("Palonosetron 0.5mg/Netupitant 300mg (Akynzeo) p.o. 1h before chemo, Dexamethasone 12 mg i.v., Pantoprazole 40 mg p.o. Hydration before/after cisplatin, Mannitol 10% 250 ml. Trastuzumab: loading dose 8 mg/kg i.v., subsequent 6 mg/kg q3w. Indication: HER2+ (IHC3+ or IHC2+/ISH+) advanced gastric/GEJ cancer (ToGA).")
+                    st.write("#### D1 - Chemotherapy Instructions")
+                    st.write(f"1. trastuzumab {trastu_load} mg (loading) or {trastu_maint} mg (subsequent) i.v./90 min (1st) or /30 min (subsequent)")
+                    for i in range(ddp_vials):
+                        st.write(f"cisplatin 50 mg in 500 ml NaCl i.v.")
+                    if ddp_rem > 0:
+                        st.write(f"cisplatin {int(ddp_rem)} mg in 500 ml NaCl i.v.")
+                    st.write("Mannitol 10% 250 ml i.v.")
+                    st.write(f"capecitabine {cape_dose} mg p.o. BID D1-14 with food")
+                elif gastric_pt == "Carboplatin AUC 5 D1" and crcl is not None:
+                    cbdca_dose = (crcl + 25) * auc
+                    st.write(f"carboplatin AUC {auc} ......... {cbdca_dose} mg D1")
+                    st.write("**Next Cycle:** 21 days")
+                    st.write("#### D1 - Premedication")
+                    st.write("Palonosetron 0.5mg/Netupitant 300mg (Akynzeo) p.o. 1h before chemo, Dexamethasone 12 mg i.v., Pantoprazole 40 mg p.o. Trastuzumab: loading 8 mg/kg i.v., subsequent 6 mg/kg q3w.")
+                    st.write("#### D1 - Chemotherapy Instructions")
+                    st.write(f"1. trastuzumab {trastu_load} mg (loading) or {trastu_maint} mg (subsequent) i.v.")
+                    st.write(f"carboplatin {cbdca_dose} mg in 500 ml glucose i.v./60 min")
+                    st.write(f"capecitabine {cape_dose} mg p.o. BID D1-14 with food")
+                elif gastric_pt == "Oxaliplatin 130 mg/m² D1":
+                    oxa_dose = round(130 * bsa_v, 2)
+                    st.write(f"oxaliplatin 130 mg/m² ......... {oxa_dose} mg D1")
+                    st.write("**Next Cycle:** 21 days")
+                    st.write("#### D1 - Premedication")
+                    st.write("Palonosetron 0.5mg/Netupitant 300mg (Akynzeo) p.o. 1h before chemo, Dexamethasone 12 mg i.v., Pantoprazole 40 mg p.o. Trastuzumab: loading 8 mg/kg i.v., subsequent 6 mg/kg q3w. Note: use glucose 5% for oxaliplatin (NOT NaCl).")
+                    st.write("#### D1 - Chemotherapy Instructions")
+                    st.write(f"1. trastuzumab {trastu_load} mg (loading) or {trastu_maint} mg (subsequent) i.v.")
+                    st.write(f"oxaliplatin {oxa_dose} mg in 500 ml glucose 5% i.v./2h")
+                    st.write(f"capecitabine {cape_dose} mg p.o. BID D1-14 with food")
+                else:
+                    st.info("Please select a platinum option and enter CrCl if using carboplatin.")
             elif protocol:
+                if selected_protocol_name == "Mitomycin/5-FU":
+                    st.info("⚠️ NOTE: When given with concomitant radiotherapy (CRT), mitomycin on D29 is OMITTED — only D1 administration.")
                 display_chemotherapy_details(protocol, st.session_state["bsa"], weight_val, crcl, auc)
             else:
                 st.error("Selected protocol not found in the data.")

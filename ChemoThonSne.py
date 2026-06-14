@@ -142,7 +142,6 @@ def sarcnet(rbodysurf):
         # --- Nové (2026-06) ---
         "CAPTEM (Kapecitabín + Temozolomid, pNET, E2211)",
         "Pazopanib 800 mg/deň (STS, PALETTE)",
-        "Ifosfamid high-dose 2000 mg/m² D1-5",
     ])
 
     if chemo_choice == "Ifosfamid/ Epirubicin":

@@ -108,7 +108,7 @@ def gynecology(rbodysurf):
     chemo_choice = st.selectbox("Akú chemoterapiu chcete podať?", [
         "  ",
         "CBDCA/ paclitaxel",
-        "INTERLACE CBDCA/paclitaxel",
+        "INTERLACE CBDCA/paclitaxel (6 cyklov → konkomitantná RT)",
         "Cisplatina/ paclitaxel",
         "Topotecan + G-CSF",
         "PEG-doxorubicin",
@@ -117,13 +117,14 @@ def gynecology(rbodysurf):
         "Bevacizumab 15 mg/kg",
         # --- Nové (2026-06) ---
         "Mirvetuximab soravtansín 6 mg/kg (PROC FRα+, MIRASOL)",
-        "Lenvatinib 20 mg/deň (endometrium, KEYNOTE-775)",
+        "Lenvatinib 20 mg/deň + Pembrolizumab (endometrium, KEYNOTE-775)",
         "Pembrolizumab + CBDCA + Paclitaxel (endometrium, NRG-GY018)",
     ])
 
     if chemo_choice == "CBDCA/ paclitaxel":
         ChemoCBDCA(rbodysurf, "paclitaxel3weekly.json")
-    elif chemo_choice == "INTERLACE CBDCA/paclitaxel":
+    elif chemo_choice == "INTERLACE CBDCA/paclitaxel (6 cyklov → konkomitantná RT)":
+        st.info("⚠️ INTERLACE: 6 cyklov indukčnej CBDCA/paklitaxel (AUC 2 / 80 mg/m²), potom prechod na cisplatinu 40 mg/m² weekly počas rádioterapie (alternatíva: flat dose cisplatina 50 mg weekly).")
         ChemoCBDCA(rbodysurf, "paclitaxelweekly.json")
     elif chemo_choice == "Cisplatina/ paclitaxel":
         ChemoCISplatin(rbodysurf, "paclitaxel3weeklyDDP.json")
@@ -145,8 +146,12 @@ def gynecology(rbodysurf):
             ChemoWeightBased(st.session_state.weight, "mirvetuximab.json")
         else:
             st.error("Najprv zadajte hmotnosť a výšku.")
-    elif chemo_choice == "Lenvatinib 20 mg/deň (endometrium, KEYNOTE-775)":
+    elif chemo_choice == "Lenvatinib 20 mg/deň + Pembrolizumab (endometrium, KEYNOTE-775)":
         Chemo(rbodysurf, "lenvatinib.json")
+        st.write("---")
+        st.write("**Pembrolizumab (súbežne s lenvatinibom):**")
+        st.write("pembrolizumab 200 mg flat dose v 100ml FR i.v./30 min  D1 q3w")
+        st.write("NC 21. deň (pembrolizumab q3w, lenvatinib kontinuálne D1-28)")
     elif chemo_choice == "Pembrolizumab + CBDCA + Paclitaxel (endometrium, NRG-GY018)":
         ChemoCBDCA(rbodysurf, "pembrolizumab_carboplatin_paclitaxel_gyn.json")
 

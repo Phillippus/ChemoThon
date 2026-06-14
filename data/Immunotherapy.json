@@ -22,6 +22,15 @@
       "administration": "prvá dávka na 60 minút, následné na 30 minút"
     },
     {
+      "name": "Atezolizumab SC (Tecentriq SC)",
+      "regimen name": "Atezolizumab SC 1875 mg q4w",
+      "dosage": "1875 mg",
+      "frequency": "28 dní",
+      "administration": "1875 mg s.c. do brucha alebo stehna počas 7-10 min (fixná dávka)",
+      "premedication": "Bez rutinnej premedikácie. SC forma nevyžaduje predĺžené monitorovanie ako iv.",
+      "source": "SmPC Tecentriq SC 2023. Indikácia: rovnaké ako iv. atezolizumab."
+    },
+    {
       "name": "Avelumab (Bavencio)",
       "regimen name": "Avelumab 2 weekly",
       "dosage": "800 mg",
@@ -65,25 +74,49 @@
       "administration": "na 60 minút"
     },
     {
-      "name": "Ipilimumab (Yervoy)",
-      "regimen name": "Ipilimumab 1 mg/kg s Nivolumabom",
-      "dosage": "1 mg/kg",
-      "frequency": "21 dní",
-      "administration": "na 30 minút"
+      "name": "Ipilimumab + Nivolumab",
+      "regimen name": "Ipi 3mg/kg + Nivo 1mg/kg q3w × 4, potom Nivo 240mg q2w (melanóm, CheckMate-067)",
+      "dosage": "3 mg/kg (ipi) + 1 mg/kg (nivo)",
+      "frequency": "21 dní (indukcia 4 cykly), potom nivolumab 240 mg q2w",
+      "administration": "ipilimumab v 250ml FR i.v./30 min, potom nivolumab v 100ml FR i.v./30 min. Indukcia: 4 cykly q3w, potom nivolumab monoterapia.",
+      "premedication": "Bez premedikácie",
+      "source": "Larkin J et al. NEJM 2015;373:23 (CheckMate-067). Melanóm 1. línia."
     },
     {
-      "name": "Ipilimumab (Yervoy)",
-      "regimen name": "Ipilimumab 3 mg/kg",
+      "name": "Ipilimumab + Nivolumab",
+      "regimen name": "Ipi 1mg/kg + Nivo 3mg/kg q3w × 4, potom Nivo 240mg q2w (NSCLC, CheckMate-227)",
+      "dosage": "1 mg/kg (ipi) + 3 mg/kg (nivo)",
+      "frequency": "21 dní (indukcia 4 cykly), potom nivolumab 240 mg q2w",
+      "administration": "nivolumab v 100ml FR i.v./30 min, potom ipilimumab v 250ml FR i.v./30 min. Indukcia: 4 cykly q3w.",
+      "premedication": "Bez premedikácie",
+      "source": "Hellmann MD et al. NEJM 2019;381:2020 (CheckMate-227). NSCLC 1. línia."
+    },
+    {
+      "name": "Ipilimumab + Nivolumab",
+      "regimen name": "Ipi 1mg/kg q6w + Nivo 360mg q3w (NSCLC, CheckMate-9LA; rôzne indikácie)",
+      "dosage": "1 mg/kg (ipi q6w) + 360 mg (nivo q3w, flat)",
+      "frequency": "ipilimumab q6w, nivolumab q3w",
+      "administration": "nivolumab 360 mg flat i.v./30 min q3w + ipilimumab 1 mg/kg i.v./30 min q6w.",
+      "premedication": "Bez premedikácie",
+      "source": "Reck M et al. Lancet 2021;397:1345 (CheckMate-9LA). NSCLC, HCC, iné."
+    },
+    {
+      "name": "Ipilimumab + Nivolumab",
+      "regimen name": "Ipi 1mg/kg + Nivo 3mg/kg q3w (mRCC, CheckMate-214)",
+      "dosage": "1 mg/kg (ipi) + 3 mg/kg (nivo)",
+      "frequency": "21 dní (indukcia 4 cykly), potom nivolumab 480 mg q4w",
+      "administration": "nivolumab v 100ml FR i.v./30 min, potom ipilimumab v 250ml FR i.v./30 min. Udržiavanie: nivolumab 480 mg q4w.",
+      "premedication": "Bez premedikácie",
+      "source": "Motzer RJ et al. NEJM 2018;378:1277 (CheckMate-214). mRCC 1. línia."
+    },
+    {
+      "name": "Ipilimumab + Nivolumab",
+      "regimen name": "Ipi 3mg/kg q3w × 4 monoterapia (melanóm, adjuvant)",
       "dosage": "3 mg/kg",
-      "frequency": "21 dní",
-      "administration": "na 30 minút"
-    },
-    {
-      "name": "Ipilimumab (Yervoy)",
-      "regimen name": "Ipilimumab 1 mg/kg 6 weekly s Nivolumabom",
-      "dosage": "1 mg/kg",
-      "frequency": "42 dní",
-      "administration": "na 30 minút"
+      "frequency": "21 dní (max 4 dávky)",
+      "administration": "ipilimumab v 250ml FR i.v./90 min. Max 4 dávky.",
+      "premedication": "Bez premedikácie",
+      "source": "Eggermont AMM et al. NEJM 2016;375:1845 (EORTC 18071). Adjuvant melanóm štádium III."
     },
     {
       "name": "Nivolumab (Opdivo)",
@@ -98,27 +131,6 @@
       "dosage": "480 mg",
       "frequency": "28 dní",
       "administration": "na 30 minút"
-    },
-    {
-      "name": "Nivolumab (Opdivo)",
-      "regimen name": "Nivolumab 1 mg/kg s Ipilimumab 3 mg/kg",
-      "dosage": "1 mg/kg",
-      "frequency": "21 dní",
-      "administration": "na 30 minút"
-    },
-    {
-      "name": "Nivolumab (Opdivo)",
-      "regimen name": "Nivolumab 240 mg po kombinácii s Ipilimumab",
-      "dosage": "240 mg",
-      "frequency": "14 dní",
-      "administration": "na 30 minút"
-    },
-    {
-      "name": "Nivolumab (Opdivo)",
-      "regimen name": "Nivolumab 480 mg po kombinácii s Ipilimumab",
-      "dosage": "480 mg",
-      "frequency": "28 dní",
-      "administration": "na 60 minút"
     },
     {
       "name": "Pembrolizumab (Keytruda)",
@@ -188,5 +200,5 @@
       "source": "Abou-Alfa GK et al. NEJM Evid 2022 (HIMALAYA); SmPC Imjudo. Indikácia: nerezekovateľný HCC, 1. línia (STRIDE = tremelimumab + durvalumab)."
     }
   ],
-  "_revision": "2026-06"
+  "_revision": "2026-06 | ipi/nivo unifikované podľa indikácií; pridaný Atezolizumab SC"
 }

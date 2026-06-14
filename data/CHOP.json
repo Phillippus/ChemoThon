@@ -22,13 +22,9 @@
   "NC": "21",
   "Day1": {
     "Premed": {
-      "Note": "Granisetron 2 mg p.o., pantoprazol 40mg p.o."
+      "Note": "Palonosetron 0.5mg/Netupitant 300mg (Akynzeo) p.o. 1h pred chemo, Dexametazón 12mg i.v., Pantoprazol 40mg p.o."
     },
     "Instructions": [
-      {
-        "Name": "prednison",
-        "Inst": "100 mg p.o. rozdeliť na 2-3 dávky denne"
-      },
       {
         "Name": "cyklofosfamid",
         "Inst": "v 500ml FR iv/ 60min"
@@ -36,9 +32,12 @@
       {
         "Name": "doxorubicin",
         "Inst": "v 250ml FR iv/ 60min"
+      },
+      {
+        "Name": "prednison",
+        "Inst": "100 mg p.o. rozdeliť na 2-3 dávky denne"
       }
     ]
   },
-  "_source": "Fisher RI et al. NEJM 1993;328:1002; BCCA LYCHOPR variant",
-  "_revision": "2026-06 | Prednison: 40 mg/m2 → 100 mg flat D1-5"
+  "_source": "Fisher RI et al. NEJM 1993;328:1002; GELA LNH-98.5"
 }

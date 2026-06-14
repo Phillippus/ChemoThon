@@ -129,7 +129,7 @@
         "Instructions": [
           {
             "Name": "Cabazitaxel",
-            "Inst": "prv\u00fdch 10mg v 500ml FR/ 30 min, zvysok v 500ml FR iv/ 45min",
+            "Inst": "prvých 10mg v 500ml FR/ 30 min, zvysok v 500ml FR iv/ 45min",
             "Instruction": "first 10 mg in 500 ml normal saline over 30 min,  remaining in 500 ml normal saline over 45 min"
           },
           {
@@ -164,7 +164,7 @@
         "Instructions": [
           {
             "Name": "abiraterone",
-            "Inst": "rozdeli\u0165 na 2x 500mg tbl p.o.",
+            "Inst": "rozdeliť na 2x 500mg tbl p.o.",
             "Instruction": "split into 2x 500 mg pills orally"
           },
           {
@@ -317,13 +317,13 @@
           "Name": "gemcitabine",
           "Dosage": 1000.0,
           "DosageMetric": "mg/m2",
-          "Day": "1,8,15"
+          "Day": "1,8"
         }
       ],
       "NextCycle": "29",
       "Day1": {
         "Premed": {
-          "Note": "Dexamethasone 8mg,  Pantoprazole 40mg orally,  Granisetron 2mg orally"
+          "Note": "Palonosetron 0.5mg/Netupitant 300mg (Akynzeo) p.o. 1h before chemo, Dexamethasone 12 mg i.v., Pantoprazole 40 mg p.o."
         },
         "Instructions": [
           {
@@ -351,13 +351,13 @@
           "Name": "gemcitabine",
           "Dosage": 1000.0,
           "DosageMetric": "mg/m2",
-          "Day": "1,8,15"
+          "Day": "1,8"
         }
       ],
       "NextCycle": "29",
       "Day1": {
         "Premed": {
-          "Note": "Dexamethasone 8mg,  Pantoprazole 40mg orally,  Granisetron 2mg orally"
+          "Note": "Palonosetron 0.5mg/Netupitant 300mg (Akynzeo) p.o. 1h before chemo, Dexamethasone 12 mg i.v., Pantoprazole 40 mg p.o."
         },
         "Instructions": [
           {

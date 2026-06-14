@@ -182,13 +182,97 @@ def gastrointestinal(rbodysurf):
         "Trastuzumab-deruxtecan 6.4 mg/kg (HER2+ gastric, DESTINY-Gastric01)": "tdx_gastric.json",
         "Ramucirumab 8 mg/kg q2w (gastric 2. línia, REGARD)": "ramucirumab.json",
         "Ramucirumab + Paclitaxel weekly (gastric 2. línia, RAINBOW)": "ramucirumab_paclitaxel.json",
+        # --- Nové 2026-06 doplnené ---
+        "Platina + Gemcitabin (žlčové cesty, ABC-02)": "platina_gem_biliary",
+        "Platina + Kapecitabín + Trastuzumab (HER2+ gastric, ToGA)": "platina_cape_trastu",
     }
-    
+
     chemo_choice = st.selectbox("Vyberte chemoterapiu:", list(chemo_options.keys()))
 
     if chemo_choice and chemo_choice != "Vyberte chemoterapiu":
         if chemo_choice == "Pt/5-FU":
             platinum5FU(rbodysurf)
+        elif chemo_choice == "Platina + Gemcitabin (žlčové cesty, ABC-02)":
+            pt_biliary = st.selectbox("Ktorá platina?", ["Vyberte", "Cisplatina 25 mg/m2 D1,8", "Karboplatina AUC 5 D1"], key="pt_biliary")
+            if pt_biliary == "Cisplatina 25 mg/m2 D1,8":
+                ddp_dose = round(25 * rbodysurf, 2)
+                gem_dose = round(1000 * rbodysurf, 2)
+                st.write(f"### Cisplatina + Gemcitabin (žlčové cesty)")
+                st.write(f"cisplatina 25 mg/m2 ......... {ddp_dose} mg D1, D8")
+                st.write(f"gemcitabin 1000 mg/m2 ......... {gem_dose} mg D1, D8")
+                st.write("NC 21. deň")
+                st.write("D1 - premedikácia:")
+                import json as _j
+                bl = _j.load(open("data/cisplatin_gem_biliary.json", encoding="utf-8"))
+                st.write(bl["Day1"]["Premed"]["Note"])
+                st.write("D1 - chemoterapia:")
+                st.write(f"gemcitabin {gem_dose} mg v 500ml FR i.v./30 min")
+                st.write(f"cisplatina {ddp_dose} mg v 250ml FR i.v./60 min (po gem)")
+                st.write("Manitol 10% 250ml i.v. po cisplatine")
+                st.write("D8: opakovať gemcitabin + cisplatina (bez Manitolu ak CrCl adekvátna)")
+            elif pt_biliary == "Karboplatina AUC 5 D1":
+                CrCl_b = st.number_input("Clearance (ml/min):", min_value=1, max_value=250, value=None, key="crcl_biliary")
+                gem_dose = round(1000 * rbodysurf, 2)
+                if CrCl_b is not None:
+                    cbdca_dose = (CrCl_b + 25) * 5
+                    st.write(f"### Karboplatina + Gemcitabin (žlčové cesty)")
+                    st.write(f"karboplatina AUC 5 ......... {cbdca_dose} mg D1")
+                    st.write(f"gemcitabin 1000 mg/m2 ......... {gem_dose} mg D1, D8")
+                    st.write("NC 21. deň")
+                    import json as _j
+                    bl = _j.load(open("data/cbdca_gem_biliary.json", encoding="utf-8"))
+                    st.write(bl["Day1"]["Premed"]["Note"])
+                    st.write(f"karboplatina {cbdca_dose} mg v 500ml FR i.v./60 min D1")
+                    st.write(f"gemcitabin {gem_dose} mg v 500ml FR i.v./30 min D1, D8")
+        elif chemo_choice == "Platina + Kapecitabín + Trastuzumab (HER2+ gastric, ToGA)":
+            pt_her2 = st.selectbox("Ktorá platina?", ["Vyberte", "Cisplatina 80 mg/m2 D1", "Karboplatina AUC 5-6 D1", "Oxaliplatina 130 mg/m2 D1 (switch z DDP)"], key="pt_her2")
+            if pt_her2 == "Cisplatina 80 mg/m2 D1":
+                ddp_dose = round(80 * rbodysurf, 2)
+                cape_dose = round(1000 * rbodysurf, 2)
+                b = ddp_dose // 50; c = ddp_dose % 50; rng = int(b)
+                st.write(f"### Cisplatina + Kapecitabín + Trastuzumab (HER2+ gastric)")
+                st.write(f"cisplatina 80 mg/m2 ......... {ddp_dose} mg D1")
+                st.write(f"kapecitabín 1000 mg/m2 ......... {cape_dose} mg D1-14 (2× denne)")
+                st.write("trastuzumab: 1. dávka 8 mg/kg iv, ďalšie 6 mg/kg q3w")
+                st.write("NC 21. deň")
+                import json as _j
+                trastu = _j.load(open("data/ddp_capecitabine_trastu.json", encoding="utf-8"))
+                st.write(trastu["Day1"]["Premed"]["Note"])
+                for ordo in range(1, rng + 1):
+                    st.write(f"cisplatina 50mg v 500ml RR i.v.")
+                if c > 0:
+                    st.write(f"cisplatina {int(c)} mg v 500ml RR i.v.")
+                st.write("Manitol 10% 250ml i.v.")
+                st.write(f"kapecitabín {cape_dose} mg p.o. 2× denne D1-14")
+            elif pt_her2 == "Karboplatina AUC 5-6 D1":
+                CrCl_h = st.number_input("Clearance (ml/min):", min_value=1, max_value=250, value=None, key="crcl_her2")
+                AUC_h = st.number_input("AUC (5 alebo 6):", min_value=4, max_value=6, value=5, key="auc_her2")
+                cape_dose = round(1000 * rbodysurf, 2)
+                if CrCl_h is not None:
+                    cbdca_dose = (CrCl_h + 25) * AUC_h
+                    st.write(f"### Karboplatina + Kapecitabín + Trastuzumab (HER2+ gastric)")
+                    st.write(f"karboplatina AUC {AUC_h} ......... {cbdca_dose} mg D1")
+                    st.write(f"kapecitabín 1000 mg/m2 ......... {cape_dose} mg D1-14 (2× denne)")
+                    st.write("trastuzumab: 1. dávka 8 mg/kg iv, ďalšie 6 mg/kg q3w")
+                    st.write("NC 21. deň")
+                    import json as _j
+                    trastu = _j.load(open("data/cbdca_capecitabine_trastu.json", encoding="utf-8"))
+                    st.write(trastu["Day1"]["Premed"]["Note"])
+                    st.write(f"karboplatina {cbdca_dose} mg v 500ml FR i.v./60 min D1")
+                    st.write(f"kapecitabín {cape_dose} mg p.o. 2× denne D1-14")
+            elif pt_her2 == "Oxaliplatina 130 mg/m2 D1 (switch z DDP)":
+                oxa_dose = round(130 * rbodysurf, 2)
+                cape_dose = round(1000 * rbodysurf, 2)
+                st.write(f"### Oxaliplatina + Kapecitabín + Trastuzumab (SWITCH z cisplatiny)")
+                st.write(f"oxaliplatina 130 mg/m2 ......... {oxa_dose} mg D1")
+                st.write(f"kapecitabín 1000 mg/m2 ......... {cape_dose} mg D1-14 (2× denne)")
+                st.write("trastuzumab: pokračuje 6 mg/kg q3w")
+                st.write("NC 21. deň")
+                import json as _j
+                trastu = _j.load(open("data/oxa_capecitabine_trastu.json", encoding="utf-8"))
+                st.write(trastu["Day1"]["Premed"]["Note"])
+                st.write(f"oxaliplatina {oxa_dose} mg v 250ml 5%GLC i.v./120 min D1")
+                st.write(f"kapecitabín {cape_dose} mg p.o. 2× denne D1-14")
         else:
             chemo_file = chemo_options[chemo_choice]
             if chemo_choice in ["FLOT", "FOLFIRINOX", "NALIRI/ 5-FU", "NALIRIFOX", "Mitomycin/ 5-FU"]:
