@@ -9,27 +9,52 @@ def load_immunotherapy_data(file_path):
 
 # Funkcia na generovanie predpisu
 def generate_prescription(selected_drug, weight=None):
-    # Inicializácia reťazca pre predpis
+    import re
     prescription = ""
 
-    # Kontrola, či je potrebná premedikácia
     if 'premedication' in selected_drug:
         prescription += f"Premedikácia: {selected_drug['premedication']}\n\n"
 
-    # Kontrola, či je dávkovanie závislé na hmotnosti
-    if 'mg/kg' in selected_drug['dosage'] and weight:
-        dosage_per_kg = float(selected_drug['dosage'].split()[0].replace('mg/kg', '').strip())
-        dosage = dosage_per_kg * weight
-        if 'max_dose' in selected_drug and dosage > float(selected_drug['max_dose'].split()[0]):
-            dosage = float(selected_drug['max_dose'].split()[0])
-        dosage_str = f"{dosage} mg"
+    name = selected_drug['name']
+    dosage_raw = selected_drug['dosage']
+    admin = selected_drug['administration']
+    is_sc = 's.c.' in admin.lower() or 'sc' in name.lower()
+
+    if is_sc:
+        # SC liek – použiť administračný text priamo, bez "v 500ml FR"
+        prescription += f"{name} / {admin}\n\n"
+    elif '+' in dosage_raw and 'mg/kg' in dosage_raw:
+        # Kombinácia s viacerými mg/kg komponentmi (ipi+nivo)
+        parts = dosage_raw.split('+')
+        dose_lines = []
+        for part in parts:
+            part = part.strip()
+            nums = re.findall(r'[\d.]+', part)
+            abbr_match = re.search(r'\(([^)]+)\)', part)
+            abbr = abbr_match.group(1).strip() if abbr_match else ""
+            if 'mg/kg' in part and nums and weight:
+                calc = round(float(nums[0]) * weight, 1)
+                label = abbr.split()[0] if abbr else "liek"
+                dose_lines.append(f"{label}: {nums[0]} mg/kg → {calc} mg")
+            elif 'mg' in part and 'mg/kg' not in part and nums:
+                label = abbr.split()[0] if abbr else ""
+                dose_lines.append(f"{label + ': ' if label else ''}{nums[0]} mg flat")
+        prescription += f"{name}: {'; '.join(dose_lines)}\n{admin}\n\n"
+    elif 'mg/kg' in dosage_raw and weight:
+        # Jednoduchý mg/kg (napr. Durvalumab 10 mg/kg)
+        nums = re.findall(r'[\d.]+', dosage_raw)
+        calc = round(float(nums[0]) * weight, 1)
+        if 'max_dose' in selected_drug:
+            max_nums = re.findall(r'[\d.]+', selected_drug['max_dose'])
+            if max_nums:
+                calc = min(calc, float(max_nums[0]))
+        prescription += f"{name} {nums[0]} mg/kg → {calc} mg v 250ml FR i.v. / {admin}\n\n"
     else:
-        dosage_str = selected_drug['dosage']
+        # Flat dose IV
+        prescription += f"{name} {dosage_raw} v 250ml FR i.v. / {admin}\n\n"
 
-    # Generovanie podrobností o predpise
-    prescription += f"{selected_drug['name']} {dosage_str} v 500ml FR (fyziologický roztok) / {selected_drug['administration']}\n\n"
-    prescription += " " * 5 + f"NC Deň {selected_drug['frequency'].split()[0]}"
-
+    freq = selected_drug['frequency']
+    prescription += " " * 5 + f"NC Deň {freq.split()[0]}"
     return prescription
 
 # Názov aplikácie

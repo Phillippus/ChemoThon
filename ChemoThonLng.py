@@ -70,7 +70,9 @@ def ChemoCBDCA(rbodysurf, chemoType):
     if CrCl is not None and AUC is not None:
         st.write(f"CBDCA AUC {AUC} ............ {(CrCl + 25) * AUC} mg  D1")
         for i in chemoJson["Chemo"]:
-            st.write(f"{i['Name']}  {i['Dosage']} {i['DosageMetric']} ..... {i['Dosage'] * rbodysurf} mg D {i['Day']}")
+            metric = i.get('DosageMetric', 'mg/m2')
+            dose = i['Dosage'] if 'flat' in metric.lower() else round(i['Dosage'] * rbodysurf, 2)
+            st.write(f"{i['Name']}  {i['Dosage']} {metric} ..... {dose} mg D {i['Day']}")
 
         st.write(f"NC {chemoJson['NC']} . deň")
 
@@ -78,7 +80,9 @@ def ChemoCBDCA(rbodysurf, chemoType):
         st.write(chemoJson["Day1"]["Premed"]["Note"])
         st.write(f"CBDCA {(CrCl + 25) * AUC} mg v 500ml FR iv")
         for x in range(len(chemoJson["Chemo"])):
-            st.write(f"{chemoJson['Day1']['Instructions'][x]['Name']} {round(chemoJson['Chemo'][x]['Dosage'] * rbodysurf, 2)} mg {chemoJson['Day1']['Instructions'][x]['Inst']}")
+            metric = chemoJson['Chemo'][x].get('DosageMetric', 'mg/m2')
+            dose = chemoJson['Chemo'][x]['Dosage'] if 'flat' in metric.lower() else round(chemoJson['Chemo'][x]['Dosage'] * rbodysurf, 2)
+            st.write(f"{chemoJson['Day1']['Instructions'][x]['Name']} {dose} mg {chemoJson['Day1']['Instructions'][x]['Inst']}")
     else:
         st.write("Please enter valid values for both creatinine clearance (CrCl) and AUC.")
 
@@ -99,7 +103,6 @@ def lung(rbodysurf):
         "Atezolizumab + Etoposid + CBDCA (SCLC 1. línia, IMpower133)",
         # --- Nové 2026-06 doplnené ---
         "Platina + Vinorelbin (adjuvantná, IALT/ANITA)",
-        "Dakarbazín 1000 mg/m2 D1 q21d",
     ]
     lng = st.selectbox("Vyberte chemoterapiu, ktorú chcete podať:", chemo_options)
 
@@ -155,8 +158,6 @@ def lung(rbodysurf):
                     st.write(vn["Day1"]["Premed"]["Note"])
                     st.write(f"karboplatina {cbdca_dose} mg v 500ml FR i.v./60 min")
                     st.write(f"vinorelbin {vin_dose} mg v 125ml FR i.v./10 min D1, D8")
-        elif lng == "Dakarbazín 1000 mg/m2 D1 q21d":
-            Chemo(rbodysurf, "dacarbazine1000.json")
         elif lng == "Atezolizumab + Etoposid + CBDCA (SCLC 1. línia, IMpower133)":
             ChemoCBDCA(rbodysurf, "atezolizumab_ep.json")
 

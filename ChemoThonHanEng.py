@@ -44,27 +44,24 @@ def pt_5fu_cisplatin(bsa, weight):
     fu_dose = round(1000 * bsa, 2)
     st.write("### Protocol: Pt/5-FU cisplatin-based")
     st.write("#### Chemotherapy Drugs")
-    st.write(f"cisplatin 80 mg/m2 ......... {ddp_dose} mg D 1")
-    st.write(f"fluorouracil 1000 mg/m2 ......... {fu_dose} mg D 1-4")
+    st.write(f"cisplatin 80 mg/m2 ......... {ddp_dose} mg D1")
+    st.write(f"fluorouracil 1000 mg/m2 ......... {fu_dose} mg D1-4")
     st.write("**Next Cycle:** 21 days")
     st.write("#### D1 - Premedication")
-    st.write("Dexamethasone 8mg iv, Pantoprazole 40mg p.o., Ondansetron 8mg in 250ml NS iv")
-    # Updated D1 - Chemotherapy Instructions
+    st.write("1. Palonosetron 0.5mg/Netupitant 300mg (Akynzeo) p.o. 1h before chemo, Dexamethasone 12mg i.v., Pantoprazole 40mg p.o.")
     st.write("#### D1 - Chemotherapy Instructions")
-    item_no = 1
-    st.write(f"{item_no}. Dexametazón 8mg iv, Pantoprazol 40 mg p.o., Ondansetron 8mg v 250ml FR iv")
-    item_no += 1
+    item_no = 2
     full_units = int(ddp_dose // 50)
     remainder = round(ddp_dose % 50, 2)
     for _ in range(full_units):
-        st.write(f"{item_no}. Cisplatina 50mg v 500ml RR iv")
+        st.write(f"{item_no}. Cisplatin 50 mg in 500 ml normal saline iv")
         item_no += 1
     if remainder > 0:
-        st.write(f"{item_no}. Cisplatina {remainder} mg v 500ml RR iv")
+        st.write(f"{item_no}. Cisplatin {remainder} mg in 500 ml normal saline iv")
         item_no += 1
-    st.write(f"{item_no}. Manitol 10% 250ml iv")
+    st.write(f"{item_no}. Mannitol 10% 250 ml iv")
     item_no += 1
-    st.write(f"{item_no}. 5-fluoruracil {fu_dose} mg na 24 hodín/kivi")
+    st.write(f"{item_no}. 5-fluorouracil {fu_dose} mg continuous infusion over 24 hours")
 
 def pt_5fu_carboplatin(bsa, weight):
     CrCl = st.number_input("Enter creatinine clearance (ml/min):", min_value=1, max_value=250, value=60, step=1)
@@ -78,10 +75,10 @@ def pt_5fu_carboplatin(bsa, weight):
     st.write(f"fluorouracil 1000 mg/m2 ......... {fu_dose} mg D 1-4")
     st.write("**Next Cycle:** 21 days")
     st.write("#### D1 - Premedication")
-    st.write("Dexamethasone 8mg iv, Pantoprazole 40mg p.o., Ondansetron 8mg in 250ml NS iv")
+    st.write("Palonosetron 0.5mg/Netupitant 300mg (Akynzeo) p.o. 1h before chemo, Dexamethasone 12mg i.v., Pantoprazole 40mg p.o.")
     st.write("#### D1 - Chemotherapy Instructions")
-    st.write(f"carboplatin - {cbdca_dose}mg")
-    st.write(f"fluorouracil - {fu_dose}mg, administered continuously over 24 hours via elastomeric pump")
+    st.write(f"carboplatin {cbdca_dose} mg in 500 ml glucose 5% iv/60 min")
+    st.write(f"fluorouracil {fu_dose} mg continuous infusion over 24 hours")
 
 def load_chemotherapy_data():
     """Loads all chemotherapy data from the consolidated JSON file."""

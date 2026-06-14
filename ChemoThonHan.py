@@ -20,7 +20,7 @@ def platinum5FU(rbodysurf):
                                                           
                                              D1
         """)
-        st.write("1. Dexametazón 8mg iv, Pantoprazol 40 mg p.o., Ondansetron 8mg v 250ml FR iv")
+        st.write("1. Palonosetron 0.5mg/Netupitant 300mg (Akynzeo) p.o. 1h pred chemo, Dexametazón 12mg i.v., Pantoprazol 40mg p.o.")
         for ordo in range(2, rng + 2):
             st.write(f"{ordo}. Cisplatina 50mg v 500ml RR iv")
         st.write(f"{ordo}. Cisplatina {int(c)} mg v 500ml RR iv")
@@ -39,8 +39,8 @@ def platinum5FU(rbodysurf):
                                                               
                                                  D1
             """)
-            st.write("Dexametazón 8mg iv, Pantoprazol 40 mg p.o., Ondansetron 8mg v 250ml FR iv")
-            st.write(f"CBDCA AUC {AUC}............ {(CrCl + 25) * AUC} mg  D1") 
+            st.write("Palonosetron 0.5mg/Netupitant 300mg (Akynzeo) p.o. 1h pred chemo, Dexametazón 12mg i.v., Pantoprazol 40mg p.o.")
+            st.write(f"CBDCA {(CrCl + 25) * AUC} mg v 500ml FR iv")
             st.write(f"5-fluoruracil {rbodysurf * 1000} mg na 24 hodín/kivi")
 
 # Function for biweekly cetuximab 500mg/m²
@@ -71,19 +71,23 @@ def Chemo(rbodysurf, chemoType):
     
     st.write("Rozpis chemoterapie:")
     for i in chemoJson["Chemo"]:
-        st.write(f"{i['Name']}  {round(i['Dosage'], 2)} {i['DosageMetric']}......... {round(i['Dosage'] * rbodysurf, 2)} mg D{i['Day']}")
-    
+        metric = i.get('DosageMetric', 'mg/m2')
+        dose = i['Dosage'] if 'flat' in metric.lower() else round(i['Dosage'] * rbodysurf, 2)
+        st.write(f"{i['Name']}  {round(i['Dosage'], 2)} {metric}......... {dose} mg D{i['Day']}")
+
     st.write(f"NC {chemoJson['NC']} . deň")
-    
+
     Day1 = chemoJson["Day1"]["Instructions"]
     C1 = chemoJson["Chemo"]
-    
+
     st.write("D1 - premedikácia:")
     st.write(chemoJson["Day1"]["Premed"]["Note"])
-    
+
     st.write("D1 - chemoterapia:")
     for x in range(len(chemoJson["Chemo"])):
-        st.write(f"{Day1[x]['Name']} {round(C1[x]['Dosage'] * rbodysurf, 2)} mg {Day1[x]['Inst']}")
+        metric = C1[x].get('DosageMetric', 'mg/m2')
+        dose = C1[x]['Dosage'] if 'flat' in metric.lower() else round(C1[x]['Dosage'] * rbodysurf, 2)
+        st.write(f"{Day1[x]['Name']} {dose} mg {Day1[x]['Inst']}")
 
 # Function for head and neck cancer chemotherapy
 def headandneck(rbodysurf): 

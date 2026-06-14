@@ -150,6 +150,7 @@ We welcome your feedback to improve this app further. Feel free to reach out at 
             "Mirvetuximab soravtansine 6 mg/kg (FRα+ platinum-resistant ovarian, MIRASOL)",
             "Lenvatinib 20 mg/day + Pembrolizumab (endometrial, KEYNOTE-775)",
             "Pembrolizumab + Carboplatin + Paclitaxel (endometrial, NRG-GY018)",
+            "Platinum + Paclitaxel + Bevacizumab + Pembrolizumab (endometrial/cervical)",
         ]
         chemo_names = [protocol["name"] for protocol in data["chemotherapies"]]
         selected_protocol_name = st.selectbox("Select a chemotherapy regimen:", chemo_names + extra_new)
@@ -181,6 +182,49 @@ We welcome your feedback to improve this app further. Feel free to reach out at 
                 display_simple_json("pembrolizumab_carboplatin_paclitaxel_gyn.json", bsa, weight_val)
                 if crcl and auc:
                     st.write(f"Carboplatin AUC {auc} ......... {(crcl + 25) * auc} mg D1")
+            elif selected_protocol_name == "Platinum + Paclitaxel + Bevacizumab + Pembrolizumab (endometrial/cervical)":
+                import json as _j
+                _bpj = _j.load(open("data/cbdca_taxol_beva_pembro_gyn.json", encoding="utf-8"))
+                taxol_dose = round(175 * bsa, 2)
+                beva_dose = round(15 * weight_val, 2) if weight_val else "?"
+                pt_choice = st.selectbox("Select platinum:", ["Choose", "Carboplatin AUC 5 D1", "Cisplatin 50 mg/m2 D1"], key="pt_bpj_eng")
+                if pt_choice == "Carboplatin AUC 5 D1":
+                    crcl_b = st.number_input("Creatinine Clearance (ml/min):", min_value=1, max_value=250, value=None, key="crcl_bpj_eng")
+                    if crcl_b is not None:
+                        cbdca_dose = (crcl_b + 25) * 5
+                        st.write("#### Chemotherapy Drugs")
+                        st.write(f"pembrolizumab 200 mg flat dose D1")
+                        st.write(f"paclitaxel 175 mg/m2 ......... {taxol_dose} mg D1")
+                        st.write(f"carboplatin AUC 5 ......... {cbdca_dose} mg D1")
+                        st.write(f"bevacizumab 15 mg/kg ......... {beva_dose} mg D1")
+                        st.write("**Next Cycle:** 21 days")
+                        st.write("#### D1 - Premedication")
+                        st.write(sk_to_eng(_bpj["Day1"]["Premed"]["Note"]))
+                        st.write("#### D1 - Chemotherapy Instructions")
+                        st.write(f"pembrolizumab 200 mg {sk_to_eng(_bpj['Day1']['Instructions'][0]['Inst'])}")
+                        st.write(f"paclitaxel {taxol_dose} mg {sk_to_eng(_bpj['Day1']['Instructions'][1]['Inst'])}")
+                        st.write(f"carboplatin {cbdca_dose} mg in 500 ml NaCl i.v./60 min")
+                        st.write(f"bevacizumab {beva_dose} mg {sk_to_eng(_bpj['Day1']['Instructions'][2]['Inst'])}")
+                elif pt_choice == "Cisplatin 50 mg/m2 D1":
+                    ddp_dose = round(50 * bsa, 2)
+                    ddp_vials = int(ddp_dose // 50); ddp_rem = round(ddp_dose % 50, 2)
+                    st.write("#### Chemotherapy Drugs")
+                    st.write(f"pembrolizumab 200 mg flat dose D1")
+                    st.write(f"paclitaxel 175 mg/m2 ......... {taxol_dose} mg D1")
+                    st.write(f"cisplatin 50 mg/m2 ......... {ddp_dose} mg D1")
+                    st.write(f"bevacizumab 15 mg/kg ......... {beva_dose} mg D1")
+                    st.write("**Next Cycle:** 21 days")
+                    st.write("#### D1 - Premedication")
+                    st.write(sk_to_eng(_bpj["Day1"]["Premed"]["Note"]))
+                    st.write("#### D1 - Chemotherapy Instructions")
+                    st.write(f"pembrolizumab 200 mg {sk_to_eng(_bpj['Day1']['Instructions'][0]['Inst'])}")
+                    st.write(f"paclitaxel {taxol_dose} mg {sk_to_eng(_bpj['Day1']['Instructions'][1]['Inst'])}")
+                    for _ in range(ddp_vials):
+                        st.write("cisplatin 50 mg in 500 ml normal saline i.v./60 min")
+                    if ddp_rem > 0:
+                        st.write(f"cisplatin {ddp_rem} mg in 500 ml normal saline i.v./60 min")
+                    st.write("Mannitol 10% 250 ml i.v. after cisplatin")
+                    st.write(f"bevacizumab {beva_dose} mg {sk_to_eng(_bpj['Day1']['Instructions'][2]['Inst'])}")
             elif protocol:
                 if selected_protocol_name == "INTERLACE CBDCA/Paclitaxel":
                     st.info("⚠️ INTERLACE: 6 induction cycles of CBDCA/paclitaxel (AUC 2 / 80 mg/m²), then switch to cisplatin 40 mg/m² weekly during radiotherapy (alternative: flat dose cisplatin 50 mg weekly).")

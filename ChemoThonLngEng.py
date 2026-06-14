@@ -101,8 +101,9 @@ def ChemoCBDCA(bsa, filename):
         st.write("#### Chemotherapy Drugs")
         st.write(f"Carboplatin AUC {auc} ......... {cbdca_dose} mg D1")
         for drug in reg.get("Chemo", []):
-            calculated = round(drug["Dosage"] * bsa, 2)
-            st.write(f"{drug['Name']} {drug['Dosage']} {drug['DosageMetric']} ......... {calculated} mg D{drug['Day']}")
+            metric = drug.get("DosageMetric", "mg/m2")
+            dose = drug["Dosage"] if "flat" in metric.lower() else round(drug["Dosage"] * bsa, 2)
+            st.write(f"{drug['Name']} {drug['Dosage']} {metric} ......... {dose} mg D{drug['Day']}")
         st.write(f"**Next Cycle:** {reg.get('NC', '?')} days")
         premed = reg.get("Day1", {}).get("Premed", {}).get("Note", "")
         if premed:
@@ -115,8 +116,9 @@ def ChemoCBDCA(bsa, filename):
             drug_name = inst.get("Name", "")
             drug = next((d for d in chemo_list if d["Name"] == drug_name), None)
             if drug:
-                calc_dose = round(drug["Dosage"] * bsa, 2)
-                st.write(f"{drug_name} {calc_dose} mg {sk_to_eng(inst.get('Inst', ''))}") 
+                metric = drug.get("DosageMetric", "mg/m2")
+                calc_dose = drug["Dosage"] if "flat" in metric.lower() else round(drug["Dosage"] * bsa, 2)
+                st.write(f"{drug_name} {calc_dose} mg {sk_to_eng(inst.get('Inst', ''))}")
 
 def lung(bsa, weight=None):
     """Lung cancer chemotherapy regimen selector."""
@@ -136,7 +138,6 @@ def lung(bsa, weight=None):
         "Atezolizumab + Etoposide + Carboplatin (SCLC 1st line, IMpower133)",
         # --- Added 2026-06 ---
         "Platinum + Vinorelbine (adjuvant NSCLC, IALT/ANITA)",
-        "Dacarbazine 1000 mg/m² D1 q21d",
     ])
 
     if chemo_choice == "Carboplatin + Paclitaxel":
@@ -200,8 +201,6 @@ def lung(bsa, weight=None):
                 st.write("#### D1 - Chemotherapy")
                 st.write(f"carboplatin {cbdca_dose} mg in 500 ml glucose 5% i.v./60 min")
                 st.write(f"vinorelbine {vin_dose} mg in 125 ml NaCl i.v./10 min D1, D8")
-    elif chemo_choice == "Dacarbazine 1000 mg/m² D1 q21d":
-        Chemo(bsa, "dacarbazine1000.json")
 
 def main():
     st.title("ChemoThon Lung ENG v 2.3")

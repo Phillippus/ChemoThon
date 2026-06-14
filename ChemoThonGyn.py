@@ -19,7 +19,9 @@ def ChemoCBDCA(rbodysurf, chemoType):
     if CrCl is not None and AUC is not None:
         st.write(f"CBDCA AUC {AUC}............ {(CrCl + 25) * AUC} mg  D1")
         for i in chemoJson["Chemo"]:
-            st.write(f"{i['Name']} {i['Dosage']} {i['DosageMetric']} ..... {round(i['Dosage'] * rbodysurf, 2)} mg D{i['Day']}")
+            metric = i.get('DosageMetric', 'mg/m2')
+            dose = i['Dosage'] if 'flat' in metric.lower() else round(i['Dosage'] * rbodysurf, 2)
+            st.write(f"{i['Name']} {i['Dosage']} {metric} ..... {dose} mg D{i['Day']}")
 
         st.write(f"NC {chemoJson['NC']} . deň")
 
@@ -27,7 +29,9 @@ def ChemoCBDCA(rbodysurf, chemoType):
         st.write(chemoJson["Day1"]["Premed"]["Note"])
         st.write(f"CBDCA {(CrCl + 25) * AUC} mg v 500ml FR iv")
         for x in range(len(chemoJson["Chemo"])):
-            st.write(f"{chemoJson['Day1']['Instructions'][x]['Name']} {round(chemoJson['Chemo'][x]['Dosage'] * rbodysurf, 2)} mg {chemoJson['Day1']['Instructions'][x]['Inst']}")
+            metric = chemoJson['Chemo'][x].get('DosageMetric', 'mg/m2')
+            dose = chemoJson['Chemo'][x]['Dosage'] if 'flat' in metric.lower() else round(chemoJson['Chemo'][x]['Dosage'] * rbodysurf, 2)
+            st.write(f"{chemoJson['Day1']['Instructions'][x]['Name']} {dose} mg {chemoJson['Day1']['Instructions'][x]['Inst']}")
 
 # Function for chemotherapy with Cisplatin
 def ChemoCISplatin(rbodysurf, chemoType):
@@ -67,7 +71,9 @@ def Chemo(rbodysurf, chemoType):
 
     st.write("Rozpis chemoterapie:")
     for i in chemoJson["Chemo"]:
-        st.write(f"{i['Name']} {round(i['Dosage'], 2)} {i['DosageMetric']}......... {round(i['Dosage'] * rbodysurf, 2)} mg D{i['Day']}")
+        metric = i.get('DosageMetric', 'mg/m2')
+        dose = i['Dosage'] if 'flat' in metric.lower() else round(i['Dosage'] * rbodysurf, 2)
+        st.write(f"{i['Name']} {round(i['Dosage'], 2)} {metric}......... {dose} mg D{i['Day']}")
 
     st.write(f"NC {chemoJson['NC']} . deň")
 
@@ -79,7 +85,9 @@ def Chemo(rbodysurf, chemoType):
 
     st.write("D1 - chemoterapia:")
     for x in range(len(chemoJson["Chemo"])):
-        st.write(f"{Day1[x]['Name']} {round(C1[x]['Dosage'] * rbodysurf, 2)} mg {Day1[x]['Inst']}")
+        metric = C1[x].get('DosageMetric', 'mg/m2')
+        dose = C1[x]['Dosage'] if 'flat' in metric.lower() else round(C1[x]['Dosage'] * rbodysurf, 2)
+        st.write(f"{Day1[x]['Name']} {dose} mg {Day1[x]['Inst']}")
 
 # Function for chemotherapy based on weight (e.g. bevacizumab)
 def ChemoWeightBased(weight, chemoType):
@@ -119,6 +127,7 @@ def gynecology(rbodysurf):
         "Mirvetuximab soravtansín 6 mg/kg (PROC FRα+, MIRASOL)",
         "Lenvatinib 20 mg/deň + Pembrolizumab (endometrium, KEYNOTE-775)",
         "Pembrolizumab + CBDCA + Paclitaxel (endometrium, NRG-GY018)",
+        "Platina + Paklitaxel + Bevacizumab + Pembrolizumab (endometrium/cervix)",
     ])
 
     if chemo_choice == "CBDCA/ paclitaxel":
@@ -154,6 +163,50 @@ def gynecology(rbodysurf):
         st.write("NC 21. deň (pembrolizumab q3w, lenvatinib kontinuálne D1-28)")
     elif chemo_choice == "Pembrolizumab + CBDCA + Paclitaxel (endometrium, NRG-GY018)":
         ChemoCBDCA(rbodysurf, "pembrolizumab_carboplatin_paclitaxel_gyn.json")
+    elif chemo_choice == "Platina + Paklitaxel + Bevacizumab + Pembrolizumab (endometrium/cervix)":
+        import json as _j
+        _bpj = _j.load(open("data/cbdca_taxol_beva_pembro_gyn.json", encoding="utf-8"))
+        weight = st.session_state.get('weight', None)
+        taxol_dose = round(175 * rbodysurf, 2)
+        beva_dose = round(15 * weight, 2) if weight else "?"
+        pt_choice = st.selectbox("Ktorá platina?", ["Vyberte", "Karboplatina AUC 5 D1", "Cisplatina 50 mg/m2 D1"], key="pt_bpj")
+        if pt_choice == "Karboplatina AUC 5 D1":
+            CrCl_b = st.number_input("Clearance (ml/min):", min_value=1, max_value=250, value=None, key="crcl_bpj")
+            if CrCl_b is not None:
+                cbdca_dose = (CrCl_b + 25) * 5
+                st.write(f"### Platina + Paklitaxel + Bevacizumab + Pembrolizumab")
+                st.write(f"pembrolizumab 200 mg flat dose  D1")
+                st.write(f"paklitaxel 175 mg/m2 ......... {taxol_dose} mg D1")
+                st.write(f"karboplatina AUC 5 ......... {cbdca_dose} mg D1")
+                st.write(f"bevacizumab 15 mg/kg ......... {beva_dose} mg D1")
+                st.write(f"NC 21. deň")
+                st.write("D1 - premedikácia:")
+                st.write(_bpj["Day1"]["Premed"]["Note"])
+                st.write("D1 - chemoterapia:")
+                st.write(f"pembrolizumab 200 mg {_bpj['Day1']['Instructions'][0]['Inst']}")
+                st.write(f"paklitaxel {taxol_dose} mg {_bpj['Day1']['Instructions'][1]['Inst']}")
+                st.write(f"karboplatina {cbdca_dose} mg v 500ml FR i.v./60 min")
+                st.write(f"bevacizumab {beva_dose} mg {_bpj['Day1']['Instructions'][2]['Inst']}")
+        elif pt_choice == "Cisplatina 50 mg/m2 D1":
+            ddp_dose = round(50 * rbodysurf, 2)
+            ddp_vials = int(ddp_dose // 50); ddp_rem = round(ddp_dose % 50, 2)
+            st.write(f"### Platina + Paklitaxel + Bevacizumab + Pembrolizumab")
+            st.write(f"pembrolizumab 200 mg flat dose  D1")
+            st.write(f"paklitaxel 175 mg/m2 ......... {taxol_dose} mg D1")
+            st.write(f"cisplatina 50 mg/m2 ......... {ddp_dose} mg D1")
+            st.write(f"bevacizumab 15 mg/kg ......... {beva_dose} mg D1")
+            st.write(f"NC 21. deň")
+            st.write("D1 - premedikácia:")
+            st.write(_bpj["Day1"]["Premed"]["Note"])
+            st.write("D1 - chemoterapia:")
+            st.write(f"pembrolizumab 200 mg {_bpj['Day1']['Instructions'][0]['Inst']}")
+            st.write(f"paklitaxel {taxol_dose} mg {_bpj['Day1']['Instructions'][1]['Inst']}")
+            for _ in range(ddp_vials):
+                st.write("cisplatina 50 mg v 500ml RR i.v./60 min")
+            if ddp_rem > 0:
+                st.write(f"cisplatina {ddp_rem} mg v 500ml RR i.v./60 min")
+            st.write("Manitol 10% 250ml i.v. po cisplatine")
+            st.write(f"bevacizumab {beva_dose} mg {_bpj['Day1']['Instructions'][2]['Inst']}")
 
 # Main input function for weight and height
 def main():

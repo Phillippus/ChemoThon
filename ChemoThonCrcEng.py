@@ -186,12 +186,24 @@ We welcome your feedback to improve this app further. Feel free to reach out at 
                 st.write("#### D1 - Premedication")
                 st.write(sk_to_eng(enc["Day1"]["Premed"]["Note"]))
                 st.write("#### D1 - Chemotherapy Instructions")
-                st.write(f"1. cetuximab {ctx_dose} mg in 500 ml NaCl i.v./2h (1st administration) or /60 min (subsequent)")
+                st.write(f"1. cetuximab {ctx_dose} mg – first 100 mg in 500 ml NaCl i.v./60 min, remainder in 500 ml NaCl i.v./90 min")
                 st.write(f"2. encorafenib 300 mg p.o. once daily with or without food (continuous)")
             elif selected_protocol_name == "Pembrolizumab 200 mg flat q3w (MSI-H/dMMR, KEYNOTE-177)":
                 display_simple_json("pembrolizumab_msiH.json", bsa, weight_val)
             elif selected_protocol_name == "Trifluridine/Tipiracil + Bevacizumab 5 mg/kg q2w (SUNLIGHT, 3rd line)":
-                display_simple_json("tritipi_bev.json", bsa, weight_val)
+                import json as _j
+                sl = _j.load(open("data/tritipi_bev.json", encoding="utf-8"))
+                ttd_dose = round(70 * bsa, 2)
+                beva_dose = round(5 * weight_val, 2)
+                st.write("#### SUNLIGHT — Trifluridine/Tipiracil + Bevacizumab")
+                st.write(f"trifluridine/tipiracil 70 mg/m²/day ......... {ttd_dose} mg D1-5, D8-12")
+                st.write(f"bevacizumab 5 mg/kg q2w ......... {beva_dose} mg D1, D15")
+                st.write("**Next Cycle:** 28 days")
+                st.write("#### D1 - Premedication")
+                st.write(sk_to_eng(sl["Day1"]["Premed"]["Note"]))
+                st.write("#### D1 - Chemotherapy Instructions")
+                st.write(f"trifluridine/tipiracil {ttd_dose} mg {sk_to_eng(sl['Day1']['Instructions'][0]['Inst'])}")
+                st.write(f"bevacizumab {beva_dose} mg {sk_to_eng(sl['Day1']['Instructions'][1]['Inst'])}")
             elif selected_protocol_name == "Fruquintinib 5 mg/day (FRESCO-2, ≥3rd line mCRC)":
                 display_simple_json("fruquitinib.json", bsa, weight_val)
             else:

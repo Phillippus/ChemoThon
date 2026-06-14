@@ -15,19 +15,23 @@ def Chemo(rbodysurf, chemoType):
     
     st.write("Rozpis chemoterapie:")
     for i in chemoJson["Chemo"]:
-        st.write(f"{i['Name']}  {round(i['Dosage'], 2)} {i['DosageMetric']}......... {round(i['Dosage'] * rbodysurf, 2)} mg D{i['Day']}")
-    
+        metric = i.get('DosageMetric', 'mg/m2')
+        dose = i['Dosage'] if 'flat' in metric.lower() else round(i['Dosage'] * rbodysurf, 2)
+        st.write(f"{i['Name']}  {round(i['Dosage'], 2)} {metric}......... {dose} mg D{i['Day']}")
+
     st.write(f"NC {chemoJson['NC']} . deň")
-    
+
     Day1 = chemoJson["Day1"]["Instructions"]
     C1 = chemoJson["Chemo"]
-    
+
     st.write("D1 - premedikácia:")
     st.write(chemoJson["Day1"]["Premed"]["Note"])
-    
+
     st.write("D1 - chemoterapia:")
     for x in range(len(chemoJson["Chemo"])):
-        st.write(f"{Day1[x]['Name']} {round(C1[x]['Dosage'] * rbodysurf, 2)} mg {Day1[x]['Inst']}")
+        metric = C1[x].get('DosageMetric', 'mg/m2')
+        dose = C1[x]['Dosage'] if 'flat' in metric.lower() else round(C1[x]['Dosage'] * rbodysurf, 2)
+        st.write(f"{Day1[x]['Name']} {dose} mg {Day1[x]['Inst']}")
 
 # Function for chemotherapy with DDP
 def ChemoDDP(rbodysurf, chemoType):

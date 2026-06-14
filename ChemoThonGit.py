@@ -132,7 +132,7 @@ def platinum5FU(rbodysurf):
                                                           
                                              D1
         """)
-        st.write("1. Dexametazón 8mg iv, Pantoprazol 40 mg p.o., Ondansetron 8mg v 250ml FR iv")
+        st.write("1. Palonosetron 0.5mg/Netupitant 300mg (Akynzeo) p.o. 1h pred chemo, Dexametazón 12mg i.v., Pantoprazol 40mg p.o.")
         for ordo in range(2, rng + 2):
             st.write(f"{ordo}. Cisplatina 50mg v 500ml RR iv")
         st.write(f"{ordo}. Cisplatina {int(c)} mg v 500ml RR iv")
@@ -151,8 +151,8 @@ def platinum5FU(rbodysurf):
                                                               
                                                  D1
             """)
-            st.write("Dexametazón 8mg iv, Pantoprazol 40 mg p.o., Ondansetron 8mg v 250ml FR iv")
-            st.write(f"CBDCA AUC {AUC}............ {(CrCl + 25) * AUC} mg  D1") 
+            st.write("Palonosetron 0.5mg/Netupitant 300mg (Akynzeo) p.o. 1h pred chemo, Dexametazón 12mg i.v., Pantoprazol 40mg p.o.")
+            st.write(f"CBDCA {(CrCl + 25) * AUC} mg v 500ml FR iv") 
             st.write(f"5-fluoruracil {rbodysurf * 1000} mg na 24 hodín/kivi")
         else:
             st.error("Prosím, zadajte platnú hodnotu clearance (CrCl) a AUC pred pokračovaním.")
@@ -206,10 +206,19 @@ def gastrointestinal(rbodysurf):
                 bl = _j.load(open("data/cisplatin_gem_biliary.json", encoding="utf-8"))
                 st.write(bl["Day1"]["Premed"]["Note"])
                 st.write("D1 - chemoterapia:")
-                st.write(f"gemcitabin {gem_dose} mg v 500ml FR i.v./30 min")
-                st.write(f"cisplatina {ddp_dose} mg v 250ml FR i.v./60 min (po gem)")
+                st.write(f"gemcitabin {gem_dose} mg v 500ml FR i.v./30 min D1")
+                ddp_vials = int(ddp_dose // 50); ddp_rem = round(ddp_dose % 50, 2)
+                for _ in range(ddp_vials):
+                    st.write("cisplatina 50mg v 250ml FR i.v./60 min")
+                if ddp_rem > 0:
+                    st.write(f"cisplatina {ddp_rem} mg v 250ml FR i.v./60 min")
                 st.write("Manitol 10% 250ml i.v. po cisplatine")
-                st.write("D8: opakovať gemcitabin + cisplatina (bez Manitolu ak CrCl adekvátna)")
+                st.write("--- D8 ---")
+                st.write(f"gemcitabin {gem_dose} mg v 500ml FR i.v./30 min D8")
+                for _ in range(ddp_vials):
+                    st.write("cisplatina 50mg v 250ml FR i.v./60 min D8")
+                if ddp_rem > 0:
+                    st.write(f"cisplatina {ddp_rem} mg v 250ml FR i.v./60 min D8")
             elif pt_biliary == "Karboplatina AUC 5 D1":
                 CrCl_b = st.number_input("Clearance (ml/min):", min_value=1, max_value=250, value=None, key="crcl_biliary")
                 gem_dose = round(1000 * rbodysurf, 2)
@@ -244,6 +253,7 @@ def gastrointestinal(rbodysurf):
                     st.write(f"cisplatina {int(c)} mg v 500ml RR i.v.")
                 st.write("Manitol 10% 250ml i.v.")
                 st.write(f"kapecitabín {cape_dose} mg p.o. 2× denne D1-14")
+                st.write("trastuzumab 8 mg/kg (1. dávka) alebo 6 mg/kg (ďalšie) v 250ml FR i.v./90 min (1. infúzia), 30 min (ďalšie)")
             elif pt_her2 == "Karboplatina AUC 5-6 D1":
                 CrCl_h = st.number_input("Clearance (ml/min):", min_value=1, max_value=250, value=None, key="crcl_her2")
                 AUC_h = st.number_input("AUC (5 alebo 6):", min_value=4, max_value=6, value=5, key="auc_her2")
@@ -260,6 +270,7 @@ def gastrointestinal(rbodysurf):
                     st.write(trastu["Day1"]["Premed"]["Note"])
                     st.write(f"karboplatina {cbdca_dose} mg v 500ml FR i.v./60 min D1")
                     st.write(f"kapecitabín {cape_dose} mg p.o. 2× denne D1-14")
+                    st.write("trastuzumab 8 mg/kg (1. dávka) alebo 6 mg/kg (ďalšie) v 250ml FR i.v./90 min (1. infúzia), 30 min (ďalšie)")
             elif pt_her2 == "Oxaliplatina 130 mg/m2 D1 (switch z DDP)":
                 oxa_dose = round(130 * rbodysurf, 2)
                 cape_dose = round(1000 * rbodysurf, 2)
@@ -273,6 +284,7 @@ def gastrointestinal(rbodysurf):
                 st.write(trastu["Day1"]["Premed"]["Note"])
                 st.write(f"oxaliplatina {oxa_dose} mg v 250ml 5%GLC i.v./120 min D1")
                 st.write(f"kapecitabín {cape_dose} mg p.o. 2× denne D1-14")
+                st.write("trastuzumab 6 mg/kg v 250ml FR i.v./30 min (switch z DDP)")
         else:
             chemo_file = chemo_options[chemo_choice]
             if chemo_choice in ["FLOT", "FOLFIRINOX", "NALIRI/ 5-FU", "NALIRIFOX", "Mitomycin/ 5-FU"]:
