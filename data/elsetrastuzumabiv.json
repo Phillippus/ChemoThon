@@ -1,0 +1,24 @@
+{
+  "Chemo": [
+    {
+      "Name": "trastuzumab i.v.",
+      "Dosage": 6,
+      "DosageMetric": "mg/kg",
+      "Day": "1"
+    }
+  ],
+  "NC": "21",
+  "Day1": {
+    "Premed": {
+      "Note": "Bez premedikácie"
+    },
+    "Instructions": [
+      {
+        "Name": "trastuzumab i.v.",
+        "Inst": "v 250 ml FR i.v. počas 30 min (ak bez reakcie pri 1. podaní). Monitorovať 30 min po dotečení."
+      }
+    ]
+  },
+  "_source": "SmPC Herceptin; BCCA BRAJHERIV",
+  "_revision": "2026-06"
+}

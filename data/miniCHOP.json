@@ -1,43 +1,44 @@
 {
-    "Chemo": [ 
-        {
-            "Name": "prednison",
-            "Dosage": 40,
-            "DosageMetric": "mg/m2",
-            "Day": "1-5"
-        },
-        {
-            "Name": "cyklofosfamid",
-            "Dosage": 400,
-            "DosageMetric": "mg/m2",
-            "Day": "1"
-        },
-        {
-            "Name": "doxorubicin",
-            "Dosage": 25,
-            "DosageMetric": "mg/m2",
-            "Day": "1"
-        }
-       
-    ],
-    "NC": "22",
-    "Day1": {
-        "Premed": {
-            "Note": "Granisetron 2 mg p.o., pantoprazol 40mg p.o."
-        },
-        "Instructions": [
-            {
-                "Name": "prednison",
-                "Inst": "p.o. rozdelit na 2-3 davky"
-            },
-            {
-                "Name": "cyklofosfamid",
-                "Inst": "v 500ml FRiv/ 60min"
-            },
-            {
-                "Name": "doxorubicin",
-                "Inst": "v 250ml FR iv/ 60min"
-            }            
-        ]
+  "Chemo": [
+    {
+      "Name": "prednison",
+      "Dosage": 40,
+      "DosageMetric": "mg flat dose",
+      "Day": "1-5"
+    },
+    {
+      "Name": "cyklofosfamid",
+      "Dosage": 400,
+      "DosageMetric": "mg/m2",
+      "Day": "1"
+    },
+    {
+      "Name": "doxorubicin",
+      "Dosage": 25,
+      "DosageMetric": "mg/m2",
+      "Day": "1"
     }
+  ],
+  "NC": "21",
+  "Day1": {
+    "Premed": {
+      "Note": "Palonosetron 0.5mg/Netupitant 300mg (Akynzeo) p.o. 1h pred chemo, Dexametazón 12mg i.v., Pantoprazol 40mg p.o."
+    },
+    "Instructions": [
+      {
+        "Name": "cyklofosfamid",
+        "Inst": "v 500ml FRiv/ 60min"
+      },
+      {
+        "Name": "doxorubicin",
+        "Inst": "v 250ml FR iv/ 60min"
+      },
+      {
+        "Name": "prednison",
+        "Inst": "p.o. rozdelit na 2-3 davky"
+      }
+    ]
+  },
+  "_source": "Peyrade F et al. Lancet Oncol 2011;12:460",
+  "_revision": "2026-06"
 }
