@@ -1,24 +1,24 @@
 {
-  "Chemo": [
-    {
-      "Name": "temozolomid",
-      "Dosage": 75.0,
-      "DosageMetric": "mg/m2",
-      "Day": "pocas RAT"
-    }
-  ],
-  "NC": "pocas RAT kazdy",
-  "Day1": {
-    "Premed": {
-      "Note": "Granisetron 2 mg p.o. | PROFYLAXIA PCP: cotrimoxazol 960 mg 3×/týždeň počas konkomitantnej fázy."
+    "Chemo": [
+        {
+            "Name": "temozolomide",
+            "Dosage": 75.0,
+            "DosageMetric": "mg/m2",
+            "Day": "pocas RAT"
+        }
+    ],
+    "NC": "pocas RAT kazdy",
+    "Day1": {
+        "Premed": {
+            "Note": "Granisetron 2 mg p.o. | PROFYLAXIA PCP: cotrimoxazol 960 mg 3×/týždeň počas konkomitantnej fázy."
+        },
+        "Instructions": [
+            {
+                "Name": "temozolomide",
+                "Inst": "p.o."
+            }
+        ]
     },
-    "Instructions": [
-      {
-        "Name": "temozolomid",
-        "Inst": "p.o."
-      }
-    ]
-  },
-  "_source": "Stupp R et al. NEJM 2005;352:987 (Stupp protokol GBM); ESMO CNS 2021",
-  "_revision": "2026-06 | 75 mg/m2 denne POČAS rádioterapie (max 49 dní). Pneumocystis profylaxia: cotrimoxazol 960 mg 3×/týždeň."
+    "_source": "Stupp R et al. NEJM 2005;352:987 (Stupp protokol GBM); ESMO CNS 2021",
+    "_revision": "2026-06 | 75 mg/m2 denne POČAS rádioterapie (max 49 dní). Pneumocystis profylaxia: cotrimoxazol 960 mg 3×/týždeň."
 }

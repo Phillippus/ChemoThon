@@ -1,24 +1,24 @@
 {
-  "Chemo": [
-    {
-      "Name": "gemcitabin",
-      "Dosage": 1250,
-      "DosageMetric": "mg/m2",
-      "Day": "1,8"
-    }
-  ],
-  "NC": "21",
-  "Day1": {
-    "Premed": {
-      "Note": "Granisetron 2 mg p.o."
+    "Chemo": [
+        {
+            "Name": "gemcitabine",
+            "Dosage": 1250,
+            "DosageMetric": "mg/m2",
+            "Day": "1,8"
+        }
+    ],
+    "NC": "21",
+    "Day1": {
+        "Premed": {
+            "Note": "Granisetron 2 mg p.o."
+        },
+        "Instructions": [
+            {
+                "Name": "gemcitabine",
+                "Inst": "v 500 ml FR i.v. počas 30 min. D8: opakovať rovnako."
+            }
+        ]
     },
-    "Instructions": [
-      {
-        "Name": "gemcitabin",
-        "Inst": "v 500 ml FR i.v. počas 30 min. D8: opakovať rovnako."
-      }
-    ]
-  },
-  "_source": "BCCA BCABGEMCIT; eviQ Breast Gemcitabine; Albain KS et al. J Clin Oncol 2008;26:3950",
-  "_revision": "2026-06 | dávka zmenená 1200→1250 mg/m2 (BCCA/eviQ štandard)"
+    "_source": "BCCA BCABGEMCIT; eviQ Breast Gemcitabine; Albain KS et al. J Clin Oncol 2008;26:3950",
+    "_revision": "2026-06 | dávka zmenená 1200→1250 mg/m2 (BCCA/eviQ štandard)"
 }

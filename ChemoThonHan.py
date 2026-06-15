@@ -1,5 +1,6 @@
 import streamlit as st
 import json
+from chemo_utils import bsa, Chemo
 
 # Function for platinum + 5FU chemotherapy
 def platinum5FU(rbodysurf):
@@ -17,15 +18,20 @@ def platinum5FU(rbodysurf):
         st.write(f"5-fluoruracil 1000mg/m2......... {1000 * rbodysurf} mg D1-D4")
         st.write("""
                                              NC 21. deň
-                                                          
+
                                              D1
         """)
         st.write("1. Palonosetron 0.5mg/Netupitant 300mg (Akynzeo) p.o. 1h pred chemo, Dexametazón 12mg i.v., Pantoprazol 40mg p.o.")
-        for ordo in range(2, rng + 2):
-            st.write(f"{ordo}. Cisplatina 50mg v 500ml RR iv")
-        st.write(f"{ordo}. Cisplatina {int(c)} mg v 500ml RR iv")
-        st.write(f"{ordo + 1}. Manitol 10% 250ml iv")
-        st.write(f"{ordo + 2}. 5-fluoruracil {rbodysurf * 1000} mg na 24 hodín/kivi")
+        next_n = 2
+        for _ in range(rng):
+            st.write(f"{next_n}. Cisplatina 50mg v 500ml RR iv")
+            next_n += 1
+        if c > 0:
+            st.write(f"{next_n}. Cisplatina {round(c, 2)} mg v 500ml RR iv")
+            next_n += 1
+        st.write(f"{next_n}. Manitol 10% 250ml iv")
+        next_n += 1
+        st.write(f"{next_n}. 5-fluoruracil {rbodysurf * 1000} mg na 24 hodín/kivi")
         
     elif whichPt == "Karboplatina":
         CrCl = st.number_input("Zadajte hodnotu clearance v ml/min", min_value=1, max_value=250, value=None, step=1)
@@ -64,31 +70,6 @@ def cetuximabBiweekly(rbodysurf):
         dose = round(chemoJson["Chemo"][x]["Dosage"] * rbodysurf, 2)
         st.write(f"{chemoJson['Day1']['Instructions'][x]['Name']} {dose} mg {chemoJson['Day1']['Instructions'][x]['Inst']}")# Function for basic chemotherapy
 
-def Chemo(rbodysurf, chemoType):
-    """Táto funkcia rozpisuje jednoduché chemoterapie s priamou úmerou"""
-    with open('data/' + chemoType, "r") as chemoFile:
-        chemoJson = json.loads(chemoFile.read())
-    
-    st.write("Rozpis chemoterapie:")
-    for i in chemoJson["Chemo"]:
-        metric = i.get('DosageMetric', 'mg/m2')
-        dose = i['Dosage'] if 'flat' in metric.lower() else round(i['Dosage'] * rbodysurf, 2)
-        st.write(f"{i['Name']}  {round(i['Dosage'], 2)} {metric}......... {dose} mg D{i['Day']}")
-
-    st.write(f"NC {chemoJson['NC']} . deň")
-
-    Day1 = chemoJson["Day1"]["Instructions"]
-    C1 = chemoJson["Chemo"]
-
-    st.write("D1 - premedikácia:")
-    st.write(chemoJson["Day1"]["Premed"]["Note"])
-
-    st.write("D1 - chemoterapia:")
-    for x in range(len(chemoJson["Chemo"])):
-        metric = C1[x].get('DosageMetric', 'mg/m2')
-        dose = C1[x]['Dosage'] if 'flat' in metric.lower() else round(C1[x]['Dosage'] * rbodysurf, 2)
-        st.write(f"{Day1[x]['Name']} {dose} mg {Day1[x]['Inst']}")
-
 # Function for head and neck cancer chemotherapy
 def headandneck(rbodysurf): 
     """Táto funkcia rozpisuje chemoterapie používané v liečbe nádorov hlavy a krku"""
@@ -123,12 +104,6 @@ def headandneck(rbodysurf):
     elif chemo_choice == "Nivolumab 240 mg q2w (R/M HNSCC platina-refr., CheckMate-141)":
         Chemo(rbodysurf, "nivolumab_hnscc.json")
 
-# Function to calculate Body Surface Area (BSA)
-def bsa(weight, height):
-    bodysurf = (weight**0.425) * (height**0.725) * 0.007184
-    rbodysurf = round(bodysurf, 2)
-    return rbodysurf
-
 # Main input function for weight and height
 def main():
     st.title("ChemoThon Head and NeckSK v2.2")
@@ -144,7 +119,7 @@ def main():
     weight = st.number_input("Zadajte hmotnosť (kg):", min_value=1, max_value=250, value=None)
     height = st.number_input("Zadajte výšku (cm):", min_value=1, max_value=250, value=None)
 
-    if st.button("Vypočítať telesný povrch"):
+    if st.button("Vypočítať telesný povrch") and weight is not None and height is not None:
         rbodysurf = bsa(weight, height)
         st.session_state.rbodysurf = rbodysurf
 

@@ -1,116 +1,6 @@
 import streamlit as st
 import json
-
-# Function for basic chemotherapy
-def Chemo(rbodysurf, chemoType):
-    """Táto funkcia rozpisuje jednoduché chemoterapie s priamou úmerou"""
-    
-    if chemoType is None:
-        
-        return
-    
-    try:
-        with open('data/' + chemoType, "r") as chemoFile:
-            chemoJson = json.loads(chemoFile.read())
-    except FileNotFoundError:
-        st.error(f"File not found: data/{chemoType}")
-        return
-    except json.JSONDecodeError:
-        st.error(f"Error parsing JSON file: {chemoType}")
-        return
-    
-    st.write("Rozpis chemoterapie:")
-    for i in chemoJson["Chemo"]:
-        st.write(f"{i['Name']}  {round(i['Dosage'], 2)} {i['DosageMetric']}......... {round(i['Dosage'] * rbodysurf, 2)} mg D{i['Day']}")
-    
-    st.write(f"NC {chemoJson['NC']} . deň")
-    
-    Day1 = chemoJson["Day1"]["Instructions"]
-    C1 = chemoJson["Chemo"]
-    
-    st.write("D1 - premedikácia:")
-    st.write(chemoJson["Day1"]["Premed"]["Note"])
-    
-    st.write("D1 - chemoterapia:")
-    for x in range(len(chemoJson["Chemo"])):
-        st.write(f"{Day1[x]['Name']} {round(C1[x]['Dosage'] * rbodysurf, 2)} mg {Day1[x]['Inst']}")
-
-# Function for chemotherapy with carboplatin (CBDCA)
-def ChemoCBDCA(rbodysurf, chemoType):
-    """Táto funkcia slúži pre rozpis chemoterapie obsahujúcu karboplatinu"""
-    try:
-        with open('data/' + chemoType, "r") as chemoFile:
-            chemoJson = json.loads(chemoFile.read())
-    except FileNotFoundError:
-        st.error(f"File not found: data/{chemoType}")
-        return
-    except json.JSONDecodeError:
-        st.error(f"Error parsing JSON file: {chemoType}")
-        return
-
-    CrCl = st.number_input("Zadajte hodnotu clearance v ml/min", min_value=1, max_value=250, value=None)
-    AUC = st.number_input("Zadajte hodnotu AUC 2-6 (CROSS režim: AUC=2)", min_value=2, max_value=6, value=None)
-
-    if CrCl is not None and AUC is not None:
-        st.write(f"CBDCA AUC {AUC}............ {(CrCl + 25) * AUC} mg  D1")
-        for i in chemoJson["Chemo"]:
-            st.write(f"{i['Name']} {i['Dosage']} {i['DosageMetric']} ..... {round(i['Dosage'] * rbodysurf, 2)} mg D{i['Day']}")
-
-        st.write(f"NC {chemoJson['NC']} . deň")
-
-        st.write("D1")
-        st.write(chemoJson["Day1"]["Premed"]["Note"])
-        st.write(f"CBDCA {(CrCl + 25) * AUC} mg v 500ml FR iv")
-        for x in range(len(chemoJson["Chemo"])):
-            st.write(f"{chemoJson['Day1']['Instructions'][x]['Name']} {round(chemoJson['Chemo'][x]['Dosage'] * rbodysurf, 2)} mg {chemoJson['Day1']['Instructions'][x]['Inst']}")
-
-# Function for chemotherapy with 5FU
-def Chemo5FU(rbodysurf, chemoType):
-    """Táto funkcia rozpisuje chemoterapie s kontinuálnym 5FU"""
-    try:
-        with open('data/' + chemoType, "r") as chemoFile:
-            chemoJson = json.loads(chemoFile.read())
-    except FileNotFoundError:
-        st.error(f"File not found: data/{chemoType}")
-        return
-    except json.JSONDecodeError:
-        st.error(f"Error parsing JSON file: {chemoType}")
-        return
-    
-    st.write("Rozpis chemoterapie:")
-    for i in chemoJson["Chemo"]:
-        st.write(f"{i['Name']}  {round(i['Dosage'], 2)} {i['DosageMetric']}......... {round(i['Dosage'] * rbodysurf, 2)} mg D{i['Day']}")
-    
-    if chemoType == "FLOT.json":
-        dos5FU = 2600
-        dos15FU = 2600
-        day5FU = "24 hodín"
-        day15FU = "24 hodín"
-    elif chemoType == "mtc5FU.json":
-        dos5FU = 1000
-        dos15FU = 1000
-        day5FU = "D1-4"
-        day15FU = "24 hodín"
-    else:
-        dos5FU = 2400
-        dos15FU = 1200
-        day5FU = "48 hodín"
-        day15FU = "24 hodín"
-        
-    st.write(f"5-fluoruracil {dos5FU} mg/m2...... {rbodysurf * dos5FU} mg/ {day5FU}")
-    st.write(f"NC {chemoJson['NC']} . deň")
-    
-    Day1 = chemoJson["Day1"]["Instructions"]
-    C1 = chemoJson["Chemo"]
-    
-    st.write("D1 - premedikácia:")
-    st.write(chemoJson["Day1"]["Premed"]["Note"])
-    
-    st.write("D1 - chemoterapia:")
-    for x in range(len(chemoJson["Chemo"])):
-        st.write(f"{Day1[x]['Name']} {round(C1[x]['Dosage'] * rbodysurf, 2)} mg {Day1[x]['Inst']}")
-    
-    st.write(f"5-fluoruracil {rbodysurf * dos15FU} mg/kivi {day15FU}")
+from chemo_utils import bsa, Chemo, ChemoCBDCA, Chemo5FU
 
 # Function for platinum + 5FU chemotherapy
 def platinum5FU(rbodysurf):
@@ -129,15 +19,20 @@ def platinum5FU(rbodysurf):
         st.write(f"5-fluoruracil 1000mg/m2......... {1000 * rbodysurf} mg D1-D4")
         st.write("""
                                              NC 21. deň
-                                                          
+
                                              D1
         """)
         st.write("1. Palonosetron 0.5mg/Netupitant 300mg (Akynzeo) p.o. 1h pred chemo, Dexametazón 12mg i.v., Pantoprazol 40mg p.o.")
-        for ordo in range(2, rng + 2):
-            st.write(f"{ordo}. Cisplatina 50mg v 500ml RR iv")
-        st.write(f"{ordo}. Cisplatina {int(c)} mg v 500ml RR iv")
-        st.write(f"{ordo + 1}. Manitol 10% 250ml iv")
-        st.write(f"{ordo + 2}. 5-fluoruracil {rbodysurf * 1000} mg na 24 hodín/kivi")
+        next_n = 2
+        for _ in range(rng):
+            st.write(f"{next_n}. Cisplatina 50mg v 500ml RR iv")
+            next_n += 1
+        if c > 0:
+            st.write(f"{next_n}. Cisplatina {round(c, 2)} mg v 500ml RR iv")
+            next_n += 1
+        st.write(f"{next_n}. Manitol 10% 250ml iv")
+        next_n += 1
+        st.write(f"{next_n}. 5-fluoruracil {rbodysurf * 1000} mg na 24 hodín/kivi")
         
     elif whichPt == "Karboplatina":
         CrCl = st.number_input("Zadajte hodnotu clearance v ml/min", min_value=1, max_value=250, value=None)
@@ -160,7 +55,7 @@ def platinum5FU(rbodysurf):
         st.warning("Prosím, vyberte platinu pre pokračovanie.")
 
 # Main function for gastrointestinal malignancies
-def gastrointestinal(rbodysurf):
+def gastrointestinal(rbodysurf, weight=None):
     """Táto funkcia rozpisuje chemoterapie používané v liečbe gastrointestinálnych malignít"""
 
     chemo_options = {
@@ -250,7 +145,7 @@ def gastrointestinal(rbodysurf):
                 for ordo in range(1, rng + 1):
                     st.write(f"cisplatina 50mg v 500ml RR i.v.")
                 if c > 0:
-                    st.write(f"cisplatina {int(c)} mg v 500ml RR i.v.")
+                    st.write(f"cisplatina {round(c, 2)} mg v 500ml RR i.v.")
                 st.write("Manitol 10% 250ml i.v.")
                 st.write(f"kapecitabín {cape_dose} mg p.o. 2× denne D1-14")
                 st.write("trastuzumab 8 mg/kg (1. dávka) alebo 6 mg/kg (ďalšie) v 250ml FR i.v./90 min (1. infúzia), 30 min (ďalšie)")
@@ -292,13 +187,7 @@ def gastrointestinal(rbodysurf):
             elif chemo_choice in ["CROSS režim"]:
                 ChemoCBDCA(rbodysurf, chemo_file)
             else:
-                Chemo(rbodysurf, chemo_file)
-
-# Function to calculate Body Surface Area (BSA)
-def bsa(weight, height):
-    bodysurf = (weight**0.425) * (height**0.725) * 0.007184
-    rbodysurf = round(bodysurf, 2)
-    return rbodysurf
+                Chemo(rbodysurf, chemo_file, weight=weight)
 
 # Main input function for weight and height
 def main():
@@ -315,9 +204,10 @@ def main():
     weight = st.number_input("Zadajte hmotnosť (kg):", min_value=1, max_value=250, value=None)
     height = st.number_input("Zadajte výšku (cm):", min_value=1, max_value=250, value=None)
 
-    if st.button("Vypočítať telesný povrch"):
+    if st.button("Vypočítať telesný povrch") and weight is not None and height is not None:
         rbodysurf = bsa(weight, height)
         st.session_state.rbodysurf = rbodysurf
+        st.session_state.weight = weight
         st.session_state.show_chemo_selection = True
 
     # Display the BSA if it's already calculated, and only once
@@ -327,7 +217,7 @@ def main():
     # Step 2: Chemotherapy selection if BSA is calculated
     if st.session_state.get("show_chemo_selection", False):
         st.write("Teraz vyberte chemoterapiu:")
-        gastrointestinal(st.session_state.rbodysurf)
+        gastrointestinal(st.session_state.rbodysurf, st.session_state.get('weight'))
 
 if __name__ == "__main__":
     main()

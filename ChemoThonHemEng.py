@@ -122,7 +122,7 @@ def DHAP(bsa):
         st.write(f"{item}. Cisplatin 50 mg in 500 ml normal saline iv")
         item += 1
     if remnant > 0:
-        st.write(f"{item}. Cisplatin {int(remnant)} mg in 500 ml normal saline iv")
+        st.write(f"{item}. Cisplatin {round(remnant, 2)} mg in 500 ml normal saline iv")
         item += 1
     st.write(f"{item}. Mannitol 10% 250 ml iv")
     item += 1
@@ -151,7 +151,7 @@ def RDHAP(bsa):
         st.write(f"{ordo}. Cisplatin 50 mg in 500 ml normal saline iv")
     if remnant > 0:
         ordo += 1
-        st.write(f"{ordo}. Cisplatin {int(remnant)} mg in 500 ml normal saline iv")
+        st.write(f"{ordo}. Cisplatin {round(remnant, 2)} mg in 500 ml normal saline iv")
         ordo += 1
     else:
         ordo += 1

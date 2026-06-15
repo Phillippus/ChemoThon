@@ -1,43 +1,43 @@
 {
-  "Chemo": [
-    {
-      "Name": "prednison",
-      "Dosage": 100,
-      "DosageMetric": "mg flat dose",
-      "Day": "1-5"
+    "Chemo": [
+        {
+            "Name": "prednisone",
+            "Dosage": 100,
+            "DosageMetric": "mg flat dose",
+            "Day": "1-5"
+        },
+        {
+            "Name": "cyclophosphamide",
+            "Dosage": 750,
+            "DosageMetric": "mg/m2",
+            "Day": "1"
+        },
+        {
+            "Name": "doxorubicin",
+            "Dosage": 50,
+            "DosageMetric": "mg/m2",
+            "Day": "1"
+        }
+    ],
+    "NC": "21",
+    "Day1": {
+        "Premed": {
+            "Note": "Palonosetron 0.5mg/Netupitant 300mg (Akynzeo) p.o. 1h pred chemo, Dexametazón 12mg i.v., Pantoprazol 40mg p.o."
+        },
+        "Instructions": [
+            {
+                "Name": "cyclophosphamide",
+                "Inst": "v 500ml FR iv/ 60min"
+            },
+            {
+                "Name": "doxorubicin",
+                "Inst": "v 250ml FR iv/ 60min"
+            },
+            {
+                "Name": "prednisone",
+                "Inst": "p.o. rozdeliť na 2-3 dávky denne"
+            }
+        ]
     },
-    {
-      "Name": "cyklofosfamid",
-      "Dosage": 750,
-      "DosageMetric": "mg/m2",
-      "Day": "1"
-    },
-    {
-      "Name": "doxorubicin",
-      "Dosage": 50,
-      "DosageMetric": "mg/m2",
-      "Day": "1"
-    }
-  ],
-  "NC": "21",
-  "Day1": {
-    "Premed": {
-      "Note": "Palonosetron 0.5mg/Netupitant 300mg (Akynzeo) p.o. 1h pred chemo, Dexametazón 12mg i.v., Pantoprazol 40mg p.o."
-    },
-    "Instructions": [
-      {
-        "Name": "cyklofosfamid",
-        "Inst": "v 500ml FR iv/ 60min"
-      },
-      {
-        "Name": "doxorubicin",
-        "Inst": "v 250ml FR iv/ 60min"
-      },
-      {
-        "Name": "prednison",
-        "Inst": "100 mg p.o. rozdeliť na 2-3 dávky denne"
-      }
-    ]
-  },
-  "_source": "Fisher RI et al. NEJM 1993;328:1002; GELA LNH-98.5"
+    "_source": "Fisher RI et al. NEJM 1993;328:1002; GELA LNH-98.5"
 }

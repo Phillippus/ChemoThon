@@ -210,7 +210,7 @@ We welcome your feedback to improve this app further. Feel free to reach out at 
                 for i in range(vials_d1):
                     st.write(f"cisplatin 50 mg in 500 ml normal saline i.v.")
                 if rem_d1 > 0:
-                    st.write(f"cisplatin {int(rem_d1)} mg in 500 ml normal saline i.v.")
+                    st.write(f"cisplatin {round(rem_d1, 2)} mg in 500 ml normal saline i.v.")
                 st.write("Mannitol 10% 250 ml i.v.")
                 st.write(f"*(Repeat on D8: {half} mg split the same way)*")
             elif selected_protocol_name == "Paclitaxel weekly (urothelial / other)":

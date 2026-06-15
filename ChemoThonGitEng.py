@@ -242,7 +242,7 @@ We welcome your feedback to improve this app further. Feel free to reach out at 
                     for i in range(ddp_vials):
                         st.write(f"cisplatin 50 mg in 500 ml NaCl i.v.")
                     if ddp_rem > 0:
-                        st.write(f"cisplatin {int(ddp_rem)} mg in 500 ml NaCl i.v.")
+                        st.write(f"cisplatin {round(ddp_rem, 2)} mg in 500 ml NaCl i.v.")
                     st.write("Mannitol 10% 250 ml i.v.")
                     st.write(f"gemcitabine {gem_dose} mg in 250 ml NaCl i.v./30 min D1, D8")
                 elif biliary_pt == "Carboplatin AUC 5 D1 (alternative)" and crcl is not None:
@@ -277,7 +277,7 @@ We welcome your feedback to improve this app further. Feel free to reach out at 
                     for i in range(ddp_vials):
                         st.write(f"cisplatin 50 mg in 500 ml NaCl i.v.")
                     if ddp_rem > 0:
-                        st.write(f"cisplatin {int(ddp_rem)} mg in 500 ml NaCl i.v.")
+                        st.write(f"cisplatin {round(ddp_rem, 2)} mg in 500 ml NaCl i.v.")
                     st.write("Mannitol 10% 250 ml i.v.")
                     st.write(f"capecitabine {cape_dose} mg p.o. BID D1-14 with food")
                 elif gastric_pt == "Carboplatin AUC 5 D1" and crcl is not None:

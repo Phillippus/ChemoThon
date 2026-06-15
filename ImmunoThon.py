@@ -18,7 +18,7 @@ def generate_prescription(selected_drug, weight=None):
     name = selected_drug['name']
     dosage_raw = selected_drug['dosage']
     admin = selected_drug['administration']
-    is_sc = 's.c.' in admin.lower() or 'sc' in name.lower()
+    is_sc = 's.c.' in admin.lower() or 'subcutaneous' in admin.lower() or name.lower().endswith(' sc')
 
     if is_sc:
         # SC liek – použiť administračný text priamo, bez "v 500ml FR"

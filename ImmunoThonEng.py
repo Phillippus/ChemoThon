@@ -9,26 +9,59 @@ def load_immunotherapy_data(file_path):
 
 # Function to generate prescription
 def generate_prescription(selected_drug, weight=None):
-    # Initialize prescription string
+    import re
     prescription = ""
 
-    # Check if premedication is required
     if 'premedication' in selected_drug:
         prescription += f"Premedication: {selected_drug['premedication']}\n\n"
 
-    # Check if weight-based dosing is required
-    if 'mg/kg' in selected_drug['dosage'] and weight:
-        dosage_per_kg = float(selected_drug['dosage'].split()[0].replace('mg/kg', '').strip())
-        dosage = dosage_per_kg * weight
-        if 'max_dose' in selected_drug and dosage > float(selected_drug['max_dose'].split()[0]):
-            dosage = float(selected_drug['max_dose'].split()[0])
-        dosage_str = f"{dosage} mg"
-    else:
-        dosage_str = selected_drug['dosage']
+    name = selected_drug['name']
+    dosage_raw = selected_drug['dosage']
+    admin = selected_drug['administration']
+    freq = selected_drug['frequency']
 
-    # Generate prescription details
-    prescription += f"{selected_drug['name']} {dosage_str} in 500ml NS (normal saline) / {selected_drug['administration']}\n\n"
-    prescription += " " * 5 + f"NC Day {selected_drug['frequency'].split()[0]}"
+    # Detect SC administration
+    is_sc = 's.c.' in admin.lower() or name.lower().endswith(' sc')
+
+    if is_sc:
+        # SC drug — administration field already contains the full instruction
+        prescription += f"{name} / {admin}\n\n"
+    elif '+' in dosage_raw and 'mg/kg' in dosage_raw:
+        # Combination with multiple mg/kg components (e.g. ipi + nivo)
+        parts = dosage_raw.split('+')
+        dose_lines = []
+        for part in parts:
+            part = part.strip()
+            nums = re.findall(r'[\d.]+', part)
+            abbr_match = re.search(r'\(([^)]+)\)', part)
+            abbr = abbr_match.group(1).strip() if abbr_match else ""
+            if 'mg/kg' in part and nums and weight:
+                calc = round(float(nums[0]) * weight, 1)
+                label = abbr.split()[0] if abbr else "drug"
+                dose_lines.append(f"{label}: {nums[0]} mg/kg → {calc} mg")
+            elif 'mg' in part and 'mg/kg' not in part and nums:
+                label = abbr.split()[0] if abbr else ""
+                dose_lines.append(f"{label + ': ' if label else ''}{nums[0]} mg flat")
+        prescription += f"{name}: {'; '.join(dose_lines)}\n{admin}\n\n"
+    elif 'mg/kg' in dosage_raw and weight:
+        # Simple mg/kg (e.g. Durvalumab 10 mg/kg)
+        nums = re.findall(r'[\d.]+', dosage_raw)
+        calc = round(float(nums[0]) * weight, 1)
+        if 'max_dose' in selected_drug:
+            max_nums = re.findall(r'[\d.]+', selected_drug['max_dose'])
+            if max_nums:
+                calc = min(calc, float(max_nums[0]))
+        prescription += f"{name} {nums[0]} mg/kg → {calc} mg / {admin}\n\n"
+    elif '/' in dosage_raw or '+' in dosage_raw:
+        # Complex combination dosage (e.g. Relatlimab+Nivo, Tremelimumab+Durvalumab)
+        # administration field already contains the full details
+        prescription += f"{name}\n{admin}\n\n"
+    else:
+        # Standard flat-dose IV — administration field already has volume/time
+        prescription += f"{name} {dosage_raw} / {admin}\n\n"
+
+    # NC line — use full frequency string (not just first word)
+    prescription += " " * 5 + f"NC: {freq}"
 
     return prescription
 
