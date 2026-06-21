@@ -1,0 +1,99 @@
+# DLBCL — znalostná databáza (KB)
+# ⚠️  ILUSTRAČNÉ SEED ZÁZNAMY (Fáza 1). NEOVERENÉ (reviewed: false). Pozri hl.yaml.
+
+- id: dlbcl-esmo-rchop-advanced
+  entity: dlbcl
+  society: ESMO
+  guideline_version: "ESMO DLBCL 2015 (+ update)"
+  year: 2015
+  source_reference: "Tilly H, et al. Diffuse large B-cell lymphoma: ESMO Clinical Practice Guidelines. Ann Oncol 2015;26(suppl_5):v116-v125."
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "advanced, first line"
+  recommendation_text: >-
+    Pri pokročilom DLBCL v prvej línii je štandardom 6 cyklov R-CHOP (každých 21 dní).
+    [PARAFRÁZA — overiť]
+  criteria:
+    line: ["first_line"]
+    stage: ["III", "IV"]
+    double_hit: ["no"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
+
+- id: dlbcl-nccn-pola-rchp
+  entity: dlbcl
+  society: NCCN
+  guideline_version: "NCCN B-cell Lymphomas v.2026"
+  year: 2026
+  source_reference: "NCCN Clinical Practice Guidelines in Oncology — B-Cell Lymphomas, v.1.2026"
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "IPI ≥ 2, first line"
+  recommendation_text: >-
+    Pri DLBCL s vyšším rizikom (IPI 2–5) je možnosťou prvej línie polatuzumab vedotin +
+    R-CHP (Pola-R-CHP) ako alternatíva k R-CHOP. [PARAFRÁZA — overiť]
+  criteria:
+    line: ["first_line"]
+    ipi_risk: ["high_int", "high"]
+    double_hit: ["no"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
+
+- id: dlbcl-esmo-localized
+  entity: dlbcl
+  society: ESMO
+  guideline_version: "ESMO DLBCL 2015 (+ update)"
+  year: 2015
+  source_reference: "Tilly H, et al. Ann Oncol 2015;26(suppl_5):v116-v125."
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "localized, non-bulky"
+  recommendation_text: >-
+    Pri lokalizovanom non-bulky DLBCL možno zvážiť skrátenú liečbu (napr. 4× R-CHOP)
+    ± ISRT podľa odpovede. [PARAFRÁZA — overiť]
+  criteria:
+    line: ["first_line"]
+    stage: ["I", "II"]
+    bulky: ["no"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
+
+- id: dlbcl-esmo-double-hit
+  entity: dlbcl
+  society: ESMO
+  guideline_version: "ESMO DLBCL / high-grade B-cell lymphoma"
+  year: 2015
+  source_reference: "ESMO DLBCL guideline; high-grade B-cell lymphoma with MYC and BCL2/BCL6 rearrangements."
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "double/triple-hit"
+  recommendation_text: >-
+    Pri double/triple-hit high-grade B-cell lymphóme sa zvažuje intenzívnejší režim
+    (napr. DA-EPOCH-R) namiesto štandardného R-CHOP. [PARAFRÁZA — overiť]
+  criteria:
+    line: ["first_line"]
+    double_hit: ["yes"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
+
+- id: dlbcl-eha-cart-relapse
+  entity: dlbcl
+  society: EHA
+  guideline_version: "EHA/EBMT CAR-T recommendations"
+  year: 2022
+  source_reference: "EHA/EBMT odporúčania pre CAR-T bunkovú terapiu u B-bunkových lymfómov."
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "relapsed/refractory"
+  recommendation_text: >-
+    Pri skorom relapse/refraktérnom DLBCL je v druhej línii možnosťou CD19 CAR-T
+    bunková terapia (axi-cel / liso-cel) u vhodných pacientov. [PARAFRÁZA — overiť]
+  criteria:
+    line: ["relapsed_refractory"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.x scaffold seed, 2026-06-21"

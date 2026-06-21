@@ -1,0 +1,39 @@
+# Lymfóm z plášťových buniek (MCL) — znalostná databáza (KB)
+# ⚠️  ILUSTRAČNÉ SEED ZÁZNAMY (Fáza 1). NEOVERENÉ (reviewed: false). Pozri hl.yaml.
+
+- id: mcl-esmo-young-asct
+  entity: mcl
+  society: ESMO
+  guideline_version: "ESMO mantle cell lymphoma 2017"
+  year: 2017
+  source_reference: "Dreyling M, et al. Newly diagnosed and relapsed mantle cell lymphoma: ESMO Clinical Practice Guidelines. Ann Oncol 2017;28(suppl_4):iv62-iv71."
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "transplant-eligible"
+  recommendation_text: >-
+    U mladších/fit pacientov je štandardom intenzívna indukcia obsahujúca vysokodávkový
+    cytarabín, nasledovaná autológnou transplantáciou (ASCT) a udržiavacím rituximabom.
+    [PARAFRÁZA — overiť]
+  criteria:
+    transplant_eligible: ["yes"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
+
+- id: mcl-nccn-elderly
+  entity: mcl
+  society: NCCN
+  guideline_version: "NCCN B-cell Lymphomas v.2026"
+  year: 2026
+  source_reference: "NCCN Clinical Practice Guidelines in Oncology — B-Cell Lymphomas, v.1.2026"
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "non-transplant candidate"
+  recommendation_text: >-
+    U starších/nevhodných na ASCT je možnosťou bendamustín + rituximab (alebo R-CHOP)
+    s udržiavacím rituximabom; do liečby vstupujú aj BTK inhibítory. [PARAFRÁZA — overiť]
+  criteria:
+    transplant_eligible: ["no"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.x scaffold seed, 2026-06-21"

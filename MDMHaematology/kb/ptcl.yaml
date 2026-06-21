@@ -1,0 +1,38 @@
+# Periférny T-bunkový lymfóm (PTCL) — znalostná databáza (KB)
+# ⚠️  ILUSTRAČNÉ SEED ZÁZNAMY (Fáza 1). NEOVERENÉ (reviewed: false). Pozri hl.yaml.
+
+- id: ptcl-esmo-choep-asct
+  entity: ptcl
+  society: ESMO
+  guideline_version: "ESMO peripheral T-cell lymphomas 2015"
+  year: 2015
+  source_reference: "d'Amore F, et al. Peripheral T-cell lymphomas: ESMO Clinical Practice Guidelines. Ann Oncol 2015;26(suppl_5):v108-v115."
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "PTCL-NOS / AITL"
+  recommendation_text: >-
+    Pri PTCL-NOS a AITL je v prvej línii zvyčajne CHOP/CHOEP s konsolidáciou autológnou
+    transplantáciou (ASCT) u vhodných pacientov v prvej remisii. [PARAFRÁZA — overiť]
+  criteria:
+    subtype: ["ptcl_nos", "aitl"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
+
+- id: ptcl-nccn-alcl-bv-chp
+  entity: ptcl
+  society: NCCN
+  guideline_version: "NCCN T-cell Lymphomas v.2026"
+  year: 2026
+  source_reference: "NCCN Clinical Practice Guidelines in Oncology — T-Cell Lymphomas, v.1.2026"
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "ALCL (CD30+)"
+  recommendation_text: >-
+    Pri systémovom ALCL (CD30-pozitívny) je preferovaná prvá línia brentuximab vedotin +
+    CHP (BV-CHP). [PARAFRÁZA — overiť]
+  criteria:
+    subtype: ["alcl_alk_pos", "alcl_alk_neg"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.x scaffold seed, 2026-06-21"

@@ -1,0 +1,18 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.mypy_cache/
+
+# venv
+.venv/
+venv/
+env/
+
+# OS
+.DS_Store
+
+# secrets / lokálne nastavenia (do repa NIKDY)
+.env
+.streamlit/secrets.toml

@@ -1,0 +1,75 @@
+# Folikulárny lymfóm (FL) — znalostná databáza (KB)
+# ⚠️  ILUSTRAČNÉ SEED ZÁZNAMY (Fáza 1). NEOVERENÉ (reviewed: false). Pozri hl.yaml.
+
+- id: fl-esmo-localized-isrt
+  entity: fl
+  society: ESMO
+  guideline_version: "ESMO follicular lymphoma 2021"
+  year: 2021
+  source_reference: "Dreyling M, et al. Newly diagnosed and relapsed follicular lymphoma: ESMO Clinical Practice Guidelines. Ann Oncol 2021;32:298-308."
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "localized (I–II)"
+  recommendation_text: >-
+    Pri lokalizovanom FL (štádium I–II) je potenciálne kuratívnou možnosťou
+    rádioterapia na zasiahnuté miesta (ISRT). [PARAFRÁZA — overiť]
+  criteria:
+    stage: ["I", "II"]
+    grade: ["g1_2", "g3a"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
+
+- id: fl-esmo-advanced-low-burden-ww
+  entity: fl
+  society: ESMO
+  guideline_version: "ESMO follicular lymphoma 2021"
+  year: 2021
+  source_reference: "Dreyling M, et al. Ann Oncol 2021;32:298-308."
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "advanced, low tumour burden"
+  recommendation_text: >-
+    Pri pokročilom FL s nízkou náložou (GELF−) a bez symptómov je vhodné aktívne
+    sledovanie (watch & wait). [PARAFRÁZA — overiť]
+  criteria:
+    stage: ["III", "IV"]
+    tumor_burden: ["low"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
+
+- id: fl-nccn-high-burden-immunochemo
+  entity: fl
+  society: NCCN
+  guideline_version: "NCCN B-cell Lymphomas v.2026"
+  year: 2026
+  source_reference: "NCCN Clinical Practice Guidelines in Oncology — B-Cell Lymphomas, v.1.2026"
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "high tumour burden"
+  recommendation_text: >-
+    Pri vysokej náloži ochorenia (GELF+) je indikovaná imunochemoterapia (napr.
+    bendamustín + rituximab alebo R-CHOP) ± udržiavacia liečba rituximabom. [PARAFRÁZA — overiť]
+  criteria:
+    tumor_burden: ["high"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
+
+- id: fl-esmo-grade3b-as-dlbcl
+  entity: fl
+  society: ESMO
+  guideline_version: "ESMO follicular lymphoma 2021"
+  year: 2021
+  source_reference: "Dreyling M, et al. Ann Oncol 2021;32:298-308."
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "grade 3B"
+  recommendation_text: >-
+    Folikulárny lymfóm grade 3B sa manažuje ako DLBCL (R-CHOP-like prístup). [PARAFRÁZA — overiť]
+  criteria:
+    grade: ["g3b"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.x scaffold seed, 2026-06-21"

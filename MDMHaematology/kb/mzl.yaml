@@ -1,0 +1,58 @@
+# Marginálnozónový lymfóm (MZL) — znalostná databáza (KB)
+# ⚠️  ILUSTRAČNÉ SEED ZÁZNAMY (Fáza 1). NEOVERENÉ (reviewed: false). Pozri hl.yaml.
+
+- id: mzl-esmo-gastric-malt-hp-pos
+  entity: mzl
+  society: ESMO
+  guideline_version: "ESMO gastric marginal zone (MALT) lymphoma 2020"
+  year: 2020
+  source_reference: "Zucca E, et al. Marginal zone lymphomas: ESMO Clinical Practice Guidelines. Ann Oncol 2020;31:17-29."
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "gastric MALT, H. pylori+"
+  recommendation_text: >-
+    Pri gastrickom MALT lymfóme s pozitívnym H. pylori je liečbou prvej línie
+    eradikácia H. pylori; následné sledovanie regresie. [PARAFRÁZA — overiť]
+  criteria:
+    subtype: ["gastric_malt"]
+    h_pylori: ["positive"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
+
+- id: mzl-nccn-gastric-malt-hp-neg
+  entity: mzl
+  society: NCCN
+  guideline_version: "NCCN B-cell Lymphomas v.2026"
+  year: 2026
+  source_reference: "NCCN Clinical Practice Guidelines in Oncology — B-Cell Lymphomas, v.1.2026"
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "gastric MALT, H. pylori−"
+  recommendation_text: >-
+    Pri H. pylori-negatívnom gastrickom MALT (alebo pri perzistencii po eradikácii) je
+    preferovanou možnosťou rádioterapia na zasiahnuté miesta (ISRT). [PARAFRÁZA — overiť]
+  criteria:
+    subtype: ["gastric_malt"]
+    h_pylori: ["negative"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
+
+- id: mzl-esmo-splenic
+  entity: mzl
+  society: ESMO
+  guideline_version: "ESMO marginal zone lymphomas 2020"
+  year: 2020
+  source_reference: "Zucca E, et al. Ann Oncol 2020;31:17-29."
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "splenic MZL"
+  recommendation_text: >-
+    Pri splenickom MZL bez symptómov a bez cytopénií je vhodné sledovanie; pri indikácii
+    liečby je možnosťou rituximab (a manažment prípadnej HCV infekcie). [PARAFRÁZA — overiť]
+  criteria:
+    subtype: ["splenic"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
