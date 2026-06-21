@@ -1,0 +1,81 @@
+# Karcinóm kolon (st. I–III) — znalostná databáza (KB)
+# =============================================================================
+# ⚠️  ILUSTRAČNÉ SEED ZÁZNAMY (Fáza 1 / scaffold). NEOVERENÉ (reviewed: false).
+#     Slúžia len na demonštráciu enginu, citácií, fallbacku a stránky "Stav kontroly".
+#     Vo Fáze 2 ich Opus nahradí/doplní obsahom z primárnych zdrojov, vo Fáze 3 ich
+#     overí Filip a prepne reviewed -> true.
+# =============================================================================
+
+- id: colon-esmo-stage3-adjuvant
+  entity: colon
+  society: ESMO
+  guideline_version: "ESMO localised colon cancer 2020"
+  year: 2020
+  source_reference: "Argilés G, et al. Localised colon cancer: ESMO Clinical Practice Guidelines. Ann Oncol 2020;31:1291-1305."
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "stage III"
+  recommendation_text: >-
+    Pri štádiu III je indikovaná adjuvantná chemoterapia na báze oxaliplatiny
+    (FOLFOX alebo CAPOX); trvanie (3 vs 6 mesiacov) podľa rizika (IDEA). [PARAFRÁZA — overiť]
+  criteria:
+    stage: ["IIIA", "IIIB", "IIIC"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
+
+- id: colon-asco-idea-duration
+  entity: colon
+  society: ASCO
+  guideline_version: "ASCO adjuvant therapy stage III colon (IDEA)"
+  year: 2019
+  source_reference: "ASCO Guideline — Duration of oxaliplatin-containing adjuvant therapy for stage III colon cancer."
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "stage III, low-risk (T1-3 N1)"
+  recommendation_text: >-
+    Pri nízkorizikovom štádiu III (T1–3 N1) je u mnohých pacientov 3 mesiace CAPOX
+    primeranou voľbou (porovnateľná účinnosť, nižšia neurotoxicita). [PARAFRÁZA — overiť]
+  criteria:
+    stage: ["IIIA"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
+
+- id: colon-nccn-stage2-highrisk
+  entity: colon
+  society: NCCN
+  guideline_version: "NCCN Colon Cancer v.2026"
+  year: 2026
+  source_reference: "NCCN Clinical Practice Guidelines in Oncology — Colon Cancer, v.1.2026"
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "stage II, high-risk"
+  recommendation_text: >-
+    Pri štádiu II s vysokorizikovými znakmi sa zvažuje adjuvantná chemoterapia;
+    rozhodnutie individualizovať podľa MMR statusu a komorbidít. [PARAFRÁZA — overiť]
+  criteria:
+    stage: ["IIA", "IIB", "IIC"]
+    high_risk_stage2: ["present"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
+
+- id: colon-esmo-stage2-dmmr
+  entity: colon
+  society: ESMO
+  guideline_version: "ESMO localised colon cancer 2020"
+  year: 2020
+  source_reference: "Argilés G, et al. Ann Oncol 2020;31:1291-1305."
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "stage II, dMMR"
+  recommendation_text: >-
+    Pri štádiu II s dMMR/MSI-H je prognóza priaznivá a adjuvantná fluóropyrimidínová
+    monoterapia neprináša benefit — u low-risk dMMR sa adjuvancia neodporúča. [PARAFRÁZA — overiť]
+  criteria:
+    stage: ["IIA", "IIB", "IIC"]
+    mmr_status: ["dmmr"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.x scaffold seed, 2026-06-21"

@@ -1,0 +1,77 @@
+# Metastatický kolorektálny karcinóm (mCRC) — znalostná databáza (KB)
+# ⚠️  ILUSTRAČNÉ SEED ZÁZNAMY (Fáza 1). NEOVERENÉ (reviewed: false). Pozri colon.yaml.
+
+- id: mcrc-esmo-left-raswt-egfr
+  entity: metastatic
+  society: ESMO
+  guideline_version: "ESMO metastatic colorectal cancer 2023"
+  year: 2023
+  source_reference: "Cervantes A, et al. Metastatic colorectal cancer: ESMO Clinical Practice Guideline. Ann Oncol 2023;34:10-32."
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "left-sided, RAS/BRAF wt"
+  recommendation_text: >-
+    Pri ľavostrannom RAS aj BRAF wild-type mCRC sa v prvej línii preferuje doublet
+    chemoterapia (FOLFOX/FOLFIRI) v kombinácii s anti-EGFR protilátkou. [PARAFRÁZA — overiť]
+  criteria:
+    sidedness: ["left"]
+    ras: ["wildtype"]
+    braf: ["wildtype"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
+
+- id: mcrc-nccn-dmmr-immuno
+  entity: metastatic
+  society: NCCN
+  guideline_version: "NCCN Colon/Rectal Cancer v.2026"
+  year: 2026
+  source_reference: "NCCN Clinical Practice Guidelines in Oncology — Colon Cancer, v.1.2026"
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "dMMR/MSI-H mCRC"
+  recommendation_text: >-
+    Pri dMMR/MSI-H metastatickom ochorení je v prvej línii preferovaná imunoterapia
+    (napr. pembrolizumab) pred chemoterapiou. [PARAFRÁZA — overiť]
+  criteria:
+    mmr_status: ["dmmr"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
+
+- id: mcrc-esmo-braf-v600e
+  entity: metastatic
+  society: ESMO
+  guideline_version: "ESMO metastatic colorectal cancer 2023"
+  year: 2023
+  source_reference: "Cervantes A, et al. Ann Oncol 2023;34:10-32."
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "BRAF V600E mutant"
+  recommendation_text: >-
+    Pri BRAF V600E mutovanom mCRC je po progresii možnosťou cielená kombinácia
+    encorafenib + cetuximab; prvá línia zvyčajne intenzívna chemoterapia. [PARAFRÁZA — overiť]
+  criteria:
+    braf: ["v600e"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
+
+- id: mcrc-nccn-her2-anti-her2
+  entity: metastatic
+  society: NCCN
+  guideline_version: "NCCN Colon/Rectal Cancer v.2026"
+  year: 2026
+  source_reference: "NCCN Clinical Practice Guidelines in Oncology — Colon Cancer, v.1.2026"
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "HER2-amplified, RAS wt"
+  recommendation_text: >-
+    Pri HER2-amplifikovanom RAS wild-type mCRC je po zlyhaní štandardnej liečby možnosťou
+    anti-HER2 terapia (napr. trastuzumab + tucatinib / lapatinib / pertuzumab). [PARAFRÁZA — overiť]
+  criteria:
+    her2: ["amplified"]
+    ras: ["wildtype"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.x scaffold seed, 2026-06-21"

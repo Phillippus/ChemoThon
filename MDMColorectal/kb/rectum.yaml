@@ -1,0 +1,57 @@
+# Karcinóm rekta (lokalizovaný) — znalostná databáza (KB)
+# ⚠️  ILUSTRAČNÉ SEED ZÁZNAMY (Fáza 1). NEOVERENÉ (reviewed: false). Pozri colon.yaml.
+
+- id: rectum-esmo-tnt-stage3
+  entity: rectum
+  society: ESMO
+  guideline_version: "ESMO rectal cancer 2017 (+ update)"
+  year: 2017
+  source_reference: "Glynne-Jones R, et al. Rectal cancer: ESMO Clinical Practice Guidelines. Ann Oncol 2017;28(suppl_4):iv22-iv40."
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "locally advanced (st. III)"
+  recommendation_text: >-
+    Pri lokálne pokročilom rekte (st. III, cT3–4 a/alebo cN+) sa zvažuje totálna
+    neoadjuvantná terapia (TNT) — kombinácia (chemo)rádioterapie a systémovej chemoterapie
+    pred TME. [PARAFRÁZA — overiť]
+  criteria:
+    stage: ["III"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
+
+- id: rectum-nccn-ct3-neoadj-crt
+  entity: rectum
+  society: NCCN
+  guideline_version: "NCCN Rectal Cancer v.2026"
+  year: 2026
+  source_reference: "NCCN Clinical Practice Guidelines in Oncology — Rectal Cancer, v.1.2026"
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "cT3–4"
+  recommendation_text: >-
+    Pri cT3–T4 ochorení je indikovaná neoadjuvantná liečba (chemorádioterapia alebo TNT)
+    nasledovaná chirurgickou resekciou (TME). [PARAFRÁZA — overiť]
+  criteria:
+    ct_stage: ["cT3", "cT4"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
+
+- id: rectum-esmo-dmmr-immuno
+  entity: rectum
+  society: ESMO
+  guideline_version: "ESMO rectal cancer (update)"
+  year: 2023
+  source_reference: "ESMO rectal cancer guideline update; data k neoadjuvantnej imunoterapii pri dMMR (napr. dostarlimab)."
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "dMMR/MSI-H rectum"
+  recommendation_text: >-
+    Pri dMMR/MSI-H lokálne pokročilom rekte je rastúca evidencia pre neoadjuvantnú
+    imunoterapiu (napr. dostarlimab) s možnosťou organ-preserving prístupu. [PARAFRÁZA — overiť]
+  criteria:
+    mmr_status: ["dmmr"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
