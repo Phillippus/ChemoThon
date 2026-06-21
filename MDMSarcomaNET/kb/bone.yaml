@@ -1,0 +1,57 @@
+# Kostný sarkóm — znalostná databáza (KB)
+# ⚠️  ILUSTRAČNÉ SEED ZÁZNAMY (Fáza 1). NEOVERENÉ (reviewed: false). Pozri soft_tissue.yaml.
+
+- id: bone-esmo-osteosarcoma-map
+  entity: bone
+  society: ESMO
+  guideline_version: "ESMO-EURACAN-GENTURIS bone sarcomas 2021"
+  year: 2021
+  source_reference: "Strauss SJ, et al. Bone sarcomas: ESMO-EURACAN-GENTURIS-ERN PaedCan Clinical Practice Guideline. Ann Oncol 2021;32:1520-1536."
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "osteosarcoma"
+  recommendation_text: >-
+    Pri vysokostupňovom osteosarkóme je štandardom neoadjuvantná chemoterapia (MAP:
+    metotrexát, doxorubicín, cisplatina) s následnou resekciou a pokračovaním adjuvancie.
+    [PARAFRÁZA — overiť]
+  criteria:
+    subtype: ["osteosarcoma"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
+
+- id: bone-nccn-ewing-vdcie
+  entity: bone
+  society: NCCN
+  guideline_version: "NCCN Bone Cancer v.2026"
+  year: 2026
+  source_reference: "NCCN Clinical Practice Guidelines in Oncology — Bone Cancer, v.1.2026"
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "Ewing sarcoma"
+  recommendation_text: >-
+    Pri Ewingovom sarkóme je základom multimodálna liečba so systémovou chemoterapiou
+    (striedanie VDC/IE) a lokálnou kontrolou (chirurgia a/alebo rádioterapia). [PARAFRÁZA — overiť]
+  criteria:
+    subtype: ["ewing"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
+
+- id: bone-esmo-chondrosarcoma-surgery
+  entity: bone
+  society: ESMO
+  guideline_version: "ESMO-EURACAN-GENTURIS bone sarcomas 2021"
+  year: 2021
+  source_reference: "Strauss SJ, et al. Ann Oncol 2021;32:1520-1536."
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "chondrosarcoma"
+  recommendation_text: >-
+    Konvenčný chondrosarkóm je prevažne rezistentný na chemoterapiu aj rádioterapiu;
+    liečbou voľby je adekvátna chirurgická resekcia. [PARAFRÁZA — overiť]
+  criteria:
+    subtype: ["chondrosarcoma"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.x scaffold seed, 2026-06-21"

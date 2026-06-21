@@ -1,0 +1,97 @@
+# Neuroendokrinný nádor (GEP-NET) — znalostná databáza (KB)
+# ⚠️  ILUSTRAČNÉ SEED ZÁZNAMY (Fáza 1). NEOVERENÉ (reviewed: false). Pozri soft_tissue.yaml.
+
+- id: net-enets-localized-surgery
+  entity: net
+  society: ENETS
+  guideline_version: "ENETS guidance (GEP-NET)"
+  year: 2023
+  source_reference: "ENETS 2023 guidance papers for gastroenteropancreatic neuroendocrine tumours."
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "localized"
+  recommendation_text: >-
+    Pri lokalizovanom dobre diferencovanom GEP-NET je liečbou voľby kompletná
+    chirurgická resekcia (potenciálne kuratívna). [PARAFRÁZA — overiť]
+  criteria:
+    setting: ["localized"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
+
+- id: net-enets-advanced-ssa
+  entity: net
+  society: ENETS
+  guideline_version: "ENETS guidance (GEP-NET)"
+  year: 2023
+  source_reference: "ENETS 2023 guidance papers for gastroenteropancreatic neuroendocrine tumours."
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "advanced, well-diff, SSTR+"
+  recommendation_text: >-
+    Pri pokročilom dobre diferencovanom (G1–G2) SSTR-pozitívnom NET je prvou líniou
+    somatostatínový analóg (oktreotid LAR alebo lanreotid) na kontrolu rastu aj symptómov.
+    [PARAFRÁZA — overiť]
+  criteria:
+    setting: ["advanced"]
+    grade: ["g1", "g2"]
+    sstr: ["positive"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
+
+- id: net-esmo-prrt-progression
+  entity: net
+  society: ESMO
+  guideline_version: "ESMO gastroenteropancreatic NET 2020"
+  year: 2020
+  source_reference: "Pavel M, et al. Gastroenteropancreatic neuroendocrine neoplasms: ESMO Clinical Practice Guidelines. Ann Oncol 2020;31:844-860."
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "advanced, SSTR+, progredujúci"
+  recommendation_text: >-
+    Pri progresii pokročilého SSTR-pozitívneho NET je možnosťou peptidová receptorová
+    rádionuklidová terapia (PRRT, 177Lu-DOTATATE). [PARAFRÁZA — overiť]
+  criteria:
+    setting: ["advanced"]
+    sstr: ["positive"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
+
+- id: net-nccn-pannet-targeted
+  entity: net
+  society: NCCN
+  guideline_version: "NCCN Neuroendocrine Tumors v.2026"
+  year: 2026
+  source_reference: "NCCN Clinical Practice Guidelines in Oncology — Neuroendocrine and Adrenal Tumors, v.1.2026"
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "advanced pancreatic NET"
+  recommendation_text: >-
+    Pri pokročilom pankreatickom NET sú okrem SSA možnosťami cielené látky everolimus
+    alebo sunitinib, prípadne chemoterapia (napr. CAPTEM). [PARAFRÁZA — overiť]
+  criteria:
+    primary_site: ["pancreatic"]
+    setting: ["advanced"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
+
+- id: net-esmo-nec-platinum-etoposide
+  entity: net
+  society: ESMO
+  guideline_version: "ESMO gastroenteropancreatic NEN 2020"
+  year: 2020
+  source_reference: "Pavel M, et al. Ann Oncol 2020;31:844-860."
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "NEC (poorly differentiated)"
+  recommendation_text: >-
+    Pri slabo diferencovanom neuroendokrinnom karcinóme (NEC) je štandardom prvej línie
+    chemoterapia na báze platiny s etopozidom. [PARAFRÁZA — overiť]
+  criteria:
+    grade: ["nec"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.x scaffold seed, 2026-06-21"

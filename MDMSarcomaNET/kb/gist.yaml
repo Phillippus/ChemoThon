@@ -1,0 +1,76 @@
+# GIST — znalostná databáza (KB)
+# ⚠️  ILUSTRAČNÉ SEED ZÁZNAMY (Fáza 1). NEOVERENÉ (reviewed: false). Pozri soft_tissue.yaml.
+
+- id: gist-esmo-adjuvant-highrisk
+  entity: gist
+  society: ESMO
+  guideline_version: "ESMO-EURACAN-GENTURIS GIST 2022"
+  year: 2022
+  source_reference: "Casali PG, et al. Gastrointestinal stromal tumours: ESMO-EURACAN-GENTURIS Clinical Practice Guidelines. Ann Oncol 2022;33:20-33."
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "localized, high risk"
+  recommendation_text: >-
+    Po kompletnej resekcii lokalizovaného GIST s vysokým rizikom relapsu je indikovaná
+    adjuvantná liečba imatinibom (zvyčajne ≥ 3 roky); zohľadniť mutačný status. [PARAFRÁZA — overiť]
+  criteria:
+    setting: ["localized"]
+    risk_group: ["high"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
+
+- id: gist-nccn-metastatic-imatinib
+  entity: gist
+  society: NCCN
+  guideline_version: "NCCN GIST v.2026"
+  year: 2026
+  source_reference: "NCCN Clinical Practice Guidelines in Oncology — Gastrointestinal Stromal Tumors, v.1.2026"
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "metastatic"
+  recommendation_text: >-
+    Pri metastatickom/neresekabilnom GIST je štandardom prvej línie imatinib; pri progresii
+    sunitinib (2. línia) a regorafenib (3. línia). [PARAFRÁZA — overiť]
+  criteria:
+    setting: ["metastatic"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
+
+- id: gist-esmo-exon9-dose
+  entity: gist
+  society: ESMO
+  guideline_version: "ESMO-EURACAN-GENTURIS GIST 2022"
+  year: 2022
+  source_reference: "Casali PG, et al. Ann Oncol 2022;33:20-33."
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "metastatic, KIT exón 9"
+  recommendation_text: >-
+    Pri metastatickom GIST s mutáciou KIT exón 9 sa odporúča vyššia dávka imatinibu
+    (800 mg denne). [PARAFRÁZA — overiť]
+  criteria:
+    setting: ["metastatic"]
+    mutation: ["kit_ex9"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
+
+- id: gist-nccn-pdgfra-d842v-avapritinib
+  entity: gist
+  society: NCCN
+  guideline_version: "NCCN GIST v.2026"
+  year: 2026
+  source_reference: "NCCN Clinical Practice Guidelines in Oncology — Gastrointestinal Stromal Tumors, v.1.2026"
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "PDGFRA D842V"
+  recommendation_text: >-
+    GIST s mutáciou PDGFRA D842V je rezistentný na imatinib; liečbou voľby je avapritinib.
+    [PARAFRÁZA — overiť]
+  criteria:
+    mutation: ["pdgfra_d842v"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
