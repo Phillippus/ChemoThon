@@ -1,0 +1,72 @@
+# Karcinóm endometria — znalostná databáza (KB)
+# =============================================================================
+# ⚠️  ILUSTRAČNÉ SEED ZÁZNAMY (Fáza 1 / scaffold).
+#     Slúžia len na demonštráciu enginu, citácií, fallbacku a stránky "Stav kontroly".
+#     NIE SÚ klinicky overené (reviewed: false). Vo Fáze 2 ich Opus nahradí/doplní
+#     obsahom z primárnych zdrojov (web search / PDF guidelines), vo Fáze 3 ich
+#     overí Filip a prepne reviewed -> true.
+# =============================================================================
+
+- id: endo-esgo-2021-low
+  entity: endometrium
+  society: ESGO
+  guideline_version: "ESGO/ESTRO/ESP 2021"
+  year: 2021
+  source_reference: "Concin N, et al. ESGO/ESTRO/ESP guidelines for the management of patients with endometrial carcinoma. Int J Gynecol Cancer 2021;31:12-39. DOI:10.1136/ijgc-2020-002230"
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "low"
+  figo_stage: "IA"
+  recommendation_text: >-
+    Pri nízkom riziku (štádium IA, endometrioidný, G1–G2, LVSI negatívna) sa adjuvantná
+    liečba spravidla neodporúča; postačuje sledovanie. [PARAFRÁZA — overiť oproti zdroju]
+  criteria:
+    figo_stage: ["IA"]
+    histology: ["endometrioid"]
+    grade: ["G1", "G2"]
+    lvsi: ["negative"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
+
+- id: endo-nccn-2026-low
+  entity: endometrium
+  society: NCCN
+  guideline_version: "NCCN Uterine Neoplasms v.2026"
+  year: 2026
+  source_reference: "NCCN Clinical Practice Guidelines in Oncology — Uterine Neoplasms, v.2.2026"
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "low"
+  figo_stage: "IA"
+  recommendation_text: >-
+    Pre obmedzené, dobre diferencované ochorenie bez rizikových znakov NCCN typicky
+    uvádza observáciu po kompletnej chirurgickej liečbe ako možnú stratégiu.
+    [PARAFRÁZA — overiť oproti zdroju; presná verzia v.x.2026 doplniť]
+  criteria:
+    figo_stage: ["IA"]
+    histology: ["endometrioid"]
+    grade: ["G1", "G2"]
+    lvsi: ["negative"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
+
+- id: endo-esgo-2021-pole
+  entity: endometrium
+  society: ESGO
+  guideline_version: "ESGO/ESTRO/ESP 2021"
+  year: 2021
+  source_reference: "Concin N, et al. Int J Gynecol Cancer 2021;31:12-39. DOI:10.1136/ijgc-2020-002230"
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "low (molekulárne)"
+  recommendation_text: >-
+    POLE-mutované karcinómy obmedzené na maternicu majú výbornú prognózu; v rámci
+    molekulárnej klasifikácie sa zvažuje deeskalácia adjuvantnej liečby.
+    [PARAFRÁZA — overiť oproti zdroju]
+  criteria:
+    molecular: ["POLEmut"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.x scaffold seed, 2026-06-21"

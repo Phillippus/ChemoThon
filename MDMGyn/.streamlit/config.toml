@@ -1,0 +1,11 @@
+# Základné UI nastavenia. ŽIADNE secrets tu — tie patria do .streamlit/secrets.toml (ignorované gitom).
+
+[theme]
+base = "light"
+primaryColor = "#6c4f9c"
+
+[browser]
+gatherUsageStats = false
+
+[server]
+headless = true

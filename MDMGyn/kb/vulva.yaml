@@ -1,0 +1,41 @@
+# Karcinóm vulvy — znalostná databáza (KB)
+# ⚠️  ILUSTRAČNÉ SEED ZÁZNAMY (Fáza 1). NEOVERENÉ (reviewed: false). Pozri endometrium.yaml.
+
+- id: vulva-esgo-2023-ia
+  entity: vulva
+  society: ESGO
+  guideline_version: "ESGO vulvar cancer 2023"
+  year: 2023
+  source_reference: "Oonk MHM, et al. ESGO guidelines for the management of patients with vulvar cancer — update 2023. Int J Gynecol Cancer."
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "low"
+  figo_stage: "IA"
+  recommendation_text: >-
+    Pri štádiu IA (hĺbka invázie ≤ 1 mm) je riziko postihnutia inguinálnych uzlín
+    zanedbateľné; stagingová lymfadenektómia/SLN sa spravidla nevyžaduje, postačuje
+    široká lokálna excízia s adekvátnymi okrajmi. [PARAFRÁZA — overiť]
+  criteria:
+    figo_stage: ["IA"]
+    depth_invasion: ["le1mm"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
+
+- id: vulva-nccn-2026-node-positive
+  entity: vulva
+  society: NCCN
+  guideline_version: "NCCN Vulvar Cancer v.2026"
+  year: 2026
+  source_reference: "NCCN Clinical Practice Guidelines in Oncology — Vulvar Cancer, v.1.2026"
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "node-positive"
+  recommendation_text: >-
+    Pri pozitívnych inguinofemorálnych uzlinách sa zvažuje adjuvantná rádioterapia
+    (± konkomitantná chemoterapia) na oblasť uzlín. [PARAFRÁZA — overiť]
+  criteria:
+    inguinal_nodes: ["positive"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.x scaffold seed, 2026-06-21"

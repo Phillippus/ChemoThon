@@ -1,0 +1,42 @@
+# Nádory ovária / adnex — znalostná databáza (KB)
+# ⚠️  ILUSTRAČNÉ SEED ZÁZNAMY (Fáza 1). NEOVERENÉ (reviewed: false). Pozri endometrium.yaml.
+
+- id: ovary-esmo-2023-hgs-brca-maintenance
+  entity: ovary
+  society: ESMO
+  guideline_version: "ESMO ovarian cancer 2023"
+  year: 2023
+  source_reference: "Colombo N, et al. ESMO–ESGO consensus / ESMO Clinical Practice Guidelines — epithelial ovarian carcinoma."
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "advanced HGS, BRCA-mut"
+  recommendation_text: >-
+    Pri pokročilom high-grade seróznom karcinóme s BRCA mutáciou sa po platinovej
+    chemoterapii odporúča udržiavacia liečba PARP inhibítorom (± bevacizumab podľa rizika).
+    [PARAFRÁZA — overiť]
+  criteria:
+    histology: ["high_grade_serous"]
+    brca_hrd: ["brca_mut"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
+
+- id: ovary-nccn-2026-hgs-hrd
+  entity: ovary
+  society: NCCN
+  guideline_version: "NCCN Ovarian Cancer v.2026"
+  year: 2026
+  source_reference: "NCCN Clinical Practice Guidelines in Oncology — Ovarian Cancer/Fallopian Tube/Primary Peritoneal, v.1.2026"
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "advanced HGS, HRD+"
+  recommendation_text: >-
+    Pri HRD-pozitívnom (BRCA wt) high-grade seróznom karcinóme NCCN uvádza udržiavaciu
+    liečbu PARP inhibítorom ± bevacizumabom ako možnosť po odpovedi na platinu.
+    [PARAFRÁZA — overiť; presná kategória odporúčania doplniť]
+  criteria:
+    histology: ["high_grade_serous"]
+    brca_hrd: ["hrd_positive"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.x scaffold seed, 2026-06-21"

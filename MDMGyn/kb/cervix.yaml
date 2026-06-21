@@ -1,0 +1,42 @@
+# Karcinóm cervixu — znalostná databáza (KB)
+# ⚠️  ILUSTRAČNÉ SEED ZÁZNAMY (Fáza 1). NEOVERENÉ (reviewed: false). Pozri endometrium.yaml.
+
+- id: cervix-esgo-2023-ia1
+  entity: cervix
+  society: ESGO
+  guideline_version: "ESGO/ESTRO/ESP cervical cancer 2023 (update)"
+  year: 2023
+  source_reference: "Cibula D, et al. ESGO/ESTRO/ESP guidelines for the management of patients with cervical cancer — update 2023. Int J Gynecol Cancer."
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "very low / low"
+  figo_stage: "IA1"
+  recommendation_text: >-
+    Pri štádiu IA1 bez LVSI je možná konizácia/jednoduchá hysterektómia; pri želaní
+    fertility-sparing prístupu konizácia s negatívnymi okrajmi. [PARAFRÁZA — overiť]
+  criteria:
+    figo_stage: ["IA1"]
+    lvsi: ["negative"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
+
+- id: cervix-nccn-2026-locally-advanced
+  entity: cervix
+  society: NCCN
+  guideline_version: "NCCN Cervical Cancer v.2026"
+  year: 2026
+  source_reference: "NCCN Clinical Practice Guidelines in Oncology — Cervical Cancer, v.1.2026"
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "locally advanced"
+  figo_stage: "IIIC1"
+  recommendation_text: >-
+    Pri lokálne pokročilom ochorení s pozitívnymi panvovými uzlinami je štandardom
+    definitívna konkomitantná chemorádioterapia s brachyterapiou. [PARAFRÁZA — overiť]
+  criteria:
+    figo_stage: ["IIIC1"]
+    node_status: ["positive"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
