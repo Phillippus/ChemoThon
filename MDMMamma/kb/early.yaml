@@ -1,0 +1,79 @@
+# Skorý invazívny karcinóm — znalostná databáza (KB)
+# ⚠️  ILUSTRAČNÉ SEED ZÁZNAMY (Fáza 1). NEOVERENÉ (reviewed: false). Pozri dcis.yaml.
+
+- id: early-stgallen-luminalA-node-neg
+  entity: early
+  society: St. Gallen
+  guideline_version: "St. Gallen consensus 2023"
+  year: 2023
+  source_reference: "St. Gallen International Consensus on the primary therapy of early breast cancer 2023"
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "luminal A, node-negative"
+  recommendation_text: >-
+    Pri luminálnom A, uzlinovo negatívnom ochorení sa zvyčajne preferuje samotná
+    endokrinná liečba; pridanie chemoterapie sa rutinne neodporúča. [PARAFRÁZA — overiť]
+  criteria:
+    subtype: ["luminal_a"]
+    nodal: ["negative"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
+
+- id: early-esmo-tnbc-chemo
+  entity: early
+  society: ESMO
+  guideline_version: "ESMO early breast cancer 2023"
+  year: 2023
+  source_reference: "Loibl S, et al. Early breast cancer: ESMO Clinical Practice Guideline. Ann Oncol 2023."
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "TNBC, early"
+  recommendation_text: >-
+    Pri skorom triple-negatívnom karcinóme (mimo veľmi malých nádorov) je indikovaná
+    (neo)adjuvantná chemoterapia; pri vyššom riziku sa zvažuje pridanie imunoterapie /
+    platiny podľa štádia. [PARAFRÁZA — overiť]
+  criteria:
+    subtype: ["tnbc"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
+
+- id: early-nccn-her2-pos-antiher2
+  entity: early
+  society: NCCN
+  guideline_version: "NCCN Breast Cancer v.2026"
+  year: 2026
+  source_reference: "NCCN Clinical Practice Guidelines in Oncology — Breast Cancer, v.1.2026"
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "HER2-positive, early"
+  recommendation_text: >-
+    Pri HER2-pozitívnom skorom karcinóme (nad prahom veľkosti/uzlín) je štandardom
+    systémová chemoterapia v kombinácii s anti-HER2 liečbou (trastuzumab ± pertuzumab).
+    [PARAFRÁZA — overiť]
+  criteria:
+    her2: ["her2_positive"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
+
+- id: early-esmo-hrpos-genomic-low
+  entity: early
+  society: ESMO
+  guideline_version: "ESMO early breast cancer 2023"
+  year: 2023
+  source_reference: "Loibl S, et al. Early breast cancer: ESMO Clinical Practice Guideline. Ann Oncol 2023."
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "HR+/HER2−, genomic low risk"
+  recommendation_text: >-
+    Pri HR+/HER2− ochorení s nízkym genomickým rizikom (napr. nízke Oncotype DX skóre)
+    možno bezpečne vynechať adjuvantnú chemoterapiu a podať samotnú endokrinnú liečbu.
+    [PARAFRÁZA — overiť]
+  criteria:
+    subtype: ["luminal_a", "luminal_b_her2neg"]
+    genomic_risk: ["low"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.x scaffold seed, 2026-06-21"

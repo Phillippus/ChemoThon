@@ -1,0 +1,58 @@
+# Metastatický / pokročilý karcinóm — znalostná databáza (KB)
+# ⚠️  ILUSTRAČNÉ SEED ZÁZNAMY (Fáza 1). NEOVERENÉ (reviewed: false). Pozri dcis.yaml.
+
+- id: mbc-esmo-hrpos-cdk46
+  entity: metastatic
+  society: ESMO
+  guideline_version: "ESMO metastatic breast cancer 2023"
+  year: 2023
+  source_reference: "Gennari A, et al. ESMO Clinical Practice Guideline for metastatic breast cancer. Ann Oncol 2021/2023 update."
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "HR+/HER2− MBC, 1. línia"
+  recommendation_text: >-
+    Pri HR+/HER2− metastatickom karcinóme bez viscerálnej krízy je v prvej línii
+    štandardom CDK4/6 inhibítor v kombinácii s endokrinnou liečbou. [PARAFRÁZA — overiť]
+  criteria:
+    subtype: ["hr_pos_her2_neg"]
+    visceral_crisis: ["no"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
+
+- id: mbc-nccn-her2-thp
+  entity: metastatic
+  society: NCCN
+  guideline_version: "NCCN Breast Cancer v.2026"
+  year: 2026
+  source_reference: "NCCN Clinical Practice Guidelines in Oncology — Breast Cancer, v.1.2026"
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "HER2+ MBC, 1. línia"
+  recommendation_text: >-
+    Pri HER2-pozitívnom metastatickom karcinóme je v prvej línii preferovaný taxán
+    s trastuzumabom a pertuzumabom. [PARAFRÁZA — overiť]
+  criteria:
+    subtype: ["her2_pos"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
+
+- id: mbc-esmo-tnbc-brca-parp
+  entity: metastatic
+  society: ESMO
+  guideline_version: "ESMO metastatic breast cancer 2023"
+  year: 2023
+  source_reference: "Gennari A, et al. ESMO Clinical Practice Guideline for metastatic breast cancer."
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "TNBC + gBRCA, MBC"
+  recommendation_text: >-
+    Pri metastatickom triple-negatívnom karcinóme s germinálnou BRCA mutáciou je
+    možnosťou PARP inhibítor (olaparib/talazoparib). [PARAFRÁZA — overiť]
+  criteria:
+    subtype: ["tnbc"]
+    brca: ["mutated"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.x scaffold seed, 2026-06-21"

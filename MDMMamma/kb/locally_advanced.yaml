@@ -1,0 +1,39 @@
+# Lokálne pokročilý karcinóm — znalostná databáza (KB)
+# ⚠️  ILUSTRAČNÉ SEED ZÁZNAMY (Fáza 1). NEOVERENÉ (reviewed: false). Pozri dcis.yaml.
+
+- id: la-esmo-her2-neoadj-dual
+  entity: locally_advanced
+  society: ESMO
+  guideline_version: "ESMO early breast cancer 2023"
+  year: 2023
+  source_reference: "Loibl S, et al. Early breast cancer: ESMO Clinical Practice Guideline. Ann Oncol 2023."
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "HER2+, locally advanced"
+  recommendation_text: >-
+    Pri HER2-pozitívnom lokálne pokročilom ochorení je preferovaná neoadjuvantná
+    chemoterapia s duálnou anti-HER2 blokádou (trastuzumab + pertuzumab); ďalšia liečba
+    podľa patologickej odpovede. [PARAFRÁZA — overiť]
+  criteria:
+    subtype: ["her2_pos"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
+
+- id: la-nccn-tnbc-neoadj-pembro
+  entity: locally_advanced
+  society: NCCN
+  guideline_version: "NCCN Breast Cancer v.2026"
+  year: 2026
+  source_reference: "NCCN Clinical Practice Guidelines in Oncology — Breast Cancer, v.1.2026"
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "TNBC, locally advanced"
+  recommendation_text: >-
+    Pri lokálne pokročilom triple-negatívnom karcinóme sa odporúča neoadjuvantná
+    chemoterapia v kombinácii s pembrolizumabom (režim podľa KEYNOTE-522). [PARAFRÁZA — overiť]
+  criteria:
+    subtype: ["tnbc"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.x scaffold seed, 2026-06-21"

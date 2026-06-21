@@ -1,0 +1,45 @@
+# DCIS — znalostná databáza (KB)
+# =============================================================================
+# ⚠️  ILUSTRAČNÉ SEED ZÁZNAMY (Fáza 1 / scaffold). NEOVERENÉ (reviewed: false).
+#     Slúžia len na demonštráciu enginu, citácií, fallbacku a stránky "Stav kontroly".
+#     Vo Fáze 2 ich Opus nahradí/doplní obsahom z primárnych zdrojov, vo Fáze 3 ich
+#     overí Filip a prepne reviewed -> true.
+# =============================================================================
+
+- id: dcis-nccn-2026-er-pos-endocrine
+  entity: dcis
+  society: NCCN
+  guideline_version: "NCCN Breast Cancer v.2026"
+  year: 2026
+  source_reference: "NCCN Clinical Practice Guidelines in Oncology — Breast Cancer, v.1.2026"
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "ER+ DCIS"
+  recommendation_text: >-
+    Pri ER-pozitívnom DCIS po prsník-zachovávajúcej operácii možno zvážiť endokrinnú
+    liečbu na redukciu rizika ipsilaterálnej a kontralaterálnej recidívy. [PARAFRÁZA — overiť]
+  criteria:
+    er: ["positive"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
+
+- id: dcis-stgallen-low-grade-rt
+  entity: dcis
+  society: St. Gallen
+  guideline_version: "St. Gallen consensus (breast, early/in-situ)"
+  year: 2023
+  source_reference: "St. Gallen International Consensus on the primary therapy of early breast cancer"
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "low/intermediate grade DCIS"
+  recommendation_text: >-
+    Pri nízkom/strednom grade DCIS s negatívnymi okrajmi sa diskutuje o možnej
+    deeskalácii (vrátane individuálneho zváženia vynechania rádioterapie) podľa
+    rizikového profilu. [PARAFRÁZA — overiť]
+  criteria:
+    grade: ["low", "intermediate"]
+    margins: ["negative"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
