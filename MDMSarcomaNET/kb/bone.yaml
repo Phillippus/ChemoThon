@@ -1,57 +1,77 @@
-# Kostný sarkóm — znalostná databáza (KB)
-# ⚠️  ILUSTRAČNÉ SEED ZÁZNAMY (Fáza 1). NEOVERENÉ (reviewed: false). Pozri soft_tissue.yaml.
+# Kostný sarkóm — KB — FÁZA 2
+# Reálny guideline-konkordantný obsah, parafrázované. VŠETKO reviewed: false; source_location NEOVERENÉ.
 
 - id: bone-esmo-osteosarcoma-map
   entity: bone
   society: ESMO
-  guideline_version: "ESMO-EURACAN-GENTURIS bone sarcomas 2021"
+  guideline_version: "ESMO-EURACAN-GENTURIS-ERN PaedCan bone sarcomas 2021"
   year: 2021
   source_reference: "Strauss SJ, et al. Bone sarcomas: ESMO-EURACAN-GENTURIS-ERN PaedCan Clinical Practice Guideline. Ann Oncol 2021;32:1520-1536."
   source_location: "NEOVERENÉ - doplniť"
-  risk_group: "osteosarcoma"
+  risk_group: "osteosarcoma, lokalizovaný"
   recommendation_text: >-
-    Pri vysokostupňovom osteosarkóme je štandardom neoadjuvantná chemoterapia (MAP:
-    metotrexát, doxorubicín, cisplatina) s následnou resekciou a pokračovaním adjuvancie.
-    [PARAFRÁZA — overiť]
+    Vysokostupňový osteosarkóm: neoadjuvantná chemoterapia (MAP — metotrexát, doxorubicín,
+    cisplatina) s následnou resekciou a pokračovaním adjuvancie. [PARAFRÁZA — overiť]
   criteria:
     subtype: ["osteosarcoma"]
+    setting: ["localized"]
   reviewed: false
   reviewed_by: null
   reviewed_date: null
-  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
 - id: bone-nccn-ewing-vdcie
   entity: bone
   society: NCCN
   guideline_version: "NCCN Bone Cancer v.2026"
   year: 2026
-  source_reference: "NCCN Clinical Practice Guidelines in Oncology — Bone Cancer, v.1.2026"
+  source_reference: "NCCN Bone Cancer v.2026."
   source_location: "NEOVERENÉ - doplniť"
   risk_group: "Ewing sarcoma"
   recommendation_text: >-
-    Pri Ewingovom sarkóme je základom multimodálna liečba so systémovou chemoterapiou
-    (striedanie VDC/IE) a lokálnou kontrolou (chirurgia a/alebo rádioterapia). [PARAFRÁZA — overiť]
+    Ewingov sarkóm: multimodálna liečba — indukčná systémová chemoterapia (striedanie VDC/IE)
+    s lokálnou kontrolou (chirurgia a/alebo rádioterapia) a pokračovaním chemoterapie. [PARAFRÁZA — overiť]
   criteria:
     subtype: ["ewing"]
   reviewed: false
   reviewed_by: null
   reviewed_date: null
-  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
 - id: bone-esmo-chondrosarcoma-surgery
   entity: bone
   society: ESMO
-  guideline_version: "ESMO-EURACAN-GENTURIS bone sarcomas 2021"
+  guideline_version: "ESMO-EURACAN-GENTURIS-ERN PaedCan bone sarcomas 2021"
   year: 2021
   source_reference: "Strauss SJ, et al. Ann Oncol 2021;32:1520-1536."
   source_location: "NEOVERENÉ - doplniť"
   risk_group: "chondrosarcoma"
   recommendation_text: >-
-    Konvenčný chondrosarkóm je prevažne rezistentný na chemoterapiu aj rádioterapiu;
-    liečbou voľby je adekvátna chirurgická resekcia. [PARAFRÁZA — overiť]
+    Konvenčný chondrosarkóm je prevažne rezistentný na chemoterapiu aj rádioterapiu; liečbou
+    voľby je adekvátna chirurgická resekcia. [PARAFRÁZA — overiť]
   criteria:
     subtype: ["chondrosarcoma"]
   reviewed: false
   reviewed_by: null
   reviewed_date: null
-  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+
+- id: bone-esmo-metastatic
+  entity: bone
+  society: ESMO
+  guideline_version: "ESMO-EURACAN-GENTURIS-ERN PaedCan bone sarcomas 2021"
+  year: 2021
+  source_reference: "Strauss SJ, et al. Ann Oncol 2021;32:1520-1536."
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "metastatický (osteosarkóm/Ewing)"
+  recommendation_text: >-
+    Metastatický osteosarkóm/Ewing: systémová chemoterapia (ako pri lokalizovanom ochorení)
+    s agresívnou lokálnou liečbou primárneho tumoru aj resekabilných (najmä pľúcnych) metastáz.
+    [PARAFRÁZA — overiť]
+  criteria:
+    subtype: ["osteosarcoma", "ewing"]
+    setting: ["metastatic"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"

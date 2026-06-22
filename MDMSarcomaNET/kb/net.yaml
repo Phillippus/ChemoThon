@@ -1,5 +1,5 @@
-# Neuroendokrinný nádor (GEP-NET) — znalostná databáza (KB)
-# ⚠️  ILUSTRAČNÉ SEED ZÁZNAMY (Fáza 1). NEOVERENÉ (reviewed: false). Pozri soft_tissue.yaml.
+# Neuroendokrinný nádor (GEP-NET) — KB — FÁZA 2
+# Reálny guideline-konkordantný obsah, parafrázované. VŠETKO reviewed: false; source_location NEOVERENÉ.
 
 - id: net-enets-localized-surgery
   entity: net
@@ -10,26 +10,27 @@
   source_location: "NEOVERENÉ - doplniť"
   risk_group: "localized"
   recommendation_text: >-
-    Pri lokalizovanom dobre diferencovanom GEP-NET je liečbou voľby kompletná
-    chirurgická resekcia (potenciálne kuratívna). [PARAFRÁZA — overiť]
+    Lokalizovaný dobre diferencovaný GEP-NET: kompletná chirurgická resekcia (potenciálne
+    kuratívna); pri malých (< 1–2 cm) apendikálnych/rektálnych NET môže postačovať lokálna
+    excízia. [PARAFRÁZA — overiť]
   criteria:
     setting: ["localized"]
   reviewed: false
   reviewed_by: null
   reviewed_date: null
-  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
 - id: net-enets-advanced-ssa
   entity: net
   society: ENETS
   guideline_version: "ENETS guidance (GEP-NET)"
   year: 2023
-  source_reference: "ENETS 2023 guidance papers for gastroenteropancreatic neuroendocrine tumours."
+  source_reference: "ENETS 2023 guidance; PROMID, CLARINET (somatostatínové analógy)."
   source_location: "NEOVERENÉ - doplniť"
-  risk_group: "advanced, well-diff, SSTR+"
+  risk_group: "advanced, well-diff (G1–G2), SSTR+"
   recommendation_text: >-
-    Pri pokročilom dobre diferencovanom (G1–G2) SSTR-pozitívnom NET je prvou líniou
-    somatostatínový analóg (oktreotid LAR alebo lanreotid) na kontrolu rastu aj symptómov.
+    Pokročilý dobre diferencovaný (G1–G2) SSTR-pozitívny NET: prvolíniovo somatostatínový
+    analóg (oktreotid LAR alebo lanreotid) na kontrolu rastu aj symptómov (PROMID, CLARINET).
     [PARAFRÁZA — overiť]
   criteria:
     setting: ["advanced"]
@@ -38,45 +39,65 @@
   reviewed: false
   reviewed_by: null
   reviewed_date: null
-  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
 - id: net-esmo-prrt-progression
   entity: net
   society: ESMO
-  guideline_version: "ESMO gastroenteropancreatic NET 2020"
+  guideline_version: "ESMO gastroenteropancreatic NEN 2020"
   year: 2020
-  source_reference: "Pavel M, et al. Gastroenteropancreatic neuroendocrine neoplasms: ESMO Clinical Practice Guidelines. Ann Oncol 2020;31:844-860."
+  source_reference: "Pavel M, et al. Gastroenteropancreatic neuroendocrine neoplasms: ESMO Clinical Practice Guidelines. Ann Oncol 2020;31:844-860; NETTER-1, NETTER-2."
   source_location: "NEOVERENÉ - doplniť"
   risk_group: "advanced, SSTR+, progredujúci"
   recommendation_text: >-
     Pri progresii pokročilého SSTR-pozitívneho NET je možnosťou peptidová receptorová
-    rádionuklidová terapia (PRRT, 177Lu-DOTATATE). [PARAFRÁZA — overiť]
+    rádionuklidová terapia (PRRT, 177Lu-DOTATATE; NETTER-1; NETTER-2 aj v 1. línii pri G2/G3
+    s vyšším Ki-67). [PARAFRÁZA — overiť]
   criteria:
     setting: ["advanced"]
     sstr: ["positive"]
   reviewed: false
   reviewed_by: null
   reviewed_date: null
-  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
 - id: net-nccn-pannet-targeted
   entity: net
   society: NCCN
   guideline_version: "NCCN Neuroendocrine Tumors v.2026"
   year: 2026
-  source_reference: "NCCN Clinical Practice Guidelines in Oncology — Neuroendocrine and Adrenal Tumors, v.1.2026"
+  source_reference: "NCCN Neuroendocrine and Adrenal Tumors v.2026; RADIANT-3 (everolimus), sunitinib panNET."
   source_location: "NEOVERENÉ - doplniť"
   risk_group: "advanced pancreatic NET"
   recommendation_text: >-
-    Pri pokročilom pankreatickom NET sú okrem SSA možnosťami cielené látky everolimus
-    alebo sunitinib, prípadne chemoterapia (napr. CAPTEM). [PARAFRÁZA — overiť]
+    Pokročilý pankreatický NET: okrem SSA sú možnosťami cielené látky everolimus alebo
+    sunitinib, prípadne chemoterapia (CAPTEM / streptozocín-based). [PARAFRÁZA — overiť]
   criteria:
     primary_site: ["pancreatic"]
     setting: ["advanced"]
   reviewed: false
   reviewed_by: null
   reviewed_date: null
-  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+
+- id: net-enets-functioning-symptom-control
+  entity: net
+  society: ENETS
+  guideline_version: "ENETS guidance (GEP-NET)"
+  year: 2023
+  source_reference: "ENETS 2023 guidance; karcinoidný syndróm."
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "funkčný NET (karcinoidný syndróm)"
+  recommendation_text: >-
+    Pri funkčnom NET (karcinoidný syndróm) sú základom kontroly symptómov somatostatínové
+    analógy; pri refraktérnej hnačke telotristat. Pozor na karcinoidnú krízu periprocedurálne.
+    [PARAFRÁZA — overiť]
+  criteria:
+    functionality: ["functioning"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
 - id: net-esmo-nec-platinum-etoposide
   entity: net
@@ -85,13 +106,13 @@
   year: 2020
   source_reference: "Pavel M, et al. Ann Oncol 2020;31:844-860."
   source_location: "NEOVERENÉ - doplniť"
-  risk_group: "NEC (poorly differentiated)"
+  risk_group: "NEC (slabo diferencovaný)"
   recommendation_text: >-
-    Pri slabo diferencovanom neuroendokrinnom karcinóme (NEC) je štandardom prvej línie
-    chemoterapia na báze platiny s etopozidom. [PARAFRÁZA — overiť]
+    Slabo diferencovaný neuroendokrinný karcinóm (NEC): prvolíniovo chemoterapia na báze platiny
+    s etopozidom (analogicky k malobunkovému karcinómu). [PARAFRÁZA — overiť]
   criteria:
     grade: ["nec"]
   reviewed: false
   reviewed_by: null
   reviewed_date: null
-  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"

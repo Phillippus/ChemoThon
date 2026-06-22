@@ -1,46 +1,62 @@
-# Soft-tissue sarkóm — znalostná databáza (KB)
-# =============================================================================
-# ⚠️  ILUSTRAČNÉ SEED ZÁZNAMY (Fáza 1 / scaffold). NEOVERENÉ (reviewed: false).
-#     Vo Fáze 2 ich Opus nahradí/doplní obsahom z primárnych zdrojov, vo Fáze 3 overí Filip.
-# =============================================================================
+# Soft-tissue sarkóm — KB — FÁZA 2
+# Reálny guideline-konkordantný obsah, parafrázované. VŠETKO reviewed: false; source_location NEOVERENÉ.
 
-- id: sts-esmo-localized-highgrade
+- id: sts-esmo-localized-lowgrade
   entity: soft_tissue
   society: ESMO
   guideline_version: "ESMO-EURACAN-GENTURIS soft tissue sarcoma 2021"
   year: 2021
   source_reference: "Gronchi A, et al. Soft tissue and visceral sarcomas: ESMO-EURACAN-GENTURIS Clinical Practice Guidelines. Ann Oncol 2021;32:1348-1365."
   source_location: "NEOVERENÉ - doplniť"
+  risk_group: "localized, low-grade"
+  recommendation_text: >-
+    Lokalizovaný nízkostupňový sarkóm: široká excízia s adekvátnymi okrajmi; adjuvantná
+    rádioterapia/chemoterapia sa rutinne neodporúča (zvážiť RT pri tesných okrajoch). [PARAFRÁZA — overiť]
+  criteria:
+    setting: ["localized"]
+    grade: ["g1"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+
+- id: sts-esmo-localized-highgrade
+  entity: soft_tissue
+  society: ESMO
+  guideline_version: "ESMO-EURACAN-GENTURIS soft tissue sarcoma 2021"
+  year: 2021
+  source_reference: "Gronchi A, et al. Ann Oncol 2021;32:1348-1365."
+  source_location: "NEOVERENÉ - doplniť"
   risk_group: "localized, high-grade"
   recommendation_text: >-
-    Pri lokalizovanom vysokostupňovom sarkóme je základom široká excízia s adekvátnymi
-    okrajmi; perioperačná rádioterapia zlepšuje lokálnu kontrolu, neoadjuvantnú chemoterapiu
-    zvážiť u vybraných vysokorizikových (veľké, hlboké, G2–3). [PARAFRÁZA — overiť]
+    Lokalizovaný vysokostupňový sarkóm: široká excízia + perioperačná rádioterapia (lepšia
+    lokálna kontrola); neoadjuvantnú chemoterapiu zvážiť u vysokorizikových (veľké, hlboké,
+    G2–3 končatinové). [PARAFRÁZA — overiť]
   criteria:
     setting: ["localized"]
     grade: ["g2", "g3"]
   reviewed: false
   reviewed_by: null
   reviewed_date: null
-  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
 - id: sts-nccn-retroperitoneal
   entity: soft_tissue
   society: NCCN
   guideline_version: "NCCN Soft Tissue Sarcoma v.2026"
   year: 2026
-  source_reference: "NCCN Clinical Practice Guidelines in Oncology — Soft Tissue Sarcoma, v.1.2026"
+  source_reference: "NCCN Soft Tissue Sarcoma v.2026; STRASS."
   source_location: "NEOVERENÉ - doplniť"
   risk_group: "retroperitoneal"
   recommendation_text: >-
-    Pri retroperitoneálnom sarkóme je kľúčová kompletná en-bloc resekcia v skúsenom centre;
-    úloha (neo)adjuvantnej rádioterapie zostáva individuálna/kontroverzná. [PARAFRÁZA — overiť]
+    Retroperitoneálny sarkóm: kľúčová je kompletná en-bloc resekcia v skúsenom centre; úloha
+    (neo)adjuvantnej rádioterapie zostáva individuálna/kontroverzná (STRASS). [PARAFRÁZA — overiť]
   criteria:
     location: ["retroperitoneal"]
   reviewed: false
   reviewed_by: null
   reviewed_date: null
-  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
 - id: sts-esmo-metastatic-anthracycline
   entity: soft_tissue
@@ -51,11 +67,12 @@
   source_location: "NEOVERENÉ - doplniť"
   risk_group: "metastatic"
   recommendation_text: >-
-    Pri metastatickom ochorení je štandardom prvej línie chemoterapia na báze antracyklínov
-    (doxorubicín); ďalšia liečba podľa histologického podtypu. [PARAFRÁZA — overiť]
+    Metastatické ochorenie: prvolíniovo chemoterapia na báze antracyklínov (doxorubicín);
+    ďalšie línie podľa histologického podtypu (napr. trabektedín, pazopanib, gemcitabín/docetaxel).
+    [PARAFRÁZA — overiť]
   criteria:
     setting: ["metastatic"]
   reviewed: false
   reviewed_by: null
   reviewed_date: null
-  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"

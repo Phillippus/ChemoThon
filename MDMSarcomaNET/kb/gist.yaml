@@ -1,42 +1,62 @@
-# GIST — znalostná databáza (KB)
-# ⚠️  ILUSTRAČNÉ SEED ZÁZNAMY (Fáza 1). NEOVERENÉ (reviewed: false). Pozri soft_tissue.yaml.
+# GIST — KB — FÁZA 2
+# Reálny guideline-konkordantný obsah, parafrázované. VŠETKO reviewed: false; source_location NEOVERENÉ.
 
-- id: gist-esmo-adjuvant-highrisk
+- id: gist-esmo-localized-lowrisk
   entity: gist
   society: ESMO
   guideline_version: "ESMO-EURACAN-GENTURIS GIST 2022"
   year: 2022
   source_reference: "Casali PG, et al. Gastrointestinal stromal tumours: ESMO-EURACAN-GENTURIS Clinical Practice Guidelines. Ann Oncol 2022;33:20-33."
   source_location: "NEOVERENÉ - doplniť"
+  risk_group: "localized, very-low/low risk"
+  recommendation_text: >-
+    Lokalizovaný GIST s veľmi nízkym/nízkym rizikom relapsu: kompletná chirurgická resekcia
+    bez adjuvantnej liečby. [PARAFRÁZA — overiť]
+  criteria:
+    setting: ["localized"]
+    risk_group: ["very_low", "low"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+
+- id: gist-esmo-adjuvant-highrisk
+  entity: gist
+  society: ESMO
+  guideline_version: "ESMO-EURACAN-GENTURIS GIST 2022"
+  year: 2022
+  source_reference: "Casali PG, et al. Ann Oncol 2022;33:20-33."
+  source_location: "NEOVERENÉ - doplniť"
   risk_group: "localized, high risk"
   recommendation_text: >-
-    Po kompletnej resekcii lokalizovaného GIST s vysokým rizikom relapsu je indikovaná
-    adjuvantná liečba imatinibom (zvyčajne ≥ 3 roky); zohľadniť mutačný status. [PARAFRÁZA — overiť]
+    Lokalizovaný GIST s vysokým rizikom relapsu: po kompletnej resekcii adjuvantný imatinib
+    (zvyčajne ≥ 3 roky); zohľadniť mutačný status (D842V je rezistentný — imatinib neúčinkuje).
+    [PARAFRÁZA — overiť]
   criteria:
     setting: ["localized"]
     risk_group: ["high"]
   reviewed: false
   reviewed_by: null
   reviewed_date: null
-  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
 - id: gist-nccn-metastatic-imatinib
   entity: gist
   society: NCCN
   guideline_version: "NCCN GIST v.2026"
   year: 2026
-  source_reference: "NCCN Clinical Practice Guidelines in Oncology — Gastrointestinal Stromal Tumors, v.1.2026"
+  source_reference: "NCCN GIST v.2026."
   source_location: "NEOVERENÉ - doplniť"
   risk_group: "metastatic"
   recommendation_text: >-
-    Pri metastatickom/neresekabilnom GIST je štandardom prvej línie imatinib; pri progresii
-    sunitinib (2. línia) a regorafenib (3. línia). [PARAFRÁZA — overiť]
+    Metastatický/neresekabilný GIST: prvolíniovo imatinib; pri progresii sunitinib (2. línia),
+    regorafenib (3. línia) a ripretinib (4. línia). [PARAFRÁZA — overiť]
   criteria:
     setting: ["metastatic"]
   reviewed: false
   reviewed_by: null
   reviewed_date: null
-  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
 - id: gist-esmo-exon9-dose
   entity: gist
@@ -47,22 +67,22 @@
   source_location: "NEOVERENÉ - doplniť"
   risk_group: "metastatic, KIT exón 9"
   recommendation_text: >-
-    Pri metastatickom GIST s mutáciou KIT exón 9 sa odporúča vyššia dávka imatinibu
-    (800 mg denne). [PARAFRÁZA — overiť]
+    Metastatický GIST s mutáciou KIT exón 9: odporúča sa vyššia dávka imatinibu (800 mg denne).
+    [PARAFRÁZA — overiť]
   criteria:
     setting: ["metastatic"]
     mutation: ["kit_ex9"]
   reviewed: false
   reviewed_by: null
   reviewed_date: null
-  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
 - id: gist-nccn-pdgfra-d842v-avapritinib
   entity: gist
   society: NCCN
   guideline_version: "NCCN GIST v.2026"
   year: 2026
-  source_reference: "NCCN Clinical Practice Guidelines in Oncology — Gastrointestinal Stromal Tumors, v.1.2026"
+  source_reference: "NCCN GIST v.2026; NAVIGATOR (avapritinib)."
   source_location: "NEOVERENÉ - doplniť"
   risk_group: "PDGFRA D842V"
   recommendation_text: >-
@@ -73,4 +93,4 @@
   reviewed: false
   reviewed_by: null
   reviewed_date: null
-  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
