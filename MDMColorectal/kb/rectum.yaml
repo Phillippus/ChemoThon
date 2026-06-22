@@ -1,57 +1,97 @@
-# Karcinóm rekta (lokalizovaný) — znalostná databáza (KB)
-# ⚠️  ILUSTRAČNÉ SEED ZÁZNAMY (Fáza 1). NEOVERENÉ (reviewed: false). Pozri colon.yaml.
+# Karcinóm rekta (lokalizovaný) — KB — FÁZA 2
+# Reálny guideline-konkordantný obsah, parafrázované. VŠETKO reviewed: false; source_location NEOVERENÉ.
 
-- id: rectum-esmo-tnt-stage3
+- id: rectum-esmo-early-tme
   entity: rectum
   society: ESMO
-  guideline_version: "ESMO rectal cancer 2017 (+ update)"
+  guideline_version: "ESMO rectal cancer 2017"
   year: 2017
   source_reference: "Glynne-Jones R, et al. Rectal cancer: ESMO Clinical Practice Guidelines. Ann Oncol 2017;28(suppl_4):iv22-iv40."
   source_location: "NEOVERENÉ - doplniť"
-  risk_group: "locally advanced (st. III)"
+  risk_group: "early (cT1–2 N0)"
   recommendation_text: >-
-    Pri lokálne pokročilom rekte (st. III, cT3–4 a/alebo cN+) sa zvažuje totálna
-    neoadjuvantná terapia (TNT) — kombinácia (chemo)rádioterapie a systémovej chemoterapie
-    pred TME. [PARAFRÁZA — overiť]
+    Skoré ochorenie (cT1–2 N0): primárna chirurgia (TME); pri veľmi skorom cT1 (low-risk)
+    je možná lokálna excízia. Neoadjuvantná liečba sa nevyžaduje. [PARAFRÁZA — overiť]
   criteria:
-    stage: ["III"]
+    ct_stage: ["cT1_2"]
+    cn_stage: ["cN0"]
   reviewed: false
   reviewed_by: null
   reviewed_date: null
-  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
 - id: rectum-nccn-ct3-neoadj-crt
   entity: rectum
   society: NCCN
   guideline_version: "NCCN Rectal Cancer v.2026"
   year: 2026
-  source_reference: "NCCN Clinical Practice Guidelines in Oncology — Rectal Cancer, v.1.2026"
+  source_reference: "NCCN Rectal Cancer v.1.2026."
   source_location: "NEOVERENÉ - doplniť"
-  risk_group: "cT3–4"
+  risk_group: "cT3–4 alebo N+"
   recommendation_text: >-
-    Pri cT3–T4 ochorení je indikovaná neoadjuvantná liečba (chemorádioterapia alebo TNT)
-    nasledovaná chirurgickou resekciou (TME). [PARAFRÁZA — overiť]
+    Pri cT3–T4 a/alebo uzlinovo pozitívnom ochorení je indikovaná neoadjuvantná liečba
+    (chemorádioterapia alebo totálna neoadjuvantná terapia) nasledovaná TME. [PARAFRÁZA — overiť]
   criteria:
     ct_stage: ["cT3", "cT4"]
   reviewed: false
   reviewed_by: null
   reviewed_date: null
-  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+
+- id: rectum-esmo-tnt-highrisk
+  entity: rectum
+  society: ESMO
+  guideline_version: "ESMO rectal cancer 2017 (+ update)"
+  year: 2017
+  source_reference: "Glynne-Jones R, et al. Ann Oncol 2017; RAPIDO, PRODIGE-23 (TNT)."
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "high-risk (MRF+, EMVI+, cT4, dolné rektum)"
+  recommendation_text: >-
+    Pri vysokorizikovom lokálne pokročilom rekte (ohrozená/postihnutá MRF, EMVI+, cT4, dolné
+    rektum) sa preferuje totálna neoadjuvantná terapia (TNT) — kombinácia (chemo)rádioterapie
+    a systémovej chemoterapie pred TME (RAPIDO, PRODIGE-23). [PARAFRÁZA — overiť]
+  criteria:
+    mrf: ["involved"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
 - id: rectum-esmo-dmmr-immuno
   entity: rectum
   society: ESMO
-  guideline_version: "ESMO rectal cancer (update)"
-  year: 2023
-  source_reference: "ESMO rectal cancer guideline update; data k neoadjuvantnej imunoterapii pri dMMR (napr. dostarlimab)."
+  guideline_version: "ESMO / aktuálne dáta dMMR rektum"
+  year: 2024
+  source_reference: "Cercek A, et al. (dostarlimab, dMMR rektum) a AZUR-1; ESMO rectal cancer guidance."
   source_location: "NEOVERENÉ - doplniť"
-  risk_group: "dMMR/MSI-H rectum"
+  risk_group: "dMMR/MSI-H lokálne pokročilý"
   recommendation_text: >-
-    Pri dMMR/MSI-H lokálne pokročilom rekte je rastúca evidencia pre neoadjuvantnú
-    imunoterapiu (napr. dostarlimab) s možnosťou organ-preserving prístupu. [PARAFRÁZA — overiť]
+    Pri dMMR/MSI-H lokálne pokročilom rekte je silná evidencia pre neoadjuvantnú imunoterapiu
+    (napr. dostarlimab) s vysokou mierou kompletnej klinickej odpovede a možnosťou organ-preserving
+    (non-operative) prístupu. [PARAFRÁZA — overiť]
   criteria:
     mmr_status: ["dmmr"]
   reviewed: false
   reviewed_by: null
   reviewed_date: null
-  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+
+- id: rectum-nccn-watch-and-wait
+  entity: rectum
+  society: NCCN
+  guideline_version: "NCCN Rectal Cancer v.2026"
+  year: 2026
+  source_reference: "NCCN Rectal Cancer v.1.2026; OPRA (nonoperative management)."
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "klinická kompletná odpoveď po neoadjuvancii"
+  recommendation_text: >-
+    Pri dosiahnutí klinickej kompletnej odpovede (cCR) po neoadjuvantnej liečbe je u vybraných
+    pacientov možný watch-and-wait (nonoperatívny manažment) s prísnym sledovaním namiesto TME.
+    [PARAFRÁZA — overiť]
+  criteria:
+    ct_stage: ["cT3"]
+    cn_stage: ["cN0"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
