@@ -1,43 +1,63 @@
-# Marginálnozónový lymfóm (MZL) — znalostná databáza (KB)
-# ⚠️  ILUSTRAČNÉ SEED ZÁZNAMY (Fáza 1). NEOVERENÉ (reviewed: false). Pozri hl.yaml.
+# Marginálnozónový lymfóm (MZL) — KB — FÁZA 2
+# Reálny guideline-konkordantný obsah, parafrázované. VŠETKO reviewed: false; source_location NEOVERENÉ.
 
 - id: mzl-esmo-gastric-malt-hp-pos
   entity: mzl
   society: ESMO
-  guideline_version: "ESMO gastric marginal zone (MALT) lymphoma 2020"
+  guideline_version: "ESMO marginal zone lymphomas 2020"
   year: 2020
   source_reference: "Zucca E, et al. Marginal zone lymphomas: ESMO Clinical Practice Guidelines. Ann Oncol 2020;31:17-29."
   source_location: "NEOVERENÉ - doplniť"
   risk_group: "gastric MALT, H. pylori+"
   recommendation_text: >-
-    Pri gastrickom MALT lymfóme s pozitívnym H. pylori je liečbou prvej línie
-    eradikácia H. pylori; následné sledovanie regresie. [PARAFRÁZA — overiť]
+    Gastrický MALT lymfóm s pozitívnym H. pylori: liečbou prvej línie je eradikácia H. pylori;
+    následné endoskopické sledovanie regresie. [PARAFRÁZA — overiť]
   criteria:
     subtype: ["gastric_malt"]
     h_pylori: ["positive"]
   reviewed: false
   reviewed_by: null
   reviewed_date: null
-  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
 - id: mzl-nccn-gastric-malt-hp-neg
   entity: mzl
   society: NCCN
   guideline_version: "NCCN B-cell Lymphomas v.2026"
   year: 2026
-  source_reference: "NCCN Clinical Practice Guidelines in Oncology — B-Cell Lymphomas, v.1.2026"
+  source_reference: "NCCN B-Cell Lymphomas v.2026."
   source_location: "NEOVERENÉ - doplniť"
   risk_group: "gastric MALT, H. pylori−"
   recommendation_text: >-
-    Pri H. pylori-negatívnom gastrickom MALT (alebo pri perzistencii po eradikácii) je
-    preferovanou možnosťou rádioterapia na zasiahnuté miesta (ISRT). [PARAFRÁZA — overiť]
+    H. pylori-negatívny gastrický MALT (alebo perzistencia po eradikácii): preferovanou
+    možnosťou je rádioterapia na zasiahnuté miesta (ISRT). [PARAFRÁZA — overiť]
   criteria:
     subtype: ["gastric_malt"]
     h_pylori: ["negative"]
   reviewed: false
   reviewed_by: null
   reviewed_date: null
-  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+
+- id: mzl-esmo-nongastric-nodal-localized
+  entity: mzl
+  society: ESMO
+  guideline_version: "ESMO marginal zone lymphomas 2020"
+  year: 2020
+  source_reference: "Zucca E, et al. Ann Oncol 2020;31:17-29."
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "extranodálny (negastrický) / nodálny, lokalizovaný"
+  recommendation_text: >-
+    Lokalizovaný negastrický extranodálny alebo nodálny MZL: rádioterapia na zasiahnuté miesta;
+    pri pokročilom/symptomatickom ochorení anti-CD20-založená liečba (rituximab ± chemoterapia).
+    [PARAFRÁZA — overiť]
+  criteria:
+    subtype: ["nongastric_malt", "nodal"]
+    stage: ["I", "II"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
 - id: mzl-esmo-splenic
   entity: mzl
@@ -48,11 +68,11 @@
   source_location: "NEOVERENÉ - doplniť"
   risk_group: "splenic MZL"
   recommendation_text: >-
-    Pri splenickom MZL bez symptómov a bez cytopénií je vhodné sledovanie; pri indikácii
-    liečby je možnosťou rituximab (a manažment prípadnej HCV infekcie). [PARAFRÁZA — overiť]
+    Splenický MZL bez symptómov a bez cytopénií: sledovanie; pri indikácii liečby rituximab.
+    Manažovať prípadnú HCV infekciu (antivirotiká môžu navodiť regresiu). [PARAFRÁZA — overiť]
   criteria:
     subtype: ["splenic"]
   reviewed: false
   reviewed_by: null
   reviewed_date: null
-  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"

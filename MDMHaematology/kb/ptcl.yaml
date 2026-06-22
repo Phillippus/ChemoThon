@@ -1,5 +1,5 @@
-# Periférny T-bunkový lymfóm (PTCL) — znalostná databáza (KB)
-# ⚠️  ILUSTRAČNÉ SEED ZÁZNAMY (Fáza 1). NEOVERENÉ (reviewed: false). Pozri hl.yaml.
+# Periférny T-bunkový lymfóm (PTCL) — KB — FÁZA 2
+# Reálny guideline-konkordantný obsah, parafrázované. VŠETKO reviewed: false; source_location NEOVERENÉ.
 
 - id: ptcl-esmo-choep-asct
   entity: ptcl
@@ -10,29 +10,48 @@
   source_location: "NEOVERENÉ - doplniť"
   risk_group: "PTCL-NOS / AITL"
   recommendation_text: >-
-    Pri PTCL-NOS a AITL je v prvej línii zvyčajne CHOP/CHOEP s konsolidáciou autológnou
-    transplantáciou (ASCT) u vhodných pacientov v prvej remisii. [PARAFRÁZA — overiť]
+    PTCL-NOS a AITL, prvá línia: CHOP alebo CHOEP (pridanie etopozidu u mladších) s konsolidáciou
+    autológnou transplantáciou v prvej remisii u vhodných pacientov. [PARAFRÁZA — overiť]
   criteria:
     subtype: ["ptcl_nos", "aitl"]
   reviewed: false
   reviewed_by: null
   reviewed_date: null
-  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
 - id: ptcl-nccn-alcl-bv-chp
   entity: ptcl
   society: NCCN
   guideline_version: "NCCN T-cell Lymphomas v.2026"
   year: 2026
-  source_reference: "NCCN Clinical Practice Guidelines in Oncology — T-Cell Lymphomas, v.1.2026"
+  source_reference: "NCCN T-Cell Lymphomas v.2026; ECHELON-2 (BV-CHP)."
   source_location: "NEOVERENÉ - doplniť"
   risk_group: "ALCL (CD30+)"
   recommendation_text: >-
-    Pri systémovom ALCL (CD30-pozitívny) je preferovaná prvá línia brentuximab vedotin +
-    CHP (BV-CHP). [PARAFRÁZA — overiť]
+    Systémový ALCL (CD30-pozitívny): preferovaná prvá línia brentuximab vedotin + CHP (BV-CHP,
+    ECHELON-2). ALK-pozitívny ALCL má priaznivejšiu prognózu. [PARAFRÁZA — overiť]
   criteria:
     subtype: ["alcl_alk_pos", "alcl_alk_neg"]
   reviewed: false
   reviewed_by: null
   reviewed_date: null
-  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+
+- id: ptcl-esmo-relapsed
+  entity: ptcl
+  society: ESMO
+  guideline_version: "ESMO peripheral T-cell lymphomas 2015"
+  year: 2015
+  source_reference: "d'Amore F, et al. Ann Oncol 2015;26(suppl_5):v108-v115."
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "relapsed/refractory"
+  recommendation_text: >-
+    Pri relapse/refraktérnom PTCL: pri CD30+ brentuximab vedotin; ďalšie možnosti zahŕňajú
+    HDAC inhibítory, pralatrexát alebo zaradenie do klinickej štúdie; pri vhodnosti alogénna
+    transplantácia. [PARAFRÁZA — overiť]
+  criteria:
+    ipi_risk: ["high"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"

@@ -1,17 +1,17 @@
-# DLBCL — znalostná databáza (KB)
-# ⚠️  ILUSTRAČNÉ SEED ZÁZNAMY (Fáza 1). NEOVERENÉ (reviewed: false). Pozri hl.yaml.
+# DLBCL — KB — FÁZA 2
+# Reálny guideline-konkordantný obsah, parafrázované. VŠETKO reviewed: false; source_location NEOVERENÉ.
 
 - id: dlbcl-esmo-rchop-advanced
   entity: dlbcl
   society: ESMO
-  guideline_version: "ESMO DLBCL 2015 (+ update)"
+  guideline_version: "ESMO DLBCL 2015 (+ updates)"
   year: 2015
   source_reference: "Tilly H, et al. Diffuse large B-cell lymphoma: ESMO Clinical Practice Guidelines. Ann Oncol 2015;26(suppl_5):v116-v125."
   source_location: "NEOVERENÉ - doplniť"
   risk_group: "advanced, first line"
   recommendation_text: >-
-    Pri pokročilom DLBCL v prvej línii je štandardom 6 cyklov R-CHOP (každých 21 dní).
-    [PARAFRÁZA — overiť]
+    Pokročilý DLBCL, prvá línia: 6 cyklov R-CHOP (à 21 dní). Pri vysokom riziku CNS zvážiť
+    profylaxiu. [PARAFRÁZA — overiť]
   criteria:
     line: ["first_line"]
     stage: ["III", "IV"]
@@ -19,19 +19,19 @@
   reviewed: false
   reviewed_by: null
   reviewed_date: null
-  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
 - id: dlbcl-nccn-pola-rchp
   entity: dlbcl
   society: NCCN
   guideline_version: "NCCN B-cell Lymphomas v.2026"
   year: 2026
-  source_reference: "NCCN Clinical Practice Guidelines in Oncology — B-Cell Lymphomas, v.1.2026"
+  source_reference: "NCCN B-Cell Lymphomas v.2026; POLARIX (Pola-R-CHP)."
   source_location: "NEOVERENÉ - doplniť"
   risk_group: "IPI ≥ 2, first line"
   recommendation_text: >-
-    Pri DLBCL s vyšším rizikom (IPI 2–5) je možnosťou prvej línie polatuzumab vedotin +
-    R-CHP (Pola-R-CHP) ako alternatíva k R-CHOP. [PARAFRÁZA — overiť]
+    Pri DLBCL s vyšším rizikom (IPI 2–5) je možnosťou prvej línie polatuzumab vedotin + R-CHP
+    (Pola-R-CHP, POLARIX) ako alternatíva k R-CHOP. [PARAFRÁZA — overiť]
   criteria:
     line: ["first_line"]
     ipi_risk: ["high_int", "high"]
@@ -39,19 +39,19 @@
   reviewed: false
   reviewed_by: null
   reviewed_date: null
-  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
 - id: dlbcl-esmo-localized
   entity: dlbcl
   society: ESMO
-  guideline_version: "ESMO DLBCL 2015 (+ update)"
+  guideline_version: "ESMO DLBCL 2015"
   year: 2015
   source_reference: "Tilly H, et al. Ann Oncol 2015;26(suppl_5):v116-v125."
   source_location: "NEOVERENÉ - doplniť"
   risk_group: "localized, non-bulky"
   recommendation_text: >-
-    Pri lokalizovanom non-bulky DLBCL možno zvážiť skrátenú liečbu (napr. 4× R-CHOP)
-    ± ISRT podľa odpovede. [PARAFRÁZA — overiť]
+    Lokalizovaný non-bulky DLBCL: skrátená liečba (napr. 4× R-CHOP ± 2× rituximab) ± ISRT
+    podľa interim PET. [PARAFRÁZA — overiť]
   criteria:
     line: ["first_line"]
     stage: ["I", "II"]
@@ -59,41 +59,60 @@
   reviewed: false
   reviewed_by: null
   reviewed_date: null
-  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
 - id: dlbcl-esmo-double-hit
   entity: dlbcl
   society: ESMO
   guideline_version: "ESMO DLBCL / high-grade B-cell lymphoma"
   year: 2015
-  source_reference: "ESMO DLBCL guideline; high-grade B-cell lymphoma with MYC and BCL2/BCL6 rearrangements."
+  source_reference: "ESMO DLBCL guideline; high-grade B-cell lymphoma s MYC a BCL2/BCL6 prestavbou."
   source_location: "NEOVERENÉ - doplniť"
   risk_group: "double/triple-hit"
   recommendation_text: >-
-    Pri double/triple-hit high-grade B-cell lymphóme sa zvažuje intenzívnejší režim
-    (napr. DA-EPOCH-R) namiesto štandardného R-CHOP. [PARAFRÁZA — overiť]
+    Double/triple-hit high-grade B-cell lymphóm: zvažuje sa intenzívnejší režim (napr.
+    DA-EPOCH-R) namiesto R-CHOP, s CNS profylaxiou. [PARAFRÁZA — overiť]
   criteria:
     line: ["first_line"]
     double_hit: ["yes"]
   reviewed: false
   reviewed_by: null
   reviewed_date: null
-  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
 - id: dlbcl-eha-cart-relapse
   entity: dlbcl
   society: EHA
-  guideline_version: "EHA/EBMT CAR-T recommendations"
+  guideline_version: "EHA/EBMT CAR-T recommendations; ZUMA-7, TRANSFORM"
   year: 2022
-  source_reference: "EHA/EBMT odporúčania pre CAR-T bunkovú terapiu u B-bunkových lymfómov."
+  source_reference: "EHA/EBMT odporúčania pre CAR-T; ZUMA-7 (axi-cel), TRANSFORM (liso-cel)."
   source_location: "NEOVERENÉ - doplniť"
-  risk_group: "relapsed/refractory"
+  risk_group: "relapsed/refractory (skorý relaps)"
   recommendation_text: >-
-    Pri skorom relapse/refraktérnom DLBCL je v druhej línii možnosťou CD19 CAR-T
-    bunková terapia (axi-cel / liso-cel) u vhodných pacientov. [PARAFRÁZA — overiť]
+    Pri primárne refraktérnom alebo skoro relabujúcom (do 12 mesiacov) DLBCL je v druhej línii
+    štandardom CD19 CAR-T terapia (axi-cel alebo liso-cel) u vhodných pacientov. [PARAFRÁZA — overiť]
   criteria:
     line: ["relapsed_refractory"]
   reviewed: false
   reviewed_by: null
   reviewed_date: null
-  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+
+- id: dlbcl-nccn-bispecific-3L
+  entity: dlbcl
+  society: NCCN
+  guideline_version: "NCCN B-cell Lymphomas v.2026"
+  year: 2026
+  source_reference: "NCCN B-Cell Lymphomas v.2026; glofitamab, epcoritamab (3.+ línia)."
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "relapsed/refractory (≥3. línia)"
+  recommendation_text: >-
+    V tretej a ďalších líniách R/R DLBCL (vrátane po zlyhaní CAR-T) sú možnosťou bišpecifické
+    protilátky CD20×CD3 — glofitamab alebo epcoritamab (monoterapia). [PARAFRÁZA — overiť]
+  criteria:
+    line: ["relapsed_refractory"]
+    ipi_risk: ["high"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"

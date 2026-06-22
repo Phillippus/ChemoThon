@@ -1,39 +1,57 @@
-# Lymfóm z plášťových buniek (MCL) — znalostná databáza (KB)
-# ⚠️  ILUSTRAČNÉ SEED ZÁZNAMY (Fáza 1). NEOVERENÉ (reviewed: false). Pozri hl.yaml.
+# Lymfóm z plášťových buniek (MCL) — KB — FÁZA 2
+# Reálny guideline-konkordantný obsah, parafrázované. VŠETKO reviewed: false; source_location NEOVERENÉ.
 
 - id: mcl-esmo-young-asct
   entity: mcl
   society: ESMO
-  guideline_version: "ESMO mantle cell lymphoma 2017"
+  guideline_version: "ESMO mantle cell lymphoma 2017 (+ update)"
   year: 2017
-  source_reference: "Dreyling M, et al. Newly diagnosed and relapsed mantle cell lymphoma: ESMO Clinical Practice Guidelines. Ann Oncol 2017;28(suppl_4):iv62-iv71."
+  source_reference: "Dreyling M, et al. Mantle cell lymphoma: ESMO Clinical Practice Guidelines. Ann Oncol 2017;28(suppl_4):iv62-iv71; TRIANGLE."
   source_location: "NEOVERENÉ - doplniť"
-  risk_group: "transplant-eligible"
+  risk_group: "transplant-eligible (mladší/fit)"
   recommendation_text: >-
-    U mladších/fit pacientov je štandardom intenzívna indukcia obsahujúca vysokodávkový
-    cytarabín, nasledovaná autológnou transplantáciou (ASCT) a udržiavacím rituximabom.
-    [PARAFRÁZA — overiť]
+    Mladší/fit pacienti: intenzívna indukcia obsahujúca vysokodávkový cytarabín, nasledovaná
+    autológnou transplantáciou a udržiavacím rituximabom. Podľa TRIANGLE sa do indukcie/udržiavania
+    pridáva BTK inhibítor (ibrutinib). [PARAFRÁZA — overiť]
   criteria:
     transplant_eligible: ["yes"]
   reviewed: false
   reviewed_by: null
   reviewed_date: null
-  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
 - id: mcl-nccn-elderly
   entity: mcl
   society: NCCN
   guideline_version: "NCCN B-cell Lymphomas v.2026"
   year: 2026
-  source_reference: "NCCN Clinical Practice Guidelines in Oncology — B-Cell Lymphomas, v.1.2026"
+  source_reference: "NCCN B-Cell Lymphomas v.2026; SHINE (BR + ibrutinib)."
   source_location: "NEOVERENÉ - doplniť"
   risk_group: "non-transplant candidate"
   recommendation_text: >-
-    U starších/nevhodných na ASCT je možnosťou bendamustín + rituximab (alebo R-CHOP)
-    s udržiavacím rituximabom; do liečby vstupujú aj BTK inhibítory. [PARAFRÁZA — overiť]
+    Starší/nevhodní na ASCT: bendamustín + rituximab (alebo R-CHOP) s udržiavacím rituximabom;
+    pridanie BTK inhibítora k indukcii je možnosťou. [PARAFRÁZA — overiť]
   criteria:
     transplant_eligible: ["no"]
   reviewed: false
   reviewed_by: null
   reviewed_date: null
-  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+
+- id: mcl-esmo-relapsed-btki-cart
+  entity: mcl
+  society: ESMO
+  guideline_version: "ESMO mantle cell lymphoma 2017 (+ update)"
+  year: 2017
+  source_reference: "Dreyling M, et al. Ann Oncol 2017; ZUMA-2 (brexucabtagene autoleucel)."
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "relapsed"
+  recommendation_text: >-
+    Pri relapse MCL: BTK inhibítor (akalabrutinib/zanubrutinib) ako preferovaná možnosť;
+    po zlyhaní BTKi CAR-T terapia (brexucabtagene autoleucel, ZUMA-2). [PARAFRÁZA — overiť]
+  criteria:
+    blastoid: ["yes"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"

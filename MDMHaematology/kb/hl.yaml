@@ -1,10 +1,5 @@
-# Hodgkinov lymfóm (klasický) — znalostná databáza (KB)
-# =============================================================================
-# ⚠️  ILUSTRAČNÉ SEED ZÁZNAMY (Fáza 1 / scaffold). NEOVERENÉ (reviewed: false).
-#     Slúžia len na demonštráciu enginu, citácií, fallbacku a stránky "Stav kontroly".
-#     Vo Fáze 2 ich Opus nahradí/doplní obsahom z primárnych zdrojov, vo Fáze 3 ich
-#     overí Filip a prepne reviewed -> true.
-# =============================================================================
+# Hodgkinov lymfóm (klasický) — KB — FÁZA 2
+# Reálny guideline-konkordantný obsah, parafrázované. VŠETKO reviewed: false; source_location NEOVERENÉ.
 
 - id: hl-esmo-early-favorable
   entity: hl
@@ -15,14 +10,32 @@
   source_location: "NEOVERENÉ - doplniť"
   risk_group: "early favorable"
   recommendation_text: >-
-    Pri skorom favorable štádiu je štandardom kombinovaná modalita: 2× ABVD nasledované
-    rádioterapiou na zasiahnuté miesta (ISRT 20 Gy), PET-adaptovane. [PARAFRÁZA — overiť]
+    Skoré favorable štádium: 2× ABVD nasledované rádioterapiou na zasiahnuté miesta
+    (ISRT 20 Gy), PET-adaptovane. [PARAFRÁZA — overiť]
   criteria:
     risk_group: ["early_fav"]
   reviewed: false
   reviewed_by: null
   reviewed_date: null
-  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+
+- id: hl-esmo-early-unfavorable
+  entity: hl
+  society: ESMO
+  guideline_version: "ESMO Hodgkin lymphoma 2018"
+  year: 2018
+  source_reference: "Eichenauer DA, et al. Ann Oncol 2018;29(suppl_4):iv19-iv29."
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "early unfavorable"
+  recommendation_text: >-
+    Skoré unfavorable štádium: zvyčajne 4× ABVD (alebo 2× eskalovaný BEACOPP + 2× ABVD u
+    mladších) nasledované ISRT 30 Gy; PET-adaptovaný prístup. [PARAFRÁZA — overiť]
+  criteria:
+    risk_group: ["early_unfav"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
 - id: hl-esmo-advanced-pet-adapted
   entity: hl
@@ -33,29 +46,50 @@
   source_location: "NEOVERENÉ - doplniť"
   risk_group: "advanced"
   recommendation_text: >-
-    Pri pokročilom štádiu ESMO uvádza PET-adaptovaný prístup: úvodné ABVD alebo
-    eskalovaný BEACOPP s deeskaláciou podľa interim PET. [PARAFRÁZA — overiť]
+    Pokročilé štádium (ESMO): PET-adaptovaný prístup — úvodné ABVD alebo eskalovaný BEACOPP
+    s deeskaláciou podľa interim PET. [PARAFRÁZA — overiť]
   criteria:
     risk_group: ["advanced"]
   reviewed: false
   reviewed_by: null
   reviewed_date: null
-  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
-- id: hl-nccn-advanced-aavd
+- id: hl-nccn-advanced-nivo-avd
   entity: hl
   society: NCCN
   guideline_version: "NCCN Hodgkin Lymphoma v.2026"
   year: 2026
-  source_reference: "NCCN Clinical Practice Guidelines in Oncology — Hodgkin Lymphoma, v.1.2026"
+  source_reference: "NCCN Hodgkin Lymphoma v.2026; SWOG S1826 (nivolumab-AVD), ECHELON-1 (A+AVD)."
   source_location: "NEOVERENÉ - doplniť"
   risk_group: "advanced"
   recommendation_text: >-
-    Pri pokročilom štádiu NCCN preferuje brentuximab vedotin + AVD (A+AVD) ako jednu
-    z preferovaných možností prvej línie. [PARAFRÁZA — overiť]
+    Pokročilé štádium (NCCN): preferovanou prvou líniou je nivolumab + AVD (SWOG S1826,
+    nový štandard so zlepšeným PFS a nižšou toxicitou); alternatívou brentuximab vedotin + AVD
+    (A+AVD, ECHELON-1). [PARAFRÁZA — overiť]
   criteria:
     risk_group: ["advanced"]
   reviewed: false
   reviewed_by: null
   reviewed_date: null
-  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+
+- id: hl-esmo-relapsed-asct
+  entity: hl
+  society: ESMO
+  guideline_version: "ESMO Hodgkin lymphoma 2018"
+  year: 2018
+  source_reference: "Eichenauer DA, et al. Ann Oncol 2018;29(suppl_4):iv19-iv29."
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "relapsed/refractory"
+  recommendation_text: >-
+    Pri relapse/refraktérnom ochorení: záchranná chemoterapia s následnou vysokodávkovou
+    terapiou a autológnou transplantáciou (ASCT); brentuximab vedotin a checkpoint inhibítory
+    (nivolumab/pembrolizumab) v relapse setting. [PARAFRÁZA — overiť]
+  criteria:
+    stage: ["III", "IV"]
+    b_symptoms: ["present"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
