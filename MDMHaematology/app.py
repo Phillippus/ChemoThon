@@ -95,7 +95,7 @@ def page_home() -> None:
         ed = ENTITIES[entity]
         with cols[i % 2]:
             if st.button(f"{ed.icon}  {ed.title}", use_container_width=True, key=f"home_{entity.value}"):
-                st.session_state["nav"] = ed.title
+                st.session_state["_goto"] = ed.title
                 st.rerun()
 
 
@@ -256,6 +256,11 @@ def main() -> None:
     pages += list(entity_titles.keys())
     pages += ["📚 Zdroje", "🔍 Stav kontroly", "ℹ️ O aplikácii"]
 
+    # Aplikuj čakajúcu navigáciu z tlačidiel na Domove PRED vytvorením radio widgetu.
+    # (Streamlit zakazuje meniť session_state pre kľúč widgetu po jeho inštancovaní.)
+    goto = st.session_state.pop("_goto", None)
+    if goto in pages:
+        st.session_state["nav"] = goto
     if st.session_state.get("nav") not in pages:
         st.session_state["nav"] = "🏠 Domov"
     choice = st.sidebar.radio("Navigácia", pages, key="nav")
