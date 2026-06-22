@@ -1,39 +1,78 @@
-# Lokálne pokročilý karcinóm — znalostná databáza (KB)
-# ⚠️  ILUSTRAČNÉ SEED ZÁZNAMY (Fáza 1). NEOVERENÉ (reviewed: false). Pozri dcis.yaml.
+# Lokálne pokročilý karcinóm prsníka — KB — FÁZA 2
+# Reálny guideline-konkordantný obsah, parafrázované. VŠETKO reviewed: false; source_location NEOVERENÉ.
 
 - id: la-esmo-her2-neoadj-dual
   entity: locally_advanced
   society: ESMO
   guideline_version: "ESMO early breast cancer 2023"
   year: 2023
-  source_reference: "Loibl S, et al. Early breast cancer: ESMO Clinical Practice Guideline. Ann Oncol 2023."
+  source_reference: "Loibl S, et al. Ann Oncol 2023;34:159-182; KATHERINE."
   source_location: "NEOVERENÉ - doplniť"
-  risk_group: "HER2+, locally advanced"
+  risk_group: "HER2+, lokálne pokročilý"
   recommendation_text: >-
-    Pri HER2-pozitívnom lokálne pokročilom ochorení je preferovaná neoadjuvantná
-    chemoterapia s duálnou anti-HER2 blokádou (trastuzumab + pertuzumab); ďalšia liečba
-    podľa patologickej odpovede. [PARAFRÁZA — overiť]
+    HER2+ lokálne pokročilý: neoadjuvantná chemoterapia s duálnou anti-HER2 blokádou
+    (trastuzumab + pertuzumab). Pri reziduálnej chorobe (non-pCR) adjuvantne T-DM1 (KATHERINE);
+    pri pCR pokračovať v trastuzumabe ± pertuzumabe. [PARAFRÁZA — overiť]
   criteria:
     subtype: ["her2_pos"]
   reviewed: false
   reviewed_by: null
   reviewed_date: null
-  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
 - id: la-nccn-tnbc-neoadj-pembro
   entity: locally_advanced
   society: NCCN
   guideline_version: "NCCN Breast Cancer v.2026"
   year: 2026
-  source_reference: "NCCN Clinical Practice Guidelines in Oncology — Breast Cancer, v.1.2026"
+  source_reference: "NCCN Breast Cancer v.1.2026; KEYNOTE-522, CREATE-X, OlympiA."
   source_location: "NEOVERENÉ - doplniť"
-  risk_group: "TNBC, locally advanced"
+  risk_group: "TNBC, lokálne pokročilý"
   recommendation_text: >-
-    Pri lokálne pokročilom triple-negatívnom karcinóme sa odporúča neoadjuvantná
-    chemoterapia v kombinácii s pembrolizumabom (režim podľa KEYNOTE-522). [PARAFRÁZA — overiť]
+    TNBC lokálne pokročilý: neoadjuvantná chemoterapia + pembrolizumab (KEYNOTE-522),
+    pokračovať adjuvantným pembrolizumabom. Pri reziduálnej chorobe kapecitabín (CREATE-X);
+    pri gBRCA olaparib (OlympiA). [PARAFRÁZA — overiť]
   criteria:
     subtype: ["tnbc"]
   reviewed: false
   reviewed_by: null
   reviewed_date: null
-  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+
+- id: la-esmo-hrpos-neoadj-or-surgery
+  entity: locally_advanced
+  society: ESMO
+  guideline_version: "ESMO early breast cancer 2023"
+  year: 2023
+  source_reference: "Loibl S, et al. Ann Oncol 2023;34:159-182."
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "HR+/HER2−, lokálne pokročilý"
+  recommendation_text: >-
+    HR+/HER2− lokálne pokročilý: neoadjuvantná chemoterapia (na umožnenie operability) alebo
+    primárna operácia; pri inoperabilnom/postmenopauzálnom možná neoadjuvantná endokrinná liečba.
+    Adjuvantne CDK4/6 inhibítor pri vysokom riziku. [PARAFRÁZA — overiť]
+  criteria:
+    subtype: ["hr_pos_her2_neg"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+
+- id: la-nccn-inflammatory
+  entity: locally_advanced
+  society: NCCN
+  guideline_version: "NCCN Breast Cancer v.2026"
+  year: 2026
+  source_reference: "NCCN Breast Cancer v.1.2026."
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "inflamatórny karcinóm"
+  recommendation_text: >-
+    Inflamatórny karcinóm: trimodálna liečba — neoadjuvantná systémová terapia (podľa podtypu),
+    následne modifikovaná radikálna mastektómia a postmastektomická rádioterapia; BCS sa
+    neodporúča. [PARAFRÁZA — overiť]
+  criteria:
+    inflammatory: ["yes"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"

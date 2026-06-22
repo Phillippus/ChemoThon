@@ -64,4 +64,4 @@ def test_seed_kb_early_tnbc_matches_esmo():
 def test_seed_kb_metastatic_her2_first_line():
     kb = load_kb()
     hits = matching.match(kb, Entity.METASTATIC, {"subtype": "her2_pos"})
-    assert any(r.id == "mbc-nccn-her2-thp" for r in hits)
+    assert any(r.id == "mbc-nccn-her2-1L-thp" for r in hits)

@@ -1,79 +1,119 @@
-# Skorý invazívny karcinóm — znalostná databáza (KB)
-# ⚠️  ILUSTRAČNÉ SEED ZÁZNAMY (Fáza 1). NEOVERENÉ (reviewed: false). Pozri dcis.yaml.
+# Skorý invazívny karcinóm prsníka — KB — FÁZA 2
+# Reálny guideline-konkordantný obsah, parafrázované. VŠETKO reviewed: false; source_location NEOVERENÉ.
 
 - id: early-stgallen-luminalA-node-neg
   entity: early
   society: St. Gallen
   guideline_version: "St. Gallen consensus 2023"
   year: 2023
-  source_reference: "St. Gallen International Consensus on the primary therapy of early breast cancer 2023"
+  source_reference: "St. Gallen International Consensus 2023."
   source_location: "NEOVERENÉ - doplniť"
   risk_group: "luminal A, node-negative"
   recommendation_text: >-
-    Pri luminálnom A, uzlinovo negatívnom ochorení sa zvyčajne preferuje samotná
-    endokrinná liečba; pridanie chemoterapie sa rutinne neodporúča. [PARAFRÁZA — overiť]
+    Luminálny A, uzlinovo negatívny: preferuje sa samotná adjuvantná endokrinná liečba;
+    chemoterapia sa rutinne neodporúča. [PARAFRÁZA — overiť]
   criteria:
     subtype: ["luminal_a"]
     nodal: ["negative"]
   reviewed: false
   reviewed_by: null
   reviewed_date: null
-  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
-
-- id: early-esmo-tnbc-chemo
-  entity: early
-  society: ESMO
-  guideline_version: "ESMO early breast cancer 2023"
-  year: 2023
-  source_reference: "Loibl S, et al. Early breast cancer: ESMO Clinical Practice Guideline. Ann Oncol 2023."
-  source_location: "NEOVERENÉ - doplniť"
-  risk_group: "TNBC, early"
-  recommendation_text: >-
-    Pri skorom triple-negatívnom karcinóme (mimo veľmi malých nádorov) je indikovaná
-    (neo)adjuvantná chemoterapia; pri vyššom riziku sa zvažuje pridanie imunoterapie /
-    platiny podľa štádia. [PARAFRÁZA — overiť]
-  criteria:
-    subtype: ["tnbc"]
-  reviewed: false
-  reviewed_by: null
-  reviewed_date: null
-  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
-
-- id: early-nccn-her2-pos-antiher2
-  entity: early
-  society: NCCN
-  guideline_version: "NCCN Breast Cancer v.2026"
-  year: 2026
-  source_reference: "NCCN Clinical Practice Guidelines in Oncology — Breast Cancer, v.1.2026"
-  source_location: "NEOVERENÉ - doplniť"
-  risk_group: "HER2-positive, early"
-  recommendation_text: >-
-    Pri HER2-pozitívnom skorom karcinóme (nad prahom veľkosti/uzlín) je štandardom
-    systémová chemoterapia v kombinácii s anti-HER2 liečbou (trastuzumab ± pertuzumab).
-    [PARAFRÁZA — overiť]
-  criteria:
-    her2: ["her2_positive"]
-  reviewed: false
-  reviewed_by: null
-  reviewed_date: null
-  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
 - id: early-esmo-hrpos-genomic-low
   entity: early
   society: ESMO
   guideline_version: "ESMO early breast cancer 2023"
   year: 2023
-  source_reference: "Loibl S, et al. Early breast cancer: ESMO Clinical Practice Guideline. Ann Oncol 2023."
+  source_reference: "Loibl S, et al. Early breast cancer: ESMO Clinical Practice Guideline. Ann Oncol 2023;34:159-182; TAILORx, RxPONDER."
   source_location: "NEOVERENÉ - doplniť"
-  risk_group: "HR+/HER2−, genomic low risk"
+  risk_group: "HR+/HER2−, nízke genomické riziko"
   recommendation_text: >-
-    Pri HR+/HER2− ochorení s nízkym genomickým rizikom (napr. nízke Oncotype DX skóre)
-    možno bezpečne vynechať adjuvantnú chemoterapiu a podať samotnú endokrinnú liečbu.
-    [PARAFRÁZA — overiť]
+    HR+/HER2− s nízkym genomickým rizikom (napr. nízke Oncotype DX): možno bezpečne vynechať
+    chemoterapiu a podať samotnú endokrinnú liečbu. U postmenopauzálnych N1 s nízkym skóre
+    (RxPONDER) tiež bez chemoterapie. [PARAFRÁZA — overiť]
   criteria:
     subtype: ["luminal_a", "luminal_b_her2neg"]
     genomic_risk: ["low"]
   reviewed: false
   reviewed_by: null
   reviewed_date: null
-  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+
+- id: early-nccn-hrpos-highrisk-cdk46-adj
+  entity: early
+  society: NCCN
+  guideline_version: "NCCN Breast Cancer v.2026"
+  year: 2026
+  source_reference: "NCCN Breast Cancer v.1.2026; monarchE (abemaciklib), NATALEE (ribociklib)."
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "HR+/HER2−, vysoké riziko (node+)"
+  recommendation_text: >-
+    HR+/HER2− s vysokým rizikom: k adjuvantnej endokrinnej liečbe pridať CDK4/6 inhibítor —
+    abemaciklib (monarchE: ≥4 pozit. uzliny, alebo 1–3 s G3/T≥5 cm) alebo ribociklib (NATALEE:
+    st. II–III vrátane vybraných N0). [PARAFRÁZA — overiť]
+  criteria:
+    subtype: ["luminal_b_her2neg"]
+    nodal: ["n1_3", "n4plus"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+
+- id: early-nccn-her2-pos-antiher2
+  entity: early
+  society: NCCN
+  guideline_version: "NCCN Breast Cancer v.2026"
+  year: 2026
+  source_reference: "NCCN Breast Cancer v.1.2026; APT (paklitaxel+trastuzumab), APHINITY, KATHERINE."
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "HER2-pozitívny, skorý"
+  recommendation_text: >-
+    HER2+ skorý karcinóm: systémová chemoterapia + anti-HER2 (trastuzumab ± pertuzumab). Malé
+    T1a–bN0 možno paklitaxel + trastuzumab (APT). Pri neoadjuvancii a non-pCR eskalovať na
+    T-DM1 (KATHERINE). [PARAFRÁZA — overiť]
+  criteria:
+    her2: ["her2_positive"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+
+- id: early-esmo-tnbc-chemo-pembro
+  entity: early
+  society: ESMO
+  guideline_version: "ESMO early breast cancer 2023"
+  year: 2023
+  source_reference: "Loibl S, et al. Ann Oncol 2023;34:159-182; KEYNOTE-522, OlympiA."
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "TNBC, skorý"
+  recommendation_text: >-
+    Skorý TNBC (mimo veľmi malých): (neo)adjuvantná chemoterapia (vrátane platiny pri vyššom
+    riziku). Pri st. II–III neoadjuvantne pridať pembrolizumab (KEYNOTE-522). Pri gBRCA a
+    non-pCR/vyššom riziku adjuvantný olaparib (OlympiA). [PARAFRÁZA — overiť]
+  criteria:
+    subtype: ["tnbc"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+
+- id: early-esmo-endocrine-premenopausal
+  entity: early
+  society: ESMO
+  guideline_version: "ESMO early breast cancer 2023"
+  year: 2023
+  source_reference: "Loibl S, et al. Ann Oncol 2023;34:159-182; SOFT/TEXT."
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "HR+, endokrinná liečba"
+  recommendation_text: >-
+    Adjuvantná endokrinná liečba: postmenopauzálne inhibítor aromatázy (alebo tamoxifén);
+    premenopauzálne tamoxifén, a pri vyššom riziku ovariálna supresia + AI/tamoxifén (SOFT/TEXT).
+    Trvanie 5–10 rokov podľa rizika. [PARAFRÁZA — overiť]
+  criteria:
+    er: ["positive"]
+    menopause: ["pre"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"

@@ -1,58 +1,153 @@
-# Metastatický / pokročilý karcinóm — znalostná databáza (KB)
-# ⚠️  ILUSTRAČNÉ SEED ZÁZNAMY (Fáza 1). NEOVERENÉ (reviewed: false). Pozri dcis.yaml.
+# Metastatický karcinóm prsníka — KB — FÁZA 2
+# Reálny guideline-konkordantný obsah, parafrázované. VŠETKO reviewed: false; source_location NEOVERENÉ.
 
-- id: mbc-esmo-hrpos-cdk46
+- id: mbc-esmo-hrpos-cdk46-1L
   entity: metastatic
   society: ESMO
-  guideline_version: "ESMO metastatic breast cancer 2023"
-  year: 2023
-  source_reference: "Gennari A, et al. ESMO Clinical Practice Guideline for metastatic breast cancer. Ann Oncol 2021/2023 update."
+  guideline_version: "ESMO metastatic breast cancer 2021 (+ updates)"
+  year: 2021
+  source_reference: "Gennari A, et al. ESMO Clinical Practice Guideline for advanced breast cancer. Ann Oncol 2021;32:1475-1495."
   source_location: "NEOVERENÉ - doplniť"
-  risk_group: "HR+/HER2− MBC, 1. línia"
+  risk_group: "HR+/HER2−, 1. línia, bez viscerálnej krízy"
   recommendation_text: >-
-    Pri HR+/HER2− metastatickom karcinóme bez viscerálnej krízy je v prvej línii
-    štandardom CDK4/6 inhibítor v kombinácii s endokrinnou liečbou. [PARAFRÁZA — overiť]
+    HR+/HER2− metastatický bez viscerálnej krízy: prvolíniovo CDK4/6 inhibítor (ribociklib/
+    palbociklib/abemaciklib) + endokrinná liečba (AI alebo fulvestrant; pri premenopauze +
+    ovariálna supresia). [PARAFRÁZA — overiť]
   criteria:
     subtype: ["hr_pos_her2_neg"]
     visceral_crisis: ["no"]
   reviewed: false
   reviewed_by: null
   reviewed_date: null
-  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
-- id: mbc-nccn-her2-thp
+- id: mbc-esmo-hrpos-visceral-crisis
+  entity: metastatic
+  society: ESMO
+  guideline_version: "ESMO metastatic breast cancer 2021"
+  year: 2021
+  source_reference: "Gennari A, et al. Ann Oncol 2021;32:1475-1495."
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "HR+/HER2−, viscerálna kríza"
+  recommendation_text: >-
+    Pri viscerálnej kríze (orgánové zlyhávanie vyžadujúce rýchlu odpoveď) sa preferuje
+    úvodná chemoterapia pred endokrinnou liečbou. [PARAFRÁZA — overiť]
+  criteria:
+    subtype: ["hr_pos_her2_neg"]
+    visceral_crisis: ["yes"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+
+- id: mbc-nccn-hrpos-pik3ca
   entity: metastatic
   society: NCCN
   guideline_version: "NCCN Breast Cancer v.2026"
   year: 2026
-  source_reference: "NCCN Clinical Practice Guidelines in Oncology — Breast Cancer, v.1.2026"
+  source_reference: "NCCN Breast Cancer v.1.2026; SOLAR-1 (alpelisib), CAPItello-291 (capivasertib)."
   source_location: "NEOVERENÉ - doplniť"
-  risk_group: "HER2+ MBC, 1. línia"
+  risk_group: "HR+/HER2−, PIK3CA-mut, po CDK4/6"
   recommendation_text: >-
-    Pri HER2-pozitívnom metastatickom karcinóme je v prvej línii preferovaný taxán
-    s trastuzumabom a pertuzumabom. [PARAFRÁZA — overiť]
+    Pri HR+/HER2− s PIK3CA mutáciou a progresii po endokrinnej liečbe/CDK4/6: alpelisib +
+    fulvestrant (SOLAR-1); alternatívou je capivasertib + fulvestrant (PI3K/AKT dráha). [PARAFRÁZA — overiť]
+  criteria:
+    subtype: ["hr_pos_her2_neg"]
+    pik3ca: ["mutated"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+
+- id: mbc-her2low-ultralow-tdxd
+  entity: metastatic
+  society: NCCN
+  guideline_version: "NCCN Breast Cancer v.2026"
+  year: 2026
+  source_reference: "NCCN Breast Cancer v.1.2026; DESTINY-Breast04 a DESTINY-Breast06 (trastuzumab deruxtecan); FDA 2025 HER2-low/ultralow."
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "HR+, HER2-low/ultralow, po endokrinnej liečbe"
+  recommendation_text: >-
+    Pri HR+ HER2-low (a HER2-ultralow) metastatickom ochorení po ≥1 línii endokrinnej liečby
+    je preferovanou možnosťou trastuzumab deruxtecan (T-DXd) pred štandardnou chemoterapiou
+    (DESTINY-Breast06/04). [PARAFRÁZA — overiť]
+  criteria:
+    er: ["positive"]
+    her2: ["her2_low"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+
+- id: mbc-nccn-her2-1L-thp
+  entity: metastatic
+  society: NCCN
+  guideline_version: "NCCN Breast Cancer v.2026"
+  year: 2026
+  source_reference: "NCCN Breast Cancer v.1.2026; CLEOPATRA."
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "HER2+, 1. línia"
+  recommendation_text: >-
+    HER2+ metastatický, prvá línia: taxán + trastuzumab + pertuzumab (THP, CLEOPATRA). [PARAFRÁZA — overiť]
   criteria:
     subtype: ["her2_pos"]
   reviewed: false
   reviewed_by: null
   reviewed_date: null
-  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+
+- id: mbc-esmo-her2-2L-tdxd
+  entity: metastatic
+  society: ESMO
+  guideline_version: "ESMO metastatic breast cancer 2021 (+ update)"
+  year: 2021
+  source_reference: "Gennari A, et al. Ann Oncol 2021; DESTINY-Breast03 (trastuzumab deruxtecan)."
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "HER2+, 2. línia"
+  recommendation_text: >-
+    HER2+ metastatický, druhá línia: trastuzumab deruxtecan (T-DXd) je preferovaný (DESTINY-Breast03);
+    pri mozgových metastázach tiež tucatinib + trastuzumab + kapecitabín. [PARAFRÁZA — overiť]
+  criteria:
+    subtype: ["her2_pos"]
+    endocrine_status: ["resistant"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+
+- id: mbc-nccn-tnbc-pdl1-pembro
+  entity: metastatic
+  society: NCCN
+  guideline_version: "NCCN Breast Cancer v.2026"
+  year: 2026
+  source_reference: "NCCN Breast Cancer v.1.2026; KEYNOTE-355."
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "TNBC, PD-L1+, 1. línia"
+  recommendation_text: >-
+    Metastatický TNBC s PD-L1 pozitivitou (CPS ≥ 10): prvolíniovo chemoterapia + pembrolizumab
+    (KEYNOTE-355). [PARAFRÁZA — overiť]
+  criteria:
+    subtype: ["tnbc"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
 - id: mbc-esmo-tnbc-brca-parp
   entity: metastatic
   society: ESMO
-  guideline_version: "ESMO metastatic breast cancer 2023"
-  year: 2023
-  source_reference: "Gennari A, et al. ESMO Clinical Practice Guideline for metastatic breast cancer."
+  guideline_version: "ESMO metastatic breast cancer 2021"
+  year: 2021
+  source_reference: "Gennari A, et al. Ann Oncol 2021; OlympiAD, EMBRACA."
   source_location: "NEOVERENÉ - doplniť"
-  risk_group: "TNBC + gBRCA, MBC"
+  risk_group: "TNBC + gBRCA"
   recommendation_text: >-
-    Pri metastatickom triple-negatívnom karcinóme s germinálnou BRCA mutáciou je
-    možnosťou PARP inhibítor (olaparib/talazoparib). [PARAFRÁZA — overiť]
+    Pri metastatickom TNBC s germinálnou BRCA mutáciou je možnosťou PARP inhibítor
+    (olaparib/talazoparib). Sacituzumab govitecan je možnosťou v ďalších líniách. [PARAFRÁZA — overiť]
   criteria:
     subtype: ["tnbc"]
     brca: ["mutated"]
   reviewed: false
   reviewed_by: null
   reviewed_date: null
-  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
