@@ -1,42 +1,141 @@
-# Karcinóm cervixu — znalostná databáza (KB)
-# ⚠️  ILUSTRAČNÉ SEED ZÁZNAMY (Fáza 1). NEOVERENÉ (reviewed: false). Pozri endometrium.yaml.
+# Karcinóm cervixu — znalostná databáza (KB) — FÁZA 2
+# Reálny guideline-konkordantný obsah, parafrázované. VŠETKO reviewed: false; source_location NEOVERENÉ.
 
-- id: cervix-esgo-2023-ia1
+- id: cervix-esgo-2023-ia1-lvsi-neg
   entity: cervix
   society: ESGO
-  guideline_version: "ESGO/ESTRO/ESP cervical cancer 2023 (update)"
+  guideline_version: "ESGO/ESTRO/ESP cervical cancer update 2023"
   year: 2023
-  source_reference: "Cibula D, et al. ESGO/ESTRO/ESP guidelines for the management of patients with cervical cancer — update 2023. Int J Gynecol Cancer."
+  source_reference: "Cibula D, et al. ESGO/ESTRO/ESP guidelines for cervical cancer — update 2023. Int J Gynecol Cancer."
   source_location: "NEOVERENÉ - doplniť"
-  risk_group: "very low / low"
+  risk_group: "IA1, LVSI negatívna"
   figo_stage: "IA1"
   recommendation_text: >-
-    Pri štádiu IA1 bez LVSI je možná konizácia/jednoduchá hysterektómia; pri želaní
-    fertility-sparing prístupu konizácia s negatívnymi okrajmi. [PARAFRÁZA — overiť]
+    Štádium IA1 bez LVSI: konizácia s negatívnymi okrajmi (fertility-sparing) alebo jednoduchá
+    hysterektómia; lymfadenektómia sa nevyžaduje. [PARAFRÁZA — overiť]
   criteria:
     figo_stage: ["IA1"]
     lvsi: ["negative"]
   reviewed: false
   reviewed_by: null
   reviewed_date: null
-  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
-- id: cervix-nccn-2026-locally-advanced
+- id: cervix-esgo-2023-ia2-ib1-early
+  entity: cervix
+  society: ESGO
+  guideline_version: "ESGO/ESTRO/ESP cervical cancer update 2023"
+  year: 2023
+  source_reference: "Cibula D, et al. Int J Gynecol Cancer 2023 (update)."
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "early (IA2–IB1)"
+  figo_stage: "IB1"
+  recommendation_text: >-
+    Skoré štádium (IA2–IB1, ≤2 cm): radikálna alebo (pri nízkom riziku, SHAPE) jednoduchá
+    hysterektómia s panvovou lymfadenektómiou/SLN; fertility-sparing radikálna trachelektómia
+    je možnosťou. [PARAFRÁZA — overiť]
+  criteria:
+    figo_stage: ["IA2", "IB1"]
+    tumor_size: ["le2"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+
+- id: cervix-esgo-2023-ib2-iia1
+  entity: cervix
+  society: ESGO
+  guideline_version: "ESGO/ESTRO/ESP cervical cancer update 2023"
+  year: 2023
+  source_reference: "Cibula D, et al. Int J Gynecol Cancer 2023 (update)."
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "IB2–IIA1 (2–4 cm)"
+  figo_stage: "IB2"
+  recommendation_text: >-
+    Štádium IB2–IIA1 (2–4 cm): radikálna hysterektómia s panvovou lymfadenektómiou alebo
+    definitívna chemorádioterapia; kombinácii oboch modalit sa vyhnúť pre kumulatívnu toxicitu.
+    [PARAFRÁZA — overiť]
+  criteria:
+    figo_stage: ["IB2", "IIA1"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+
+- id: cervix-estro-adjuvant-high-risk
+  entity: cervix
+  society: ESTRO
+  guideline_version: "ESGO/ESTRO/ESP cervical cancer 2023"
+  year: 2023
+  source_reference: "Cibula D, et al. Int J Gynecol Cancer 2023 (update); Peters/Sedlis kritériá."
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "post-op vysoké riziko"
+  recommendation_text: >-
+    Po radikálnej operácii pri vysokorizikových znakoch (pozitívne uzliny, parametriálna
+    invázia, pozitívne okraje — Peters) je indikovaná adjuvantná konkomitantná chemorádioterapia;
+    pri intermediárnom riziku (Sedlis) adjuvantná rádioterapia. [PARAFRÁZA — overiť]
+  criteria:
+    parametria: ["positive"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+
+- id: cervix-esgo-2023-locally-advanced-ccrt
+  entity: cervix
+  society: ESGO
+  guideline_version: "ESGO/ESTRO/ESP cervical cancer 2023"
+  year: 2023
+  source_reference: "Cibula D, et al. Int J Gynecol Cancer 2023 (update)."
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "locally advanced (IB3–IVA)"
+  figo_stage: "IIIC1"
+  recommendation_text: >-
+    Lokálne pokročilé ochorenie (IB3, IIA2, IIB–IVA, alebo uzlinovo pozitívne IIIC):
+    definitívna konkomitantná chemorádioterapia (cisplatina) s brachyterapiou. [PARAFRÁZA — overiť]
+  criteria:
+    figo_stage: ["IB3", "IIA2", "IIB", "IIIA", "IIIB", "IIIC1", "IIIC2", "IVA"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+
+- id: cervix-nccn-2026-la-pembro-a18
   entity: cervix
   society: NCCN
   guideline_version: "NCCN Cervical Cancer v.2026"
   year: 2026
-  source_reference: "NCCN Clinical Practice Guidelines in Oncology — Cervical Cancer, v.1.2026"
+  source_reference: "NCCN Cervical Cancer v.2026; ENGOT-cx11/GOG-3047/KEYNOTE-A18 (pembrolizumab + CCRT)."
   source_location: "NEOVERENÉ - doplniť"
-  risk_group: "locally advanced"
+  risk_group: "high-risk locally advanced"
   figo_stage: "IIIC1"
   recommendation_text: >-
-    Pri lokálne pokročilom ochorení s pozitívnymi panvovými uzlinami je štandardom
-    definitívna konkomitantná chemorádioterapia s brachyterapiou. [PARAFRÁZA — overiť]
+    Pri novodiagnostikovanom vysokorizikovom lokálne pokročilom ochorení (napr. IIIC1)
+    sa k chemorádioterapii pridáva konkomitantný a adjuvantný pembrolizumab (KEYNOTE-A18),
+    čo zlepšuje PFS aj OS. [PARAFRÁZA — overiť]
   criteria:
-    figo_stage: ["IIIC1"]
+    figo_stage: ["IIIC1", "IIIC2"]
     node_status: ["positive"]
   reviewed: false
   reviewed_by: null
   reviewed_date: null
-  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+
+- id: cervix-nccn-2026-metastatic-keynote826
+  entity: cervix
+  society: NCCN
+  guideline_version: "NCCN Cervical Cancer v.2026"
+  year: 2026
+  source_reference: "NCCN Cervical Cancer v.2026; KEYNOTE-826 (pembrolizumab + chemoterapia ± bevacizumab)."
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "metastatic/recurrent"
+  figo_stage: "IVB"
+  recommendation_text: >-
+    Metastatický/rekurentný karcinóm: prvolíniová chemoterapia (platina + paklitaxel) +
+    pembrolizumab ± bevacizumab (KEYNOTE-826), najmä pri PD-L1 pozitivite. [PARAFRÁZA — overiť]
+  criteria:
+    figo_stage: ["IVB"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"

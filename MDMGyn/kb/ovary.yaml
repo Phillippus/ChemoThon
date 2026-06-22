@@ -1,42 +1,139 @@
-# Nádory ovária / adnex — znalostná databáza (KB)
-# ⚠️  ILUSTRAČNÉ SEED ZÁZNAMY (Fáza 1). NEOVERENÉ (reviewed: false). Pozri endometrium.yaml.
+# Nádory ovária / adnex — znalostná databáza (KB) — FÁZA 2
+# Reálny guideline-konkordantný obsah, parafrázované. VŠETKO reviewed: false; source_location NEOVERENÉ.
 
-- id: ovary-esmo-2023-hgs-brca-maintenance
+- id: ovary-esgo-early-staging
+  entity: ovary
+  society: ESGO
+  guideline_version: "ESGO-ESMO ovarian cancer consensus"
+  year: 2019
+  source_reference: "Colombo N, et al. ESMO-ESGO consensus conference recommendations on ovarian cancer. Ann Oncol 2019;30:672-705."
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "early stage (I)"
+  figo_stage: "IA"
+  recommendation_text: >-
+    Skoré štádium: kompletný chirurgický staging. Adjuvantná chemoterapia (karboplatina ±
+    paklitaxel) sa neodporúča pri IA/IB low-grade; indikovaná je pri vysokorizikových skorých
+    (IC, G3, clear cell). [PARAFRÁZA — overiť]
+  criteria:
+    figo_stage: ["IA", "IB"]
+    histology: ["low_grade_serous", "endometrioid"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+
+- id: ovary-esmo-advanced-surgery-chemo
   entity: ovary
   society: ESMO
   guideline_version: "ESMO ovarian cancer 2023"
   year: 2023
-  source_reference: "Colombo N, et al. ESMO–ESGO consensus / ESMO Clinical Practice Guidelines — epithelial ovarian carcinoma."
+  source_reference: "González-Martín A, et al. Newly diagnosed and relapsed epithelial ovarian cancer: ESMO Clinical Practice Guideline. Ann Oncol 2023;34:833-848."
   source_location: "NEOVERENÉ - doplniť"
-  risk_group: "advanced HGS, BRCA-mut"
+  risk_group: "advanced HGSC (III–IV)"
+  figo_stage: "IIIC"
   recommendation_text: >-
-    Pri pokročilom high-grade seróznom karcinóme s BRCA mutáciou sa po platinovej
-    chemoterapii odporúča udržiavacia liečba PARP inhibítorom (± bevacizumab podľa rizika).
-    [PARAFRÁZA — overiť]
+    Pokročilý high-grade serózny karcinóm: maximálna cytoredukčná operácia s cieľom R0,
+    plus chemoterapia karboplatina + paklitaxel; bevacizumab pridať pri vysokom riziku.
+    Pri neresekabilnom ochorení neoadjuvantná chemoterapia s intervalovou cytoredukciou. [PARAFRÁZA — overiť]
+  criteria:
+    histology: ["high_grade_serous"]
+    figo_stage: ["IIIA", "IIIB", "IIIC", "IVA", "IVB"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+
+- id: ovary-esmo-2023-brca-parp-maint
+  entity: ovary
+  society: ESMO
+  guideline_version: "ESMO ovarian cancer 2023"
+  year: 2023
+  source_reference: "González-Martín A, et al. Ann Oncol 2023;34:833-848; SOLO-1."
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "advanced, BRCA-mut"
+  recommendation_text: >-
+    Pri pokročilom HGSC s BRCA1/2 mutáciou a odpovedi na platinu je v prvej línii štandardom
+    udržiavacia liečba PARP inhibítorom (olaparib; ± bevacizumab podľa rizika). [PARAFRÁZA — overiť]
   criteria:
     histology: ["high_grade_serous"]
     brca_hrd: ["brca_mut"]
   reviewed: false
   reviewed_by: null
   reviewed_date: null
-  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
-- id: ovary-nccn-2026-hgs-hrd
+- id: ovary-nccn-2026-hrd-parp-bev
   entity: ovary
   society: NCCN
   guideline_version: "NCCN Ovarian Cancer v.2026"
   year: 2026
-  source_reference: "NCCN Clinical Practice Guidelines in Oncology — Ovarian Cancer/Fallopian Tube/Primary Peritoneal, v.1.2026"
+  source_reference: "NCCN Ovarian/Fallopian Tube/Primary Peritoneal v.1.2026; PAOLA-1, PRIMA."
   source_location: "NEOVERENÉ - doplniť"
-  risk_group: "advanced HGS, HRD+"
+  risk_group: "advanced, HRD+ (BRCA wt)"
   recommendation_text: >-
-    Pri HRD-pozitívnom (BRCA wt) high-grade seróznom karcinóme NCCN uvádza udržiavaciu
-    liečbu PARP inhibítorom ± bevacizumabom ako možnosť po odpovedi na platinu.
-    [PARAFRÁZA — overiť; presná kategória odporúčania doplniť]
+    Pri HRD-pozitívnom (BRCA wild-type) HGSC je možnosťou udržiavacia liečba PARP inhibítorom
+    (olaparib + bevacizumab — PAOLA-1, alebo niraparib — PRIMA). [PARAFRÁZA — overiť]
   criteria:
     histology: ["high_grade_serous"]
     brca_hrd: ["hrd_positive"]
   reviewed: false
   reviewed_by: null
   reviewed_date: null
-  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+
+- id: ovary-esmo-2023-hrp-bev
+  entity: ovary
+  society: ESMO
+  guideline_version: "ESMO ovarian cancer 2023"
+  year: 2023
+  source_reference: "González-Martín A, et al. Ann Oncol 2023;34:833-848."
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "advanced, HRD-negatívny / HRP"
+  recommendation_text: >-
+    Pri HRD-negatívnom (homologous recombination proficient) ochorení je benefit PARP
+    inhibítora obmedzený; možnosťou udržiavania je bevacizumab (ak bol súčasťou indukcie). [PARAFRÁZA — overiť]
+  criteria:
+    histology: ["high_grade_serous"]
+    brca_hrd: ["hrd_negative"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+
+- id: ovary-esmo-low-grade-serous
+  entity: ovary
+  society: ESMO
+  guideline_version: "ESMO ovarian cancer 2023"
+  year: 2023
+  source_reference: "González-Martín A, et al. Ann Oncol 2023;34:833-848."
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "low-grade serous"
+  recommendation_text: >-
+    Low-grade serózny karcinóm je relatívne chemorezistentný; po operácii sa zvažuje
+    endokrinná udržiavacia liečba (inhibítory aromatázy), prípadne MEK inhibítor (trametinib)
+    pri rekurencii. [PARAFRÁZA — overiť]
+  criteria:
+    histology: ["low_grade_serous"]
+    figo_stage: ["IIIA", "IIIB", "IIIC", "IVA", "IVB"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+
+- id: ovary-nccn-mucinous-gi-type
+  entity: ovary
+  society: NCCN
+  guideline_version: "NCCN Ovarian Cancer v.2026"
+  year: 2026
+  source_reference: "NCCN Ovarian/Fallopian Tube/Primary Peritoneal v.1.2026."
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "mucinózny"
+  recommendation_text: >-
+    Pri mucinóznom karcinóme ovária vylúčiť GI primárny tumor; pri liečbe zvážiť režimy
+    GI-typu (napr. 5-FU/oxaliplatina) namiesto štandardnej karbo/paklitaxel. [PARAFRÁZA — overiť]
+  criteria:
+    histology: ["mucinous"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"

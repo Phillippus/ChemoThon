@@ -66,14 +66,20 @@ def test_group_by_society():
     assert set(grouped.keys()) == {Society.ESGO, Society.NCCN}
 
 
-def test_seed_kb_low_risk_endometrium_matches_both_societies():
-    """Integračný test nad reálnou seed KB: nízke riziko endometria -> ESGO aj NCCN."""
+def test_kb_low_risk_endometrium_matches_esgo():
+    """Nízke riziko endometria (IA, endometrioidný, G1, LVSI neg) -> ESGO low-risk záznam."""
     kb = load_kb()
     inputs = {
         "figo_stage": "IA", "histology": "endometrioid",
         "grade": "G1", "lvsi": "negative",
     }
     hits = matching.match(kb, Entity.ENDOMETRIUM, inputs)
-    societies = {r.society for r in hits}
-    assert Society.ESGO in societies
-    assert Society.NCCN in societies
+    assert Society.ESGO in {r.society for r in hits}
+
+
+def test_kb_advanced_dmmr_endometrium_matches_nccn():
+    """Pokročilý dMMR karcinóm endometria -> NCCN chemoimunoterapia (viac spoločností/záznamov)."""
+    kb = load_kb()
+    inputs = {"figo_stage": "IVB", "molecular": "MMRd"}
+    hits = matching.match(kb, Entity.ENDOMETRIUM, inputs)
+    assert Society.NCCN in {r.society for r in hits}

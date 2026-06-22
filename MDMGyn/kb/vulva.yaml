@@ -1,5 +1,5 @@
-# Karcinóm vulvy — znalostná databáza (KB)
-# ⚠️  ILUSTRAČNÉ SEED ZÁZNAMY (Fáza 1). NEOVERENÉ (reviewed: false). Pozri endometrium.yaml.
+# Karcinóm vulvy — znalostná databáza (KB) — FÁZA 2
+# Reálny guideline-konkordantný obsah, parafrázované. VŠETKO reviewed: false; source_location NEOVERENÉ.
 
 - id: vulva-esgo-2023-ia
   entity: vulva
@@ -8,34 +8,93 @@
   year: 2023
   source_reference: "Oonk MHM, et al. ESGO guidelines for the management of patients with vulvar cancer — update 2023. Int J Gynecol Cancer."
   source_location: "NEOVERENÉ - doplniť"
-  risk_group: "low"
+  risk_group: "IA"
   figo_stage: "IA"
   recommendation_text: >-
-    Pri štádiu IA (hĺbka invázie ≤ 1 mm) je riziko postihnutia inguinálnych uzlín
-    zanedbateľné; stagingová lymfadenektómia/SLN sa spravidla nevyžaduje, postačuje
-    široká lokálna excízia s adekvátnymi okrajmi. [PARAFRÁZA — overiť]
+    Štádium IA (hĺbka invázie ≤ 1 mm): široká lokálna excízia s adekvátnymi okrajmi;
+    stagingová operácia slabín (SLN/lymfadenektómia) sa nevyžaduje pre zanedbateľné riziko. [PARAFRÁZA — overiť]
   criteria:
     figo_stage: ["IA"]
     depth_invasion: ["le1mm"]
   reviewed: false
   reviewed_by: null
   reviewed_date: null
-  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
-- id: vulva-nccn-2026-node-positive
+- id: vulva-esgo-2023-ib-ii-sln
+  entity: vulva
+  society: ESGO
+  guideline_version: "ESGO vulvar cancer 2023"
+  year: 2023
+  source_reference: "Oonk MHM, et al. Int J Gynecol Cancer 2023 (update)."
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "IB–II"
+  figo_stage: "IB"
+  recommendation_text: >-
+    Štádium IB–II (hĺbka > 1 mm): radikálna lokálna excízia s hodnotením inguinofemorálnych
+    uzlín — sentinelová biopsia pri unifokálnom tumore < 4 cm a klinicky negatívnych slabinách,
+    inak inguinofemorálna lymfadenektómia. [PARAFRÁZA — overiť]
+  criteria:
+    figo_stage: ["IB", "II"]
+    depth_invasion: ["gt1mm"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+
+- id: vulva-nccn-2026-node-positive-rt
   entity: vulva
   society: NCCN
   guideline_version: "NCCN Vulvar Cancer v.2026"
   year: 2026
-  source_reference: "NCCN Clinical Practice Guidelines in Oncology — Vulvar Cancer, v.1.2026"
+  source_reference: "NCCN Vulvar Cancer v.1.2026."
   source_location: "NEOVERENÉ - doplniť"
   risk_group: "node-positive"
   recommendation_text: >-
-    Pri pozitívnych inguinofemorálnych uzlinách sa zvažuje adjuvantná rádioterapia
-    (± konkomitantná chemoterapia) na oblasť uzlín. [PARAFRÁZA — overiť]
+    Pri pozitívnych inguinofemorálnych uzlinách (najmä ≥ 2 alebo extrakapsulárne šírenie)
+    je indikovaná adjuvantná rádioterapia na slabiny a panvu, zvyčajne s konkomitantnou
+    chemoterapiou (cisplatina). [PARAFRÁZA — overiť]
   criteria:
     inguinal_nodes: ["positive"]
   reviewed: false
   reviewed_by: null
   reviewed_date: null
-  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+
+- id: vulva-esgo-2023-locally-advanced
+  entity: vulva
+  society: ESGO
+  guideline_version: "ESGO vulvar cancer 2023"
+  year: 2023
+  source_reference: "Oonk MHM, et al. Int J Gynecol Cancer 2023 (update)."
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "locally advanced (III–IVA)"
+  figo_stage: "IVA"
+  recommendation_text: >-
+    Pri lokálne pokročilom/neresekabilnom ochorení (alebo kde by radikálna operácia
+    vyžadovala exenteráciu) je možnosťou definitívna (chemo)rádioterapia. [PARAFRÁZA — overiť]
+  criteria:
+    figo_stage: ["IIIA", "IIIB", "IIIC", "IVA"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+
+- id: vulva-nccn-2026-metastatic-pembro
+  entity: vulva
+  society: NCCN
+  guideline_version: "NCCN Vulvar Cancer v.2026"
+  year: 2026
+  source_reference: "NCCN Vulvar Cancer v.1.2026."
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "metastatic (IVB)"
+  figo_stage: "IVB"
+  recommendation_text: >-
+    Pri metastatickom ochorení je možnosťou systémová liečba (platinové režimy); pembrolizumab
+    sa zvažuje pri PD-L1 pozitivite / TMB-high / MSI-H. [PARAFRÁZA — overiť]
+  criteria:
+    figo_stage: ["IVB"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"

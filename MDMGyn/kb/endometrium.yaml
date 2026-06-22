@@ -1,11 +1,11 @@
 # Karcinóm endometria — znalostná databáza (KB)
 # =============================================================================
-# ⚠️  ILUSTRAČNÉ SEED ZÁZNAMY (Fáza 1 / scaffold).
-#     Slúžia len na demonštráciu enginu, citácií, fallbacku a stránky "Stav kontroly".
-#     NIE SÚ klinicky overené (reviewed: false). Vo Fáze 2 ich Opus nahradí/doplní
-#     obsahom z primárnych zdrojov (web search / PDF guidelines), vo Fáze 3 ich
-#     overí Filip a prepne reviewed -> true.
+# FÁZA 2 — reálny, guideline-konkordantný obsah (parafrázovaný). VŠETKO reviewed: false.
+# source_location zámerne "NEOVERENÉ - doplniť" (presné strany/tabuľky neoverené bez PDF).
+# Overiť oproti primárnym zdrojom pred klinickým použitím (Fáza 3 — Filip).
 # =============================================================================
+
+# --- Riziková stratifikácia + adjuvancia (ESGO/ESTRO/ESP 2021, integrácia s molekulárnou klasifikáciou) ---
 
 - id: endo-esgo-2021-low
   entity: endometrium
@@ -17,8 +17,8 @@
   risk_group: "low"
   figo_stage: "IA"
   recommendation_text: >-
-    Pri nízkom riziku (štádium IA, endometrioidný, G1–G2, LVSI negatívna) sa adjuvantná
-    liečba spravidla neodporúča; postačuje sledovanie. [PARAFRÁZA — overiť oproti zdroju]
+    Nízke riziko (st. IA, endometrioidný, G1–G2, LVSI negatívna): adjuvantná liečba sa
+    neodporúča, postačuje sledovanie. [PARAFRÁZA — overiť]
   criteria:
     figo_stage: ["IA"]
     histology: ["endometrioid"]
@@ -27,46 +27,164 @@
   reviewed: false
   reviewed_by: null
   reviewed_date: null
-  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
-- id: endo-nccn-2026-low
+- id: endo-esgo-2021-intermediate
   entity: endometrium
-  society: NCCN
-  guideline_version: "NCCN Uterine Neoplasms v.2026"
-  year: 2026
-  source_reference: "NCCN Clinical Practice Guidelines in Oncology — Uterine Neoplasms, v.2.2026"
+  society: ESGO
+  guideline_version: "ESGO/ESTRO/ESP 2021"
+  year: 2021
+  source_reference: "Concin N, et al. Int J Gynecol Cancer 2021;31:12-39."
   source_location: "NEOVERENÉ - doplniť"
-  risk_group: "low"
-  figo_stage: "IA"
+  risk_group: "intermediate"
+  figo_stage: "IB"
   recommendation_text: >-
-    Pre obmedzené, dobre diferencované ochorenie bez rizikových znakov NCCN typicky
-    uvádza observáciu po kompletnej chirurgickej liečbe ako možnú stratégiu.
-    [PARAFRÁZA — overiť oproti zdroju; presná verzia v.x.2026 doplniť]
+    Stredné riziko (st. IB endometrioidný G1–G2, LVSI negatívna, alebo IA G3 LVSI neg):
+    odporúča sa adjuvantná vaginálna brachyterapia na zníženie vaginálnej recidívy;
+    sledovanie je alternatívou u vybraných. [PARAFRÁZA — overiť]
   criteria:
-    figo_stage: ["IA"]
+    figo_stage: ["IB"]
     histology: ["endometrioid"]
     grade: ["G1", "G2"]
     lvsi: ["negative"]
   reviewed: false
   reviewed_by: null
   reviewed_date: null
-  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+
+- id: endo-esgo-2021-high-intermediate-lvsi
+  entity: endometrium
+  society: ESGO
+  guideline_version: "ESGO/ESTRO/ESP 2021"
+  year: 2021
+  source_reference: "Concin N, et al. Int J Gynecol Cancer 2021;31:12-39."
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "high-intermediate"
+  recommendation_text: >-
+    Vysoko-stredné riziko (substanciálna LVSI a/alebo G3 obmedzené na maternicu):
+    odporúča sa adjuvantná externá rádioterapia (EBRT); pridanie chemoterapie zvážiť pri
+    G3 a/alebo substanciálnej LVSI. [PARAFRÁZA — overiť]
+  criteria:
+    lvsi: ["substantial"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+
+- id: endo-esgo-2021-high-stageIII
+  entity: endometrium
+  society: ESGO
+  guideline_version: "ESGO/ESTRO/ESP 2021"
+  year: 2021
+  source_reference: "Concin N, et al. Int J Gynecol Cancer 2021;31:12-39."
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "high"
+  recommendation_text: >-
+    Vysoké riziko (st. III, hlboká invázia s G3, alebo neendometrioidné typy): odporúča sa
+    adjuvantná chemoterapia (karboplatina + paklitaxel), zvyčajne v kombinácii s EBRT
+    (sekvenčne alebo konkomitantne). [PARAFRÁZA — overiť]
+  criteria:
+    figo_stage: ["IIIA", "IIIB", "IIIC1", "IIIC2"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
 - id: endo-esgo-2021-pole
   entity: endometrium
   society: ESGO
   guideline_version: "ESGO/ESTRO/ESP 2021"
   year: 2021
-  source_reference: "Concin N, et al. Int J Gynecol Cancer 2021;31:12-39. DOI:10.1136/ijgc-2020-002230"
+  source_reference: "Concin N, et al. Int J Gynecol Cancer 2021;31:12-39."
   source_location: "NEOVERENÉ - doplniť"
-  risk_group: "low (molekulárne)"
+  risk_group: "POLE-mutovaný (priaznivý)"
   recommendation_text: >-
-    POLE-mutované karcinómy obmedzené na maternicu majú výbornú prognózu; v rámci
-    molekulárnej klasifikácie sa zvažuje deeskalácia adjuvantnej liečby.
-    [PARAFRÁZA — overiť oproti zdroju]
+    POLE-mutované karcinómy obmedzené na maternicu (st. I–II) majú výbornú prognózu;
+    zvažuje sa deeskalácia — vynechanie adjuvantnej liečby (ideálne v rámci registra/štúdie).
+    [PARAFRÁZA — overiť]
   criteria:
     molecular: ["POLEmut"]
   reviewed: false
   reviewed_by: null
   reviewed_date: null
-  generated_by: "Opus 4.x scaffold seed, 2026-06-21"
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+
+- id: endo-esgo-2021-p53abn
+  entity: endometrium
+  society: ESGO
+  guideline_version: "ESGO/ESTRO/ESP 2021"
+  year: 2021
+  source_reference: "Concin N, et al. Int J Gynecol Cancer 2021;31:12-39."
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "p53-abnormálny (vysoké riziko)"
+  recommendation_text: >-
+    p53-abnormálne karcinómy s myometriálnou inváziou sa považujú za vysoko rizikové;
+    odporúča sa adjuvantná chemoterapia (± EBRT). Pri seróznych testovať HER2. [PARAFRÁZA — overiť]
+  criteria:
+    molecular: ["p53abn"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+
+# --- Pokročilé / rekurentné ochorenie — chemoimunoterapia (2023–2024 update) ---
+
+- id: endo-nccn-2026-advanced-dmmr-io
+  entity: endometrium
+  society: NCCN
+  guideline_version: "NCCN Uterine Neoplasms v.2026"
+  year: 2026
+  source_reference: "NCCN Uterine Neoplasms v.1.2026; RUBY (dostarlimab) a NRG-GY018 (pembrolizumab) + karbo/paklitaxel."
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "advanced/recurrent, dMMR/MSI-H"
+  figo_stage: "IVB"
+  recommendation_text: >-
+    Pokročilý/rekurentný dMMR/MSI-H karcinóm: prvolíniová chemoterapia (karboplatina +
+    paklitaxel) v kombinácii s checkpoint inhibítorom (dostarlimab — RUBY, alebo pembrolizumab —
+    NRG-GY018) a následnou udržiavacou imunoterapiou; v tejto podskupine veľký benefit. [PARAFRÁZA — overiť]
+  criteria:
+    figo_stage: ["IVA", "IVB", "IVC"]
+    molecular: ["MMRd"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+
+- id: endo-nccn-2026-advanced-pmmr-io
+  entity: endometrium
+  society: NCCN
+  guideline_version: "NCCN Uterine Neoplasms v.2026"
+  year: 2026
+  source_reference: "NCCN Uterine Neoplasms v.1.2026; NRG-GY018 (pembrolizumab + karbo/paklitaxel, schválené bez ohľadu na MMR)."
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "advanced/recurrent"
+  figo_stage: "IVB"
+  recommendation_text: >-
+    Pokročilý/rekurentný karcinóm (vrátane pMMR/MSS): karboplatina + paklitaxel s
+    pembrolizumabom a udržiavacím pembrolizumabom (NRG-GY018, schválené bez ohľadu na MMR
+    status); benefit je menší ako pri dMMR. [PARAFRÁZA — overiť]
+  criteria:
+    figo_stage: ["IVA", "IVB", "IVC"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+
+- id: endo-esmo-recurrent-len-pembro
+  entity: endometrium
+  society: ESMO
+  guideline_version: "ESMO endometrial cancer 2022"
+  year: 2022
+  source_reference: "Oaknin A, et al. Endometrial cancer: ESMO Clinical Practice Guideline. Ann Oncol 2022;33:860-877."
+  source_location: "NEOVERENÉ - doplniť"
+  risk_group: "recurrent, pMMR po platine"
+  recommendation_text: >-
+    Pri pMMR/MSS rekurentnom ochorení po progresii na platine je možnosťou kombinácia
+    lenvatinib + pembrolizumab (KEYNOTE-775). [PARAFRÁZA — overiť]
+  criteria:
+    molecular: ["NSMP", "p53abn"]
+    figo_stage: ["IVB", "IVC"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
