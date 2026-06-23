@@ -7,7 +7,7 @@
   guideline_version: "ESMO localised colon cancer 2020"
   year: 2020
   source_reference: "Argilés G, et al. Localised colon cancer: ESMO Clinical Practice Guidelines. Ann Oncol 2020;31:1291-1305."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "stage I"
   recommendation_text: >-
     Štádium I: kompletná chirurgická resekcia (s adekvátnou lymfadenektómiou); adjuvantná
@@ -15,17 +15,23 @@
   criteria:
     stage: ["I"]
   reviewed: false
-  reviewed_by: null
-  reviewed_date: null
+  reviewed_by:
+  reviewed_date:
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
+  audit_status: NEEDS_VERIFICATION
+  audit_source: 'web_confirmed: ESMO localised colon 2020 (Argiles, Ann Oncol 31:1291-1305)'
+  audit_newer_version: ziadny vyznamny novsi
+  audit_note: 'St. I: kompletna resekcia bez adjuvancie - konkordantne.'
+  audit_date: '2026-06-23'
+  audit_by: Opus 4.8 (MDM Colorectal revizia)
 - id: colon-esmo-stage2-dmmr
   entity: colon
   society: ESMO
   guideline_version: "ESMO localised colon cancer 2020"
   year: 2020
   source_reference: "Argilés G, et al. Ann Oncol 2020;31:1291-1305."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "stage II, dMMR"
   recommendation_text: >-
     Štádium II s dMMR/MSI-H má priaznivú prognózu a fluóropyrimidínová monoterapia neprináša
@@ -34,17 +40,23 @@
     stage: ["IIA", "IIB", "IIC"]
     mmr_status: ["dmmr"]
   reviewed: false
-  reviewed_by: null
-  reviewed_date: null
+  reviewed_by:
+  reviewed_date:
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
+  audit_status: NEEDS_VERIFICATION
+  audit_source: 'web_confirmed: ESMO 2020; QUASAR/MOSAIC subanalyzy dMMR'
+  audit_newer_version: ziadny vyznamny novsi
+  audit_note: 'St. II dMMR: priaznive, bez adjuvantnej 5-FU monoterapie - konkordantne. (Pri high-risk dMMR II individualne.)'
+  audit_date: '2026-06-23'
+  audit_by: Opus 4.8 (MDM Colorectal revizia)
 - id: colon-nccn-stage2-highrisk
   entity: colon
   society: NCCN
   guideline_version: "NCCN Colon Cancer v.2026"
   year: 2026
   source_reference: "NCCN Colon Cancer v.1.2026."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "stage II, high-risk (pMMR)"
   recommendation_text: >-
     Štádium II s vysokorizikovými znakmi (T4, perforácia/obštrukcia, < 12 uzlín, G3, LVI/PNI)
@@ -55,17 +67,23 @@
     high_risk_stage2: ["present"]
     mmr_status: ["pmmr"]
   reviewed: false
-  reviewed_by: null
-  reviewed_date: null
+  reviewed_by:
+  reviewed_date:
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
+  audit_status: NEEDS_VERIFICATION
+  audit_source: 'web_confirmed: NCCN; MOSAIC high-risk subgroup'
+  audit_newer_version: ziadny vyznamny novsi
+  audit_note: 'St. II high-risk + pMMR: zvazit adjuvantnu chemo (FP +/- oxaliplatina) - konkordantne. NCCN subnumber neovereny.'
+  audit_date: '2026-06-23'
+  audit_by: Opus 4.8 (MDM Colorectal revizia)
 - id: colon-esmo-stage3-adjuvant
   entity: colon
   society: ESMO
   guideline_version: "ESMO localised colon cancer 2020"
   year: 2020
   source_reference: "Argilés G, et al. Ann Oncol 2020;31:1291-1305."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "stage III"
   recommendation_text: >-
     Štádium III: adjuvantná chemoterapia na báze oxaliplatiny (FOLFOX alebo CAPOX). Platí aj
@@ -73,17 +91,23 @@
   criteria:
     stage: ["IIIA", "IIIB", "IIIC"]
   reviewed: false
-  reviewed_by: null
-  reviewed_date: null
+  reviewed_by:
+  reviewed_date:
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
+  audit_status: NEEDS_VERIFICATION
+  audit_source: 'web_confirmed: MOSAIC, NSABP C-07'
+  audit_newer_version: ziadny vyznamny novsi
+  audit_note: 'St. III: oxaliplatinova adjuvancia (FOLFOX/CAPOX); plati aj pre dMMR III - konkordantne.'
+  audit_date: '2026-06-23'
+  audit_by: Opus 4.8 (MDM Colorectal revizia)
 - id: colon-asco-idea-duration
   entity: colon
   society: ASCO
   guideline_version: "ASCO adjuvant therapy stage III colon (IDEA)"
   year: 2019
   source_reference: "ASCO Guideline — Duration of oxaliplatin-containing adjuvant therapy for stage III colon cancer (IDEA collaboration)."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "stage III, low-risk (T1–3 N1)"
   recommendation_text: >-
     Pri nízkorizikovom štádiu III (T1–3 N1) je u mnohých pacientov 3 mesiace CAPOX primeranou
@@ -92,6 +116,12 @@
   criteria:
     stage: ["IIIA"]
   reviewed: false
-  reviewed_by: null
-  reviewed_date: null
+  reviewed_by:
+  reviewed_date:
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+  audit_status: NEEDS_VERIFICATION
+  audit_source: 'web_confirmed: IDEA collaboration (NEJM 2018)'
+  audit_newer_version: ziadny vyznamny novsi
+  audit_note: "IDEA: 3 mes CAPOX pri nizkorizik. III - konkordantne. POZN.: criteria su len 'IIIA'; IDEA low-risk = T1-3 N1 (zahrna aj T3N1 = cast IIIB) - zvazit rozsirenie criteria."
+  audit_date: '2026-06-23'
+  audit_by: Opus 4.8 (MDM Colorectal revizia)

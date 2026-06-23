@@ -7,7 +7,7 @@
   guideline_version: "ESMO metastatic colorectal cancer 2023"
   year: 2023
   source_reference: "Cervantes A, et al. Metastatic colorectal cancer: ESMO Clinical Practice Guideline. Ann Oncol 2023;34:10-32."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "left-sided, RAS/BRAF wt"
   recommendation_text: >-
     Ľavostranný RAS aj BRAF wild-type mCRC: prvolíniovo doublet chemoterapia (FOLFOX/FOLFIRI)
@@ -17,17 +17,23 @@
     ras: ["wildtype"]
     braf: ["wildtype"]
   reviewed: false
-  reviewed_by: null
-  reviewed_date: null
+  reviewed_by:
+  reviewed_date:
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
+  audit_status: NEEDS_VERIFICATION
+  audit_source: 'web_confirmed: ESMO mCRC 2023 (Cervantes, Ann Oncol 34:10-32); FIRE-3, CALGB 80405'
+  audit_newer_version: ziadny vyznamny novsi
+  audit_note: 'Lavostranny RAS aj BRAF wt: doublet (FOLFOX/FOLFIRI) + anti-EGFR - konkordantne.'
+  audit_date: '2026-06-23'
+  audit_by: Opus 4.8 (MDM Colorectal revizia)
 - id: mcrc-esmo-right-raswt-bev
   entity: metastatic
   society: ESMO
   guideline_version: "ESMO metastatic colorectal cancer 2023"
   year: 2023
   source_reference: "Cervantes A, et al. Ann Oncol 2023;34:10-32."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "right-sided, RAS/BRAF wt"
   recommendation_text: >-
     Pravostranný RAS/BRAF wild-type mCRC: anti-EGFR je menej účinný; preferuje sa doublet
@@ -37,17 +43,23 @@
     ras: ["wildtype"]
     braf: ["wildtype"]
   reviewed: false
-  reviewed_by: null
-  reviewed_date: null
+  reviewed_by:
+  reviewed_date:
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
+  audit_status: NEEDS_VERIFICATION
+  audit_source: 'web_confirmed: ESMO mCRC 2023; analyzy lateralty'
+  audit_newer_version: ziadny vyznamny novsi
+  audit_note: 'Pravostranny RAS/BRAF wt: anti-EGFR menej ucinny, preferovat doublet + bevacizumab (event. FOLFOXIRI+bev) - konkordantne.'
+  audit_date: '2026-06-23'
+  audit_by: Opus 4.8 (MDM Colorectal revizia)
 - id: mcrc-esmo-ras-mutated-bev
   entity: metastatic
   society: ESMO
   guideline_version: "ESMO metastatic colorectal cancer 2023"
   year: 2023
   source_reference: "Cervantes A, et al. Ann Oncol 2023;34:10-32."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "RAS-mutovaný"
   recommendation_text: >-
     RAS-mutovaný mCRC: anti-EGFR nie je indikovaný; prvolíniovo doublet/triplet chemoterapia
@@ -55,17 +67,23 @@
   criteria:
     ras: ["mutated"]
   reviewed: false
-  reviewed_by: null
-  reviewed_date: null
+  reviewed_by:
+  reviewed_date:
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
+  audit_status: NEEDS_VERIFICATION
+  audit_source: 'web_confirmed: ESMO mCRC 2023'
+  audit_newer_version: ziadny vyznamny novsi
+  audit_note: 'RAS-mut: bez anti-EGFR; doublet/triplet + bevacizumab podla ciela liecby - konkordantne.'
+  audit_date: '2026-06-23'
+  audit_by: Opus 4.8 (MDM Colorectal revizia)
 - id: mcrc-nccn-dmmr-immuno
   entity: metastatic
   society: NCCN
   guideline_version: "NCCN Colon Cancer v.2026"
   year: 2026
   source_reference: "NCCN Colon Cancer v.1.2026; KEYNOTE-177 (pembrolizumab)."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "dMMR/MSI-H"
   recommendation_text: >-
     dMMR/MSI-H metastatické ochorenie: prvolíniovo imunoterapia (pembrolizumab — KEYNOTE-177;
@@ -73,17 +91,23 @@
   criteria:
     mmr_status: ["dmmr"]
   reviewed: false
-  reviewed_by: null
-  reviewed_date: null
+  reviewed_by:
+  reviewed_date:
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
+  audit_status: NEEDS_VERIFICATION
+  audit_source: 'web_confirmed: KEYNOTE-177'
+  audit_newer_version: ziadny vyznamny novsi
+  audit_note: 'dMMR/MSI-H mCRC: pembrolizumab 1L (event. nivolumab+-ipilimumab) - konkordantne.'
+  audit_date: '2026-06-23'
+  audit_by: Opus 4.8 (MDM Colorectal revizia)
 - id: mcrc-esmo-braf-v600e
   entity: metastatic
   society: ESMO
   guideline_version: "ESMO metastatic colorectal cancer 2023"
   year: 2023
   source_reference: "Cervantes A, et al. Ann Oncol 2023;34:10-32; BEACON CRC."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "BRAF V600E mutant"
   recommendation_text: >-
     BRAF V600E mutovaný mCRC (zlá prognóza): po prvej línii encorafenib + cetuximab (BEACON);
@@ -91,17 +115,23 @@
   criteria:
     braf: ["v600e"]
   reviewed: false
-  reviewed_by: null
-  reviewed_date: null
+  reviewed_by:
+  reviewed_date:
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
+  audit_status: NEEDS_VERIFICATION
+  audit_source: 'web_confirmed: BEACON CRC'
+  audit_newer_version: ziadny vyznamny novsi
+  audit_note: 'BRAF V600E: encorafenib + cetuximab po 1. linii - konkordantne; vzdy overit aj MSI status.'
+  audit_date: '2026-06-23'
+  audit_by: Opus 4.8 (MDM Colorectal revizia)
 - id: mcrc-nccn-her2-anti-her2
   entity: metastatic
   society: NCCN
   guideline_version: "NCCN Colon Cancer v.2026"
   year: 2026
   source_reference: "NCCN Colon Cancer v.1.2026; MOUNTAINEER (tucatinib+trastuzumab), DESTINY-CRC."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "HER2-amplifikovaný, RAS wt"
   recommendation_text: >-
     HER2-amplifikovaný RAS wild-type mCRC: anti-HER2 liečba (tucatinib + trastuzumab, alebo
@@ -110,17 +140,23 @@
     her2: ["amplified"]
     ras: ["wildtype"]
   reviewed: false
-  reviewed_by: null
-  reviewed_date: null
+  reviewed_by:
+  reviewed_date:
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
+  audit_status: NEEDS_VERIFICATION
+  audit_source: 'web_confirmed: MOUNTAINEER (tucatinib+trastuzumab), DESTINY-CRC'
+  audit_newer_version: ziadny vyznamny novsi
+  audit_note: 'HER2-amplifikovany RAS wt: anti-HER2 (tucatinib+trastuzumab alebo T-DXd) v dalsich liniach - konkordantne.'
+  audit_date: '2026-06-23'
+  audit_by: Opus 4.8 (MDM Colorectal revizia)
 - id: mcrc-esmo-resectable-liver
   entity: metastatic
   society: ESMO
   guideline_version: "ESMO metastatic colorectal cancer 2023"
   year: 2023
   source_reference: "Cervantes A, et al. Ann Oncol 2023;34:10-32."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "resekabilné / potenciálne resekabilné metastázy"
   recommendation_text: >-
     Pri resekabilných (napr. pečeňových) metastázach je cieľom kompletná R0 metastazektómia,
@@ -129,6 +165,12 @@
   criteria:
     resectability: ["resectable", "potentially_resectable"]
   reviewed: false
-  reviewed_by: null
-  reviewed_date: null
+  reviewed_by:
+  reviewed_date:
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+  audit_status: NEEDS_VERIFICATION
+  audit_source: 'web_confirmed: ESMO mCRC 2023; EORTC 40983 (EPOC)'
+  audit_newer_version: ziadny vyznamny novsi
+  audit_note: 'Resekabilne/potencialne resekabilne (napr. pecenove) metastazy: R0 metastazektomia + perioperacna chemo / konverzna liecba - konkordantne.'
+  audit_date: '2026-06-23'
+  audit_by: Opus 4.8 (MDM Colorectal revizia)

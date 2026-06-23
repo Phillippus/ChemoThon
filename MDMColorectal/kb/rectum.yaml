@@ -7,7 +7,7 @@
   guideline_version: "ESMO rectal cancer 2017"
   year: 2017
   source_reference: "Glynne-Jones R, et al. Rectal cancer: ESMO Clinical Practice Guidelines. Ann Oncol 2017;28(suppl_4):iv22-iv40."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "early (cT1–2 N0)"
   recommendation_text: >-
     Skoré ochorenie (cT1–2 N0): primárna chirurgia (TME); pri veľmi skorom cT1 (low-risk)
@@ -16,17 +16,23 @@
     ct_stage: ["cT1_2"]
     cn_stage: ["cN0"]
   reviewed: false
-  reviewed_by: null
-  reviewed_date: null
+  reviewed_by:
+  reviewed_date:
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
+  audit_status: NEEDS_VERIFICATION
+  audit_source: 'web_confirmed: ESMO rectal 2017 (Glynne-Jones, Ann Oncol 28 suppl_4:iv22-40)'
+  audit_newer_version: ziadny vyznamny novsi
+  audit_note: 'cT1-2 N0: TME (cT1 low-risk lokalna excizia), bez neoadjuvancie - konkordantne.'
+  audit_date: '2026-06-23'
+  audit_by: Opus 4.8 (MDM Colorectal revizia)
 - id: rectum-nccn-ct3-neoadj-crt
   entity: rectum
   society: NCCN
   guideline_version: "NCCN Rectal Cancer v.2026"
   year: 2026
   source_reference: "NCCN Rectal Cancer v.1.2026."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "cT3–4 alebo N+"
   recommendation_text: >-
     Pri cT3–T4 a/alebo uzlinovo pozitívnom ochorení je indikovaná neoadjuvantná liečba
@@ -34,17 +40,23 @@
   criteria:
     ct_stage: ["cT3", "cT4"]
   reviewed: false
-  reviewed_by: null
-  reviewed_date: null
+  reviewed_by:
+  reviewed_date:
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
+  audit_status: NEEDS_VERIFICATION
+  audit_source: 'web_confirmed: NCCN rectal'
+  audit_newer_version: ziadny vyznamny novsi
+  audit_note: 'cT3-4 a/alebo N+: neoadjuvancia (CRT alebo TNT) + TME - konkordantne. NCCN subnumber neovereny.'
+  audit_date: '2026-06-23'
+  audit_by: Opus 4.8 (MDM Colorectal revizia)
 - id: rectum-esmo-tnt-highrisk
   entity: rectum
   society: ESMO
   guideline_version: "ESMO rectal cancer 2017 (+ update)"
   year: 2017
   source_reference: "Glynne-Jones R, et al. Ann Oncol 2017; RAPIDO, PRODIGE-23 (TNT)."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "high-risk (MRF+, EMVI+, cT4, dolné rektum)"
   recommendation_text: >-
     Pri vysokorizikovom lokálne pokročilom rekte (ohrozená/postihnutá MRF, EMVI+, cT4, dolné
@@ -53,17 +65,23 @@
   criteria:
     mrf: ["involved"]
   reviewed: false
-  reviewed_by: null
-  reviewed_date: null
+  reviewed_by:
+  reviewed_date:
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
+  audit_status: NEEDS_VERIFICATION
+  audit_source: 'web_confirmed: RAPIDO, PRODIGE-23'
+  audit_newer_version: ziadny vyznamny novsi
+  audit_note: 'Vysoke riziko (MRF ohrozena/+): TNT pred TME - konkordantne.'
+  audit_date: '2026-06-23'
+  audit_by: Opus 4.8 (MDM Colorectal revizia)
 - id: rectum-esmo-dmmr-immuno
   entity: rectum
   society: ESMO
   guideline_version: "ESMO / aktuálne dáta dMMR rektum"
   year: 2024
   source_reference: "Cercek A, et al. (dostarlimab, dMMR rektum) a AZUR-1; ESMO rectal cancer guidance."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "dMMR/MSI-H lokálne pokročilý"
   recommendation_text: >-
     Pri dMMR/MSI-H lokálne pokročilom rekte je silná evidencia pre neoadjuvantnú imunoterapiu
@@ -72,17 +90,23 @@
   criteria:
     mmr_status: ["dmmr"]
   reviewed: false
-  reviewed_by: null
-  reviewed_date: null
+  reviewed_by:
+  reviewed_date:
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
+  audit_status: NEEDS_VERIFICATION
+  audit_source: 'web_confirmed: Cercek (dostarlimab dMMR rektum, NEJM 2022); AZUR-1'
+  audit_newer_version: rychlo sa vyvijajuca oblast (2024-25), potvrdzujuce data prebiehaju
+  audit_note: 'dMMR lokalne pokrocily rektum: neoadj imunoterapia s vysokou cCR a moznostou organ preservation - aktualne. Sila odporucania sa upresnuje s dozretim dat.'
+  audit_date: '2026-06-23'
+  audit_by: Opus 4.8 (MDM Colorectal revizia)
 - id: rectum-nccn-watch-and-wait
   entity: rectum
   society: NCCN
   guideline_version: "NCCN Rectal Cancer v.2026"
   year: 2026
   source_reference: "NCCN Rectal Cancer v.1.2026; OPRA (nonoperative management)."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "klinická kompletná odpoveď po neoadjuvancii"
   recommendation_text: >-
     Pri dosiahnutí klinickej kompletnej odpovede (cCR) po neoadjuvantnej liečbe je u vybraných
@@ -92,6 +116,12 @@
     ct_stage: ["cT3"]
     cn_stage: ["cN0"]
   reviewed: false
-  reviewed_by: null
-  reviewed_date: null
+  reviewed_by:
+  reviewed_date:
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+  audit_status: NEEDS_VERIFICATION
+  audit_source: 'web_confirmed: OPRA'
+  audit_newer_version: ziadny vyznamny novsi
+  audit_note: "Watch-and-wait pri klinickej kompletnej odpovedi (cCR) po neoadjuvancii - konkordantne. POZN.: criteria (cT3+cN0) su len proxy; wizard nema pole 'odpoved/cCR' - uplatnenie zavisi od dosiahnutia cCR, nie od ct/cn samotneho. Obmedzenie modelu, NIE klinicky rozpor."
+  audit_date: '2026-06-23'
+  audit_by: Opus 4.8 (MDM Colorectal revizia)
