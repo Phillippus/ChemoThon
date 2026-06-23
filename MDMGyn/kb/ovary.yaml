@@ -7,7 +7,7 @@
   guideline_version: "ESGO-ESMO ovarian cancer consensus"
   year: 2019
   source_reference: "Colombo N, et al. ESMO-ESGO consensus conference recommendations on ovarian cancer. Ann Oncol 2019;30:672-705."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "early stage (I)"
   figo_stage: "IA"
   recommendation_text: >-
@@ -21,6 +21,12 @@
   reviewed_by: null
   reviewed_date: null
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+  audit_status: "NEEDS_VERIFICATION"
+  audit_source: "web_search_confirmed: Colombo ESMO-ESGO 2019 (Ann Oncol 30:672-705)"
+  audit_newer_version: "Novsie: ESMO ovarian 2023 + Express Update 2025 (ESMO Open)"
+  audit_note: "Kompletny staging + adjuvantna chemo pri vysokorizikovom skorom stadiu — konkordantne. POZOR: rok 2019 (<2022); existuju novsie ESMO dokumenty 2023/2025 — overit skore-stadium odporucania a zvazit aktualizaciu zdroja; doplnit source_location."
+  audit_date: "2026-06-22"
+  audit_by: "Claude Opus 4.8 (Cowork audit)"
 
 - id: ovary-esmo-advanced-surgery-chemo
   entity: ovary
@@ -28,7 +34,7 @@
   guideline_version: "ESMO ovarian cancer 2023"
   year: 2023
   source_reference: "González-Martín A, et al. Newly diagnosed and relapsed epithelial ovarian cancer: ESMO Clinical Practice Guideline. Ann Oncol 2023;34:833-848."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "advanced HGSC (III–IV)"
   figo_stage: "IIIC"
   recommendation_text: >-
@@ -42,6 +48,12 @@
   reviewed_by: null
   reviewed_date: null
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+  audit_status: "NEEDS_VERIFICATION"
+  audit_source: "web_search_confirmed: Gonzalez-Martin ESMO 2023 (Ann Oncol 34:833-848)"
+  audit_newer_version: "ESMO Express Update 2025 (ESMO Open, S2059-7029(25)01902-7)"
+  audit_note: "Maximalna cytoredukcia R0 + karbo/paklitaxel, bevacizumab pri vysokom riziku, NACT pri neresekabilnom — konkordantne. POZOR: existuje ESMO Express Update 2025 — overit zmeny; doplnit source_location."
+  audit_date: "2026-06-22"
+  audit_by: "Claude Opus 4.8 (Cowork audit)"
 
 - id: ovary-esmo-2023-brca-parp-maint
   entity: ovary
@@ -49,7 +61,7 @@
   guideline_version: "ESMO ovarian cancer 2023"
   year: 2023
   source_reference: "González-Martín A, et al. Ann Oncol 2023;34:833-848; SOLO-1."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "advanced, BRCA-mut"
   recommendation_text: >-
     Pri pokročilom HGSC s BRCA1/2 mutáciou a odpovedi na platinu je v prvej línii štandardom
@@ -61,6 +73,12 @@
   reviewed_by: null
   reviewed_date: null
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+  audit_status: "NEEDS_VERIFICATION"
+  audit_source: "web_search_confirmed: SOLO-1; ESMO 2023 (Ann Oncol 34:833-848)"
+  audit_newer_version: "ESMO Express Update 2025"
+  audit_note: "Olaparib udrziavacia pri BRCA-mut po odpovedi na platinu (SOLO-1) — konkordantne. Overit oproti Express Update 2025; doplnit source_location."
+  audit_date: "2026-06-22"
+  audit_by: "Claude Opus 4.8 (Cowork audit)"
 
 - id: ovary-nccn-2026-hrd-parp-bev
   entity: ovary
@@ -68,7 +86,7 @@
   guideline_version: "NCCN Ovarian Cancer v.2026"
   year: 2026
   source_reference: "NCCN Ovarian/Fallopian Tube/Primary Peritoneal v.1.2026; PAOLA-1, PRIMA."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "advanced, HRD+ (BRCA wt)"
   recommendation_text: >-
     Pri HRD-pozitívnom (BRCA wild-type) HGSC je možnosťou udržiavacia liečba PARP inhibítorom
@@ -80,6 +98,12 @@
   reviewed_by: null
   reviewed_date: null
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+  audit_status: "NEEDS_VERIFICATION"
+  audit_source: "web_search_confirmed: PAOLA-1, PRIMA"
+  audit_newer_version: "NCCN 2026 (subnumber neovereny)"
+  audit_note: "HRD+ (BRCA wt): olaparib+bevacizumab (PAOLA-1) alebo niraparib (PRIMA) — konkordantne. Doplnit source_location."
+  audit_date: "2026-06-22"
+  audit_by: "Claude Opus 4.8 (Cowork audit)"
 
 - id: ovary-esmo-2023-hrp-bev
   entity: ovary
@@ -87,7 +111,7 @@
   guideline_version: "ESMO ovarian cancer 2023"
   year: 2023
   source_reference: "González-Martín A, et al. Ann Oncol 2023;34:833-848."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "advanced, HRD-negatívny / HRP"
   recommendation_text: >-
     Pri HRD-negatívnom (homologous recombination proficient) ochorení je benefit PARP
@@ -99,6 +123,12 @@
   reviewed_by: null
   reviewed_date: null
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+  audit_status: "NEEDS_VERIFICATION"
+  audit_source: "web_search_confirmed: ESMO 2023 (Ann Oncol 34:833-848); PRIMA"
+  audit_newer_version: "ESMO Express Update 2025"
+  audit_note: "HRP/HRD-neg: obmedzeny benefit PARP, bevacizumab ako udrziavacia — konkordantne s ESMO. Pozn.: PRIMA ukazala benefit niraparibu aj v HRD-neg podskupine; Express Update 2025 moze formulaciu spresnit. Doplnit source_location."
+  audit_date: "2026-06-22"
+  audit_by: "Claude Opus 4.8 (Cowork audit)"
 
 - id: ovary-esmo-low-grade-serous
   entity: ovary
@@ -106,7 +136,7 @@
   guideline_version: "ESMO ovarian cancer 2023"
   year: 2023
   source_reference: "González-Martín A, et al. Ann Oncol 2023;34:833-848."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "low-grade serous"
   recommendation_text: >-
     Low-grade serózny karcinóm je relatívne chemorezistentný; po operácii sa zvažuje
@@ -119,6 +149,12 @@
   reviewed_by: null
   reviewed_date: null
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+  audit_status: "NEEDS_VERIFICATION"
+  audit_source: "web_search_confirmed: ESMO 2023 (Ann Oncol 34:833-848)"
+  audit_newer_version: "ESMO Express Update 2025"
+  audit_note: "LGSC chemorezistentny; endokrinna udrziavacia (inhibitory aromatazy), MEK inhibitor (trametinib) pri rekurencii — konkordantne. Zvazit doplnenie novsich dat (avutometinib+defactinib pri rekurentnom LGSC). Doplnit source_location."
+  audit_date: "2026-06-22"
+  audit_by: "Claude Opus 4.8 (Cowork audit)"
 
 - id: ovary-nccn-mucinous-gi-type
   entity: ovary
@@ -126,7 +162,7 @@
   guideline_version: "NCCN Ovarian Cancer v.2026"
   year: 2026
   source_reference: "NCCN Ovarian/Fallopian Tube/Primary Peritoneal v.1.2026."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "mucinózny"
   recommendation_text: >-
     Pri mucinóznom karcinóme ovária vylúčiť GI primárny tumor; pri liečbe zvážiť režimy
@@ -137,3 +173,9 @@
   reviewed_by: null
   reviewed_date: null
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+  audit_status: "NEEDS_VERIFICATION"
+  audit_source: "web_search_confirmed: NCCN Ovarian (vseobecny standard)"
+  audit_newer_version: "NCCN 2026 (subnumber neovereny)"
+  audit_note: "Mucinozny: vylucit GI primar, zvazit GI-typ rezimy (5-FU/oxaliplatina) — konkordantne so standardom. Doplnit source_location."
+  audit_date: "2026-06-22"
+  audit_by: "Claude Opus 4.8 (Cowork audit)"

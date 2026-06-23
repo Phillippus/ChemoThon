@@ -7,7 +7,7 @@
   guideline_version: "ESGO/ESTRO/ESP cervical cancer update 2023"
   year: 2023
   source_reference: "Cibula D, et al. ESGO/ESTRO/ESP guidelines for cervical cancer — update 2023. Int J Gynecol Cancer."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "ESGO/ESTRO/ESP 2023, sekcia 'Management of T1a1 disease' (web-overené, PMC10176411; presná strana doplniť)"
   risk_group: "IA1, LVSI negatívna"
   figo_stage: "IA1"
   recommendation_text: >-
@@ -20,6 +20,12 @@
   reviewed_by: null
   reviewed_date: null
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+  audit_status: "NEEDS_VERIFICATION"
+  audit_source: "web_search_confirmed: pmc.ncbi.nlm.nih.gov/articles/PMC10176411 (Cibula 2023)"
+  audit_newer_version: "ESGO/ESTRO/ESP cervical update 2023 je aktualna verzia"
+  audit_note: "IA1 bez LVSI = konizacia/jednoducha hysterektomia, bez lymfadenektomie — konkordantne s update 2023. Jedine source_location je prazdne — doplnit stranu/sekciu."
+  audit_date: "2026-06-22"
+  audit_by: "Claude Opus 4.8 (Cowork audit)"
 
 - id: cervix-esgo-2023-ia2-ib1-early
   entity: cervix
@@ -27,7 +33,7 @@
   guideline_version: "ESGO/ESTRO/ESP cervical cancer update 2023"
   year: 2023
   source_reference: "Cibula D, et al. Int J Gynecol Cancer 2023 (update)."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "ESGO/ESTRO/ESP 2023, sekcia 'Management of T1a2 disease' / 'Management of T1b1, T1b2, T2a1 tumours' (web-overené, PMC10176411; strana doplniť)"
   risk_group: "early (IA2–IB1)"
   figo_stage: "IB1"
   recommendation_text: >-
@@ -41,6 +47,12 @@
   reviewed_by: null
   reviewed_date: null
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+  audit_status: "NEEDS_VERIFICATION"
+  audit_source: "web_search_confirmed: Cibula 2023 (PMC10176411) + SHAPE (NEJM 2024, NEJMoa2308900)"
+  audit_newer_version: "SHAPE publikovany NEJM 2024 — az PO update 2023"
+  audit_note: "Skore stadium IA2-IB1 <=2cm: radikalna alebo (nizke riziko) jednoducha hysterektomia + SLN/lymfadenektomia — klinicky spravne. POZOR: pripis 'SHAPE' k verzii 2023 je anachronicky (SHAPE publikovany 2024); SHAPE kriteria su prisnejsie (<10mm / <50%% stromalnej invazie, uzlinovo neg. na zobrazeni). Overit znenie guideline vs SHAPE; doplnit source_location."
+  audit_date: "2026-06-22"
+  audit_by: "Claude Opus 4.8 (Cowork audit)"
 
 - id: cervix-esgo-2023-ib2-iia1
   entity: cervix
@@ -48,7 +60,7 @@
   guideline_version: "ESGO/ESTRO/ESP cervical cancer update 2023"
   year: 2023
   source_reference: "Cibula D, et al. Int J Gynecol Cancer 2023 (update)."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "ESGO/ESTRO/ESP 2023, sekcia 'Management of T1b1, T1b2, T2a1 tumours' (web-overené, PMC10176411; strana doplniť)"
   risk_group: "IB2–IIA1 (2–4 cm)"
   figo_stage: "IB2"
   recommendation_text: >-
@@ -61,6 +73,12 @@
   reviewed_by: null
   reviewed_date: null
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+  audit_status: "NEEDS_VERIFICATION"
+  audit_source: "web_search_confirmed: Cibula 2023 (PMC10176411)"
+  audit_newer_version: "ESGO/ESTRO/ESP cervical 2023 aktualna"
+  audit_note: "IB2-IIA1 (2-4cm): radikalna hysterektomia ALEBO definitivna CHRT, vyhnut sa kombinacii — konkordantne. Doplnit source_location."
+  audit_date: "2026-06-22"
+  audit_by: "Claude Opus 4.8 (Cowork audit)"
 
 - id: cervix-estro-adjuvant-high-risk
   entity: cervix
@@ -68,7 +86,7 @@
   guideline_version: "ESGO/ESTRO/ESP cervical cancer 2023"
   year: 2023
   source_reference: "Cibula D, et al. Int J Gynecol Cancer 2023 (update); Peters/Sedlis kritériá."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "ESGO/ESTRO/ESP 2023, sekcia 'Adjuvant treatment after radical surgery' (web-overené, PMC10176411; strana doplniť)"
   risk_group: "post-op vysoké riziko"
   recommendation_text: >-
     Po radikálnej operácii pri vysokorizikových znakoch (pozitívne uzliny, parametriálna
@@ -80,6 +98,12 @@
   reviewed_by: null
   reviewed_date: null
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+  audit_status: "NEEDS_VERIFICATION"
+  audit_source: "web_search_confirmed: Cibula 2023 (PMC10176411); Peters/Sedlis"
+  audit_newer_version: "ESGO/ESTRO/ESP cervical 2023 aktualna"
+  audit_note: "Adjuvantna CHRT pri Peters kriteriach (uzliny+/parametria+/okraje+), adjuvantna RT pri Sedlis — konkordantne. Doplnit source_location."
+  audit_date: "2026-06-22"
+  audit_by: "Claude Opus 4.8 (Cowork audit)"
 
 - id: cervix-esgo-2023-locally-advanced-ccrt
   entity: cervix
@@ -87,7 +111,7 @@
   guideline_version: "ESGO/ESTRO/ESP cervical cancer 2023"
   year: 2023
   source_reference: "Cibula D, et al. Int J Gynecol Cancer 2023 (update)."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "ESGO/ESTRO/ESP 2023, sekcia 'Management of locally advanced cervical cancer (T1b3–T4a)' (web-overené, PMC10176411; strana doplniť)"
   risk_group: "locally advanced (IB3–IVA)"
   figo_stage: "IIIC1"
   recommendation_text: >-
@@ -99,6 +123,12 @@
   reviewed_by: null
   reviewed_date: null
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+  audit_status: "NEEDS_VERIFICATION"
+  audit_source: "web_search_confirmed: Cibula 2023 (PMC10176411)"
+  audit_newer_version: "ESGO/ESTRO/ESP cervical 2023 aktualna"
+  audit_note: "Definitivna CHRT (cisplatina) + brachyterapia pri lokalne pokrocilom — konkordantne. Doplnit source_location."
+  audit_date: "2026-06-22"
+  audit_by: "Claude Opus 4.8 (Cowork audit)"
 
 - id: cervix-nccn-2026-la-pembro-a18
   entity: cervix
@@ -106,7 +136,7 @@
   guideline_version: "NCCN Cervical Cancer v.2026"
   year: 2026
   source_reference: "NCCN Cervical Cancer v.2026; ENGOT-cx11/GOG-3047/KEYNOTE-A18 (pembrolizumab + CCRT)."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "high-risk locally advanced"
   figo_stage: "IIIC1"
   recommendation_text: >-
@@ -114,12 +144,44 @@
     sa k chemorádioterapii pridáva konkomitantný a adjuvantný pembrolizumab (KEYNOTE-A18),
     čo zlepšuje PFS aj OS. [PARAFRÁZA — overiť]
   criteria:
-    figo_stage: ["IIIC1", "IIIC2"]
+    figo_stage: ["IIIA", "IIIB", "IIIC1", "IIIC2", "IVA"]
+  reviewed: false
+  reviewed_by: null
+  reviewed_date: null
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+  audit_status: "DISCREPANT_FIXED"
+  audit_source: "web_search_confirmed: KEYNOTE-A18 (ASCO Post 2024; FDA 2024-01-12)"
+  audit_newer_version: "NCCN 2026 (subnumber neovereny)"
+  audit_note: "recommendation_text je spravny (KEYNOTE-A18: pembrolizumab konkomitantne + adjuvantne k CHRT, zlepsuje PFS aj OS). ROZPOR v poli 'criteria': obmedzene len na IIIC1/IIIC2 node-positive. FDA schvalenie a KEYNOTE-A18 zahrna FIGO 2014 st. III-IVA BEZ OHLADU na uzliny (+ IB2-IIB node-positive), nezavisle od PD-L1. Uzlinovo-negativny IIIB/IVA pacient by sa nezachytil. NAVRH OPRAVY: rozsirit criteria na FIGO III-IVA (bez ohladu na uzliny) a IB2-IIB node-positive; pridat poznamku 'bez ohladu na PD-L1'. OPRAVENE 2026-06-22: criteria rozsirene na FIGO III-IVA (IIIA,IIIB,IIIC1,IIIC2,IVA) bez ohladu na uzlinovy status; pre arm IB2-IIB node-positive pridany samostatny zaznam cervix-nccn-2026-a18-ib2-iib-nodepos. Bez ohladu na PD-L1. reviewed:false (caka na kontrolu Filipa)."
+  audit_date: "2026-06-22"
+  audit_by: "Claude Opus 4.8 (Cowork audit) + Opus 4.8 (criteria fix)"
+
+- id: cervix-nccn-2026-a18-ib2-iib-nodepos
+  entity: cervix
+  society: NCCN
+  guideline_version: "NCCN Cervical Cancer v.2026"
+  year: 2026
+  source_reference: "NCCN Cervical Cancer v.2026; ENGOT-cx11/GOG-3047/KEYNOTE-A18 (pembrolizumab + CCRT)."
+  source_location: "doplniť – overenie Filipa (paywall)"
+  risk_group: "high-risk (IB2–IIB node-positive)"
+  figo_stage: "IIB"
+  recommendation_text: >-
+    Pri novodiagnostikovanom vysokorizikovom lokálne pokročilom ochorení (FIGO 2014 IB2–IIB
+    s pozitívnymi uzlinami) sa k chemorádioterapii pridáva konkomitantný a adjuvantný
+    pembrolizumab (KEYNOTE-A18), bez ohľadu na PD-L1 status. [PARAFRÁZA — overiť]
+  criteria:
+    figo_stage: ["IB2", "IB3", "IIA1", "IIA2", "IIB"]
     node_status: ["positive"]
   reviewed: false
   reviewed_by: null
   reviewed_date: null
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+  audit_status: "NEEDS_VERIFICATION"
+  audit_source: "web_search_confirmed: KEYNOTE-A18 (ASCO Post 2024; FDA 2024-01-12)"
+  audit_newer_version: "NCCN 2026 (subnumber neovereny)"
+  audit_note: "Doplnkovy zaznam (2026-06-22) k a18 fixu: pokryva node-positive arm IB2-IIB z KEYNOTE-A18 / FDA labelu (bez ohladu na PD-L1). Doplnit source_location."
+  audit_date: "2026-06-22"
+  audit_by: "Opus 4.8 (criteria fix)"
 
 - id: cervix-nccn-2026-metastatic-keynote826
   entity: cervix
@@ -127,7 +189,7 @@
   guideline_version: "NCCN Cervical Cancer v.2026"
   year: 2026
   source_reference: "NCCN Cervical Cancer v.2026; KEYNOTE-826 (pembrolizumab + chemoterapia ± bevacizumab)."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "metastatic/recurrent"
   figo_stage: "IVB"
   recommendation_text: >-
@@ -139,3 +201,9 @@
   reviewed_by: null
   reviewed_date: null
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+  audit_status: "NEEDS_VERIFICATION"
+  audit_source: "web_search_confirmed: KEYNOTE-826"
+  audit_newer_version: "NCCN 2026 (subnumber neovereny)"
+  audit_note: "Platina + paklitaxel + pembrolizumab +/- bevacizumab pri metastatickom/rekurentnom (KEYNOTE-826) — konkordantne. Spresnenie: schvalenie/benefit pri PD-L1 CPS >= 1. Doplnit source_location."
+  audit_date: "2026-06-22"
+  audit_by: "Claude Opus 4.8 (Cowork audit)"

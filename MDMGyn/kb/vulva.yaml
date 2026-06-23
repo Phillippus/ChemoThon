@@ -7,7 +7,7 @@
   guideline_version: "ESGO vulvar cancer 2023"
   year: 2023
   source_reference: "Oonk MHM, et al. ESGO guidelines for the management of patients with vulvar cancer — update 2023. Int J Gynecol Cancer."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "ESGO 2023 vulvar, sekcia 'Surgical management — Local treatment' (depth ≤1 mm bez liečby slabín; web-overené, PMC10359596; strana doplniť)"
   risk_group: "IA"
   figo_stage: "IA"
   recommendation_text: >-
@@ -20,6 +20,12 @@
   reviewed_by: null
   reviewed_date: null
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+  audit_status: "NEEDS_VERIFICATION"
+  audit_source: "web_search_confirmed: Oonk ESGO vulvar 2023 (IJGC 33(7):1023-1043)"
+  audit_newer_version: "ESGO vulvar 2023 je aktualna verzia"
+  audit_note: "IA (invazia <=1mm): siroka lokalna excizia, bez stagingu slabin — konkordantne. Jedine source_location prazdne — doplnit."
+  audit_date: "2026-06-22"
+  audit_by: "Claude Opus 4.8 (Cowork audit)"
 
 - id: vulva-esgo-2023-ib-ii-sln
   entity: vulva
@@ -27,7 +33,7 @@
   guideline_version: "ESGO vulvar cancer 2023"
   year: 2023
   source_reference: "Oonk MHM, et al. Int J Gynecol Cancer 2023 (update)."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "ESGO 2023 vulvar, sekcia 'Surgical management — Groin treatment (SLN)' (web-overené, PMC10359596; strana doplniť)"
   risk_group: "IB–II"
   figo_stage: "IB"
   recommendation_text: >-
@@ -41,6 +47,12 @@
   reviewed_by: null
   reviewed_date: null
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+  audit_status: "NEEDS_VERIFICATION"
+  audit_source: "web_search_confirmed: Oonk ESGO vulvar 2023 (IJGC 33(7):1023-1043)"
+  audit_newer_version: "ESGO vulvar 2023 aktualna"
+  audit_note: "IB-II (>1mm): radikalna lokalna excizia + SLN pri unifokalnom <4cm a klinicky neg. slabinach, inak inguinofemoralna lymfadenektomia — presne zodpoveda update 2023. Doplnit source_location."
+  audit_date: "2026-06-22"
+  audit_by: "Claude Opus 4.8 (Cowork audit)"
 
 - id: vulva-nccn-2026-node-positive-rt
   entity: vulva
@@ -48,7 +60,7 @@
   guideline_version: "NCCN Vulvar Cancer v.2026"
   year: 2026
   source_reference: "NCCN Vulvar Cancer v.1.2026."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "node-positive"
   recommendation_text: >-
     Pri pozitívnych inguinofemorálnych uzlinách (najmä ≥ 2 alebo extrakapsulárne šírenie)
@@ -60,6 +72,12 @@
   reviewed_by: null
   reviewed_date: null
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+  audit_status: "NEEDS_VERIFICATION"
+  audit_source: "web_search_confirmed: NCCN Vulvar; GROINSS-V II"
+  audit_newer_version: "NCCN 2026 (subnumber neovereny)"
+  audit_note: "Adjuvantna RT (+/- konkomitantna cisplatina) pri pozitivnych uzlinach (>=2 / extrakapsularne) — konkordantne. Pozn.: pri mikrometastaze v SLN je RT alternativa k lymfadenektomii (GROINSS-V II). Doplnit source_location."
+  audit_date: "2026-06-22"
+  audit_by: "Claude Opus 4.8 (Cowork audit)"
 
 - id: vulva-esgo-2023-locally-advanced
   entity: vulva
@@ -67,7 +85,7 @@
   guideline_version: "ESGO vulvar cancer 2023"
   year: 2023
   source_reference: "Oonk MHM, et al. Int J Gynecol Cancer 2023 (update)."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "ESGO 2023 vulvar, sekcia '(Chemo)radiotherapy — Primary chemoradiotherapy' (web-overené, PMC10359596; strana doplniť)"
   risk_group: "locally advanced (III–IVA)"
   figo_stage: "IVA"
   recommendation_text: >-
@@ -79,6 +97,12 @@
   reviewed_by: null
   reviewed_date: null
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+  audit_status: "NEEDS_VERIFICATION"
+  audit_source: "web_search_confirmed: Oonk ESGO vulvar 2023 (IJGC 33(7):1023-1043)"
+  audit_newer_version: "ESGO vulvar 2023 aktualna"
+  audit_note: "Definitivna (chemo)radioterapia pri lokalne pokrocilom/neresekabilnom — konkordantne. Doplnit source_location."
+  audit_date: "2026-06-22"
+  audit_by: "Claude Opus 4.8 (Cowork audit)"
 
 - id: vulva-nccn-2026-metastatic-pembro
   entity: vulva
@@ -86,7 +110,7 @@
   guideline_version: "NCCN Vulvar Cancer v.2026"
   year: 2026
   source_reference: "NCCN Vulvar Cancer v.1.2026."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "metastatic (IVB)"
   figo_stage: "IVB"
   recommendation_text: >-
@@ -98,3 +122,9 @@
   reviewed_by: null
   reviewed_date: null
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+  audit_status: "NEEDS_VERIFICATION"
+  audit_source: "web_search_confirmed: NCCN Vulvar"
+  audit_newer_version: "NCCN 2026 (subnumber neovereny)"
+  audit_note: "Metastaticke: systemova platinova liecba; pembrolizumab pri PD-L1+/TMB-high/MSI-H — konkordantne. Doplnit source_location."
+  audit_date: "2026-06-22"
+  audit_by: "Claude Opus 4.8 (Cowork audit)"

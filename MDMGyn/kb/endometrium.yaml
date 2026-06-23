@@ -13,7 +13,7 @@
   guideline_version: "ESGO/ESTRO/ESP 2021"
   year: 2021
   source_reference: "Concin N, et al. ESGO/ESTRO/ESP guidelines for the management of patients with endometrial carcinoma. Int J Gynecol Cancer 2021;31:12-39. DOI:10.1136/ijgc-2020-002230"
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "low"
   figo_stage: "IA"
   recommendation_text: >-
@@ -28,6 +28,12 @@
   reviewed_by: null
   reviewed_date: null
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+  audit_status: "NEEDS_VERIFICATION"
+  audit_source: "web_search_confirmed: thelancet.com/PIIS1470-2045(25)00167-6"
+  audit_newer_version: "ESGO/ESTRO/ESP update 2025 (Lancet Oncol) integruje FIGO 2023 staging"
+  audit_note: "Obsah (nizke riziko IA G1-G2 LVSI- = bez adjuvancie, sledovanie) zodpoveda ESGO/ESTRO/ESP. POZOR: existuje update 2025 — guideline_version aktualizovat na 2025 a overit, ci sa odporucanie nezmenilo. source_location prazdne — doplnit konkretnu stranu/sekciu."
+  audit_date: "2026-06-22"
+  audit_by: "Claude Opus 4.8 (Cowork audit)"
 
 - id: endo-esgo-2021-intermediate
   entity: endometrium
@@ -35,7 +41,7 @@
   guideline_version: "ESGO/ESTRO/ESP 2021"
   year: 2021
   source_reference: "Concin N, et al. Int J Gynecol Cancer 2021;31:12-39."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "intermediate"
   figo_stage: "IB"
   recommendation_text: >-
@@ -51,6 +57,12 @@
   reviewed_by: null
   reviewed_date: null
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+  audit_status: "NEEDS_VERIFICATION"
+  audit_source: "web_search_confirmed: thelancet.com/PIIS1470-2045(25)00167-6"
+  audit_newer_version: "ESGO/ESTRO/ESP update 2025"
+  audit_note: "Vaginalna brachyterapia pri strednom riziku (IB G1-G2 LVSI-) je guideline-konkordantna. Overit oproti update 2025 (FIGO 2023 staging) a doplnit source_location."
+  audit_date: "2026-06-22"
+  audit_by: "Claude Opus 4.8 (Cowork audit)"
 
 - id: endo-esgo-2021-high-intermediate-lvsi
   entity: endometrium
@@ -58,7 +70,7 @@
   guideline_version: "ESGO/ESTRO/ESP 2021"
   year: 2021
   source_reference: "Concin N, et al. Int J Gynecol Cancer 2021;31:12-39."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "high-intermediate"
   recommendation_text: >-
     Vysoko-stredné riziko (substanciálna LVSI a/alebo G3 obmedzené na maternicu):
@@ -70,6 +82,12 @@
   reviewed_by: null
   reviewed_date: null
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+  audit_status: "NEEDS_VERIFICATION"
+  audit_source: "web_search_confirmed: thelancet.com/PIIS1470-2045(25)00167-6"
+  audit_newer_version: "ESGO/ESTRO/ESP update 2025"
+  audit_note: "EBRT pri substancialnej LVSI / G3 obmedzenom na uterus je konkordantne (PORTEC). Overit oproti update 2025; doplnit source_location."
+  audit_date: "2026-06-22"
+  audit_by: "Claude Opus 4.8 (Cowork audit)"
 
 - id: endo-esgo-2021-high-stageIII
   entity: endometrium
@@ -77,7 +95,7 @@
   guideline_version: "ESGO/ESTRO/ESP 2021"
   year: 2021
   source_reference: "Concin N, et al. Int J Gynecol Cancer 2021;31:12-39."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "high"
   recommendation_text: >-
     Vysoké riziko (st. III, hlboká invázia s G3, alebo neendometrioidné typy): odporúča sa
@@ -89,6 +107,12 @@
   reviewed_by: null
   reviewed_date: null
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+  audit_status: "NEEDS_VERIFICATION"
+  audit_source: "web_search_confirmed: thelancet.com/PIIS1470-2045(25)00167-6"
+  audit_newer_version: "ESGO/ESTRO/ESP update 2025; FIGO 2023 prestadiuje cast st. III"
+  audit_note: "Karbo/paklitaxel + EBRT pri st. III (PORTEC-3, GOG-258) konkordantne. POZOR: FIGO 2023 mení definiciu casti st. III — overit staging mapping a aktualizovat na update 2025; doplnit source_location."
+  audit_date: "2026-06-22"
+  audit_by: "Claude Opus 4.8 (Cowork audit)"
 
 - id: endo-esgo-2021-pole
   entity: endometrium
@@ -96,7 +120,7 @@
   guideline_version: "ESGO/ESTRO/ESP 2021"
   year: 2021
   source_reference: "Concin N, et al. Int J Gynecol Cancer 2021;31:12-39."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "POLE-mutovaný (priaznivý)"
   recommendation_text: >-
     POLE-mutované karcinómy obmedzené na maternicu (st. I–II) majú výbornú prognózu;
@@ -108,6 +132,12 @@
   reviewed_by: null
   reviewed_date: null
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+  audit_status: "NEEDS_VERIFICATION"
+  audit_source: "web_search_confirmed: thelancet.com/PIIS1470-2045(25)00167-6"
+  audit_newer_version: "ESGO/ESTRO/ESP update 2025 formalizuje IAm POLEmut a de-eskalaciu"
+  audit_note: "De-eskalacia pri POLEmut st. I-II je konkordantna; update 2025 zavadza molekulovo definovane stadium IAm POLEmut. Aktualizovat verziu a doplnit source_location."
+  audit_date: "2026-06-22"
+  audit_by: "Claude Opus 4.8 (Cowork audit)"
 
 - id: endo-esgo-2021-p53abn
   entity: endometrium
@@ -115,7 +145,7 @@
   guideline_version: "ESGO/ESTRO/ESP 2021"
   year: 2021
   source_reference: "Concin N, et al. Int J Gynecol Cancer 2021;31:12-39."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "p53-abnormálny (vysoké riziko)"
   recommendation_text: >-
     p53-abnormálne karcinómy s myometriálnou inváziou sa považujú za vysoko rizikové;
@@ -126,6 +156,12 @@
   reviewed_by: null
   reviewed_date: null
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+  audit_status: "NEEDS_VERIFICATION"
+  audit_source: "web_search_confirmed: thelancet.com/PIIS1470-2045(25)00167-6"
+  audit_newer_version: "ESGO/ESTRO/ESP update 2025; stadium IICm p53abn"
+  audit_note: "p53abn s myoinvaziou = vysoke riziko, chemo +/- EBRT, HER2 test pri seroznych — konkordantne. Zvazit doplnenie: trastuzumab pri HER2+ seroznom (a novsie data trastuzumab-deruxtekan). Aktualizovat na 2025; doplnit source_location."
+  audit_date: "2026-06-22"
+  audit_by: "Claude Opus 4.8 (Cowork audit)"
 
 # --- Pokročilé / rekurentné ochorenie — chemoimunoterapia (2023–2024 update) ---
 
@@ -135,7 +171,7 @@
   guideline_version: "NCCN Uterine Neoplasms v.2026"
   year: 2026
   source_reference: "NCCN Uterine Neoplasms v.1.2026; RUBY (dostarlimab) a NRG-GY018 (pembrolizumab) + karbo/paklitaxel."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "advanced/recurrent, dMMR/MSI-H"
   figo_stage: "IVB"
   recommendation_text: >-
@@ -149,6 +185,12 @@
   reviewed_by: null
   reviewed_date: null
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+  audit_status: "NEEDS_VERIFICATION"
+  audit_source: "web_search_confirmed: RUBY (NEJM) + NRG-GY018 (Nature Med 2025)"
+  audit_newer_version: "Najnovsia overena NCCN Insights = v3.2025; presny subnumber v.1.2026 neovereny"
+  audit_note: "Obsah (karbo/paklitaxel + dostarlimab RUBY alebo pembrolizumab NRG-GY018 + udrziavacia IO pri dMMR) je webom potvrdeny a aktualny. Verzny label 'v.1.2026' som nezavisle nepotvrdil — overit cislo verzie na nccn.org; doplnit source_location."
+  audit_date: "2026-06-22"
+  audit_by: "Claude Opus 4.8 (Cowork audit)"
 
 - id: endo-nccn-2026-advanced-pmmr-io
   entity: endometrium
@@ -156,7 +198,7 @@
   guideline_version: "NCCN Uterine Neoplasms v.2026"
   year: 2026
   source_reference: "NCCN Uterine Neoplasms v.1.2026; NRG-GY018 (pembrolizumab + karbo/paklitaxel, schválené bez ohľadu na MMR)."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "advanced/recurrent"
   figo_stage: "IVB"
   recommendation_text: >-
@@ -169,6 +211,12 @@
   reviewed_by: null
   reviewed_date: null
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+  audit_status: "NEEDS_VERIFICATION"
+  audit_source: "web_search_confirmed: NRG-GY018 (Nature Med 2025)"
+  audit_newer_version: "Najnovsia overena NCCN Insights = v3.2025; subnumber v.1.2026 neovereny"
+  audit_note: "Pembrolizumab + karbo/paklitaxel pri pMMR/MSS (NRG-GY018, schvalene bez ohladu na MMR), benefit mensi nez pri dMMR — webom potvrdene. Overit cislo verzie NCCN; doplnit source_location."
+  audit_date: "2026-06-22"
+  audit_by: "Claude Opus 4.8 (Cowork audit)"
 
 - id: endo-esmo-recurrent-len-pembro
   entity: endometrium
@@ -176,7 +224,7 @@
   guideline_version: "ESMO endometrial cancer 2022"
   year: 2022
   source_reference: "Oaknin A, et al. Endometrial cancer: ESMO Clinical Practice Guideline. Ann Oncol 2022;33:860-877."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "recurrent, pMMR po platine"
   recommendation_text: >-
     Pri pMMR/MSS rekurentnom ochorení po progresii na platine je možnosťou kombinácia
@@ -188,3 +236,9 @@
   reviewed_by: null
   reviewed_date: null
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+  audit_status: "NEEDS_VERIFICATION"
+  audit_source: "web_search_confirmed: KEYNOTE-775 (Oaknin ESMO 2022, Ann Oncol 33:860-877)"
+  audit_newer_version: "ESMO 2022 je platna CPG; moze existovat living-guideline update"
+  audit_note: "Lenvatinib + pembrolizumab pri pMMR rekurentnom po platine (KEYNOTE-775) konkordantne. Kontext: v ere prvolinovej chemo-IO sa kombinacia posuva do neskorsej linie. Overit ESMO living update; doplnit source_location."
+  audit_date: "2026-06-22"
+  audit_by: "Claude Opus 4.8 (Cowork audit)"
