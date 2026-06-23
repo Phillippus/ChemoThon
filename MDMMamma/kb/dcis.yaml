@@ -7,7 +7,7 @@
   guideline_version: "NCCN Breast Cancer v.2026"
   year: 2026
   source_reference: "NCCN Breast Cancer v.1.2026."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "DCIS po BCS"
   recommendation_text: >-
     Po prsník-zachovávajúcej operácii (BCS) DCIS s negatívnymi okrajmi je štandardom
@@ -16,17 +16,23 @@
   criteria:
     margins: ["negative"]
   reviewed: false
-  reviewed_by: null
-  reviewed_date: null
+  reviewed_by:
+  reviewed_date:
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
+  audit_status: NEEDS_VERIFICATION
+  audit_source: 'web_confirmed: NSABP B-17 / EORTC 10853'
+  audit_newer_version: ziadny vyznamny novsi dokument k 2026-06
+  audit_note: BCS + RT celeho prsnika pri DCIS - konkordantne. Pri nizkom riziku zvazit vynechanie RT (pozri dcis-stgallen). NCCN subnumber neovereny; source_location paywall.
+  audit_date: '2026-06-23'
+  audit_by: Opus 4.8 (MDM Mamma revizia)
 - id: dcis-nccn-er-pos-endocrine
   entity: dcis
   society: NCCN
   guideline_version: "NCCN Breast Cancer v.2026"
   year: 2026
   source_reference: "NCCN Breast Cancer v.1.2026."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "ER+ DCIS"
   recommendation_text: >-
     Pri ER-pozitívnom DCIS po BCS možno zvážiť endokrinnú liečbu (tamoxifén alebo inhibítor
@@ -34,17 +40,23 @@
   criteria:
     er: ["positive"]
   reviewed: false
-  reviewed_by: null
-  reviewed_date: null
+  reviewed_by:
+  reviewed_date:
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
+  audit_status: NEEDS_VERIFICATION
+  audit_source: 'web_confirmed: NSABP B-24, NSABP B-35'
+  audit_newer_version: ziadny vyznamny novsi
+  audit_note: 'ER+ DCIS: endokrinna liecba po BCS znizuje recidivu - konkordantne. NCCN subnumber neovereny.'
+  audit_date: '2026-06-23'
+  audit_by: Opus 4.8 (MDM Mamma revizia)
 - id: dcis-stgallen-low-grade-rt-omission
   entity: dcis
   society: St. Gallen
   guideline_version: "St. Gallen consensus 2023"
   year: 2023
   source_reference: "St. Gallen International Consensus on primary therapy of early breast cancer 2023."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "low/intermediate grade, okraje neg"
   recommendation_text: >-
     Pri nízkom/strednom grade DCIS s adekvátnymi okrajmi sa u vybraných (vek, veľkosť, profil)
@@ -53,17 +65,23 @@
     grade: ["low", "intermediate"]
     margins: ["negative"]
   reviewed: false
-  reviewed_by: null
-  reviewed_date: null
+  reviewed_by:
+  reviewed_date:
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
+  audit_status: NEEDS_VERIFICATION
+  audit_source: St. Gallen consensus 2023
+  audit_newer_version: ziadny vyznamny novsi
+  audit_note: Deeskalacia/vynechanie RT pri low-intermediate grade DCIS - konkordantne; genomicke nastroje (napr. DCISionRT) su emerging. source_location paywall.
+  audit_date: '2026-06-23'
+  audit_by: Opus 4.8 (MDM Mamma revizia)
 - id: dcis-nccn-positive-margins
   entity: dcis
   society: NCCN
   guideline_version: "NCCN Breast Cancer v.2026"
   year: 2026
   source_reference: "NCCN Breast Cancer v.1.2026; konsenzus okrajov DCIS (≥2 mm)."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "pozitívne/tesné okraje"
   recommendation_text: >-
     Pri pozitívnych alebo tesných okrajoch (< 2 mm) sa odporúča re-excízia (alebo mastektómia),
@@ -71,6 +89,12 @@
   criteria:
     margins: ["positive_close"]
   reviewed: false
-  reviewed_by: null
-  reviewed_date: null
+  reviewed_by:
+  reviewed_date:
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+  audit_status: NEEDS_VERIFICATION
+  audit_source: 'web_confirmed: SSO/ASTRO/ASCO DCIS margin consensus (>=2 mm)'
+  audit_newer_version: ziadny vyznamny novsi
+  audit_note: Re-excizia pri pozitivnych/tesnych okrajoch (<2 mm) - konkordantne.
+  audit_date: '2026-06-23'
+  audit_by: Opus 4.8 (MDM Mamma revizia)

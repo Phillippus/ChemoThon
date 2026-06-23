@@ -7,7 +7,7 @@
   guideline_version: "St. Gallen consensus 2023"
   year: 2023
   source_reference: "St. Gallen International Consensus 2023."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "luminal A, node-negative"
   recommendation_text: >-
     Luminálny A, uzlinovo negatívny: preferuje sa samotná adjuvantná endokrinná liečba;
@@ -16,17 +16,23 @@
     subtype: ["luminal_a"]
     nodal: ["negative"]
   reviewed: false
-  reviewed_by: null
-  reviewed_date: null
+  reviewed_by:
+  reviewed_date:
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
+  audit_status: NEEDS_VERIFICATION
+  audit_source: St. Gallen 2023
+  audit_newer_version: ziadny vyznamny novsi
+  audit_note: 'Luminal A node-negativny: samotna adjuvantna endokrinna liecba - konkordantne.'
+  audit_date: '2026-06-23'
+  audit_by: Opus 4.8 (MDM Mamma revizia)
 - id: early-esmo-hrpos-genomic-low
   entity: early
   society: ESMO
   guideline_version: "ESMO early breast cancer 2023"
   year: 2023
   source_reference: "Loibl S, et al. Early breast cancer: ESMO Clinical Practice Guideline. Ann Oncol 2023;34:159-182; TAILORx, RxPONDER."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "HR+/HER2−, nízke genomické riziko"
   recommendation_text: >-
     HR+/HER2− s nízkym genomickým rizikom (napr. nízke Oncotype DX): možno bezpečne vynechať
@@ -36,17 +42,23 @@
     subtype: ["luminal_a", "luminal_b_her2neg"]
     genomic_risk: ["low"]
   reviewed: false
-  reviewed_by: null
-  reviewed_date: null
+  reviewed_by:
+  reviewed_date:
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
+  audit_status: NEEDS_VERIFICATION
+  audit_source: 'web_confirmed: TAILORx, RxPONDER'
+  audit_newer_version: 'ESMO early breast: Ann Oncol 2024;35:159-182'
+  audit_note: 'Vynechanie chemo pri nizkom genomickom riziku - konkordantne. POZN.: RxPONDER - premenopauzalne N1 mali benefit z chemo, spresnit. source_reference uvadza vol 34/2023; spravne je vol 35 (2024, online 12/2023).'
+  audit_date: '2026-06-23'
+  audit_by: Opus 4.8 (MDM Mamma revizia)
 - id: early-nccn-hrpos-highrisk-cdk46-adj
   entity: early
   society: NCCN
   guideline_version: "NCCN Breast Cancer v.2026"
   year: 2026
   source_reference: "NCCN Breast Cancer v.1.2026; monarchE (abemaciklib), NATALEE (ribociklib)."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "HR+/HER2−, vysoké riziko (node+)"
   recommendation_text: >-
     HR+/HER2− s vysokým rizikom: k adjuvantnej endokrinnej liečbe pridať CDK4/6 inhibítor —
@@ -56,17 +68,23 @@
     subtype: ["luminal_b_her2neg"]
     nodal: ["n1_3", "n4plus"]
   reviewed: false
-  reviewed_by: null
-  reviewed_date: null
+  reviewed_by:
+  reviewed_date:
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
+  audit_status: NEEDS_VERIFICATION
+  audit_source: 'web_confirmed: monarchE (abemaciklib), NATALEE (ribociklib)'
+  audit_newer_version: ziadny vyznamny novsi
+  audit_note: 'Adjuvantny CDK4/6 pri vysokom riziku - konkordantne. POZN. (rozsah, nie rozpor): criteria su luminal_b_her2neg + node+; NATALEE zahrna aj vybrane N0 high-risk a luminal_a high-risk by mohol kvalifikovat - zvazit rozsirenie pri review.'
+  audit_date: '2026-06-23'
+  audit_by: Opus 4.8 (MDM Mamma revizia)
 - id: early-nccn-her2-pos-antiher2
   entity: early
   society: NCCN
   guideline_version: "NCCN Breast Cancer v.2026"
   year: 2026
   source_reference: "NCCN Breast Cancer v.1.2026; APT (paklitaxel+trastuzumab), APHINITY, KATHERINE."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "HER2-pozitívny, skorý"
   recommendation_text: >-
     HER2+ skorý karcinóm: systémová chemoterapia + anti-HER2 (trastuzumab ± pertuzumab). Malé
@@ -75,17 +93,23 @@
   criteria:
     her2: ["her2_positive"]
   reviewed: false
-  reviewed_by: null
-  reviewed_date: null
+  reviewed_by:
+  reviewed_date:
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
+  audit_status: NEEDS_VERIFICATION
+  audit_source: 'web_confirmed: APT, APHINITY, KATHERINE'
+  audit_newer_version: ziadny vyznamny novsi
+  audit_note: Chemo + anti-HER2 (trastuzumab +/- pertuzumab); APT pre male T1; T-DM1 pri non-pCR - konkordantne.
+  audit_date: '2026-06-23'
+  audit_by: Opus 4.8 (MDM Mamma revizia)
 - id: early-esmo-tnbc-chemo-pembro
   entity: early
   society: ESMO
   guideline_version: "ESMO early breast cancer 2023"
   year: 2023
   source_reference: "Loibl S, et al. Ann Oncol 2023;34:159-182; KEYNOTE-522, OlympiA."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "TNBC, skorý"
   recommendation_text: >-
     Skorý TNBC (mimo veľmi malých): (neo)adjuvantná chemoterapia (vrátane platiny pri vyššom
@@ -94,17 +118,23 @@
   criteria:
     subtype: ["tnbc"]
   reviewed: false
-  reviewed_by: null
-  reviewed_date: null
+  reviewed_by:
+  reviewed_date:
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
+  audit_status: NEEDS_VERIFICATION
+  audit_source: 'web_confirmed: KEYNOTE-522, OlympiA'
+  audit_newer_version: ESMO early breast 2024;35:159-182
+  audit_note: Neoadj chemo + pembrolizumab (st. II-III), OlympiA pri gBRCA/non-pCR - konkordantne.
+  audit_date: '2026-06-23'
+  audit_by: Opus 4.8 (MDM Mamma revizia)
 - id: early-esmo-endocrine-premenopausal
   entity: early
   society: ESMO
   guideline_version: "ESMO early breast cancer 2023"
   year: 2023
   source_reference: "Loibl S, et al. Ann Oncol 2023;34:159-182; SOFT/TEXT."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "HR+, endokrinná liečba"
   recommendation_text: >-
     Adjuvantná endokrinná liečba: postmenopauzálne inhibítor aromatázy (alebo tamoxifén);
@@ -114,6 +144,12 @@
     er: ["positive"]
     menopause: ["pre"]
   reviewed: false
-  reviewed_by: null
-  reviewed_date: null
+  reviewed_by:
+  reviewed_date:
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+  audit_status: NEEDS_VERIFICATION
+  audit_source: 'web_confirmed: SOFT/TEXT'
+  audit_newer_version: ziadny vyznamny novsi
+  audit_note: 'Premenopauzalne: tamoxifen, pri vyssom riziku OFS + AI/tamoxifen - konkordantne.'
+  audit_date: '2026-06-23'
+  audit_by: Opus 4.8 (MDM Mamma revizia)

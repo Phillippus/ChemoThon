@@ -68,6 +68,15 @@ class Recommendation(BaseModel):
     reviewed_date: Optional[str] = None
     generated_by: str = Field(..., min_length=1)
 
+    # Voliteľné polia z klinického auditu/revízie. Nepovinné — nepoužívajú sa na matching;
+    # slúžia na sledovanie stavu kontroly a novších guidelines pre Fázu 3.
+    audit_status: Optional[str] = None
+    audit_source: Optional[str] = None
+    audit_newer_version: Optional[str] = None
+    audit_note: Optional[str] = None
+    audit_date: Optional[str] = None
+    audit_by: Optional[str] = None
+
     @model_validator(mode="after")
     def _check_review_consistency(self) -> "Recommendation":
         if self.reviewed:

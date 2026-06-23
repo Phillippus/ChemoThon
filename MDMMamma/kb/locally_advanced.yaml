@@ -7,7 +7,7 @@
   guideline_version: "ESMO early breast cancer 2023"
   year: 2023
   source_reference: "Loibl S, et al. Ann Oncol 2023;34:159-182; KATHERINE."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "HER2+, lokálne pokročilý"
   recommendation_text: >-
     HER2+ lokálne pokročilý: neoadjuvantná chemoterapia s duálnou anti-HER2 blokádou
@@ -16,17 +16,23 @@
   criteria:
     subtype: ["her2_pos"]
   reviewed: false
-  reviewed_by: null
-  reviewed_date: null
+  reviewed_by:
+  reviewed_date:
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
+  audit_status: NEEDS_VERIFICATION
+  audit_source: 'web_confirmed: APHINITY, KATHERINE'
+  audit_newer_version: ziadny vyznamny novsi
+  audit_note: Neoadj THP; T-DM1 pri non-pCR - konkordantne.
+  audit_date: '2026-06-23'
+  audit_by: Opus 4.8 (MDM Mamma revizia)
 - id: la-nccn-tnbc-neoadj-pembro
   entity: locally_advanced
   society: NCCN
   guideline_version: "NCCN Breast Cancer v.2026"
   year: 2026
   source_reference: "NCCN Breast Cancer v.1.2026; KEYNOTE-522, CREATE-X, OlympiA."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "TNBC, lokálne pokročilý"
   recommendation_text: >-
     TNBC lokálne pokročilý: neoadjuvantná chemoterapia + pembrolizumab (KEYNOTE-522),
@@ -35,17 +41,23 @@
   criteria:
     subtype: ["tnbc"]
   reviewed: false
-  reviewed_by: null
-  reviewed_date: null
+  reviewed_by:
+  reviewed_date:
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
+  audit_status: NEEDS_VERIFICATION
+  audit_source: 'web_confirmed: KEYNOTE-522, CREATE-X, OlympiA'
+  audit_newer_version: ziadny vyznamny novsi
+  audit_note: Neoadj chemo + pembrolizumab; kapecitabin/olaparib pri non-pCR - konkordantne.
+  audit_date: '2026-06-23'
+  audit_by: Opus 4.8 (MDM Mamma revizia)
 - id: la-esmo-hrpos-neoadj-or-surgery
   entity: locally_advanced
   society: ESMO
   guideline_version: "ESMO early breast cancer 2023"
   year: 2023
   source_reference: "Loibl S, et al. Ann Oncol 2023;34:159-182."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "HR+/HER2−, lokálne pokročilý"
   recommendation_text: >-
     HR+/HER2− lokálne pokročilý: neoadjuvantná chemoterapia (na umožnenie operability) alebo
@@ -54,17 +66,23 @@
   criteria:
     subtype: ["hr_pos_her2_neg"]
   reviewed: false
-  reviewed_by: null
-  reviewed_date: null
+  reviewed_by:
+  reviewed_date:
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
+  audit_status: NEEDS_VERIFICATION
+  audit_source: ESMO early breast 2023 (Ann Oncol 2024;35:159-182)
+  audit_newer_version: ziadny vyznamny novsi
+  audit_note: Neoadj chemo alebo primarna operacia; adjuvantny CDK4/6 pri vysokom riziku - konkordantne.
+  audit_date: '2026-06-23'
+  audit_by: Opus 4.8 (MDM Mamma revizia)
 - id: la-nccn-inflammatory
   entity: locally_advanced
   society: NCCN
   guideline_version: "NCCN Breast Cancer v.2026"
   year: 2026
   source_reference: "NCCN Breast Cancer v.1.2026."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "inflamatórny karcinóm"
   recommendation_text: >-
     Inflamatórny karcinóm: trimodálna liečba — neoadjuvantná systémová terapia (podľa podtypu),
@@ -73,6 +91,12 @@
   criteria:
     inflammatory: ["yes"]
   reviewed: false
-  reviewed_by: null
-  reviewed_date: null
+  reviewed_by:
+  reviewed_date:
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+  audit_status: NEEDS_VERIFICATION
+  audit_source: 'web_confirmed: NCCN (trimodalna liecba)'
+  audit_newer_version: ziadny vyznamny novsi
+  audit_note: 'Inflamatorny karcinom: neoadj systemova + MRM + postmastektomicka RT, bez BCS - konkordantne.'
+  audit_date: '2026-06-23'
+  audit_by: Opus 4.8 (MDM Mamma revizia)

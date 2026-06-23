@@ -7,7 +7,7 @@
   guideline_version: "ESMO metastatic breast cancer 2021 (+ updates)"
   year: 2021
   source_reference: "Gennari A, et al. ESMO Clinical Practice Guideline for advanced breast cancer. Ann Oncol 2021;32:1475-1495."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "HR+/HER2−, 1. línia, bez viscerálnej krízy"
   recommendation_text: >-
     HR+/HER2− metastatický bez viscerálnej krízy: prvolíniovo CDK4/6 inhibítor (ribociklib/
@@ -17,17 +17,23 @@
     subtype: ["hr_pos_her2_neg"]
     visceral_crisis: ["no"]
   reviewed: false
-  reviewed_by: null
-  reviewed_date: null
+  reviewed_by:
+  reviewed_date:
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
+  audit_status: NEEDS_VERIFICATION
+  audit_source: 'web_confirmed: PALOMA, MONALEESA, MONARCH'
+  audit_newer_version: ESMO MBC living guideline (priebezne updaty)
+  audit_note: CDK4/6 + endokrinna liecba v 1. linii bez viscerlanej krizy - konkordantne.
+  audit_date: '2026-06-23'
+  audit_by: Opus 4.8 (MDM Mamma revizia)
 - id: mbc-esmo-hrpos-visceral-crisis
   entity: metastatic
   society: ESMO
   guideline_version: "ESMO metastatic breast cancer 2021"
   year: 2021
   source_reference: "Gennari A, et al. Ann Oncol 2021;32:1475-1495."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "HR+/HER2−, viscerálna kríza"
   recommendation_text: >-
     Pri viscerálnej kríze (orgánové zlyhávanie vyžadujúce rýchlu odpoveď) sa preferuje
@@ -36,17 +42,23 @@
     subtype: ["hr_pos_her2_neg"]
     visceral_crisis: ["yes"]
   reviewed: false
-  reviewed_by: null
-  reviewed_date: null
+  reviewed_by:
+  reviewed_date:
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
+  audit_status: NEEDS_VERIFICATION
+  audit_source: ESMO MBC 2021
+  audit_newer_version: ESMO MBC living guideline
+  audit_note: Chemo ako uvodna pri viscerlanej krize - konkordantne.
+  audit_date: '2026-06-23'
+  audit_by: Opus 4.8 (MDM Mamma revizia)
 - id: mbc-nccn-hrpos-pik3ca
   entity: metastatic
   society: NCCN
   guideline_version: "NCCN Breast Cancer v.2026"
   year: 2026
   source_reference: "NCCN Breast Cancer v.1.2026; SOLAR-1 (alpelisib), CAPItello-291 (capivasertib)."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "HR+/HER2−, PIK3CA-mut, po CDK4/6"
   recommendation_text: >-
     Pri HR+/HER2− s PIK3CA mutáciou a progresii po endokrinnej liečbe/CDK4/6: alpelisib +
@@ -55,17 +67,23 @@
     subtype: ["hr_pos_her2_neg"]
     pik3ca: ["mutated"]
   reviewed: false
-  reviewed_by: null
-  reviewed_date: null
+  reviewed_by:
+  reviewed_date:
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
+  audit_status: NEEDS_VERIFICATION
+  audit_source: 'web_confirmed: SOLAR-1 (alpelisib), CAPItello-291 (capivasertib)'
+  audit_newer_version: ziadny vyznamny novsi
+  audit_note: 'PIK3CA-mut po CDK4/6: alpelisib + fulvestrant; capivasertib + fulvestrant (PI3K/AKT/PTEN draha) - konkordantne.'
+  audit_date: '2026-06-23'
+  audit_by: Opus 4.8 (MDM Mamma revizia)
 - id: mbc-her2low-ultralow-tdxd
   entity: metastatic
   society: NCCN
   guideline_version: "NCCN Breast Cancer v.2026"
   year: 2026
   source_reference: "NCCN Breast Cancer v.1.2026; DESTINY-Breast04 a DESTINY-Breast06 (trastuzumab deruxtecan); FDA 2025 HER2-low/ultralow."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "HR+, HER2-low/ultralow, po endokrinnej liečbe"
   recommendation_text: >-
     Pri HR+ HER2-low (a HER2-ultralow) metastatickom ochorení po ≥1 línii endokrinnej liečby
@@ -75,53 +93,70 @@
     er: ["positive"]
     her2: ["her2_low"]
   reviewed: false
-  reviewed_by: null
-  reviewed_date: null
+  reviewed_by:
+  reviewed_date:
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
+  audit_status: NEEDS_VERIFICATION
+  audit_source: 'web_confirmed: DESTINY-Breast04, DESTINY-Breast06; FDA 2025 (HER2-low/ultralow)'
+  audit_newer_version: aktualne (2025)
+  audit_note: 'T-DXd pri HR+ HER2-low po >=1 endokrinnej linii - aktualne a konkordantne. POZN.: HER2-ultralow sa vo wizarde neda zadat samostatne (len low/zero) - obmedzenie modelu, zvazit doplnenie hodnoty.'
+  audit_date: '2026-06-23'
+  audit_by: Opus 4.8 (MDM Mamma revizia)
 - id: mbc-nccn-her2-1L-thp
   entity: metastatic
   society: NCCN
   guideline_version: "NCCN Breast Cancer v.2026"
   year: 2026
   source_reference: "NCCN Breast Cancer v.1.2026; CLEOPATRA."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "HER2+, 1. línia"
   recommendation_text: >-
     HER2+ metastatický, prvá línia: taxán + trastuzumab + pertuzumab (THP, CLEOPATRA). [PARAFRÁZA — overiť]
   criteria:
     subtype: ["her2_pos"]
   reviewed: false
-  reviewed_by: null
-  reviewed_date: null
+  reviewed_by:
+  reviewed_date:
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
+  audit_status: NEEDS_VERIFICATION
+  audit_source: 'web_confirmed: CLEOPATRA'
+  audit_newer_version: ziadny vyznamny novsi
+  audit_note: Taxan + trastuzumab + pertuzumab (THP) v 1. linii HER2+ - konkordantne.
+  audit_date: '2026-06-23'
+  audit_by: Opus 4.8 (MDM Mamma revizia)
 - id: mbc-esmo-her2-2L-tdxd
   entity: metastatic
   society: ESMO
   guideline_version: "ESMO metastatic breast cancer 2021 (+ update)"
   year: 2021
   source_reference: "Gennari A, et al. Ann Oncol 2021; DESTINY-Breast03 (trastuzumab deruxtecan)."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "HER2+, 2. línia"
   recommendation_text: >-
     HER2+ metastatický, druhá línia: trastuzumab deruxtecan (T-DXd) je preferovaný (DESTINY-Breast03);
     pri mozgových metastázach tiež tucatinib + trastuzumab + kapecitabín. [PARAFRÁZA — overiť]
   criteria:
     subtype: ["her2_pos"]
-    endocrine_status: ["resistant"]
   reviewed: false
-  reviewed_by: null
-  reviewed_date: null
+  reviewed_by:
+  reviewed_date:
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
+  audit_status: DISCREPANT_FIXED
+  audit_source: 'web_confirmed: DESTINY-Breast03'
+  audit_newer_version: ziadny vyznamny novsi
+  audit_note: "Obsah spravny (T-DXd 2. linia HER2+, DESTINY-Breast03). ROZPOR v 'criteria': obsahovalo endocrine_status:resistant, co je klinicky irelevantne pre HER2+ ochorenie (endokrinna senzitivita je HR koncept) a zbytocne branilo matchingu (HER2+ pacient bez nastaveneho endocrine_status by sa nezachytil). OPRAVENE 2026-06-23: endocrine_status odstranene z criteria -> criteria = subtype:[her2_pos]. recommendation_text nezmeneny."
+  audit_date: '2026-06-23'
+  audit_by: Opus 4.8 (MDM Mamma revizia)
 - id: mbc-nccn-tnbc-pdl1-pembro
   entity: metastatic
   society: NCCN
   guideline_version: "NCCN Breast Cancer v.2026"
   year: 2026
   source_reference: "NCCN Breast Cancer v.1.2026; KEYNOTE-355."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "TNBC, PD-L1+, 1. línia"
   recommendation_text: >-
     Metastatický TNBC s PD-L1 pozitivitou (CPS ≥ 10): prvolíniovo chemoterapia + pembrolizumab
@@ -129,17 +164,23 @@
   criteria:
     subtype: ["tnbc"]
   reviewed: false
-  reviewed_by: null
-  reviewed_date: null
+  reviewed_by:
+  reviewed_date:
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
+  audit_status: NEEDS_VERIFICATION
+  audit_source: 'web_confirmed: KEYNOTE-355'
+  audit_newer_version: ziadny vyznamny novsi
+  audit_note: Chemo + pembrolizumab v 1. linii pri PD-L1 CPS >= 10 - konkordantne; spresnit prah CPS>=10.
+  audit_date: '2026-06-23'
+  audit_by: Opus 4.8 (MDM Mamma revizia)
 - id: mbc-esmo-tnbc-brca-parp
   entity: metastatic
   society: ESMO
   guideline_version: "ESMO metastatic breast cancer 2021"
   year: 2021
   source_reference: "Gennari A, et al. Ann Oncol 2021; OlympiAD, EMBRACA."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "TNBC + gBRCA"
   recommendation_text: >-
     Pri metastatickom TNBC s germinálnou BRCA mutáciou je možnosťou PARP inhibítor
@@ -148,6 +189,12 @@
     subtype: ["tnbc"]
     brca: ["mutated"]
   reviewed: false
-  reviewed_by: null
-  reviewed_date: null
+  reviewed_by:
+  reviewed_date:
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+  audit_status: NEEDS_VERIFICATION
+  audit_source: 'web_confirmed: OlympiAD, EMBRACA'
+  audit_newer_version: ziadny vyznamny novsi
+  audit_note: PARP inhibitor pri gBRCA; sacituzumab govitecan v dalsich liniach - konkordantne.
+  audit_date: '2026-06-23'
+  audit_by: Opus 4.8 (MDM Mamma revizia)
