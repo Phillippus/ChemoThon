@@ -20,7 +20,22 @@ APP_DIR = Path(__file__).resolve().parent
 if str(APP_DIR) not in sys.path:
     sys.path.insert(0, str(APP_DIR))
 
-from mdmmamma import matching  # noqa: E402
+# Deploy-safe: vynúti čerstvé moduly. Streamlit Cloud po git-pulle aktualizuje súbory na
+# disku, ale nereštartuje proces → staré moduly v pamäti (napr. schema bez audit polí) vs.
+# nová KB na disku = "Chyba pri načítaní databázy". Reload to natrvalo rieši.
+import importlib  # noqa: E402
+import mdmmamma.schema as _schema  # noqa: E402
+importlib.reload(_schema)
+import mdmmamma.entities as _entities  # noqa: E402
+importlib.reload(_entities)
+import mdmmamma.matching as _matching  # noqa: E402
+importlib.reload(_matching)
+import mdmmamma.kb_loader as _kb_loader  # noqa: E402
+importlib.reload(_kb_loader)
+import mdmmamma.staging as _staging  # noqa: E402
+importlib.reload(_staging)
+
+from mdmmamma import matching, staging  # noqa: E402
 from mdmmamma.entities import ENTITIES, UNKNOWN  # noqa: E402
 from mdmmamma.kb_loader import KBError, load_kb  # noqa: E402
 from mdmmamma.schema import UNVERIFIED_MARK, Entity, Society  # noqa: E402
@@ -116,9 +131,33 @@ def page_entity(entity: Entity) -> None:
 
     st.subheader("2) Výstup")
 
-    # Štádium (zadané používateľom; auto-derivácia TNM nie je vo Fáze 1).
-    stage = inputs.get("stage", UNKNOWN)
-    if "stage" in {f.key for f in ed.fields}:
+    field_keys = {f.key for f in ed.fields}
+    # Ak modul zbiera T/N/M -> deterministicky odvoď AJCC 8 štádium (staging.py).
+    if {"t", "n", "m"} <= field_keys:
+        t, n, m = inputs.get("t"), inputs.get("n"), inputs.get("m")
+        anat = staging.anatomic_stage(t, n, m)
+        prog, note = staging.clinical_prognostic_stage(
+            t, n, m, inputs.get("grade", ""), inputs.get("her2", ""),
+            inputs.get("er", ""), inputs.get("pr", ""),
+        )
+        if prog:
+            line = f"**Štádium (AJCC 8, klinické prognostické): {prog}**"
+            if anat and anat != prog:
+                line += f"  ·  anatomické: {anat}"
+            st.markdown(line)
+            st.warning(
+                "⚠️ Štádium je deterministicky odvodené z T/N/M podľa AJCC 8, ale tabuľka je "
+                "**REKONŠTRUOVANÁ Z PAMÄTE — NEOVERENÉ**. Pred použitím overiť oproti AJCC "
+                "Cancer Staging Manual 8. (Kalibrované na 5 oficiálnych AJCC príkladov.)",
+                icon="⚠️",
+            )
+            if note:
+                st.caption(f"Pozn.: {note}")
+            inputs["stage"] = prog  # sprístupni odvodené štádium pre matching
+        else:
+            st.markdown("**Štádium:** _zadaj T, N aj M na odvodenie._")
+    elif "stage" in field_keys:
+        stage = inputs.get("stage", UNKNOWN)
         if stage:
             st.markdown(f"**Štádium (AJCC TNM 8):** {stage}")
         else:

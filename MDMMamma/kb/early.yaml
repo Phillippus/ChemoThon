@@ -14,7 +14,7 @@
     chemoterapia sa rutinne neodporúča. [PARAFRÁZA — overiť]
   criteria:
     subtype: ["luminal_a"]
-    nodal: ["negative"]
+    n: ["N0"]
   reviewed: false
   reviewed_by:
   reviewed_date:
@@ -66,7 +66,7 @@
     st. II–III vrátane vybraných N0). [PARAFRÁZA — overiť]
   criteria:
     subtype: ["luminal_b_her2neg"]
-    nodal: ["n1_3", "n4plus"]
+    n: ["N1", "N2", "N3"]
   reviewed: false
   reviewed_by:
   reviewed_date:
