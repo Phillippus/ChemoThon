@@ -161,6 +161,14 @@ def page_entity(entity: Entity) -> None:
             )
             if note:
                 st.caption(f"Pozn.: {note}")
+            # Logická konzistencia: ak v skorom module vyjde pokročilé štádium, naviguj inam.
+            if entity == Entity.EARLY and (prog.startswith("III") or prog == "IV"):
+                target = "Metastatický / pokročilý" if prog == "IV" else "Lokálne pokročilý"
+                st.info(
+                    f"Zadané T/N/M zodpovedá štádiu {prog} — pre relevantné odporúčania zváž "
+                    f"modul „{target} karcinóm“.",
+                    icon="↪️",
+                )
             inputs["stage"] = prog  # sprístupni odvodené štádium pre matching
         else:
             st.markdown("**Štádium:** _zadaj T, N aj M na odvodenie._")
