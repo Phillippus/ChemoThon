@@ -104,13 +104,21 @@ def page_home() -> None:
     )
     show_disclaimer()
     st.subheader("Vyber klinický scenár")
-    cols = st.columns(2)
-    for i, entity in enumerate(ENTITIES):
+    st.caption("Zoradené podľa klinickej progresie (in situ → metastatický).")
+    # Štádiové nápovedy pre logické poradie v zozname (jeden stĺpec, zhora nadol).
+    stage_hint = {
+        Entity.DCIS: "in situ · št. 0",
+        Entity.EARLY: "št. I–II",
+        Entity.LOCALLY_ADVANCED: "št. III",
+        Entity.METASTATIC: "št. IV",
+    }
+    for entity in ENTITIES:
         ed = ENTITIES[entity]
-        with cols[i % 2]:
-            if st.button(f"{ed.icon}  {ed.title}", use_container_width=True, key=f"home_{entity.value}"):
-                st.session_state["_goto"] = ed.title
-                st.rerun()
+        hint = stage_hint.get(entity, "")
+        label = f"{ed.icon}  {ed.title}" + (f"   ·   {hint}" if hint else "")
+        if st.button(label, use_container_width=True, key=f"home_{entity.value}"):
+            st.session_state["_goto"] = ed.title
+            st.rerun()
 
 
 def page_entity(entity: Entity) -> None:
