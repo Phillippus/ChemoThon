@@ -71,7 +71,7 @@ def test_criteria_values_are_known_options(kb):
 
 
 def test_missing_required_field_fails_validation():
-    incomplete = {"id": "x", "entity": "early", "society": "ESMO"}
+    incomplete = {"id": "x", "entity": "invasive", "society": "ESMO"}
     with pytest.raises(Exception):
         Recommendation(**incomplete)
 
@@ -79,7 +79,7 @@ def test_missing_required_field_fails_validation():
 def test_reviewed_true_without_reviewer_fails():
     with pytest.raises(Exception):
         Recommendation(
-            id="x", entity="early", society="ESMO",
+            id="x", entity="invasive", society="ESMO",
             guideline_version="v1", year=2023, source_reference="ref",
             source_location=UNVERIFIED_MARK, recommendation_text="t",
             reviewed=True, generated_by="test",
@@ -89,7 +89,7 @@ def test_reviewed_true_without_reviewer_fails():
 def test_unknown_field_rejected():
     with pytest.raises(Exception):
         Recommendation(
-            id="x", entity="early", society="ESMO",
+            id="x", entity="invasive", society="ESMO",
             guideline_version="v1", year=2023, source_reference="ref",
             source_location="s", recommendation_text="t",
             generated_by="test", reviewd=False,  # preklep

@@ -1,8 +1,7 @@
-# Skorý invazívny karcinóm prsníka — KB — FÁZA 2
-# Reálny guideline-konkordantný obsah, parafrázované. VŠETKO reviewed: false; source_location NEOVERENÉ.
-
+# Invazívny karcinóm prsníka (zlúčený skorý + lokálne pokročilý) — KB
+# Štádium sa odvodzuje z T/N/M (staging.py). VŠETKO reviewed: false.
 - id: early-stgallen-luminalA-node-neg
-  entity: early
+  entity: invasive
   society: St. Gallen
   guideline_version: "St. Gallen consensus 2023"
   year: 2023
@@ -27,7 +26,7 @@
   audit_date: '2026-06-23'
   audit_by: Opus 4.8 (MDM Mamma revizia)
 - id: early-esmo-hrpos-genomic-low
-  entity: early
+  entity: invasive
   society: ESMO
   guideline_version: "ESMO early breast cancer 2023"
   year: 2023
@@ -53,7 +52,7 @@
   audit_date: '2026-06-23'
   audit_by: Opus 4.8 (MDM Mamma revizia)
 - id: early-nccn-hrpos-highrisk-cdk46-adj
-  entity: early
+  entity: invasive
   society: NCCN
   guideline_version: "NCCN Breast Cancer v.2026"
   year: 2026
@@ -79,7 +78,7 @@
   audit_date: '2026-06-23'
   audit_by: Opus 4.8 (MDM Mamma revizia)
 - id: early-nccn-her2-pos-antiher2
-  entity: early
+  entity: invasive
   society: NCCN
   guideline_version: "NCCN Breast Cancer v.2026"
   year: 2026
@@ -104,7 +103,7 @@
   audit_date: '2026-06-23'
   audit_by: Opus 4.8 (MDM Mamma revizia)
 - id: early-esmo-tnbc-chemo-pembro
-  entity: early
+  entity: invasive
   society: ESMO
   guideline_version: "ESMO early breast cancer 2023"
   year: 2023
@@ -129,7 +128,7 @@
   audit_date: '2026-06-23'
   audit_by: Opus 4.8 (MDM Mamma revizia)
 - id: early-esmo-endocrine-premenopausal
-  entity: early
+  entity: invasive
   society: ESMO
   guideline_version: "ESMO early breast cancer 2023"
   year: 2023
@@ -151,5 +150,109 @@
   audit_source: 'web_confirmed: SOFT/TEXT'
   audit_newer_version: ziadny vyznamny novsi
   audit_note: 'Premenopauzalne: tamoxifen, pri vyssom riziku OFS + AI/tamoxifen - konkordantne.'
+  audit_date: '2026-06-23'
+  audit_by: Opus 4.8 (MDM Mamma revizia)
+- id: la-esmo-her2-neoadj-dual
+  entity: invasive
+  society: ESMO
+  guideline_version: "ESMO early breast cancer 2023"
+  year: 2023
+  source_reference: "Loibl S, et al. Ann Oncol 2023;34:159-182; KATHERINE."
+  source_location: "doplniť – overenie Filipa (paywall)"
+  risk_group: "HER2+, lokálne pokročilý"
+  recommendation_text: >-
+    HER2+ lokálne pokročilý: neoadjuvantná chemoterapia s duálnou anti-HER2 blokádou
+    (trastuzumab + pertuzumab). Pri reziduálnej chorobe (non-pCR) adjuvantne T-DM1 (KATHERINE);
+    pri pCR pokračovať v trastuzumabe ± pertuzumabe. [PARAFRÁZA — overiť]
+  criteria:
+    her2:
+    - her2_positive
+  reviewed: false
+  reviewed_by:
+  reviewed_date:
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+
+  audit_status: NEEDS_VERIFICATION
+  audit_source: 'web_confirmed: APHINITY, KATHERINE'
+  audit_newer_version: ziadny vyznamny novsi
+  audit_note: 'Neoadj THP; T-DM1 pri non-pCR - konkordantne. [MERGE 2026-06-25: zluceny invazivny modul; criteria remapnute na jednotny slovnik (subtype surrogat / her2 / inflammatory).]'
+  audit_date: '2026-06-23'
+  audit_by: Opus 4.8 (MDM Mamma revizia)
+- id: la-nccn-tnbc-neoadj-pembro
+  entity: invasive
+  society: NCCN
+  guideline_version: "NCCN Breast Cancer v.2026"
+  year: 2026
+  source_reference: "NCCN Breast Cancer v.1.2026; KEYNOTE-522, CREATE-X, OlympiA."
+  source_location: "doplniť – overenie Filipa (paywall)"
+  risk_group: "TNBC, lokálne pokročilý"
+  recommendation_text: >-
+    TNBC lokálne pokročilý: neoadjuvantná chemoterapia + pembrolizumab (KEYNOTE-522),
+    pokračovať adjuvantným pembrolizumabom. Pri reziduálnej chorobe kapecitabín (CREATE-X);
+    pri gBRCA olaparib (OlympiA). [PARAFRÁZA — overiť]
+  criteria:
+    subtype:
+    - tnbc
+  reviewed: false
+  reviewed_by:
+  reviewed_date:
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+
+  audit_status: NEEDS_VERIFICATION
+  audit_source: 'web_confirmed: KEYNOTE-522, CREATE-X, OlympiA'
+  audit_newer_version: ziadny vyznamny novsi
+  audit_note: 'Neoadj chemo + pembrolizumab; kapecitabin/olaparib pri non-pCR - konkordantne. [MERGE 2026-06-25: zluceny invazivny modul; criteria remapnute na jednotny slovnik (subtype surrogat / her2 / inflammatory).]'
+  audit_date: '2026-06-23'
+  audit_by: Opus 4.8 (MDM Mamma revizia)
+- id: la-esmo-hrpos-neoadj-or-surgery
+  entity: invasive
+  society: ESMO
+  guideline_version: "ESMO early breast cancer 2023"
+  year: 2023
+  source_reference: "Loibl S, et al. Ann Oncol 2023;34:159-182."
+  source_location: "doplniť – overenie Filipa (paywall)"
+  risk_group: "HR+/HER2−, lokálne pokročilý"
+  recommendation_text: >-
+    HR+/HER2− lokálne pokročilý: neoadjuvantná chemoterapia (na umožnenie operability) alebo
+    primárna operácia; pri inoperabilnom/postmenopauzálnom možná neoadjuvantná endokrinná liečba.
+    Adjuvantne CDK4/6 inhibítor pri vysokom riziku. [PARAFRÁZA — overiť]
+  criteria:
+    subtype:
+    - luminal_a
+    - luminal_b_her2neg
+  reviewed: false
+  reviewed_by:
+  reviewed_date:
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+
+  audit_status: NEEDS_VERIFICATION
+  audit_source: ESMO early breast 2023 (Ann Oncol 2024;35:159-182)
+  audit_newer_version: ziadny vyznamny novsi
+  audit_note: 'Neoadj chemo alebo primarna operacia; adjuvantny CDK4/6 pri vysokom riziku - konkordantne. [MERGE 2026-06-25: zluceny invazivny modul; criteria remapnute na jednotny slovnik (subtype surrogat / her2 / inflammatory).]'
+  audit_date: '2026-06-23'
+  audit_by: Opus 4.8 (MDM Mamma revizia)
+- id: la-nccn-inflammatory
+  entity: invasive
+  society: NCCN
+  guideline_version: "NCCN Breast Cancer v.2026"
+  year: 2026
+  source_reference: "NCCN Breast Cancer v.1.2026."
+  source_location: "doplniť – overenie Filipa (paywall)"
+  risk_group: "inflamatórny karcinóm"
+  recommendation_text: >-
+    Inflamatórny karcinóm: trimodálna liečba — neoadjuvantná systémová terapia (podľa podtypu),
+    následne modifikovaná radikálna mastektómia a postmastektomická rádioterapia; BCS sa
+    neodporúča. [PARAFRÁZA — overiť]
+  criteria:
+    inflammatory:
+    - "yes"
+  reviewed: false
+  reviewed_by:
+  reviewed_date:
+  generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+  audit_status: NEEDS_VERIFICATION
+  audit_source: 'web_confirmed: NCCN (trimodalna liecba)'
+  audit_newer_version: ziadny vyznamny novsi
+  audit_note: 'Inflamatorny karcinom: neoadj systemova + MRM + postmastektomicka RT, bez BCS - konkordantne. [MERGE 2026-06-25: zluceny invazivny modul; criteria remapnute na jednotny slovnik (subtype surrogat / her2 / inflammatory).]'
   audit_date: '2026-06-23'
   audit_by: Opus 4.8 (MDM Mamma revizia)

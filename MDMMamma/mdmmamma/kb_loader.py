@@ -19,8 +19,7 @@ KB_DIR = Path(__file__).resolve().parent.parent / "kb"
 
 _KB_FILES = {
     Entity.DCIS: "dcis.yaml",
-    Entity.EARLY: "early.yaml",
-    Entity.LOCALLY_ADVANCED: "locally_advanced.yaml",
+    Entity.INVASIVE: "invasive.yaml",
     Entity.METASTATIC: "metastatic.yaml",
 }
 

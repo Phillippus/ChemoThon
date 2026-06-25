@@ -27,8 +27,7 @@ class Entity(str, Enum):
     """Klinické scenáre (moduly) karcinómu prsníka."""
 
     DCIS = "dcis"
-    EARLY = "early"
-    LOCALLY_ADVANCED = "locally_advanced"
+    INVASIVE = "invasive"          # zlúčený skorý + lokálne pokročilý (staging z TNM)
     METASTATIC = "metastatic"
 
 

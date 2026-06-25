@@ -104,9 +104,13 @@ DCIS = EntityDef(
 )
 
 # --- Skorý invazívny karcinóm -------------------------------------------------
-EARLY = EntityDef(
-    key=Entity.EARLY,
-    title="Skorý invazívny karcinóm",
+# --- Invazívny karcinóm (zlúčený skorý + lokálne pokročilý) -------------------
+# Jeden tok: zadáš T/N/M + biomarkery -> appka odvodí AJCC štádium (staging.py) a
+# zobrazí odporúčania (skoré aj lokálne pokročilé) podľa biomarkerov. Modul „early"
+# a „locally_advanced" zlúčené, aby štádium vyplývalo z TNM a nebolo ručne delené.
+INVASIVE = EntityDef(
+    key=Entity.INVASIVE,
+    title="Invazívny karcinóm",
     icon="🟢",
     fields=[
         _T, _N, _M,
@@ -125,34 +129,12 @@ EARLY = EntityDef(
             ("HER2-enriched", "her2_enriched"),
             ("Triple-negatívny", "tnbc"),
         )),
+        Field_("inflammatory", "Inflamatórny karcinóm", _opts(
+            ("Áno", "yes"), ("Nie", "no"),
+        )),
         _MENO,
         Field_("genomic_risk", "Genomické riziko (Oncotype DX / MammaPrint)", _opts(
             ("Nízke", "low"), ("Vysoké", "high"), ("Nerobené", "not_done"),
-        )),
-        _BRCA,
-    ],
-)
-
-# --- Lokálne pokročilý karcinóm ----------------------------------------------
-LOCALLY_ADVANCED = EntityDef(
-    key=Entity.LOCALLY_ADVANCED,
-    title="Lokálne pokročilý karcinóm",
-    icon="🟠",
-    fields=[
-        Field_("stage", "Štádium (AJCC TNM 8)", _opts(
-            ("IIIA", "IIIA"), ("IIIB", "IIIB"), ("IIIC", "IIIC"),
-        )),
-        Field_("subtype", "Klinický podtyp", _opts(
-            ("HR+ / HER2−", "hr_pos_her2_neg"),
-            ("HER2+", "her2_pos"),
-            ("Triple-negatívny", "tnbc"),
-        )),
-        _ER, _HER2,
-        Field_("nodal", "Uzlinový status", _opts(
-            ("1–3 uzliny (N1)", "n1_3"), ("≥ 4 uzliny (N2–3)", "n4plus"),
-        )),
-        Field_("inflammatory", "Inflamatórny karcinóm", _opts(
-            ("Áno", "yes"), ("Nie", "no"),
         )),
         _BRCA,
     ],
@@ -185,7 +167,6 @@ METASTATIC = EntityDef(
 
 ENTITIES = {
     Entity.DCIS: DCIS,
-    Entity.EARLY: EARLY,
-    Entity.LOCALLY_ADVANCED: LOCALLY_ADVANCED,
+    Entity.INVASIVE: INVASIVE,
     Entity.METASTATIC: METASTATIC,
 }

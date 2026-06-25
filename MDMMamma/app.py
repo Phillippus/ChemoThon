@@ -108,8 +108,7 @@ def page_home() -> None:
     # Štádiové nápovedy pre logické poradie v zozname (jeden stĺpec, zhora nadol).
     stage_hint = {
         Entity.DCIS: "in situ · št. 0",
-        Entity.EARLY: "št. I–II",
-        Entity.LOCALLY_ADVANCED: "št. III",
+        Entity.INVASIVE: "št. I–III (z TNM)",
         Entity.METASTATIC: "št. IV",
     }
     for entity in ENTITIES:
@@ -161,12 +160,11 @@ def page_entity(entity: Entity) -> None:
             )
             if note:
                 st.caption(f"Pozn.: {note}")
-            # Logická konzistencia: ak v skorom module vyjde pokročilé štádium, naviguj inam.
-            if entity == Entity.EARLY and (prog.startswith("III") or prog == "IV"):
-                target = "Metastatický / pokročilý" if prog == "IV" else "Lokálne pokročilý"
+            # Logická konzistencia: invazívny modul pokrýva I–III; pri IV naviguj na metastatický.
+            if entity == Entity.INVASIVE and prog == "IV":
                 st.info(
-                    f"Zadané T/N/M zodpovedá štádiu {prog} — pre relevantné odporúčania zváž "
-                    f"modul „{target} karcinóm“.",
+                    "Zadané T/N/M zodpovedá štádiu IV — pre relevantné odporúčania zváž "
+                    "modul „Metastatický / pokročilý karcinóm“.",
                     icon="↪️",
                 )
             inputs["stage"] = prog  # sprístupni odvodené štádium pre matching
