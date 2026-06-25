@@ -56,9 +56,21 @@ def test_specificity_ordering():
 
 
 def test_seed_kb_early_tnbc_matches_esmo():
+    # Stage-gating: skorý TNBC záznam vyžaduje aj odvodené štádium (I–II).
     kb = load_kb()
-    hits = matching.match(kb, Entity.INVASIVE, {"subtype": "tnbc"})
+    hits = matching.match(kb, Entity.INVASIVE, {"subtype": "tnbc", "stage": "IIA"})
     assert Society.ESMO in {r.society for r in hits}
+
+
+def test_seed_kb_invasive_stage_gating_separates_early_vs_la_tnbc():
+    """Stage I–II TNBC -> skorý záznam; stage III TNBC -> lokálne pokročilý záznam."""
+    kb = load_kb()
+    early = matching.match(kb, Entity.INVASIVE, {"subtype": "tnbc", "stage": "IIA"})
+    la = matching.match(kb, Entity.INVASIVE, {"subtype": "tnbc", "stage": "IIIB"})
+    assert any(r.id == "early-esmo-tnbc-chemo-pembro" for r in early)
+    assert not any(r.id == "la-nccn-tnbc-neoadj-pembro" for r in early)
+    assert any(r.id == "la-nccn-tnbc-neoadj-pembro" for r in la)
+    assert not any(r.id == "early-esmo-tnbc-chemo-pembro" for r in la)
 
 
 def test_seed_kb_metastatic_her2_first_line():

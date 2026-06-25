@@ -14,6 +14,11 @@
   criteria:
     subtype: ["luminal_a"]
     n: ["N0"]
+    stage:
+    - IA
+    - IB
+    - IIA
+    - IIB
   reviewed: false
   reviewed_by:
   reviewed_date:
@@ -40,6 +45,11 @@
   criteria:
     subtype: ["luminal_a", "luminal_b_her2neg"]
     genomic_risk: ["low"]
+    stage:
+    - IA
+    - IB
+    - IIA
+    - IIB
   reviewed: false
   reviewed_by:
   reviewed_date:
@@ -66,6 +76,12 @@
   criteria:
     subtype: ["luminal_b_her2neg"]
     n: ["N1", "N2", "N3"]
+    stage:
+    - IIA
+    - IIB
+    - IIIA
+    - IIIB
+    - IIIC
   reviewed: false
   reviewed_by:
   reviewed_date:
@@ -91,6 +107,11 @@
     T-DM1 (KATHERINE). [PARAFRÁZA — overiť]
   criteria:
     her2: ["her2_positive"]
+    stage:
+    - IA
+    - IB
+    - IIA
+    - IIB
   reviewed: false
   reviewed_by:
   reviewed_date:
@@ -116,6 +137,11 @@
     non-pCR/vyššom riziku adjuvantný olaparib (OlympiA). [PARAFRÁZA — overiť]
   criteria:
     subtype: ["tnbc"]
+    stage:
+    - IA
+    - IB
+    - IIA
+    - IIB
   reviewed: false
   reviewed_by:
   reviewed_date:
@@ -167,6 +193,10 @@
   criteria:
     her2:
     - her2_positive
+    stage:
+    - IIIA
+    - IIIB
+    - IIIC
   reviewed: false
   reviewed_by:
   reviewed_date:
@@ -193,6 +223,10 @@
   criteria:
     subtype:
     - tnbc
+    stage:
+    - IIIA
+    - IIIB
+    - IIIC
   reviewed: false
   reviewed_by:
   reviewed_date:
@@ -220,6 +254,10 @@
     subtype:
     - luminal_a
     - luminal_b_her2neg
+    stage:
+    - IIIA
+    - IIIB
+    - IIIC
   reviewed: false
   reviewed_by:
   reviewed_date:
