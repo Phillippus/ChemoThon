@@ -20,6 +20,18 @@ APP_DIR = Path(__file__).resolve().parent
 if str(APP_DIR) not in sys.path:
     sys.path.insert(0, str(APP_DIR))
 
+# Deploy-safe: vynúti čerstvé moduly (Streamlit Cloud po git-pulle nereštartuje proces →
+# stará schema v pamäti vs. nová KB = "Chyba pri načítaní databázy"). Reload to rieši.
+import importlib  # noqa: E402
+import mdmsarcnet.schema as _schema  # noqa: E402
+importlib.reload(_schema)
+import mdmsarcnet.entities as _entities  # noqa: E402
+importlib.reload(_entities)
+import mdmsarcnet.matching as _matching  # noqa: E402
+importlib.reload(_matching)
+import mdmsarcnet.kb_loader as _kb_loader  # noqa: E402
+importlib.reload(_kb_loader)
+
 from mdmsarcnet import matching  # noqa: E402
 from mdmsarcnet.entities import ENTITIES, UNKNOWN  # noqa: E402
 from mdmsarcnet.kb_loader import KBError, load_kb  # noqa: E402

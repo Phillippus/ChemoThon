@@ -20,6 +20,18 @@ APP_DIR = Path(__file__).resolve().parent
 if str(APP_DIR) not in sys.path:
     sys.path.insert(0, str(APP_DIR))
 
+# Deploy-safe: vynúti čerstvé moduly (Streamlit Cloud po git-pulle nereštartuje proces →
+# stará schema v pamäti vs. nová KB = "Chyba pri načítaní databázy"). Reload to rieši.
+import importlib  # noqa: E402
+import mdmcolorectal.schema as _schema  # noqa: E402
+importlib.reload(_schema)
+import mdmcolorectal.entities as _entities  # noqa: E402
+importlib.reload(_entities)
+import mdmcolorectal.matching as _matching  # noqa: E402
+importlib.reload(_matching)
+import mdmcolorectal.kb_loader as _kb_loader  # noqa: E402
+importlib.reload(_kb_loader)
+
 from mdmcolorectal import matching  # noqa: E402
 from mdmcolorectal.entities import ENTITIES, UNKNOWN  # noqa: E402
 from mdmcolorectal.kb_loader import KBError, load_kb  # noqa: E402
