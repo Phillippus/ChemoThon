@@ -7,7 +7,7 @@
   guideline_version: "ESMO marginal zone lymphomas 2020"
   year: 2020
   source_reference: "Zucca E, et al. Marginal zone lymphomas: ESMO Clinical Practice Guidelines. Ann Oncol 2020;31:17-29."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "gastric MALT, H. pylori+"
   recommendation_text: >-
     Gastrický MALT lymfóm s pozitívnym H. pylori: liečbou prvej línie je eradikácia H. pylori;
@@ -16,17 +16,23 @@
     subtype: ["gastric_malt"]
     h_pylori: ["positive"]
   reviewed: false
-  reviewed_by: null
-  reviewed_date: null
+  reviewed_by:
+  reviewed_date:
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
+  audit_status: NEEDS_VERIFICATION
+  audit_source: 'web_confirmed: ESMO MZL 2020 (Zucca, Ann Oncol 31:17-29)'
+  audit_newer_version: ziadny vyznamny novsi
+  audit_note: 'Gastricky MALT HP+: eradikacia HP 1L - konkordantne.'
+  audit_date: '2026-06-25'
+  audit_by: Opus 4.8 (MDM Haematology revizia)
 - id: mzl-nccn-gastric-malt-hp-neg
   entity: mzl
   society: NCCN
   guideline_version: "NCCN B-cell Lymphomas v.2026"
   year: 2026
   source_reference: "NCCN B-Cell Lymphomas v.2026."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "gastric MALT, H. pylori−"
   recommendation_text: >-
     H. pylori-negatívny gastrický MALT (alebo perzistencia po eradikácii): preferovanou
@@ -35,17 +41,23 @@
     subtype: ["gastric_malt"]
     h_pylori: ["negative"]
   reviewed: false
-  reviewed_by: null
-  reviewed_date: null
+  reviewed_by:
+  reviewed_date:
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
+  audit_status: NEEDS_VERIFICATION
+  audit_source: 'web_confirmed: NCCN; ISRT'
+  audit_newer_version: ziadny vyznamny novsi
+  audit_note: 'Gastricky MALT HP- (al. perzistencia): ISRT - konkordantne.'
+  audit_date: '2026-06-25'
+  audit_by: Opus 4.8 (MDM Haematology revizia)
 - id: mzl-esmo-nongastric-nodal-localized
   entity: mzl
   society: ESMO
   guideline_version: "ESMO marginal zone lymphomas 2020"
   year: 2020
   source_reference: "Zucca E, et al. Ann Oncol 2020;31:17-29."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "extranodálny (negastrický) / nodálny, lokalizovaný"
   recommendation_text: >-
     Lokalizovaný negastrický extranodálny alebo nodálny MZL: rádioterapia na zasiahnuté miesta;
@@ -55,17 +67,23 @@
     subtype: ["nongastric_malt", "nodal"]
     stage: ["I", "II"]
   reviewed: false
-  reviewed_by: null
-  reviewed_date: null
+  reviewed_by:
+  reviewed_date:
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
+  audit_status: NEEDS_VERIFICATION
+  audit_source: 'web_confirmed: ESMO MZL 2020'
+  audit_newer_version: ziadny vyznamny novsi
+  audit_note: 'Lokalizovany negastricky/nodalny: ISRT; pokrocily anti-CD20-based - konkordantne.'
+  audit_date: '2026-06-25'
+  audit_by: Opus 4.8 (MDM Haematology revizia)
 - id: mzl-esmo-splenic
   entity: mzl
   society: ESMO
   guideline_version: "ESMO marginal zone lymphomas 2020"
   year: 2020
   source_reference: "Zucca E, et al. Ann Oncol 2020;31:17-29."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "splenic MZL"
   recommendation_text: >-
     Splenický MZL bez symptómov a bez cytopénií: sledovanie; pri indikácii liečby rituximab.
@@ -73,6 +91,12 @@
   criteria:
     subtype: ["splenic"]
   reviewed: false
-  reviewed_by: null
-  reviewed_date: null
+  reviewed_by:
+  reviewed_date:
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+  audit_status: NEEDS_VERIFICATION
+  audit_source: 'web_confirmed: ESMO MZL 2020'
+  audit_newer_version: ziadny vyznamny novsi
+  audit_note: 'Splenicky MZL: sledovanie/rituximab; manazment HCV - konkordantne.'
+  audit_date: '2026-06-25'
+  audit_by: Opus 4.8 (MDM Haematology revizia)

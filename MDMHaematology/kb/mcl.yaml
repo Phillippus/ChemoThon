@@ -7,7 +7,7 @@
   guideline_version: "ESMO mantle cell lymphoma 2017 (+ update)"
   year: 2017
   source_reference: "Dreyling M, et al. Mantle cell lymphoma: ESMO Clinical Practice Guidelines. Ann Oncol 2017;28(suppl_4):iv62-iv71; TRIANGLE."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "transplant-eligible (mladší/fit)"
   recommendation_text: >-
     Mladší/fit pacienti: intenzívna indukcia obsahujúca vysokodávkový cytarabín, nasledovaná
@@ -16,17 +16,23 @@
   criteria:
     transplant_eligible: ["yes"]
   reviewed: false
-  reviewed_by: null
-  reviewed_date: null
+  reviewed_by:
+  reviewed_date:
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
+  audit_status: NEEDS_VERIFICATION
+  audit_source: 'web_confirmed: ESMO MCL 2017; TRIANGLE (ibrutinib)'
+  audit_newer_version: ziadny vyznamny novsi
+  audit_note: 'Mladsi/fit: cytarabin-indukcia + ASCT + udrziavaci rituximab; TRIANGLE prida BTKi - konkordantne.'
+  audit_date: '2026-06-25'
+  audit_by: Opus 4.8 (MDM Haematology revizia)
 - id: mcl-nccn-elderly
   entity: mcl
   society: NCCN
   guideline_version: "NCCN B-cell Lymphomas v.2026"
   year: 2026
   source_reference: "NCCN B-Cell Lymphomas v.2026; SHINE (BR + ibrutinib)."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "non-transplant candidate"
   recommendation_text: >-
     Starší/nevhodní na ASCT: bendamustín + rituximab (alebo R-CHOP) s udržiavacím rituximabom;
@@ -34,24 +40,37 @@
   criteria:
     transplant_eligible: ["no"]
   reviewed: false
-  reviewed_by: null
-  reviewed_date: null
+  reviewed_by:
+  reviewed_date:
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
+  audit_status: NEEDS_VERIFICATION
+  audit_source: 'web_confirmed: NCCN; SHINE (BR+ibrutinib)'
+  audit_newer_version: ziadny vyznamny novsi
+  audit_note: 'Starsi/nevhodni na ASCT: BR +- udrziavaci rituximab; BTKi moznost - konkordantne.'
+  audit_date: '2026-06-25'
+  audit_by: Opus 4.8 (MDM Haematology revizia)
 - id: mcl-esmo-relapsed-btki-cart
   entity: mcl
   society: ESMO
   guideline_version: "ESMO mantle cell lymphoma 2017 (+ update)"
   year: 2017
   source_reference: "Dreyling M, et al. Ann Oncol 2017; ZUMA-2 (brexucabtagene autoleucel)."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "relapsed"
   recommendation_text: >-
     Pri relapse MCL: BTK inhibítor (akalabrutinib/zanubrutinib) ako preferovaná možnosť;
     po zlyhaní BTKi CAR-T terapia (brexucabtagene autoleucel, ZUMA-2). [PARAFRÁZA — overiť]
   criteria:
-    blastoid: ["yes"]
+    line:
+    - relapsed_refractory
   reviewed: false
-  reviewed_by: null
-  reviewed_date: null
+  reviewed_by:
+  reviewed_date:
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+  audit_status: DISCREPANT_FIXED
+  audit_source: 'web_confirmed: ZUMA-2 (brexucabtagene autoleucel)'
+  audit_newer_version: ziadny vyznamny novsi
+  audit_note: "Obsah spravny (relaps MCL: BTKi; po zlyhani BTKi CAR-T). ROZPOR v criteria: povodne blastoid:[yes] - blastoid je variant, NIE relaps (blastoidny novodiagnostikovany by sa mylne zachytil; relabovany non-blastoid by sa minul). OPRAVENE 2026-06-25: pridane pole 'line'; criteria = line:[relapsed_refractory]."
+  audit_date: '2026-06-25'
+  audit_by: Opus 4.8 (MDM Haematology revizia)

@@ -7,7 +7,7 @@
   guideline_version: "ESMO DLBCL 2015 (+ updates)"
   year: 2015
   source_reference: "Tilly H, et al. Diffuse large B-cell lymphoma: ESMO Clinical Practice Guidelines. Ann Oncol 2015;26(suppl_5):v116-v125."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "advanced, first line"
   recommendation_text: >-
     Pokročilý DLBCL, prvá línia: 6 cyklov R-CHOP (à 21 dní). Pri vysokom riziku CNS zvážiť
@@ -17,17 +17,23 @@
     stage: ["III", "IV"]
     double_hit: ["no"]
   reviewed: false
-  reviewed_by: null
-  reviewed_date: null
+  reviewed_by:
+  reviewed_date:
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
+  audit_status: NEEDS_VERIFICATION
+  audit_source: 'web_confirmed: ESMO DLBCL 2015 (Tilly)'
+  audit_newer_version: POLARIX (Pola-R-CHP) - pozri NCCN zaznam
+  audit_note: 'Pokrocily 1L: 6x R-CHOP - konkordantne.'
+  audit_date: '2026-06-25'
+  audit_by: Opus 4.8 (MDM Haematology revizia)
 - id: dlbcl-nccn-pola-rchp
   entity: dlbcl
   society: NCCN
   guideline_version: "NCCN B-cell Lymphomas v.2026"
   year: 2026
   source_reference: "NCCN B-Cell Lymphomas v.2026; POLARIX (Pola-R-CHP)."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "IPI ≥ 2, first line"
   recommendation_text: >-
     Pri DLBCL s vyšším rizikom (IPI 2–5) je možnosťou prvej línie polatuzumab vedotin + R-CHP
@@ -37,17 +43,23 @@
     ipi_risk: ["high_int", "high"]
     double_hit: ["no"]
   reviewed: false
-  reviewed_by: null
-  reviewed_date: null
+  reviewed_by:
+  reviewed_date:
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
+  audit_status: NEEDS_VERIFICATION
+  audit_source: 'web_confirmed: POLARIX'
+  audit_newer_version: ziadny vyznamny novsi
+  audit_note: 'IPI>=2 1L: Pola-R-CHP - konkordantne/aktualne.'
+  audit_date: '2026-06-25'
+  audit_by: Opus 4.8 (MDM Haematology revizia)
 - id: dlbcl-esmo-localized
   entity: dlbcl
   society: ESMO
   guideline_version: "ESMO DLBCL 2015"
   year: 2015
   source_reference: "Tilly H, et al. Ann Oncol 2015;26(suppl_5):v116-v125."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "localized, non-bulky"
   recommendation_text: >-
     Lokalizovaný non-bulky DLBCL: skrátená liečba (napr. 4× R-CHOP ± 2× rituximab) ± ISRT
@@ -57,17 +69,23 @@
     stage: ["I", "II"]
     bulky: ["no"]
   reviewed: false
-  reviewed_by: null
-  reviewed_date: null
+  reviewed_by:
+  reviewed_date:
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
+  audit_status: NEEDS_VERIFICATION
+  audit_source: 'web_confirmed: ESMO DLBCL 2015; FLYER'
+  audit_newer_version: ziadny vyznamny novsi
+  audit_note: 'Lokalizovany non-bulky: 4x R-CHOP +- ISRT - konkordantne.'
+  audit_date: '2026-06-25'
+  audit_by: Opus 4.8 (MDM Haematology revizia)
 - id: dlbcl-esmo-double-hit
   entity: dlbcl
   society: ESMO
   guideline_version: "ESMO DLBCL / high-grade B-cell lymphoma"
   year: 2015
   source_reference: "ESMO DLBCL guideline; high-grade B-cell lymphoma s MYC a BCL2/BCL6 prestavbou."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "double/triple-hit"
   recommendation_text: >-
     Double/triple-hit high-grade B-cell lymphóm: zvažuje sa intenzívnejší režim (napr.
@@ -76,17 +94,23 @@
     line: ["first_line"]
     double_hit: ["yes"]
   reviewed: false
-  reviewed_by: null
-  reviewed_date: null
+  reviewed_by:
+  reviewed_date:
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
+  audit_status: NEEDS_VERIFICATION
+  audit_source: 'web_confirmed: high-grade B-cell MYC+BCL2/6'
+  audit_newer_version: ziadny vyznamny novsi
+  audit_note: 'Double/triple-hit: DA-EPOCH-R + CNS profylaxia - konkordantne.'
+  audit_date: '2026-06-25'
+  audit_by: Opus 4.8 (MDM Haematology revizia)
 - id: dlbcl-eha-cart-relapse
   entity: dlbcl
   society: EHA
   guideline_version: "EHA/EBMT CAR-T recommendations; ZUMA-7, TRANSFORM"
   year: 2022
   source_reference: "EHA/EBMT odporúčania pre CAR-T; ZUMA-7 (axi-cel), TRANSFORM (liso-cel)."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "relapsed/refractory (skorý relaps)"
   recommendation_text: >-
     Pri primárne refraktérnom alebo skoro relabujúcom (do 12 mesiacov) DLBCL je v druhej línii
@@ -94,25 +118,37 @@
   criteria:
     line: ["relapsed_refractory"]
   reviewed: false
-  reviewed_by: null
-  reviewed_date: null
+  reviewed_by:
+  reviewed_date:
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
+  audit_status: NEEDS_VERIFICATION
+  audit_source: 'web_confirmed: ZUMA-7, TRANSFORM'
+  audit_newer_version: aktualne
+  audit_note: 'Skory relaps/refrakterny 2L: CD19 CAR-T (axi-cel/liso-cel) - konkordantne/aktualne.'
+  audit_date: '2026-06-25'
+  audit_by: Opus 4.8 (MDM Haematology revizia)
 - id: dlbcl-nccn-bispecific-3L
   entity: dlbcl
   society: NCCN
   guideline_version: "NCCN B-cell Lymphomas v.2026"
   year: 2026
   source_reference: "NCCN B-Cell Lymphomas v.2026; glofitamab, epcoritamab (3.+ línia)."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "relapsed/refractory (≥3. línia)"
   recommendation_text: >-
     V tretej a ďalších líniách R/R DLBCL (vrátane po zlyhaní CAR-T) sú možnosťou bišpecifické
     protilátky CD20×CD3 — glofitamab alebo epcoritamab (monoterapia). [PARAFRÁZA — overiť]
   criteria:
-    line: ["relapsed_refractory"]
-    ipi_risk: ["high"]
+    line:
+    - relapsed_refractory
   reviewed: false
-  reviewed_by: null
-  reviewed_date: null
+  reviewed_by:
+  reviewed_date:
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+  audit_status: DISCREPANT_FIXED
+  audit_source: 'web_confirmed: glofitamab, epcoritamab (3L)'
+  audit_newer_version: ziadny vyznamny novsi
+  audit_note: 'Obsah spravny (bispecifika CD20xCD3 v 3L+). ROZPOR v criteria: obsahovalo ipi_risk:[high], co je klinicky irelevantne pre eligibilitu 3. linie (zavisi od linie, nie od IPI) a zbytocne obmedzovalo zhodu. OPRAVENE 2026-06-25: ipi_risk odstranene -> criteria = line:[relapsed_refractory]. recommendation_text nezmeneny.'
+  audit_date: '2026-06-25'
+  audit_by: Opus 4.8 (MDM Haematology revizia)

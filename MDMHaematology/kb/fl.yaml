@@ -7,7 +7,7 @@
   guideline_version: "ESMO follicular lymphoma 2021"
   year: 2021
   source_reference: "Dreyling M, et al. Newly diagnosed and relapsed follicular lymphoma: ESMO Clinical Practice Guidelines. Ann Oncol 2021;32:298-308."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "localized (I–II)"
   recommendation_text: >-
     Lokalizovaný FL (štádium I–II, grade 1–3A): potenciálne kuratívna rádioterapia na zasiahnuté
@@ -16,17 +16,23 @@
     stage: ["I", "II"]
     grade: ["g1_2", "g3a"]
   reviewed: false
-  reviewed_by: null
-  reviewed_date: null
+  reviewed_by:
+  reviewed_date:
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
+  audit_status: NEEDS_VERIFICATION
+  audit_source: 'web_confirmed: ESMO FL 2021 (Dreyling, Ann Oncol 32:298-308)'
+  audit_newer_version: ziadny vyznamny novsi
+  audit_note: 'Lokalizovany I-II: ISRT (potencialne kurativne) - konkordantne.'
+  audit_date: '2026-06-25'
+  audit_by: Opus 4.8 (MDM Haematology revizia)
 - id: fl-esmo-advanced-low-burden-ww
   entity: fl
   society: ESMO
   guideline_version: "ESMO follicular lymphoma 2021"
   year: 2021
   source_reference: "Dreyling M, et al. Ann Oncol 2021;32:298-308."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "advanced, low tumour burden"
   recommendation_text: >-
     Pokročilý FL s nízkou náložou (GELF−) a bez symptómov: aktívne sledovanie (watch & wait).
@@ -35,17 +41,23 @@
     stage: ["III", "IV"]
     tumor_burden: ["low"]
   reviewed: false
-  reviewed_by: null
-  reviewed_date: null
+  reviewed_by:
+  reviewed_date:
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
+  audit_status: NEEDS_VERIFICATION
+  audit_source: 'web_confirmed: ESMO FL 2021'
+  audit_newer_version: ziadny vyznamny novsi
+  audit_note: 'Pokrocily low-burden (GELF-): watch&wait - konkordantne.'
+  audit_date: '2026-06-25'
+  audit_by: Opus 4.8 (MDM Haematology revizia)
 - id: fl-nccn-high-burden-immunochemo
   entity: fl
   society: NCCN
   guideline_version: "NCCN B-cell Lymphomas v.2026"
   year: 2026
   source_reference: "NCCN B-Cell Lymphomas v.2026."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "high tumour burden"
   recommendation_text: >-
     Vysoká nálož ochorenia (GELF+): imunochemoterapia (bendamustín + rituximab/obinutuzumab,
@@ -53,43 +65,61 @@
   criteria:
     tumor_burden: ["high"]
   reviewed: false
-  reviewed_by: null
-  reviewed_date: null
+  reviewed_by:
+  reviewed_date:
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
+  audit_status: NEEDS_VERIFICATION
+  audit_source: 'web_confirmed: NCCN; BR/R-CHOP + udrziavaci anti-CD20'
+  audit_newer_version: ziadny vyznamny novsi
+  audit_note: 'High-burden (GELF+): imunochemoterapia + udrziavaca liecba - konkordantne.'
+  audit_date: '2026-06-25'
+  audit_by: Opus 4.8 (MDM Haematology revizia)
 - id: fl-esmo-grade3b-as-dlbcl
   entity: fl
   society: ESMO
   guideline_version: "ESMO follicular lymphoma 2021"
   year: 2021
   source_reference: "Dreyling M, et al. Ann Oncol 2021;32:298-308."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "grade 3B"
   recommendation_text: >-
     Folikulárny lymfóm grade 3B sa manažuje ako DLBCL (R-CHOP-like prístup). [PARAFRÁZA — overiť]
   criteria:
     grade: ["g3b"]
   reviewed: false
-  reviewed_by: null
-  reviewed_date: null
+  reviewed_by:
+  reviewed_date:
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
+  audit_status: NEEDS_VERIFICATION
+  audit_source: 'web_confirmed: ESMO FL 2021'
+  audit_newer_version: ziadny vyznamny novsi
+  audit_note: 'Grade 3B: manazovat ako DLBCL - konkordantne.'
+  audit_date: '2026-06-25'
+  audit_by: Opus 4.8 (MDM Haematology revizia)
 - id: fl-nccn-relapsed
   entity: fl
   society: NCCN
   guideline_version: "NCCN B-cell Lymphomas v.2026"
   year: 2026
   source_reference: "NCCN B-Cell Lymphomas v.2026; AUGMENT (R2), CAR-T, mosunetuzumab."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "relapsed"
   recommendation_text: >-
     Pri relapse FL: opakovaná imunochemoterapia, lenalidomid + rituximab (R2, AUGMENT),
     a v neskorších líniách CAR-T alebo bišpecifická protilátka (mosunetuzumab). Pri POD24
     intenzívnejší prístup. [PARAFRÁZA — overiť]
   criteria:
-    stage: ["III", "IV"]
-    flipi_risk: ["high"]
+    line:
+    - relapsed_refractory
   reviewed: false
-  reviewed_by: null
-  reviewed_date: null
+  reviewed_by:
+  reviewed_date:
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+  audit_status: DISCREPANT_FIXED
+  audit_source: 'web_confirmed: AUGMENT (R2), CAR-T, mosunetuzumab'
+  audit_newer_version: ziadny vyznamny novsi
+  audit_note: "Obsah spravny (relaps FL: R2, CAR-T, bispecifika; POD24). ROZPOR v criteria: povodne stage:[III,IV]+flipi_risk:[high] - to NIE je definicia relapsu (mylne by sa zachytil novodiagnostikovany pokrocily high-FLIPI). OPRAVENE 2026-06-25: pridane pole 'line'; criteria = line:[relapsed_refractory]."
+  audit_date: '2026-06-25'
+  audit_by: Opus 4.8 (MDM Haematology revizia)

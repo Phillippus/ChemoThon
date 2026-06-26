@@ -7,7 +7,7 @@
   guideline_version: "ESMO peripheral T-cell lymphomas 2015"
   year: 2015
   source_reference: "d'Amore F, et al. Peripheral T-cell lymphomas: ESMO Clinical Practice Guidelines. Ann Oncol 2015;26(suppl_5):v108-v115."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "PTCL-NOS / AITL"
   recommendation_text: >-
     PTCL-NOS a AITL, prvá línia: CHOP alebo CHOEP (pridanie etopozidu u mladších) s konsolidáciou
@@ -15,17 +15,23 @@
   criteria:
     subtype: ["ptcl_nos", "aitl"]
   reviewed: false
-  reviewed_by: null
-  reviewed_date: null
+  reviewed_by:
+  reviewed_date:
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
+  audit_status: NEEDS_VERIFICATION
+  audit_source: 'web_confirmed: ESMO PTCL 2015 (dAmore, Ann Oncol 26 suppl5)'
+  audit_newer_version: ziadny vyznamny novsi
+  audit_note: 'PTCL-NOS/AITL: CHOP/CHOEP + ASCT konsolidacia v 1.remisii - konkordantne.'
+  audit_date: '2026-06-25'
+  audit_by: Opus 4.8 (MDM Haematology revizia)
 - id: ptcl-nccn-alcl-bv-chp
   entity: ptcl
   society: NCCN
   guideline_version: "NCCN T-cell Lymphomas v.2026"
   year: 2026
   source_reference: "NCCN T-Cell Lymphomas v.2026; ECHELON-2 (BV-CHP)."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "ALCL (CD30+)"
   recommendation_text: >-
     Systémový ALCL (CD30-pozitívny): preferovaná prvá línia brentuximab vedotin + CHP (BV-CHP,
@@ -33,25 +39,38 @@
   criteria:
     subtype: ["alcl_alk_pos", "alcl_alk_neg"]
   reviewed: false
-  reviewed_by: null
-  reviewed_date: null
+  reviewed_by:
+  reviewed_date:
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
+  audit_status: NEEDS_VERIFICATION
+  audit_source: 'web_confirmed: ECHELON-2 (BV-CHP)'
+  audit_newer_version: ziadny vyznamny novsi
+  audit_note: 'ALCL (CD30+): BV-CHP 1L - konkordantne/aktualne.'
+  audit_date: '2026-06-25'
+  audit_by: Opus 4.8 (MDM Haematology revizia)
 - id: ptcl-esmo-relapsed
   entity: ptcl
   society: ESMO
   guideline_version: "ESMO peripheral T-cell lymphomas 2015"
   year: 2015
   source_reference: "d'Amore F, et al. Ann Oncol 2015;26(suppl_5):v108-v115."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "relapsed/refractory"
   recommendation_text: >-
     Pri relapse/refraktérnom PTCL: pri CD30+ brentuximab vedotin; ďalšie možnosti zahŕňajú
     HDAC inhibítory, pralatrexát alebo zaradenie do klinickej štúdie; pri vhodnosti alogénna
     transplantácia. [PARAFRÁZA — overiť]
   criteria:
-    ipi_risk: ["high"]
+    line:
+    - relapsed_refractory
   reviewed: false
-  reviewed_by: null
-  reviewed_date: null
+  reviewed_by:
+  reviewed_date:
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+  audit_status: DISCREPANT_FIXED
+  audit_source: 'web_confirmed: ESMO PTCL 2015; BV, HDAC inhibitory, pralatrexat'
+  audit_newer_version: ziadny vyznamny novsi
+  audit_note: "Obsah spravny (relaps PTCL: BV pri CD30+, HDACi/pralatrexat, alo-SCT). ROZPOR v criteria: povodne ipi_risk:[high] - to NIE je definicia relapsu (novodiagnostikovany high-IPI by sa mylne zachytil). OPRAVENE 2026-06-25: pridane pole 'line'; criteria = line:[relapsed_refractory]."
+  audit_date: '2026-06-25'
+  audit_by: Opus 4.8 (MDM Haematology revizia)

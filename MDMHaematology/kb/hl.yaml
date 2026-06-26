@@ -7,7 +7,7 @@
   guideline_version: "ESMO Hodgkin lymphoma 2018"
   year: 2018
   source_reference: "Eichenauer DA, et al. Hodgkin lymphoma: ESMO Clinical Practice Guidelines. Ann Oncol 2018;29(suppl_4):iv19-iv29."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "early favorable"
   recommendation_text: >-
     Skoré favorable štádium: 2× ABVD nasledované rádioterapiou na zasiahnuté miesta
@@ -15,17 +15,23 @@
   criteria:
     risk_group: ["early_fav"]
   reviewed: false
-  reviewed_by: null
-  reviewed_date: null
+  reviewed_by:
+  reviewed_date:
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
+  audit_status: NEEDS_VERIFICATION
+  audit_source: 'web_confirmed: ESMO HL 2018 (Eichenauer, Ann Oncol 29 suppl4)'
+  audit_newer_version: ziadny vyznamny novsi pre early
+  audit_note: 'Early favorable: 2x ABVD + 20Gy ISRT, PET-adaptovane - konkordantne.'
+  audit_date: '2026-06-25'
+  audit_by: Opus 4.8 (MDM Haematology revizia)
 - id: hl-esmo-early-unfavorable
   entity: hl
   society: ESMO
   guideline_version: "ESMO Hodgkin lymphoma 2018"
   year: 2018
   source_reference: "Eichenauer DA, et al. Ann Oncol 2018;29(suppl_4):iv19-iv29."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "early unfavorable"
   recommendation_text: >-
     Skoré unfavorable štádium: zvyčajne 4× ABVD (alebo 2× eskalovaný BEACOPP + 2× ABVD u
@@ -33,17 +39,23 @@
   criteria:
     risk_group: ["early_unfav"]
   reviewed: false
-  reviewed_by: null
-  reviewed_date: null
+  reviewed_by:
+  reviewed_date:
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
+  audit_status: NEEDS_VERIFICATION
+  audit_source: 'web_confirmed: ESMO HL 2018'
+  audit_newer_version: ziadny vyznamny novsi
+  audit_note: 'Early unfavorable: 4x ABVD (al. 2x escBEACOPP+2x ABVD) + 30Gy ISRT - konkordantne.'
+  audit_date: '2026-06-25'
+  audit_by: Opus 4.8 (MDM Haematology revizia)
 - id: hl-esmo-advanced-pet-adapted
   entity: hl
   society: ESMO
   guideline_version: "ESMO Hodgkin lymphoma 2018"
   year: 2018
   source_reference: "Eichenauer DA, et al. Ann Oncol 2018;29(suppl_4):iv19-iv29."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "advanced"
   recommendation_text: >-
     Pokročilé štádium (ESMO): PET-adaptovaný prístup — úvodné ABVD alebo eskalovaný BEACOPP
@@ -51,17 +63,23 @@
   criteria:
     risk_group: ["advanced"]
   reviewed: false
-  reviewed_by: null
-  reviewed_date: null
+  reviewed_by:
+  reviewed_date:
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
+  audit_status: NEEDS_VERIFICATION
+  audit_source: 'web_confirmed: ESMO HL 2018'
+  audit_newer_version: SWOG S1826 (nivo-AVD) novy SOC - pozri NCCN zaznam
+  audit_note: 'Pokrocile (ESMO): PET-adaptovany ABVD/escBEACOPP - konkordantne; novsie data uprednostnuju nivo-AVD.'
+  audit_date: '2026-06-25'
+  audit_by: Opus 4.8 (MDM Haematology revizia)
 - id: hl-nccn-advanced-nivo-avd
   entity: hl
   society: NCCN
   guideline_version: "NCCN Hodgkin Lymphoma v.2026"
   year: 2026
   source_reference: "NCCN Hodgkin Lymphoma v.2026; SWOG S1826 (nivolumab-AVD), ECHELON-1 (A+AVD)."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "advanced"
   recommendation_text: >-
     Pokročilé štádium (NCCN): preferovanou prvou líniou je nivolumab + AVD (SWOG S1826,
@@ -70,26 +88,38 @@
   criteria:
     risk_group: ["advanced"]
   reviewed: false
-  reviewed_by: null
-  reviewed_date: null
+  reviewed_by:
+  reviewed_date:
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
+  audit_status: NEEDS_VERIFICATION
+  audit_source: 'web_confirmed: SWOG S1826 (nivolumab-AVD), ECHELON-1 (A+AVD)'
+  audit_newer_version: aktualne (2024-25)
+  audit_note: 'Pokrocile (NCCN): nivo-AVD novy preferovany SOC; A+AVD alternativa - aktualne.'
+  audit_date: '2026-06-25'
+  audit_by: Opus 4.8 (MDM Haematology revizia)
 - id: hl-esmo-relapsed-asct
   entity: hl
   society: ESMO
   guideline_version: "ESMO Hodgkin lymphoma 2018"
   year: 2018
   source_reference: "Eichenauer DA, et al. Ann Oncol 2018;29(suppl_4):iv19-iv29."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "relapsed/refractory"
   recommendation_text: >-
     Pri relapse/refraktérnom ochorení: záchranná chemoterapia s následnou vysokodávkovou
     terapiou a autológnou transplantáciou (ASCT); brentuximab vedotin a checkpoint inhibítory
     (nivolumab/pembrolizumab) v relapse setting. [PARAFRÁZA — overiť]
   criteria:
-    stage: ["III", "IV"]
-    b_symptoms: ["present"]
+    line:
+    - relapsed_refractory
   reviewed: false
-  reviewed_by: null
-  reviewed_date: null
+  reviewed_by:
+  reviewed_date:
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+  audit_status: DISCREPANT_FIXED
+  audit_source: 'web_confirmed: ESMO HL 2018; BV a checkpoint inhibitory v relapse'
+  audit_newer_version: ziadny vyznamny novsi
+  audit_note: "Obsah spravny (zachranna chemo + ASCT; BV/checkpoint v relapse). ROZPOR v criteria: povodne stage:[III,IV]+b_symptoms:[present] - to NIE je definicia relapsu (novodiagnostikovany pokrocily HL s B-symptomami by sa mylne zachytil). OPRAVENE 2026-06-25: pridane pole 'line' do HL wizardu; criteria = line:[relapsed_refractory]. recommendation_text nezmeneny."
+  audit_date: '2026-06-25'
+  audit_by: Opus 4.8 (MDM Haematology revizia)

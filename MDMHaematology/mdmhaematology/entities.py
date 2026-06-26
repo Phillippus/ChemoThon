@@ -63,6 +63,10 @@ _BSYMP = Field_("b_symptoms", "B-symptómy", _opts(
 _BULKY = Field_("bulky", "Bulky ochorenie", _opts(
     ("Áno", "yes"), ("Nie", "no"),
 ))
+_LINE = Field_("line", "Línia liečby", _opts(
+    ("Prvá línia", "first_line"),
+    ("Relaps / refraktérne", "relapsed_refractory"),
+))
 
 
 # --- Hodgkinov lymfóm ---------------------------------------------------------
@@ -79,6 +83,7 @@ HL = EntityDef(
         ), "Podľa kritérií GHSG/EORTC (rizikové faktory: bulky, ESR, počet oblastí, extranodálne)."),
         _BSYMP,
         _BULKY,
+        _LINE,
     ],
 )
 
@@ -122,6 +127,7 @@ FL = EntityDef(
         Field_("flipi_risk", "FLIPI riziko", _opts(
             ("Nízke", "low"), ("Stredné", "intermediate"), ("Vysoké", "high"),
         )),
+        _LINE,
     ],
 )
 
@@ -141,6 +147,7 @@ MCL = EntityDef(
         Field_("blastoid", "Blastoidný / pleomorfný variant", _opts(
             ("Áno", "yes"), ("Nie", "no"),
         )),
+        _LINE,
     ],
 )
 
@@ -179,6 +186,7 @@ PTCL = EntityDef(
         Field_("ipi_risk", "IPI riziko", _opts(
             ("Nízke", "low"), ("Stredné", "intermediate"), ("Vysoké", "high"),
         )),
+        _LINE,
     ],
 )
 
