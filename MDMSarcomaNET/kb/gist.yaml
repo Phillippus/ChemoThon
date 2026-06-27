@@ -7,7 +7,7 @@
   guideline_version: "ESMO-EURACAN-GENTURIS GIST 2022"
   year: 2022
   source_reference: "Casali PG, et al. Gastrointestinal stromal tumours: ESMO-EURACAN-GENTURIS Clinical Practice Guidelines. Ann Oncol 2022;33:20-33."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "localized, very-low/low risk"
   recommendation_text: >-
     Lokalizovaný GIST s veľmi nízkym/nízkym rizikom relapsu: kompletná chirurgická resekcia
@@ -16,17 +16,23 @@
     setting: ["localized"]
     risk_group: ["very_low", "low"]
   reviewed: false
-  reviewed_by: null
-  reviewed_date: null
+  reviewed_by:
+  reviewed_date:
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
+  audit_status: NEEDS_VERIFICATION
+  audit_source: 'web_confirmed: ESMO-EURACAN-GENTURIS GIST 2022 (Casali, Ann Oncol 33:20-33)'
+  audit_newer_version: ziadny vyznamny novsi
+  audit_note: 'Lokalizovany very-low/low risk: kompletna resekcia bez adjuvancie - konkordantne.'
+  audit_date: '2026-06-25'
+  audit_by: Opus 4.8 (MDM SarcNet revizia)
 - id: gist-esmo-adjuvant-highrisk
   entity: gist
   society: ESMO
   guideline_version: "ESMO-EURACAN-GENTURIS GIST 2022"
   year: 2022
   source_reference: "Casali PG, et al. Ann Oncol 2022;33:20-33."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "localized, high risk"
   recommendation_text: >-
     Lokalizovaný GIST s vysokým rizikom relapsu: po kompletnej resekcii adjuvantný imatinib
@@ -36,17 +42,23 @@
     setting: ["localized"]
     risk_group: ["high"]
   reviewed: false
-  reviewed_by: null
-  reviewed_date: null
+  reviewed_by:
+  reviewed_date:
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
+  audit_status: NEEDS_VERIFICATION
+  audit_source: 'web_confirmed: ESMO GIST 2022'
+  audit_newer_version: ziadny vyznamny novsi
+  audit_note: 'Lokalizovany high risk: adjuvantny imatinib zvycajne >=3 roky; zohladnit mutaciu (D842V rezistentny) - konkordantne.'
+  audit_date: '2026-06-25'
+  audit_by: Opus 4.8 (MDM SarcNet revizia)
 - id: gist-nccn-metastatic-imatinib
   entity: gist
   society: NCCN
   guideline_version: "NCCN GIST v.2026"
   year: 2026
   source_reference: "NCCN GIST v.2026."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "metastatic"
   recommendation_text: >-
     Metastatický/neresekabilný GIST: prvolíniovo imatinib; pri progresii sunitinib (2. línia),
@@ -54,17 +66,23 @@
   criteria:
     setting: ["metastatic"]
   reviewed: false
-  reviewed_by: null
-  reviewed_date: null
+  reviewed_by:
+  reviewed_date:
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
+  audit_status: NEEDS_VERIFICATION
+  audit_source: 'web_confirmed: NCCN GIST'
+  audit_newer_version: ziadny vyznamny novsi
+  audit_note: 'Metastaticky: imatinib 1L; pri progresii sunitinib (2L), regorafenib (3L), ripretinib (4L) - konkordantne.'
+  audit_date: '2026-06-25'
+  audit_by: Opus 4.8 (MDM SarcNet revizia)
 - id: gist-esmo-exon9-dose
   entity: gist
   society: ESMO
   guideline_version: "ESMO-EURACAN-GENTURIS GIST 2022"
   year: 2022
   source_reference: "Casali PG, et al. Ann Oncol 2022;33:20-33."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "metastatic, KIT exón 9"
   recommendation_text: >-
     Metastatický GIST s mutáciou KIT exón 9: odporúča sa vyššia dávka imatinibu (800 mg denne).
@@ -73,17 +91,23 @@
     setting: ["metastatic"]
     mutation: ["kit_ex9"]
   reviewed: false
-  reviewed_by: null
-  reviewed_date: null
+  reviewed_by:
+  reviewed_date:
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
+  audit_status: NEEDS_VERIFICATION
+  audit_source: 'web_confirmed: ESMO GIST 2022'
+  audit_newer_version: ziadny vyznamny novsi
+  audit_note: 'KIT exon9 metastaticky: vyssia davka imatinibu (800 mg) - konkordantne.'
+  audit_date: '2026-06-25'
+  audit_by: Opus 4.8 (MDM SarcNet revizia)
 - id: gist-nccn-pdgfra-d842v-avapritinib
   entity: gist
   society: NCCN
   guideline_version: "NCCN GIST v.2026"
   year: 2026
   source_reference: "NCCN GIST v.2026; NAVIGATOR (avapritinib)."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "PDGFRA D842V"
   recommendation_text: >-
     GIST s mutáciou PDGFRA D842V je rezistentný na imatinib; liečbou voľby je avapritinib.
@@ -91,6 +115,12 @@
   criteria:
     mutation: ["pdgfra_d842v"]
   reviewed: false
-  reviewed_by: null
-  reviewed_date: null
+  reviewed_by:
+  reviewed_date:
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+  audit_status: NEEDS_VERIFICATION
+  audit_source: 'web_confirmed: NAVIGATOR (avapritinib)'
+  audit_newer_version: ziadny vyznamny novsi
+  audit_note: 'PDGFRA D842V: rezistentny na imatinib, liecbou volby avapritinib - konkordantne.'
+  audit_date: '2026-06-25'
+  audit_by: Opus 4.8 (MDM SarcNet revizia)

@@ -7,7 +7,7 @@
   guideline_version: "ESMO-EURACAN-GENTURIS soft tissue sarcoma 2021"
   year: 2021
   source_reference: "Gronchi A, et al. Soft tissue and visceral sarcomas: ESMO-EURACAN-GENTURIS Clinical Practice Guidelines. Ann Oncol 2021;32:1348-1365."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "localized, low-grade"
   recommendation_text: >-
     Lokalizovaný nízkostupňový sarkóm: široká excízia s adekvátnymi okrajmi; adjuvantná
@@ -16,17 +16,23 @@
     setting: ["localized"]
     grade: ["g1"]
   reviewed: false
-  reviewed_by: null
-  reviewed_date: null
+  reviewed_by:
+  reviewed_date:
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
+  audit_status: NEEDS_VERIFICATION
+  audit_source: 'web_confirmed: ESMO-EURACAN-GENTURIS STS 2021 (Gronchi, Ann Oncol 32:1348-1365)'
+  audit_newer_version: ziadny vyznamny novsi
+  audit_note: 'Lokalizovany low-grade: siroka excizia, bez rutinnej adjuvancie - konkordantne.'
+  audit_date: '2026-06-25'
+  audit_by: Opus 4.8 (MDM SarcNet revizia)
 - id: sts-esmo-localized-highgrade
   entity: soft_tissue
   society: ESMO
   guideline_version: "ESMO-EURACAN-GENTURIS soft tissue sarcoma 2021"
   year: 2021
   source_reference: "Gronchi A, et al. Ann Oncol 2021;32:1348-1365."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "localized, high-grade"
   recommendation_text: >-
     Lokalizovaný vysokostupňový sarkóm: široká excízia + perioperačná rádioterapia (lepšia
@@ -36,17 +42,23 @@
     setting: ["localized"]
     grade: ["g2", "g3"]
   reviewed: false
-  reviewed_by: null
-  reviewed_date: null
+  reviewed_by:
+  reviewed_date:
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
+  audit_status: NEEDS_VERIFICATION
+  audit_source: 'web_confirmed: ESMO-EURACAN-GENTURIS STS 2021'
+  audit_newer_version: ziadny vyznamny novsi
+  audit_note: 'Lokalizovany high-grade: siroka excizia + perioperacna RT; neoadj chemo u vybranych vysokorizik. - konkordantne.'
+  audit_date: '2026-06-25'
+  audit_by: Opus 4.8 (MDM SarcNet revizia)
 - id: sts-nccn-retroperitoneal
   entity: soft_tissue
   society: NCCN
   guideline_version: "NCCN Soft Tissue Sarcoma v.2026"
   year: 2026
   source_reference: "NCCN Soft Tissue Sarcoma v.2026; STRASS."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "retroperitoneal"
   recommendation_text: >-
     Retroperitoneálny sarkóm: kľúčová je kompletná en-bloc resekcia v skúsenom centre; úloha
@@ -54,17 +66,23 @@
   criteria:
     location: ["retroperitoneal"]
   reviewed: false
-  reviewed_by: null
-  reviewed_date: null
+  reviewed_by:
+  reviewed_date:
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
+  audit_status: NEEDS_VERIFICATION
+  audit_source: 'web_confirmed: NCCN STS; STRASS'
+  audit_newer_version: ziadny vyznamny novsi
+  audit_note: 'Retroperitonealny: en-bloc resekcia v skusenom centre; uloha (neo)RT individualna/kontroverzna (STRASS) - konkordantne.'
+  audit_date: '2026-06-25'
+  audit_by: Opus 4.8 (MDM SarcNet revizia)
 - id: sts-esmo-metastatic-anthracycline
   entity: soft_tissue
   society: ESMO
   guideline_version: "ESMO-EURACAN-GENTURIS soft tissue sarcoma 2021"
   year: 2021
   source_reference: "Gronchi A, et al. Ann Oncol 2021;32:1348-1365."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "metastatic"
   recommendation_text: >-
     Metastatické ochorenie: prvolíniovo chemoterapia na báze antracyklínov (doxorubicín);
@@ -73,6 +91,12 @@
   criteria:
     setting: ["metastatic"]
   reviewed: false
-  reviewed_by: null
-  reviewed_date: null
+  reviewed_by:
+  reviewed_date:
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+  audit_status: NEEDS_VERIFICATION
+  audit_source: 'web_confirmed: ESMO-EURACAN-GENTURIS STS 2021'
+  audit_newer_version: ziadny vyznamny novsi
+  audit_note: 'Metastaticky: 1L antracykliny (doxorubicin); dalsie linie podla histologie (trabektedin, pazopanib, gem/doc) - konkordantne.'
+  audit_date: '2026-06-25'
+  audit_by: Opus 4.8 (MDM SarcNet revizia)

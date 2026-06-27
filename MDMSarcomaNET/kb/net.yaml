@@ -7,7 +7,7 @@
   guideline_version: "ENETS guidance (GEP-NET)"
   year: 2023
   source_reference: "ENETS 2023 guidance papers for gastroenteropancreatic neuroendocrine tumours."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "localized"
   recommendation_text: >-
     Lokalizovaný dobre diferencovaný GEP-NET: kompletná chirurgická resekcia (potenciálne
@@ -16,17 +16,23 @@
   criteria:
     setting: ["localized"]
   reviewed: false
-  reviewed_by: null
-  reviewed_date: null
+  reviewed_by:
+  reviewed_date:
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
+  audit_status: NEEDS_VERIFICATION
+  audit_source: 'web_confirmed: ENETS 2023 guidance'
+  audit_newer_version: ziadny vyznamny novsi
+  audit_note: 'Lokalizovany dobre diferencovany GEP-NET: kurativna resekcia; male apendix/rektum lokalna excizia - konkordantne.'
+  audit_date: '2026-06-25'
+  audit_by: Opus 4.8 (MDM SarcNet revizia)
 - id: net-enets-advanced-ssa
   entity: net
   society: ENETS
   guideline_version: "ENETS guidance (GEP-NET)"
   year: 2023
   source_reference: "ENETS 2023 guidance; PROMID, CLARINET (somatostatínové analógy)."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "advanced, well-diff (G1–G2), SSTR+"
   recommendation_text: >-
     Pokročilý dobre diferencovaný (G1–G2) SSTR-pozitívny NET: prvolíniovo somatostatínový
@@ -37,17 +43,23 @@
     grade: ["g1", "g2"]
     sstr: ["positive"]
   reviewed: false
-  reviewed_by: null
-  reviewed_date: null
+  reviewed_by:
+  reviewed_date:
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
+  audit_status: NEEDS_VERIFICATION
+  audit_source: 'web_confirmed: PROMID, CLARINET'
+  audit_newer_version: ziadny vyznamny novsi
+  audit_note: 'Pokrocily dobre dif. (G1-G2) SSTR+: 1L somatostatinovy analog (oktreotid LAR/lanreotid) - konkordantne.'
+  audit_date: '2026-06-25'
+  audit_by: Opus 4.8 (MDM SarcNet revizia)
 - id: net-esmo-prrt-progression
   entity: net
   society: ESMO
   guideline_version: "ESMO gastroenteropancreatic NEN 2020"
   year: 2020
   source_reference: "Pavel M, et al. Gastroenteropancreatic neuroendocrine neoplasms: ESMO Clinical Practice Guidelines. Ann Oncol 2020;31:844-860; NETTER-1, NETTER-2."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "advanced, SSTR+, progredujúci"
   recommendation_text: >-
     Pri progresii pokročilého SSTR-pozitívneho NET je možnosťou peptidová receptorová
@@ -57,17 +69,23 @@
     setting: ["advanced"]
     sstr: ["positive"]
   reviewed: false
-  reviewed_by: null
-  reviewed_date: null
+  reviewed_by:
+  reviewed_date:
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
+  audit_status: NEEDS_VERIFICATION
+  audit_source: 'web_confirmed: NETTER-1, NETTER-2'
+  audit_newer_version: NETTER-2 (PRRT aj v 1. linii pri G2/G3 s vyssim Ki-67)
+  audit_note: "Pri progresii pokrocileho SSTR+ NET: PRRT (177Lu-DOTATATE) - konkordantne. POZN.: 'progresia' sa vo wizarde nemodeluje (gate=advanced+SSTR+); PRRT sa zobrazuje ako moznost."
+  audit_date: '2026-06-25'
+  audit_by: Opus 4.8 (MDM SarcNet revizia)
 - id: net-nccn-pannet-targeted
   entity: net
   society: NCCN
   guideline_version: "NCCN Neuroendocrine Tumors v.2026"
   year: 2026
   source_reference: "NCCN Neuroendocrine and Adrenal Tumors v.2026; RADIANT-3 (everolimus), sunitinib panNET."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "advanced pancreatic NET"
   recommendation_text: >-
     Pokročilý pankreatický NET: okrem SSA sú možnosťami cielené látky everolimus alebo
@@ -76,17 +94,23 @@
     primary_site: ["pancreatic"]
     setting: ["advanced"]
   reviewed: false
-  reviewed_by: null
-  reviewed_date: null
+  reviewed_by:
+  reviewed_date:
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
+  audit_status: NEEDS_VERIFICATION
+  audit_source: 'web_confirmed: RADIANT-3 (everolimus), sunitinib panNET'
+  audit_newer_version: ziadny vyznamny novsi
+  audit_note: 'Pokrocily pankreaticky NET: everolimus/sunitinib, event. CAPTEM/streptozocin-based - konkordantne.'
+  audit_date: '2026-06-25'
+  audit_by: Opus 4.8 (MDM SarcNet revizia)
 - id: net-enets-functioning-symptom-control
   entity: net
   society: ENETS
   guideline_version: "ENETS guidance (GEP-NET)"
   year: 2023
   source_reference: "ENETS 2023 guidance; karcinoidný syndróm."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "funkčný NET (karcinoidný syndróm)"
   recommendation_text: >-
     Pri funkčnom NET (karcinoidný syndróm) sú základom kontroly symptómov somatostatínové
@@ -95,17 +119,23 @@
   criteria:
     functionality: ["functioning"]
   reviewed: false
-  reviewed_by: null
-  reviewed_date: null
+  reviewed_by:
+  reviewed_date:
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
 
+  audit_status: NEEDS_VERIFICATION
+  audit_source: 'web_confirmed: ENETS 2023; telotristat'
+  audit_newer_version: ziadny vyznamny novsi
+  audit_note: 'Funkcny NET (karcinoidny syndrom): SSA na kontrolu symptomov; telotristat pri refrakternej hnacke; pozor na karcinoidnu krizu - konkordantne.'
+  audit_date: '2026-06-25'
+  audit_by: Opus 4.8 (MDM SarcNet revizia)
 - id: net-esmo-nec-platinum-etoposide
   entity: net
   society: ESMO
   guideline_version: "ESMO gastroenteropancreatic NEN 2020"
   year: 2020
   source_reference: "Pavel M, et al. Ann Oncol 2020;31:844-860."
-  source_location: "NEOVERENÉ - doplniť"
+  source_location: "doplniť – overenie Filipa (paywall)"
   risk_group: "NEC (slabo diferencovaný)"
   recommendation_text: >-
     Slabo diferencovaný neuroendokrinný karcinóm (NEC): prvolíniovo chemoterapia na báze platiny
@@ -113,6 +143,12 @@
   criteria:
     grade: ["nec"]
   reviewed: false
-  reviewed_by: null
-  reviewed_date: null
+  reviewed_by:
+  reviewed_date:
   generated_by: "Opus 4.8 (parametricka pamat, cutoff 2026-01; novinky overene web 2026-06-21) - overit oproti zdroju"
+  audit_status: NEEDS_VERIFICATION
+  audit_source: 'web_confirmed: ESMO GEP-NEN 2020 (Pavel, Ann Oncol 31:844-860)'
+  audit_newer_version: ziadny vyznamny novsi
+  audit_note: 'NEC (slabo diferencovany): 1L platina + etopozid - konkordantne.'
+  audit_date: '2026-06-25'
+  audit_by: Opus 4.8 (MDM SarcNet revizia)
