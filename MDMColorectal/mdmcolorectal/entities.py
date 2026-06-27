@@ -66,16 +66,38 @@ _BRAF = Field_("braf", "BRAF status", _opts(
 ))
 
 
+# T/N/M kategórie (AJCC 8) — rozpísané; štádium sa odvodí v staging.py.
+_T_CRC = Field_("t", "T kategória (AJCC 8)", _opts(
+    ("Tis (in situ / intramukózny)", "Tis"),
+    ("T1 (submukóza)", "T1"),
+    ("T2 (muscularis propria)", "T2"),
+    ("T3 (cez MP do perikolorektálneho tkaniva)", "T3"),
+    ("T4a (viscerálne peritoneum)", "T4a"),
+    ("T4b (priľahlé orgány/štruktúry)", "T4b"),
+), "Hĺbka invázie steny. Definície sa rozpíšu vo výstupe.")
+_N_CRC = Field_("n", "N kategória (AJCC 8)", _opts(
+    ("N0 (bez uzlín)", "N0"),
+    ("N1a (1 uzlina)", "N1a"),
+    ("N1b (2–3 uzliny)", "N1b"),
+    ("N1c (tumor deposits, bez poz. uzlín)", "N1c"),
+    ("N2a (4–6 uzlín)", "N2a"),
+    ("N2b (≥ 7 uzlín)", "N2b"),
+))
+_M_CRC = Field_("m", "M kategória (AJCC 8)", _opts(
+    ("M0 (bez vzdialených)", "M0"),
+    ("M1a (1 orgán/miesto, bez peritonea)", "M1a"),
+    ("M1b (≥ 2 orgány, bez peritonea)", "M1b"),
+    ("M1c (peritoneum ± iné)", "M1c"),
+))
+
+
 # --- Kolon (st. I–III) --------------------------------------------------------
 COLON = EntityDef(
     key=Entity.COLON,
     title="Karcinóm kolon (st. I–III)",
     icon="🟤",
     fields=[
-        Field_("stage", "Štádium (AJCC TNM 8)", _opts(
-            ("I", "I"), ("IIA", "IIA"), ("IIB", "IIB"), ("IIC", "IIC"),
-            ("IIIA", "IIIA"), ("IIIB", "IIIB"), ("IIIC", "IIIC"),
-        )),
+        _T_CRC, _N_CRC, _M_CRC,
         _MMR,
         Field_("high_risk_stage2", "Vysokorizikové znaky (st. II)", _opts(
             ("Prítomné", "present"), ("Neprítomné", "absent"),
@@ -92,14 +114,23 @@ RECTUM = EntityDef(
     title="Karcinóm rekta (lokalizovaný)",
     icon="🟧",
     fields=[
-        Field_("stage", "Štádium (AJCC TNM 8)", _opts(
-            ("I", "I"), ("II", "II"), ("III", "III"),
+        Field_("ct", "cT kategória (AJCC 8, klinické)", _opts(
+            ("cT1 (submukóza)", "cT1"),
+            ("cT2 (muscularis propria)", "cT2"),
+            ("cT3 (cez MP do perirektálneho tkaniva)", "cT3"),
+            ("cT4a (viscerálne peritoneum)", "cT4a"),
+            ("cT4b (priľahlé orgány/štruktúry)", "cT4b"),
+        ), "Hĺbka invázie. Definície sa rozpíšu vo výstupe."),
+        Field_("cn", "cN kategória (AJCC 8, klinické)", _opts(
+            ("cN0 (bez uzlín)", "cN0"),
+            ("cN1 (1–3 uzliny / N1c deposits)", "cN1"),
+            ("cN2 (≥ 4 uzliny)", "cN2"),
         )),
-        Field_("ct_stage", "cT (klinické)", _opts(
-            ("cT1–2", "cT1_2"), ("cT3", "cT3"), ("cT4", "cT4"),
-        )),
-        Field_("cn_stage", "cN (klinické)", _opts(
-            ("cN0", "cN0"), ("cN+", "cN_pos"),
+        Field_("cm", "M kategória (AJCC 8)", _opts(
+            ("M0 (bez vzdialených)", "M0"),
+            ("M1a (1 orgán/miesto)", "M1a"),
+            ("M1b (≥ 2 orgány)", "M1b"),
+            ("M1c (peritoneum ± iné)", "M1c"),
         )),
         Field_("mrf", "Mezorektálna fascia (MRF/CRM)", _opts(
             ("Voľná", "clear"), ("Ohrozená / postihnutá", "involved"),
@@ -122,6 +153,11 @@ METASTATIC = EntityDef(
     title="Metastatický kolorektálny karcinóm",
     icon="🔴",
     fields=[
+        Field_("m", "M kategória (AJCC 8)", _opts(
+            ("M1a (1 orgán/miesto, bez peritonea)", "M1a"),
+            ("M1b (≥ 2 orgány, bez peritonea)", "M1b"),
+            ("M1c (peritoneum ± iné)", "M1c"),
+        ), "Metastatické ochorenie = M1; podkategória sa rozpíše vo výstupe."),
         Field_("sidedness", "Lateralita primárneho tumoru", _opts(
             ("Pravostranný kolon", "right"),
             ("Ľavostranný kolon", "left"),

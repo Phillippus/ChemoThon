@@ -31,8 +31,10 @@ import mdmcolorectal.matching as _matching  # noqa: E402
 importlib.reload(_matching)
 import mdmcolorectal.kb_loader as _kb_loader  # noqa: E402
 importlib.reload(_kb_loader)
+import mdmcolorectal.staging as _staging  # noqa: E402
+importlib.reload(_staging)
 
-from mdmcolorectal import matching  # noqa: E402
+from mdmcolorectal import matching, staging  # noqa: E402
 from mdmcolorectal.entities import ENTITIES, UNKNOWN  # noqa: E402
 from mdmcolorectal.kb_loader import KBError, load_kb  # noqa: E402
 from mdmcolorectal.schema import UNVERIFIED_MARK, Entity, Society  # noqa: E402
@@ -110,6 +112,77 @@ def page_home() -> None:
                 st.rerun()
 
 
+def _tnm_warning() -> None:
+    st.warning(
+        "⚠️ TNM aj odvodené štádium podľa **AJCC 8** sú REKONŠTRUOVANÉ Z PAMÄTE — "
+        "**NEOVERENÉ**. Pred použitím overiť oproti AJCC Cancer Staging Manual 8 "
+        "(colon/rectum).",
+        icon="⚠️",
+    )
+
+
+def _show_legend() -> None:
+    with st.expander("Rozpísaná TNM klasifikácia (AJCC 8) — definície kategórií"):
+        for title, defs in staging.tnm_legend():
+            st.markdown(f"**{title}**")
+            for code, desc in defs.items():
+                st.markdown(f"- **{code}** — {desc}")
+
+
+def _pick(defs: dict, code: str) -> str:
+    return f"**{code}** — {defs.get(code, '—')}" if code else "_nezadané_"
+
+
+def _render_tnm(entity: Entity, inputs: dict, field_keys: set) -> None:
+    """Rozpíše zvolené T/N/M kategórie + odvodí štádium a sprístupní ho pre matching."""
+    # --- Kolon: rozpísané T/N/M -> anatomické štádium ---
+    if {"t", "n", "m"} <= field_keys:
+        t, n, m = inputs.get("t", ""), inputs.get("n", ""), inputs.get("m", "")
+        st.markdown("**TNM (AJCC 8):**")
+        st.markdown(f"- T: {_pick(staging.T_DEFS, t)}")
+        st.markdown(f"- N: {_pick(staging.N_DEFS, n)}")
+        st.markdown(f"- M: {_pick(staging.M_DEFS, m)}")
+        stage = staging.anatomic_stage(t, n, m)
+        if stage:
+            st.markdown(f"**Anatomické štádium (AJCC 8): {stage}**")
+            inputs["stage"] = stage
+            _tnm_warning()
+            if entity == Entity.COLON and stage in ("IVA", "IVB", "IVC"):
+                st.info(
+                    "Zadané M zodpovedá štádiu IV — pre relevantné odporúčania zváž "
+                    "modul „Metastatický kolorektálny karcinóm“.",
+                    icon="↪️",
+                )
+        else:
+            st.markdown("**Štádium:** _zadaj T, N aj M na odvodenie._")
+        _show_legend()
+        return
+
+    # --- Rektum: rozpísané cT/cN/M -> odvodenie agregovaných kľúčov pre KB ---
+    if {"ct", "cn"} <= field_keys:
+        ct, cn, cm = inputs.get("ct", ""), inputs.get("cn", ""), inputs.get("cm", "")
+        st.markdown("**TNM (AJCC 8, klinické):**")
+        st.markdown(f"- cT: {_pick(staging.T_DEFS, ct.replace('c', '', 1)) if ct else '_nezadané_'}")
+        st.markdown(f"- cN: **{cn or '—'}**")
+        st.markdown(f"- M: {_pick(staging.M_DEFS, cm)}")
+        ct_coarse = staging.coarse_ct(ct)
+        cn_coarse = staging.coarse_cn(cn)
+        if ct_coarse:
+            inputs["ct_stage"] = ct_coarse
+        if cn_coarse:
+            inputs["cn_stage"] = cn_coarse
+        _tnm_warning()
+        _show_legend()
+        return
+
+    # --- Metastatický: rozpísané M ---
+    if "m" in field_keys:
+        m = inputs.get("m", "")
+        st.markdown(f"**M kategória (AJCC 8):** {_pick(staging.M_DEFS, m)}")
+        _tnm_warning()
+        _show_legend()
+
+
 def page_entity(entity: Entity) -> None:
     ed = ENTITIES[entity]
     st.title(f"{ed.icon} {ed.title}")
@@ -128,13 +201,8 @@ def page_entity(entity: Entity) -> None:
 
     st.subheader("2) Výstup")
 
-    # Štádium (zadané používateľom; auto-derivácia TNM nie je vo Fáze 1).
-    stage = inputs.get("stage", UNKNOWN)
-    if "stage" in {f.key for f in ed.fields}:
-        if stage:
-            st.markdown(f"**Štádium (AJCC TNM 8):** {stage}")
-        else:
-            st.markdown("**Štádium:** _nezadané — doplň parameter alebo konzultuj primárny zdroj._")
+    field_keys = {f.key for f in ed.fields}
+    _render_tnm(entity, inputs, field_keys)
 
     try:
         kb = get_kb()

@@ -50,9 +50,18 @@ def test_ids_are_unique(kb):
     assert len(ids) == len(set(ids)), "Duplicitné id v KB"
 
 
+# Odvodené kľúče (vypočítané staging.py z rozpísaného TNM), nie polia wizardu.
+DERIVED_VALUES = {
+    "stage": {"0", "I", "IIA", "IIB", "IIC", "IIIA", "IIIB", "IIIC", "IVA", "IVB", "IVC"},
+    "ct_stage": {"cT1_2", "cT3", "cT4"},
+    "cn_stage": {"cN0", "cN_pos"},
+}
+DERIVED_KEYS = set(DERIVED_VALUES)
+
+
 def test_criteria_keys_are_known_fields(kb):
     for rec in kb:
-        valid_keys = {f.key for f in ENTITIES[rec.entity].fields}
+        valid_keys = {f.key for f in ENTITIES[rec.entity].fields} | DERIVED_KEYS
         for key in rec.criteria:
             assert key in valid_keys, (
                 f"{rec.id}: criteria kľúč '{key}' nie je pole modulu {rec.entity.value}"
@@ -63,7 +72,7 @@ def test_criteria_values_are_known_options(kb):
     for rec in kb:
         fields = {f.key: {v for _, v in f.options} for f in ENTITIES[rec.entity].fields}
         for key, allowed in rec.criteria.items():
-            valid_values = fields.get(key, set())
+            valid_values = DERIVED_VALUES.get(key, fields.get(key, set()))
             for val in allowed:
                 assert val in valid_values, (
                     f"{rec.id}: criteria['{key}'] hodnota '{val}' nie je platná možnosť"
