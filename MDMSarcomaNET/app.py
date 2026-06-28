@@ -31,8 +31,10 @@ import mdmsarcnet.matching as _matching  # noqa: E402
 importlib.reload(_matching)
 import mdmsarcnet.kb_loader as _kb_loader  # noqa: E402
 importlib.reload(_kb_loader)
+import mdmsarcnet.staging as _staging  # noqa: E402
+importlib.reload(_staging)
 
-from mdmsarcnet import matching  # noqa: E402
+from mdmsarcnet import matching, staging  # noqa: E402
 from mdmsarcnet.entities import ENTITIES, UNKNOWN  # noqa: E402
 from mdmsarcnet.kb_loader import KBError, load_kb  # noqa: E402
 from mdmsarcnet.schema import UNVERIFIED_MARK, Entity, Society  # noqa: E402
@@ -127,6 +129,26 @@ def page_entity(entity: Entity) -> None:
         return
 
     st.subheader("2) Výstup")
+
+    # Rozpísaná AJCC 8 TNM klasifikácia pre danú entitu (NEOVERENÉ).
+    title, sections, note = staging.legend(entity.value)
+    if sections:
+        size = inputs.get("size", "")
+        t_cat = staging.t_for_size(size)
+        if t_cat:
+            st.markdown(f"**T kategória (AJCC 8) z veľkosti:** {t_cat} — {dict(sections[0][1]).get(t_cat, '')}")
+        st.warning(
+            "⚠️ TNM klasifikácia je REKONŠTRUOVANÁ Z PAMÄTE (AJCC 8) — **NEOVERENÉ**. "
+            "Overiť oproti AJCC Cancer Staging Manual 8. NET je lokalitne špecifický.",
+            icon="⚠️",
+        )
+        with st.expander(f"Rozpísaná TNM klasifikácia — {title}"):
+            for sec, defs in sections:
+                st.markdown(f"**{sec}**")
+                for code, desc in defs.items():
+                    st.markdown(f"- **{code}** — {desc}")
+            if note:
+                st.caption(note)
 
     try:
         kb = get_kb()

@@ -67,9 +67,12 @@ SOFT_TISSUE = EntityDef(
         Field_("grade", "Grade (FNCLCC)", _opts(
             ("G1", "g1"), ("G2", "g2"), ("G3", "g3"),
         )),
-        Field_("size", "Veľkosť tumoru", _opts(
-            ("≤ 5 cm", "le5"), ("> 5 cm", "gt5"),
-        )),
+        Field_("size", "Veľkosť tumoru (= T kategória AJCC 8)", _opts(
+            ("≤ 5 cm (T1)", "le5"),
+            ("> 5–10 cm (T2)", "5_10"),
+            ("> 10–15 cm (T3)", "10_15"),
+            ("> 15 cm (T4)", "gt15"),
+        ), "Veľkosť určuje T kategóriu (AJCC 8) — rozpíše sa vo výstupe."),
     ],
 )
 
