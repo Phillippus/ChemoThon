@@ -50,9 +50,17 @@ def test_ids_are_unique(kb):
     assert len(ids) == len(set(ids)), "Duplicitné id v KB"
 
 
-# 'stage' je odvodený kľúč (vypočítaný staging.py z T/N/M), nie pole wizardu.
-DERIVED_KEYS = {"stage"}
+# Odvodené kľúče (vypočítané staging.py), nie priame polia wizardu:
+# - 'stage' = odvodené štádium z T/N/M
+# - 't'/'n' = NORMALIZOVANÉ (coarse) kategórie z rozpísaných sub-kategórií
+#   (vstup je sub-kategória napr. N2a, do matchingu ide coarse N2).
 VALID_STAGES = {"0", "IA", "IB", "IIA", "IIB", "IIIA", "IIIB", "IIIC", "IV"}
+DERIVED_VALUES = {
+    "stage": VALID_STAGES,
+    "t": {"Tis", "T1", "T2", "T3", "T4"},
+    "n": {"N0", "N1", "N2", "N3"},
+}
+DERIVED_KEYS = set(DERIVED_VALUES)
 
 
 def test_criteria_keys_are_known_fields(kb):
@@ -68,7 +76,7 @@ def test_criteria_values_are_known_options(kb):
     for rec in kb:
         fields = {f.key: {v for _, v in f.options} for f in ENTITIES[rec.entity].fields}
         for key, allowed in rec.criteria.items():
-            valid_values = VALID_STAGES if key == "stage" else fields.get(key, set())
+            valid_values = DERIVED_VALUES.get(key, fields.get(key, set()))
             for val in allowed:
                 assert val in valid_values, (
                     f"{rec.id}: criteria['{key}'] hodnota '{val}' nie je platná možnosť"

@@ -142,6 +142,16 @@ def page_entity(entity: Entity) -> None:
     # Ak modul zbiera T/N/M -> deterministicky odvoď AJCC 8 štádium (staging.py).
     if {"t", "n", "m"} <= field_keys:
         t, n, m = inputs.get("t"), inputs.get("n"), inputs.get("m")
+        # Rozpísané TNM kategórie (AJCC 8) s definíciami.
+        st.markdown("**TNM (AJCC 8):**")
+        st.markdown(f"- T: **{t or '—'}**" + (f" — {staging.T_DEFS[t]}" if t in staging.T_DEFS else ""))
+        st.markdown(f"- N: **{n or '—'}**" + (f" — {staging.N_DEFS[n]}" if n in staging.N_DEFS else ""))
+        st.markdown(f"- M: **{m or '—'}**" + (f" — {staging.M_DEFS[m]}" if m in staging.M_DEFS else ""))
+        # Pre matching použijeme normalizované (coarse) T/N (KB matchuje na N0–N3).
+        if t:
+            inputs["t"] = staging.normalize_t(t)
+        if n:
+            inputs["n"] = staging.normalize_n(n)
         anat = staging.anatomic_stage(t, n, m)
         prog, note = staging.clinical_prognostic_stage(
             t, n, m, inputs.get("grade", ""), inputs.get("her2", ""),
@@ -170,6 +180,11 @@ def page_entity(entity: Entity) -> None:
             inputs["stage"] = prog  # sprístupni odvodené štádium pre matching
         else:
             st.markdown("**Štádium:** _zadaj T, N aj M na odvodenie._")
+        with st.expander("Rozpísaná TNM klasifikácia (AJCC 8) — definície kategórií"):
+            for sec_title, defs in staging.tnm_legend():
+                st.markdown(f"**{sec_title}**")
+                for code, desc in defs.items():
+                    st.markdown(f"- **{code}** — {desc}")
     elif "stage" in field_keys:
         stage = inputs.get("stage", UNKNOWN)
         if stage:

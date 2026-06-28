@@ -71,15 +71,29 @@ _BRCA = Field_("brca", "BRCA1/2 (germinálne)", _opts(
 _MENO = Field_("menopause", "Menopauzálny status", _opts(
     ("Premenopauzálny", "pre"), ("Postmenopauzálny", "post"),
 ))
-# T/N/M kategórie (AJCC 8) — vstup pre deterministické odvodenie štádia (staging.py).
+# T/N/M kategórie (AJCC 8) — rozpísané sub-kategórie; štádium odvodí staging.py
+# (sub-kategórie sa normalizujú na hlavnú T/N pre stage grouping).
 _T = Field_("t", "T kategória (AJCC 8)", _opts(
-    ("Tis (in situ)", "Tis"), ("T1 (≤ 20 mm)", "T1"), ("T2 (> 20–50 mm)", "T2"),
-    ("T3 (> 50 mm)", "T3"), ("T4 (stena/koža/inflamatórny)", "T4"),
-))
+    ("Tis (in situ)", "Tis"),
+    ("T1mi (mikroinvázia ≤ 1 mm)", "T1mi"),
+    ("T1a (> 1–5 mm)", "T1a"),
+    ("T1b (> 5–10 mm)", "T1b"),
+    ("T1c (> 10–20 mm)", "T1c"),
+    ("T2 (> 20–50 mm)", "T2"),
+    ("T3 (> 50 mm)", "T3"),
+    ("T4a (hrudná stena)", "T4a"),
+    ("T4b (koža: edém/ulcerácia/satelity)", "T4b"),
+    ("T4c (T4a + T4b)", "T4c"),
+    ("T4d (inflamatórny)", "T4d"),
+), "Sub-kategórie sa rozpíšu vo výstupe; štádium sa odvodí automaticky.")
 _N = Field_("n", "N kategória (AJCC 8)", _opts(
-    ("N0 (bez uzlín)", "N0"), ("N1 (1–3 axilárne)", "N1"),
-    ("N2 (4–9 / fixované / a. mammaria int.)", "N2"),
-    ("N3 (≥ 10 / infraklavik. / supraklavik.)", "N3"),
+    ("N0 (bez uzlín)", "N0"),
+    ("N1 (pohyblivé axilárne I.–II.)", "N1"),
+    ("N2a (fixované/zhlukované axilárne)", "N2a"),
+    ("N2b (a. mammaria interna bez axil.)", "N2b"),
+    ("N3a (infraklavikulárne / ≥ 10)", "N3a"),
+    ("N3b (a. mammaria interna + axilárne)", "N3b"),
+    ("N3c (supraklavikulárne)", "N3c"),
 ))
 _M = Field_("m", "M kategória", _opts(
     ("M0 (bez vzdialených)", "M0"), ("M1 (vzdialené metastázy)", "M1"),
