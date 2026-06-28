@@ -32,8 +32,10 @@ import mdmgyn.matching as _matching  # noqa: E402
 importlib.reload(_matching)
 import mdmgyn.kb_loader as _kb_loader  # noqa: E402
 importlib.reload(_kb_loader)
+import mdmgyn.staging as _staging  # noqa: E402
+importlib.reload(_staging)
 
-from mdmgyn import matching  # noqa: E402
+from mdmgyn import matching, staging  # noqa: E402
 from mdmgyn.entities import ENTITIES, UNKNOWN  # noqa: E402
 from mdmgyn.kb_loader import KBError, load_kb  # noqa: E402
 from mdmgyn.schema import UNVERIFIED_MARK, Entity, Society  # noqa: E402
@@ -133,12 +135,27 @@ def page_entity(entity: Entity) -> None:
 
     st.subheader("2) Výstup")
 
-    # FIGO štádium (zadané používateľom; auto-derivácia nie je vo Fáze 1).
+    # FIGO štádium + rozpísaná definícia a TNM ekvivalent (NEOVERENÉ).
     figo = inputs.get("figo_stage", UNKNOWN)
+    version, table = staging.legend(entity.value)
     if figo:
-        st.markdown(f"**FIGO štádium:** {figo}")
+        definition, tnm = staging.stage_info(entity.value, figo)
+        st.markdown(f"**FIGO štádium ({version}):** {figo}")
+        if definition:
+            st.markdown(f"- {definition}")
+        if tnm:
+            st.markdown(f"- **TNM ekvivalent:** {tnm}")
+        st.warning(
+            "⚠️ Definícia FIGO štádia aj TNM ekvivalent sú REKONŠTRUOVANÉ Z PAMÄTE — "
+            "**NEOVERENÉ**. Overiť oproti aktuálnej FIGO klasifikácii a AJCC 8.",
+            icon="⚠️",
+        )
     else:
         st.markdown("**FIGO štádium:** _nezadané — doplň vstupný parameter alebo konzultuj primárny zdroj._")
+    if table:
+        with st.expander(f"Rozpísaná FIGO klasifikácia ({version}) + TNM ekvivalent — definície"):
+            for code, (definition, tnm) in table.items():
+                st.markdown(f"- **{code}** — {definition}  ·  _TNM:_ {tnm}")
 
     try:
         kb = get_kb()
