@@ -69,6 +69,50 @@ def display_chemotherapy_details(rbodysurf, chemoType, weight):
 
         show_evidence(chemoJson)
 
+def display_tchp(rbodysurf):
+    """TCHP: docetaxel + karboplatina (Calvertov vzorec) + Phesgo (pertuzumab/trastuzumab s.c.) -
+    neoadjuvantná liečba HER2-pozitívneho karcinómu prsníka (TRYPHAENA)."""
+    chemoJson = load_json("tchp_phesgo.json")
+    if not chemoJson:
+        return
+
+    st.write("### Protokol TCHP (docetaxel + karboplatina + Phesgo)")
+
+    docetaxel_dose = round(75 * rbodysurf, 2)
+    st.write(f"docetaxel 75 mg/m² ......... {docetaxel_dose} mg D1")
+
+    CrCl = st.number_input(
+        "Zadajte hodnotu klírensu kreatinínu / GFR (ml/min):",
+        min_value=1, max_value=250, value=None, step=1, key="tchp_crcl",
+    )
+    cbdca_dose = None
+    if CrCl is not None:
+        cbdca_dose = round((CrCl + 25) * 6, 2)
+        st.write(f"karboplatina AUC 6 (Calvert) ......... {cbdca_dose} mg D1")
+    else:
+        st.info("Zadajte GFR/klírens kreatinínu pre výpočet dávky karboplatiny (Calvertov vzorec: dávka = AUC × (GFR+25)).")
+
+    cycle_choice = st.radio(
+        "Zvoľte cyklus Phesgo:",
+        ["Cyklus 1 (nasycovacia dávka)", "Cyklus 2-6 (udržiavacia dávka)"],
+        key="tchp_phesgo_cycle",
+    )
+    phesgo_dose = "1200/600" if cycle_choice == "Cyklus 1 (nasycovacia dávka)" else "600/600"
+    phesgo_instr = chemoJson["Day1"]["Instructions"][2 if cycle_choice == "Cyklus 1 (nasycovacia dávka)" else 3]["Inst"]
+    st.write(f"Phesgo (pertuzumab/trastuzumab) {phesgo_dose} mg s.c. D1")
+
+    st.write(f"NC {chemoJson['NC']} . deň, 6 cyklov")
+    st.write("D1 - premedikácia:")
+    st.write(chemoJson["Day1"]["Premed"]["Note"])
+
+    st.write("D1 - podanie:")
+    st.write(f"docetaxel {docetaxel_dose} mg {chemoJson['Day1']['Instructions'][0]['Inst']}")
+    if cbdca_dose is not None:
+        st.write(f"karboplatina {cbdca_dose} mg {chemoJson['Day1']['Instructions'][1]['Inst']}")
+    st.write(f"Phesgo {phesgo_dose} mg {phesgo_instr}")
+
+    show_evidence(chemoJson)
+
 def main():
     st.title("ChemoThon - BreastSK v. 2.4")
     st.write("Vitajte v programe ChemoThon!")
@@ -95,6 +139,7 @@ def main():
             "DD-AC + G-CSF": "dd-AC.json",
             "EC": "EC.json",
             "docetaxel + G-CSF": "docetaxelbreast.json",
+            "TCHP (docetaxel + karboplatina AUC6 + Phesgo, neoadjuvantná HER2+)": "tchp_phesgo.json",
             "paclitaxel weekly": "paclitaxelweekly.json",
             "capecitabin": "capecitabine.json",
             "capecitabin X7/7 (metronomický)": "capecitabineX77.json",
@@ -144,9 +189,12 @@ def main():
             selected_filename = chemo_options[chemo_name]
 
         if st.button('Zobraziť protokol chemoterapie') and weight is not None:
-            display_chemotherapy_details(
-                st.session_state['rbodysurf'], selected_filename, weight
-            )
+            if selected_filename == "tchp_phesgo.json":
+                display_tchp(st.session_state['rbodysurf'])
+            else:
+                display_chemotherapy_details(
+                    st.session_state['rbodysurf'], selected_filename, weight
+                )
         else:
             if weight is None:
                 st.error("Prosím, zadajte hmotnosť na výpočet chemoterapie.")
@@ -165,6 +213,7 @@ Guidelines: [ESMO](https://www.esmo.org/guidelines/esmo-clinical-practice-guidel
 - **AC / EC** — Antracyklínový základ; NSABP B-15/B-23; EBCTCG meta-analýza, Lancet 2012.
 - **dd-AC (dose-dense) + G-CSF** — CALGB 9741 – Citron et al., J Clin Oncol 2003.
 - **Pertuzumab + trastuzumab + docetaxel** — CLEOPATRA – Swain et al., NEJM 2015; adjuvant APHINITY – von Minckwitz et al., NEJM 2017.
+- **TCHP (docetaxel + karboplatina + Phesgo), neoadjuvantná HER2+** — TRYPHAENA – Schneeweiss et al., Ann Oncol 2013;24(9):2278-2284; APHINITY (dĺžka anti-HER2 liečby) – von Minckwitz et al., NEJM 2017;377:122-131; pri reziduálnej chorobe T-DM1 – KATHERINE, von Minckwitz et al., NEJM 2019;380:617-628. **NEOVERENÉ (2026-07-30)** — dávky/citácie zatiaľ manuálne neskontrolované proti primárnym zdrojom, viď `data/tchp_phesgo.json`.
 - **T-DM1 (trastuzumab emtansín)** — EMILIA – Verma et al., NEJM 2012; adjuvant KATHERINE – von Minckwitz et al., NEJM 2019.
 - **Trastuzumab IV/SC** — HERA – Piccart-Gebhart et al., NEJM 2005; SC: HannaH – Ismael et al., Lancet Oncol 2012.
 - **Trastuzumab-deruxtecan (T-DXd)** — DESTINY-Breast03 – Cortés et al., NEJM 2022; HER2-low: DESTINY-Breast04 – Modi et al., NEJM 2022.
