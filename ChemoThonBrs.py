@@ -190,14 +190,20 @@ def main():
 
         if st.button('Zobraziť protokol chemoterapie') and weight is not None:
             if selected_filename == "tchp_phesgo.json":
-                display_tchp(st.session_state['rbodysurf'])
+                st.session_state['tchp_active'] = True
             else:
+                st.session_state['tchp_active'] = False
                 display_chemotherapy_details(
                     st.session_state['rbodysurf'], selected_filename, weight
                 )
         else:
             if weight is None:
                 st.error("Prosím, zadajte hmotnosť na výpočet chemoterapie.")
+
+        # Renderovaný mimo bloku tlačidla, aby interakcia s GFR/cyklus widgetmi
+        # (ktorá vyvolá rerun, kde st.button() vráti False) nespôsobila zmiznutie protokolu.
+        if selected_filename == "tchp_phesgo.json" and st.session_state.get('tchp_active'):
+            display_tchp(st.session_state['rbodysurf'])
 
 if __name__ == "__main__":
     main()
