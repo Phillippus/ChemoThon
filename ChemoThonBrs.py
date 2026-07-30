@@ -90,7 +90,7 @@ def display_tchp(rbodysurf):
         cbdca_dose = round((CrCl + 25) * 6, 2)
         st.write(f"karboplatina AUC 6 (Calvert) ......... {cbdca_dose} mg D1")
     else:
-        st.info("Zadajte GFR/klírens kreatinínu pre výpočet dávky karboplatiny (Calvertov vzorec: dávka = AUC × (GFR+25)).")
+        st.info("Zadajte GFR pre výpočet dávky karboplatiny.")
 
     cycle_choice = st.radio(
         "Zvoľte cyklus Phesgo:",

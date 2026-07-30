@@ -28,28 +28,28 @@
   "NC": "21",
   "Day1": {
     "Premed": {
-      "Note": "Dexametazon 8mg i.v. (príp. 20mg pri docetaxelovej premedikácii podľa zvyklostí pracoviska), Palonosetron/Netupitant 300mg/0.5mg p.o. alebo Granisetron 2mg p.o., Pantoprazol 40mg p.o./i.v. Bez špecifickej premedikácie pre Phesgo. Odporúčaná primárna profylaxia G-CSF (pegfilgrastim/lipegfilgrastim) 24-48h po chemoterapii vzhľadom na riziko febrilnej neutropénie pri docetaxel+karboplatina."
+      "Note": "Dexametazon 8mg i.v., Palonosetron/Netupitant 300mg/0.5mg p.o. (alebo Granisetron 2mg p.o.), Pantoprazol 40mg p.o./i.v. G-CSF profylaxia 24-48h po chemoterapii."
     },
     "Instructions": [
       {
         "Name": "docetaxel",
-        "Inst": "v 250-500ml FR i.v., prvých cca 30mg počas 45 min, zvyšok počas 60 min"
+        "Inst": "v 250-500ml FR i.v., prvých 30mg/45 min, zvyšok/60 min"
       },
       {
         "Name": "karboplatina",
-        "Inst": "v 250-500ml FR/5% GLC i.v. cca 30-60 min; dávka [mg] = AUC(6) × (GFR + 25), GFR stanoviť podľa aktuálnych laboratórnych hodnôt (napr. CKD-EPI) v deň podania, nie odhadom podľa BSA"
+        "Inst": "v 250-500ml FR/5% GLC i.v., cca 30-60 min; dávka = AUC 6 × (GFR+25)"
       },
       {
         "Name": "pertuzumab/trastuzumab (Phesgo) - nasycovacia dávka, C1",
-        "Inst": "s.c. injekcia do stehna, cca 8 min; striedať strany stehien pri opakovaných podaniach; podáva sa len v 1. cykle"
+        "Inst": "s.c. do stehna, cca 8 min (striedať strany)"
       },
       {
         "Name": "pertuzumab/trastuzumab (Phesgo) - udržiavacia dávka, C2-6",
-        "Inst": "s.c. injekcia do stehna, cca 5 min; striedať strany stehien pri opakovaných podaniach; podáva sa v cykloch 2-6"
+        "Inst": "s.c. do stehna, cca 5 min (striedať strany)"
       }
     ]
   },
-  "Evidence": "Indikácia: neoadjuvantná liečba HER2-pozitívneho karcinómu prsníka. Režim: docetaxel 75 mg/m2 + karboplatina AUC 6 (Calvert) + Phesgo (pertuzumab/trastuzumab s.c.) q21 dní, 6 cyklov (TRYPHAENA). Po ukončení neoadjuvancie/operácii pokračovať v anti-HER2 liečbe (Phesgo) do celkovej dĺžky 1 rok (adjuvantný kontext podporený APHINITY pre duálnu HER2 blokádu). Pri reziduálnej invazívnej chorobe po neoadjuvancii zvážiť prechod na T-DM1 (KATHERINE) namiesto Phesgo. Odporúčaná primárna profylaxia G-CSF vzhľadom na riziko febrilnej neutropénie. TODO – klinicky overiť pred použitím (viď _source aj status reviewed=false).",
+  "Evidence": "Neoadjuvantná liečba HER2+ karcinómu prsníka (TRYPHAENA). Po chirurgii pokračovať Phesgo do 1 roka (APHINITY); pri reziduálnej chorobe zvážiť T-DM1 (KATHERINE). NEOVERENÉ – klinicky neskontrolované, viď _source.",
   "_source": "TRYPHAENA (neoadjuvantná TCHP bezpečnosť/pCR): Schneeweiss A et al., Ann Oncol. 2013;24(9):2278-2284, DOI: 10.1093/annonc/mdt182. APHINITY (adjuvantná duálna HER2 blokáda, podklad pre dĺžku liečby 1 rok): von Minckwitz G et al., N Engl J Med. 2017;377(2):122-131, DOI: 10.1056/NEJMoa1703643, PMID: 28581356. KATHERINE (T-DM1 pri reziduálnej chorobe po neoadjuvancii): von Minckwitz G et al., N Engl J Med. 2019;380(7):617-628, DOI: 10.1056/NEJMoa1814017. NCCN Breast Cancer Guideline: TODO – overiť presné číslo aktuálnej verzie/sekcie pred klinickým použitím. SPC/EMA Phesgo (pertuzumab/trastuzumab s.c., schválené EMA 2020): TODO – overiť presný odkaz/verziu SmPC (dávkovanie, rýchlosť aplikácie, miesto vpichu) pred klinickým použitím.",
   "_revision": "2026-07-30 | NEPREVERENÉ (reviewed=false) - dávky a citácie zostavené z verejne dostupných zdrojov, ešte manuálne neoverené Filipom proti primárnej literatúre/SmPC pred klinickým nasadením"
 }
