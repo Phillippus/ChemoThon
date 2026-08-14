@@ -1,2 +1,16 @@
 __pycache__/
 *.pyc
+.venv-backend/
+_backups/
+
+# Standalone sibling projects, each its own git repo/remote
+/MBAStats/
+/MaraThon/
+/PickaThon/
+/RegreThon/
+/RequestHon/
+/RescaleMe/
+/SurvivoThon/
+/backend/
+/reirradiation-toolkit/
+/svetlo-usvitu/
