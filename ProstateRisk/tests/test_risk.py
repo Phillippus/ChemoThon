@@ -1,4 +1,20 @@
-from prostaterisk.risk import ProstateInputs, classify, grade_group
+from prostaterisk.risk import (
+    M_STAGE_DEFINITIONS,
+    M_STAGES,
+    N_STAGE_DEFINITIONS,
+    N_STAGES,
+    ProstateInputs,
+    T_STAGE_DEFINITIONS,
+    T_STAGES,
+    classify,
+    grade_group,
+)
+
+
+def test_stage_definitions_cover_all_stages():
+    assert set(T_STAGE_DEFINITIONS) == set(T_STAGES)
+    assert set(N_STAGE_DEFINITIONS) == set(N_STAGES)
+    assert set(M_STAGE_DEFINITIONS) == set(M_STAGES)
 
 
 def test_grade_group_mapping():

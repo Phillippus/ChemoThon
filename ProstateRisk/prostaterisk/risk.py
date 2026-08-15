@@ -18,9 +18,41 @@ from dataclasses import dataclass, field
 
 NCCN_SOURCE_LABEL = "NCCN Guidelines: Prostate Cancer — NEOVERENÉ (doplniť presnú verziu/rok pri kontrole)"
 
+TNM_SOURCE_LABEL = (
+    "UICC TNM Classification of Malignant Tumours, 8. vydanie (2017, platné od 2018), "
+    "karcinóm prostaty — REKONŠTRUOVANÉ Z PAMÄTE, NEOVERENÉ. Over, či medzičasom "
+    "nevyšlo novšie (9.) vydanie, a hraničné definície potvrď oproti primárnemu zdroju "
+    "pred klinickým použitím."
+)
+
 T_STAGES = ["T1a", "T1b", "T1c", "T2a", "T2b", "T2c", "T3a", "T3b", "T4"]
 N_STAGES = ["N0", "N1"]
 M_STAGES = ["M0", "M1"]
+
+# Popisné kritériá jednotlivých TNM štádií (informačné — klasifikačná logika v
+# classify() nižšie z nich priamo nečíta, používateľ si nimi len overuje, ktoré
+# písmeno/číslo zodpovedá jeho klinickému/zobrazovaciemu nálezu).
+T_STAGE_DEFINITIONS: dict[str, str] = {
+    "T1a": "Incidentálny histologický nález (napr. po TURP) v ≤5 % resekovaného tkaniva",
+    "T1b": "Incidentálny histologický nález v >5 % resekovaného tkaniva",
+    "T1c": "Nádor zistený punkčnou biopsiou (napr. pre zvýšené PSA), klinicky/zobrazovacím vyšetrením nehmatný/nezjavný",
+    "T2a": "Nádor ohraničený na prostatu, postihuje ≤ polovicu jedného laloku",
+    "T2b": "Nádor ohraničený na prostatu, postihuje > polovicu jedného laloku, ale nie oba laloky",
+    "T2c": "Nádor ohraničený na prostatu, postihuje oba laloky",
+    "T3a": "Extraprostatické šírenie (jednostranné alebo obojstranné), prípadne mikroskopická invázia hrdla močového mechúra",
+    "T3b": "Nádor infiltruje semenný vačok/vačky",
+    "T4": "Nádor je fixovaný alebo infiltruje priľahlé štruktúry iné než semenné vačky (vonkajší zvierač, rektum, mechúr, levátory, panvová stena)",
+}
+
+N_STAGE_DEFINITIONS: dict[str, str] = {
+    "N0": "Bez metastáz v regionálnych (panvových) lymfatických uzlinách",
+    "N1": "Metastázy v regionálnych (panvových) lymfatických uzlinách",
+}
+
+M_STAGE_DEFINITIONS: dict[str, str] = {
+    "M0": "Bez vzdialených metastáz",
+    "M1": "Vzdialené metastázy (M1a neregionálne uzliny / M1b kosti / M1c iné lokality, s alebo bez kostného postihnutia)",
+}
 
 RISK_ORDER = [
     "Veľmi nízke riziko",

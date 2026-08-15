@@ -20,9 +20,13 @@ if str(APP_DIR) not in sys.path:
     sys.path.insert(0, str(APP_DIR))
 
 from prostaterisk.risk import (  # noqa: E402
+    M_STAGE_DEFINITIONS,
+    N_STAGE_DEFINITIONS,
     NCCN_SOURCE_LABEL,
     ProstateInputs,
+    T_STAGE_DEFINITIONS,
     T_STAGES,
+    TNM_SOURCE_LABEL,
     classify,
     grade_group,
 )
@@ -70,6 +74,18 @@ def page_classifier() -> None:
             psa = st.number_input("PSA (ng/mL)", min_value=0.0, max_value=1000.0, value=6.0, step=0.1)
             gleason_primary = st.selectbox("Gleason primárny pattern (histológia)", [3, 4, 5], index=0)
             gleason_secondary = st.selectbox("Gleason sekundárny pattern (histológia)", [3, 4, 5], index=0)
+
+        with st.expander("📖 Kritériá TNM štádií (UICC) — rozklikni pre definície"):
+            st.caption(TNM_SOURCE_LABEL)
+            st.markdown("**cT — klinické T štádium**")
+            for stage, desc in T_STAGE_DEFINITIONS.items():
+                st.markdown(f"- **{stage}** — {desc}")
+            st.markdown("**cN — regionálne uzliny**")
+            for stage, desc in N_STAGE_DEFINITIONS.items():
+                st.markdown(f"- **{stage}** — {desc}")
+            st.markdown("**cM — vzdialené metastázy**")
+            for stage, desc in M_STAGE_DEFINITIONS.items():
+                st.markdown(f"- **{stage}** — {desc}")
 
         st.markdown("**Voliteľné — spresnia veľmi nízke / nepriaznivé stredné / veľmi vysoké riziko:**")
         col3, col4, col5 = st.columns(3)
