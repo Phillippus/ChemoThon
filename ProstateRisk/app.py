@@ -21,7 +21,9 @@ if str(APP_DIR) not in sys.path:
 
 from prostaterisk.risk import (  # noqa: E402
     M_STAGE_DEFINITIONS,
+    M_STAGES,
     N_STAGE_DEFINITIONS,
+    N_STAGES,
     NCCN_SOURCE_LABEL,
     ProstateInputs,
     T_STAGE_DEFINITIONS,
@@ -60,32 +62,27 @@ def page_classifier() -> None:
 
     st.subheader("1) Zadaj klinicko-patologické parametre")
 
+    # Mimo formulára, aby popis zvoleného štádia reagoval hneď pri výbere
+    # (widgety vo vnútri st.form prekreslia appku až po odoslaní formulára).
+    tcol, ncol, mcol = st.columns(3)
+    with tcol:
+        t_stage = st.selectbox("Klinické T štádium (cT)", T_STAGES, index=T_STAGES.index("T1c"))
+        st.caption(f"**{t_stage}** — {T_STAGE_DEFINITIONS[t_stage]}")
+    with ncol:
+        n_stage = st.radio("N štádium", N_STAGES, horizontal=True)
+        st.caption(f"**{n_stage}** — {N_STAGE_DEFINITIONS[n_stage]}")
+    with mcol:
+        m_stage = st.radio("M štádium", M_STAGES, horizontal=True)
+        st.caption(f"**{m_stage}** — {M_STAGE_DEFINITIONS[m_stage]}")
+    st.caption(TNM_SOURCE_LABEL)
+
     with st.form("prostate_form"):
         col1, col2 = st.columns(2)
         with col1:
-            t_stage = st.selectbox("Klinické T štádium (cT)", T_STAGES, index=T_STAGES.index("T1c"))
-            st.caption(
-                "cT zahŕňa nález z mpMRI prostaty (napr. extraprostatický šíp na MRI "
-                "→ cT3a), nielen DRE."
-            )
-            n_stage = st.radio("N štádium", ["N0", "N1"], horizontal=True)
-            m_stage = st.radio("M štádium", ["M0", "M1"], horizontal=True)
-        with col2:
             psa = st.number_input("PSA (ng/mL)", min_value=0.0, max_value=1000.0, value=6.0, step=0.1)
+        with col2:
             gleason_primary = st.selectbox("Gleason primárny pattern (histológia)", [3, 4, 5], index=0)
             gleason_secondary = st.selectbox("Gleason sekundárny pattern (histológia)", [3, 4, 5], index=0)
-
-        with st.expander("📖 Kritériá TNM štádií (UICC) — rozklikni pre definície"):
-            st.caption(TNM_SOURCE_LABEL)
-            st.markdown("**cT — klinické T štádium**")
-            for stage, desc in T_STAGE_DEFINITIONS.items():
-                st.markdown(f"- **{stage}** — {desc}")
-            st.markdown("**cN — regionálne uzliny**")
-            for stage, desc in N_STAGE_DEFINITIONS.items():
-                st.markdown(f"- **{stage}** — {desc}")
-            st.markdown("**cM — vzdialené metastázy**")
-            for stage, desc in M_STAGE_DEFINITIONS.items():
-                st.markdown(f"- **{stage}** — {desc}")
 
         st.markdown("**Voliteľné — spresnia veľmi nízke / nepriaznivé stredné / veľmi vysoké riziko:**")
         col3, col4, col5 = st.columns(3)
