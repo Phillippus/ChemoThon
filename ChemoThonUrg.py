@@ -62,6 +62,7 @@ def urogenital(rbodysurf):
         # --- Nové (2026-08) ---
         "VIP (Etoposid + Ifosfamid + Cisplatina)",
         "TIP (Paklitaxel + Ifosfamid + Cisplatina)",
+        "VeIP (Vinblastín + Ifosfamid + Cisplatina)",
     ])
     
     if chemo_choice == "Docetaxel + Prednison":
@@ -197,6 +198,36 @@ def urogenital(rbodysurf):
             st.write(f"  cisplatina {c} mg v 500ml RR i.v.")
         st.write("  Manitol 10% 250ml i.v.")
         st.write("Podporná liečba: G-CSF od D6 podľa zvyklostí pracoviska.")
+    elif chemo_choice == "VeIP (Vinblastín + Ifosfamid + Cisplatina)":
+        if 'weight' in st.session_state:
+            weight_val = st.session_state['weight']
+            vlb_dose = round(0.11 * weight_val, 2)
+            ifo_dose = round(1200 * rbodysurf, 2)
+            ddp_dose = round(20 * rbodysurf, 2)
+            mesna_dose = round(240 * rbodysurf, 2)
+            st.write("### VeIP (Vinblastín + Ifosfamid + Cisplatina) — salvage germinatívnych nádorov")
+            st.write(f"vinblastín 0.11 mg/kg ......... {vlb_dose} mg D1-2")
+            st.write(f"ifosfamid 1200 mg/m2 ......... {ifo_dose} mg D1-5")
+            st.write(f"cisplatina 20 mg/m2 ......... {ddp_dose} mg D1-5")
+            st.write("NC 21. deň (spravidla 4 cykly)")
+            st.write("D1-D2 premedikácia a chemoterapia:")
+            st.write("Granisetron 2 mg p.o. / Ondansetron 8 mg i.v., Dexametazón 12 mg i.v., Pantoprazol 40 mg p.o.")
+            st.write(f"  vinblastín {round(vlb_dose / 2, 2)} mg i.v. bolus D1, D2 (polovica dávky každý deň)")
+            st.write("D1-D5 premedikácia:")
+            st.write("Granisetron 2 mg p.o. / Ondansetron 8 mg i.v., Dexametazón 12 mg i.v., Pantoprazol 40 mg p.o.")
+            st.write(f"Mesna {mesna_dose} mg i.v. (20% dávky ifosfamidu) v čase 0h, 4h a 8h po ifosfamide, D1-D5. HYDRATÁCIA: FR 1000 ml pred a po ifosfamide.")
+            st.write("D1-D5 chemoterapia (v tomto poradí):")
+            st.write(f"  ifosfamid {ifo_dose} mg v 1000 ml FR i.v./1-2h (spolu s mesnou)")
+            b = int(ddp_dose // 50); c = round(ddp_dose % 50, 1)
+            for i in range(b):
+                st.write("  cisplatina 50mg v 500ml RR i.v.")
+            if c > 0:
+                st.write(f"  cisplatina {c} mg v 500ml RR i.v.")
+            st.write("  Manitol 10% 250ml i.v.")
+            st.write("Podporná liečba: G-CSF od D6 podľa zvyklostí pracoviska.")
+            st.write("Pozor: kumulatívna neurotoxicita vinblastínu a nefrotoxicita cisplatiny — sledovať pri opakovaných cykloch.")
+        else:
+            st.error("Najprv zadajte hmotnosť.")
 
 # Main input function for weight and height
 def main():
@@ -255,6 +286,7 @@ Guidelines: [ESMO](https://www.esmo.org/guidelines/esmo-clinical-practice-guidel
 - **BEP (germinatívne nádory)** — Williams et al., NEJM 1987; Einhorn – štandard.
 - **VIP (etoposid + ifosfamid + cisplatina, germinatívne nádory)** — Nichols et al., J Clin Oncol 1998; Loehrer et al., J Clin Oncol 1998.
 - **TIP (paklitaxel + ifosfamid + cisplatina, salvage GCT)** — Kondagunta et al., J Clin Oncol 2005.
+- **VeIP (vinblastín + ifosfamid + cisplatina, salvage GCT)** — Loehrer et al., J Clin Oncol 1998 (Ann Intern Med 1988 pôvodná štúdia).
 
 **Aktuálne štandardy na zváženie (zatiaľ mimo nástroja):**
 - Enfortumab vedotín + pembrolizumab 1. línia metastatického urotelu – EV-302, NEJM 2024.
