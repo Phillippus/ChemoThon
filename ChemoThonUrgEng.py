@@ -173,6 +173,8 @@ We welcome your feedback to improve this app further. Feel free to reach out at 
             "Nivolumab 240 mg q2w adjuvant (high-risk urothelial post-cystectomy, CheckMate-274)",
             "Gemcitabine + Split-dose Cisplatin D1+D8 (urothelial)",
             "Paclitaxel weekly (urothelial / other)",
+            "VIP (Etoposide + Ifosfamide + Cisplatin)",
+            "TIP (Paclitaxel + Ifosfamide + Cisplatin)",
         ]
         selected_protocol_name = st.selectbox("Select a chemotherapy regimen:", [" "] + chemo_names + extra_new)
 
@@ -225,6 +227,54 @@ We welcome your feedback to improve this app further. Feel free to reach out at 
                 st.write(f"*(Repeat on D8: gemcitabine {gem_dose} mg + cisplatin {half} mg split the same way)*")
             elif selected_protocol_name == "Paclitaxel weekly (urothelial / other)":
                 display_simple_json("paclitaxelweekly.json", bsa, weight_val)
+            elif selected_protocol_name == "VIP (Etoposide + Ifosfamide + Cisplatin)":
+                etop_dose = round(75 * bsa, 2)
+                ifo_dose = round(1200 * bsa, 2)
+                ddp_dose = round(20 * bsa, 2)
+                mesna_dose = round(240 * bsa, 2)
+                st.write("### VIP (Etoposide + Ifosfamide + Cisplatin) — germ cell tumors")
+                st.write(f"etoposide 75 mg/m² ......... {etop_dose} mg D1-5")
+                st.write(f"ifosfamide 1200 mg/m² ......... {ifo_dose} mg D1-5")
+                st.write(f"cisplatin 20 mg/m² ......... {ddp_dose} mg D1-5")
+                st.write("**Next Cycle:** 21 days (typically 4 cycles)")
+                st.write("#### D1-D5 Premedication")
+                st.write("Granisetron 2 mg p.o. / Ondansetron 8 mg i.v., Dexamethasone 12 mg i.v., Pantoprazole 40 mg p.o.")
+                st.write(f"Mesna {mesna_dose} mg i.v. (20% of ifosfamide dose) at 0h, 4h and 8h after ifosfamide, D1-D5. Hydration: NaCl 1000 ml before and after ifosfamide.")
+                st.write("#### D1-D5 Chemotherapy (in this order)")
+                st.write(f"etoposide {etop_dose} mg in 500 ml normal saline i.v./60 min")
+                st.write(f"ifosfamide {ifo_dose} mg in 1000 ml normal saline i.v./1-2h (with mesna)")
+                vials = int(ddp_dose // 50); rem = round(ddp_dose % 50, 1)
+                for i in range(vials):
+                    st.write("cisplatin 50 mg in 500 ml normal saline i.v.")
+                if rem > 0:
+                    st.write(f"cisplatin {rem} mg in 500 ml normal saline i.v.")
+                st.write("Mannitol 10% 250 ml i.v.")
+                st.write("Supportive care: G-CSF from D6 per institutional practice.")
+            elif selected_protocol_name == "TIP (Paclitaxel + Ifosfamide + Cisplatin)":
+                tax_dose = round(250 * bsa, 2)
+                ifo_dose = round(1500 * bsa, 2)
+                ddp_dose = round(25 * bsa, 2)
+                mesna_dose = round(300 * bsa, 2)
+                st.write("### TIP (Paclitaxel + Ifosfamide + Cisplatin) — salvage germ cell tumors")
+                st.write(f"paclitaxel 250 mg/m² ......... {tax_dose} mg D1 (24h continuous infusion)")
+                st.write(f"ifosfamide 1500 mg/m² ......... {ifo_dose} mg D2-5")
+                st.write(f"cisplatin 25 mg/m² ......... {ddp_dose} mg D2-5")
+                st.write("**Next Cycle:** 21 days (typically 4 cycles)")
+                st.write("#### D1 Premedication and Chemotherapy")
+                st.write("Dexamethasone 20 mg p.o./i.v. 12h and 6h before paclitaxel, Diphenhydramine 40 mg i.v., Ranitidine/Pantoprazole i.v., Granisetron 2 mg p.o.")
+                st.write(f"paclitaxel {tax_dose} mg in 1000 ml normal saline i.v. continuous over 24 hours")
+                st.write("#### D2-D5 Premedication")
+                st.write("Granisetron 2 mg p.o., Dexamethasone 12 mg i.v., Pantoprazole 40 mg p.o.")
+                st.write(f"Mesna {mesna_dose} mg i.v. (20% of ifosfamide dose) at 0h, 4h and 8h after ifosfamide, D2-D5. Hydration: NaCl 1000 ml before and after ifosfamide.")
+                st.write("#### D2-D5 Chemotherapy (in this order)")
+                st.write(f"ifosfamide {ifo_dose} mg in 1000 ml normal saline i.v./1-2h (with mesna)")
+                vials = int(ddp_dose // 50); rem = round(ddp_dose % 50, 1)
+                for i in range(vials):
+                    st.write("cisplatin 50 mg in 500 ml normal saline i.v.")
+                if rem > 0:
+                    st.write(f"cisplatin {rem} mg in 500 ml normal saline i.v.")
+                st.write("Mannitol 10% 250 ml i.v.")
+                st.write("Supportive care: G-CSF from D6 per institutional practice.")
             else:
                 protocol = next((p for p in data["chemotherapies"] if p["name"] == selected_protocol_name), None)
                 if protocol:
@@ -255,6 +305,8 @@ Guidelines: [ESMO](https://www.esmo.org/guidelines/esmo-clinical-practice-guidel
 - **Cisplatina/karboplatina + gemcitabín (urotel)** — von der Maase et al., J Clin Oncol 2000/2005.
 - **Vinflunín (urotel, 2. línia)** — Bellmunt et al., J Clin Oncol 2009.
 - **BEP (germinatívne nádory)** — Williams et al., NEJM 1987; Einhorn – štandard.
+- **VIP (etoposide + ifosfamide + cisplatin, germ cell tumors)** — Nichols et al., J Clin Oncol 1998; Loehrer et al., J Clin Oncol 1998 → now in tool.
+- **TIP (paclitaxel + ifosfamide + cisplatin, salvage GCT)** — Kondagunta et al., J Clin Oncol 2005 → now in tool.
 
 **Current standards to consider (not yet in tool):**
 - **Enfortumab vedotín + pembrolizumab 1. línia** — EV-302, NEJM 2024 → teraz v nástroji.

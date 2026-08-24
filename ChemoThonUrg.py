@@ -59,6 +59,9 @@ def urogenital(rbodysurf):
         "Enfortumab vedotín + Pembrolizumab (EV-302, 1. línia urotel)",
         "Olaparib 300 mg BID (HRR+ mCRPC, PROfound)",
         "Nivolumab 240 mg q2w adj. (urotel po cystektómii, CheckMate-274)",
+        # --- Nové (2026-08) ---
+        "VIP (Etoposid + Ifosfamid + Cisplatina)",
+        "TIP (Paklitaxel + Ifosfamid + Cisplatina)",
     ])
     
     if chemo_choice == "Docetaxel + Prednison":
@@ -145,6 +148,55 @@ def urogenital(rbodysurf):
         Chemo(rbodysurf, "olaparib_crpc.json")
     elif chemo_choice == "Nivolumab 240 mg q2w adj. (urotel po cystektómii, CheckMate-274)":
         Chemo(rbodysurf, "nivolumab_urothelial_adj.json")
+    # --- Nové (2026-08) ---
+    elif chemo_choice == "VIP (Etoposid + Ifosfamid + Cisplatina)":
+        etop_dose = round(75 * rbodysurf, 2)
+        ifo_dose = round(1200 * rbodysurf, 2)
+        ddp_dose = round(20 * rbodysurf, 2)
+        mesna_dose = round(240 * rbodysurf, 2)
+        st.write("### VIP (Etoposid + Ifosfamid + Cisplatina) — germinatívne nádory")
+        st.write(f"etoposid 75 mg/m2 ......... {etop_dose} mg D1-5")
+        st.write(f"ifosfamid 1200 mg/m2 ......... {ifo_dose} mg D1-5")
+        st.write(f"cisplatina 20 mg/m2 ......... {ddp_dose} mg D1-5")
+        st.write("NC 21. deň (spravidla 4 cykly)")
+        st.write("D1-D5 premedikácia:")
+        st.write("Granisetron 2 mg p.o. / Ondansetron 8 mg i.v., Dexametazón 12 mg i.v., Pantoprazol 40 mg p.o.")
+        st.write(f"Mesna {mesna_dose} mg i.v. (20% dávky ifosfamidu) v čase 0h, 4h a 8h po ifosfamide, D1-D5. HYDRATÁCIA: FR 1000 ml pred a po ifosfamide.")
+        st.write("D1-D5 chemoterapia (v tomto poradí):")
+        st.write(f"  etoposid {etop_dose} mg v 500 ml FR i.v./60 min")
+        st.write(f"  ifosfamid {ifo_dose} mg v 1000 ml FR i.v./1-2h (spolu s mesnou)")
+        b = int(ddp_dose // 50); c = round(ddp_dose % 50, 1)
+        for i in range(b):
+            st.write("  cisplatina 50mg v 500ml RR i.v.")
+        if c > 0:
+            st.write(f"  cisplatina {c} mg v 500ml RR i.v.")
+        st.write("  Manitol 10% 250ml i.v.")
+        st.write("Podporná liečba: G-CSF od D6 podľa zvyklostí pracoviska.")
+    elif chemo_choice == "TIP (Paklitaxel + Ifosfamid + Cisplatina)":
+        tax_dose = round(250 * rbodysurf, 2)
+        ifo_dose = round(1500 * rbodysurf, 2)
+        ddp_dose = round(25 * rbodysurf, 2)
+        mesna_dose = round(300 * rbodysurf, 2)
+        st.write("### TIP (Paklitaxel + Ifosfamid + Cisplatina) — salvage germinatívnych nádorov")
+        st.write(f"paklitaxel 250 mg/m2 ......... {tax_dose} mg D1 (24h kont. infúzia)")
+        st.write(f"ifosfamid 1500 mg/m2 ......... {ifo_dose} mg D2-5")
+        st.write(f"cisplatina 25 mg/m2 ......... {ddp_dose} mg D2-5")
+        st.write("NC 21. deň (spravidla 4 cykly)")
+        st.write("D1 premedikácia a chemoterapia:")
+        st.write("Dexametazón 20 mg p.o./i.v. 12h a 6h pred paklitaxelom, Difenhydramín 40 mg i.v., Ranitidín/Pantoprazol i.v., Granisetron 2 mg p.o.")
+        st.write(f"  paklitaxel {tax_dose} mg v 1000 ml FR i.v. kontinuálne 24 hodín")
+        st.write("D2-D5 premedikácia:")
+        st.write("Granisetron 2 mg p.o., Dexametazón 12 mg i.v., Pantoprazol 40 mg p.o.")
+        st.write(f"Mesna {mesna_dose} mg i.v. (20% dávky ifosfamidu) v čase 0h, 4h a 8h po ifosfamide, D2-D5. HYDRATÁCIA: FR 1000 ml pred a po ifosfamide.")
+        st.write("D2-D5 chemoterapia (v tomto poradí):")
+        st.write(f"  ifosfamid {ifo_dose} mg v 1000 ml FR i.v./1-2h (spolu s mesnou)")
+        b = int(ddp_dose // 50); c = round(ddp_dose % 50, 1)
+        for i in range(b):
+            st.write("  cisplatina 50mg v 500ml RR i.v.")
+        if c > 0:
+            st.write(f"  cisplatina {c} mg v 500ml RR i.v.")
+        st.write("  Manitol 10% 250ml i.v.")
+        st.write("Podporná liečba: G-CSF od D6 podľa zvyklostí pracoviska.")
 
 # Main input function for weight and height
 def main():
@@ -201,6 +253,8 @@ Guidelines: [ESMO](https://www.esmo.org/guidelines/esmo-clinical-practice-guidel
 - **Cisplatina/karboplatina + gemcitabín (urotel)** — von der Maase et al., J Clin Oncol 2000/2005.
 - **Vinflunín (urotel, 2. línia)** — Bellmunt et al., J Clin Oncol 2009.
 - **BEP (germinatívne nádory)** — Williams et al., NEJM 1987; Einhorn – štandard.
+- **VIP (etoposid + ifosfamid + cisplatina, germinatívne nádory)** — Nichols et al., J Clin Oncol 1998; Loehrer et al., J Clin Oncol 1998.
+- **TIP (paklitaxel + ifosfamid + cisplatina, salvage GCT)** — Kondagunta et al., J Clin Oncol 2005.
 
 **Aktuálne štandardy na zváženie (zatiaľ mimo nástroja):**
 - Enfortumab vedotín + pembrolizumab 1. línia metastatického urotelu – EV-302, NEJM 2024.
