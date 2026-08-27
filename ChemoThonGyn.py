@@ -2,7 +2,7 @@ import streamlit as st
 import json
 import chemo_utils as _cu, importlib as _il
 _il.reload(_cu)  # deploy-safe: vynúti čerstvý chemo_utils (Streamlit cachuje moduly)
-from chemo_utils import bsa, Chemo, ChemoCBDCA, show_evidence
+from chemo_utils import bsa, Chemo, ChemoCBDCA, show_evidence, calvert_carboplatin_dose
 
 # Function for chemotherapy with Cisplatin
 def ChemoCISplatin(rbodysurf, chemoType):
@@ -57,6 +57,15 @@ def ChemoWeightBased(weight, chemoType):
 
     show_evidence(chemoJson)
 
+# Chemoterapie, ktoré idú cez centrálny ChemoCBDCA (Calvertov vzorec) → vyžadujú CrCl + AUC
+CBDCA_REGIMEN_FILES = {
+    "CBDCA/ paclitaxel": "paclitaxel3weekly.json",
+    "INTERLACE CBDCA/paclitaxel (6 cyklov → konkomitantná RT)": "paclitaxelweekly.json",
+    "CBDCA/ PEG-doxorubicin": "PEGdoxo30.json",
+    "CBDCA/ gemcitabin": "gemcitabinCBDCA.json",
+    "Pembrolizumab + CBDCA + Paclitaxel (endometrium, NRG-GY018)": "pembrolizumab_carboplatin_paclitaxel_gyn.json",
+}
+
 # Main function for gynecology chemotherapy
 def gynecology(rbodysurf):
     """Táto funkcia rozpisuje chemoterapie gynekologických tumorov"""
@@ -77,21 +86,31 @@ def gynecology(rbodysurf):
         "Platina + Paklitaxel + Bevacizumab + Pembrolizumab (endometrium/cervix)",
     ])
 
-    if chemo_choice == "CBDCA/ paclitaxel":
-        ChemoCBDCA(rbodysurf, "paclitaxel3weekly.json")
-    elif chemo_choice == "INTERLACE CBDCA/paclitaxel (6 cyklov → konkomitantná RT)":
+    if chemo_choice == "  ":
+        return
+
+    if chemo_choice == "INTERLACE CBDCA/paclitaxel (6 cyklov → konkomitantná RT)":
         st.info("⚠️ INTERLACE: 6 cyklov indukčnej CBDCA/paklitaxel (AUC 2 / 80 mg/m²), potom prechod na cisplatinu 40 mg/m² weekly počas rádioterapie (alternatíva: flat dose cisplatina 50 mg weekly).")
-        ChemoCBDCA(rbodysurf, "paclitaxelweekly.json")
+
+    # AUC-based (karboplatina) režimy potrebujú aj CrCl a AUC, kým sa tlačidlo sprístupní.
+    needs_cbdca = chemo_choice in CBDCA_REGIMEN_FILES
+    crcl = auc = None
+    if needs_cbdca:
+        crcl = st.number_input("Zadajte hodnotu clearance v ml/min", min_value=1, max_value=250, value=None, step=1, key="gyn_crcl")
+        auc = st.number_input("Zadajte hodnotu AUC 2-6", min_value=2, max_value=6, value=None, step=1, key="gyn_auc")
+
+    ready = (not needs_cbdca) or (crcl is not None and auc is not None)
+    if not st.button("Vypočítať chemoterapiu", disabled=not ready):
+        return
+
+    if needs_cbdca:
+        ChemoCBDCA(rbodysurf, CBDCA_REGIMEN_FILES[chemo_choice], crcl, auc)
     elif chemo_choice == "Cisplatina/ paclitaxel":
         ChemoCISplatin(rbodysurf, "paclitaxel3weeklyDDP.json")
     elif chemo_choice == "Topotecan + G-CSF":
         Chemo(rbodysurf, "topotecan.json")
     elif chemo_choice == "PEG-doxorubicin":
         Chemo(rbodysurf, "pegdoxo.json")
-    elif chemo_choice == "CBDCA/ PEG-doxorubicin":
-        ChemoCBDCA(rbodysurf, "PEGdoxo30.json")
-    elif chemo_choice == "CBDCA/ gemcitabin":
-        ChemoCBDCA(rbodysurf, "gemcitabinCBDCA.json")
     elif chemo_choice == "Bevacizumab 15 mg/kg":
         if 'weight' in st.session_state:
             ChemoWeightBased(st.session_state.weight, "bevacizumab3w15.json")
@@ -108,8 +127,6 @@ def gynecology(rbodysurf):
         st.write("**Pembrolizumab (súbežne s lenvatinibom):**")
         st.write("pembrolizumab 200 mg flat dose v 100ml FR i.v./30 min  D1 q3w")
         st.write("NC 21. deň (pembrolizumab q3w, lenvatinib kontinuálne D1-28)")
-    elif chemo_choice == "Pembrolizumab + CBDCA + Paclitaxel (endometrium, NRG-GY018)":
-        ChemoCBDCA(rbodysurf, "pembrolizumab_carboplatin_paclitaxel_gyn.json")
     elif chemo_choice == "Platina + Paklitaxel + Bevacizumab + Pembrolizumab (endometrium/cervix)":
         import json as _j
         _bpj = _j.load(open("data/cbdca_taxol_beva_pembro_gyn.json", encoding="utf-8"))
@@ -120,7 +137,7 @@ def gynecology(rbodysurf):
         if pt_choice == "Karboplatina AUC 5 D1":
             CrCl_b = st.number_input("Clearance (ml/min):", min_value=1, max_value=250, value=None, key="crcl_bpj")
             if CrCl_b is not None:
-                cbdca_dose = (CrCl_b + 25) * 5
+                cbdca_dose = calvert_carboplatin_dose(CrCl_b, 5)
                 st.write(f"### Platina + Paklitaxel + Bevacizumab + Pembrolizumab")
                 st.write(f"pembrolizumab 200 mg flat dose  D1")
                 st.write(f"paklitaxel 175 mg/m2 ......... {taxol_dose} mg D1")
