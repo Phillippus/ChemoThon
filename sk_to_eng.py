@@ -43,6 +43,10 @@ def sk_to_eng(text: str) -> str:
     text = re.sub(r'([\s,;/])v\s+(\d)', r'\1in \2', text)
 
     # --- Infusion schedule phrases ---
+    text = text.replace(
+        "ak zvládne, zvyšok dotiecť tak, aby celková infúzia trvala",
+        "if tolerated, infuse the remainder so the total infusion lasts",
+    )
     text = text.replace("1.infuzia:", "1st infusion:")
     text = text.replace("1. infuzia:", "1st infusion:")
     text = text.replace("1.infúzia:", "1st infusion:")
