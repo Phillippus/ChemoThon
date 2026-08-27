@@ -10,15 +10,15 @@
   "NC": "21",
   "Day1": {
     "Premed": {
-      "Note": "Dexametazón 8 mg p.o. 12h PRED, 1h pred, 12h PO infúzii (3 dávky). Pantoprazol 40 mg p.o. Bisulepin 1 mg i.v."
+      "Note": "Dexametazón 20 mg i.v. pred infúziou. Pantoprazol 40 mg p.o. Bisulepin 1 mg i.v."
     },
     "Instructions": [
       {
         "Name": "docetaxel",
-        "Inst": "v 250ml FR i.v./60 min"
+        "Inst": "prvých 30mg v 500ml FR i.v., ak zvládne, zvyšok dotiecť tak, aby celková infúzia trvala 90 min"
       }
     ]
   },
   "_source": "SmPC Taxotere (docetaxel), EMA, sekcia dávkovanie pri NSCLC monoterapii (2. línia); Shepherd FA et al., J Clin Oncol 2000;18:2095 (TAX317, docetaxel 75 mg/m2 vs. best supportive care)",
-  "_revision": "2026-08 | NOVÝ ZÁZNAM, NEOVERENÉ POUŽÍVATEĽOM (Filipom) — monoterapia pre NSCLC 2. líniu po zlyhaní platinového režimu; dávka a premedikácia skopírované zo štruktúry docetaxelprostate.json, BEZ prednizónu (ten je pri prostate samostatný súbežne podávaný hormonálny komponent, nie súčasť tejto premedikácie)"
+  "_revision": "2026-08 | NOVÝ ZÁZNAM, NEOVERENÉ POUŽÍVATEĽOM (Filipom) — monoterapia pre NSCLC 2. líniu po zlyhaní platinového režimu; dávka skopírovaná zo štruktúry docetaxelprostate.json, BEZ prednizónu (ten je pri prostate samostatný súbežne podávaný hormonálny komponent, nie súčasť tejto premedikácie). Premedikácia a infúzny rozpis upravené 2026-08-27 podľa pokynu Filipa: dexametazón len 20 mg i.v. pred infúziou (nie 3-dávkový perorálny režim), docetaxel v 500 ml FR, prvých 30 mg, zvyšok dotiecť do celkovo 90 min podľa znášanlivosti"
 }
