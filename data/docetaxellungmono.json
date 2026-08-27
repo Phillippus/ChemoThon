@@ -1,0 +1,24 @@
+{
+  "Chemo": [
+    {
+      "Name": "docetaxel",
+      "Dosage": 75.0,
+      "DosageMetric": "mg/m2",
+      "Day": "1"
+    }
+  ],
+  "NC": "21",
+  "Day1": {
+    "Premed": {
+      "Note": "Dexametazón 8 mg p.o. 12h PRED, 1h pred, 12h PO infúzii (3 dávky). Pantoprazol 40 mg p.o. Bisulepin 1 mg i.v."
+    },
+    "Instructions": [
+      {
+        "Name": "docetaxel",
+        "Inst": "v 250ml FR i.v./60 min"
+      }
+    ]
+  },
+  "_source": "SmPC Taxotere (docetaxel), EMA, sekcia dávkovanie pri NSCLC monoterapii (2. línia); Shepherd FA et al., J Clin Oncol 2000;18:2095 (TAX317, docetaxel 75 mg/m2 vs. best supportive care)",
+  "_revision": "2026-08 | NOVÝ ZÁZNAM, NEOVERENÉ POUŽÍVATEĽOM (Filipom) — monoterapia pre NSCLC 2. líniu po zlyhaní platinového režimu; dávka a premedikácia skopírované zo štruktúry docetaxelprostate.json, BEZ prednizónu (ten je pri prostate samostatný súbežne podávaný hormonálny komponent, nie súčasť tejto premedikácie)"
+}

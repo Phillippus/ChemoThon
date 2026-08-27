@@ -141,6 +141,8 @@ def lung(bsa, weight=None):
         "Atezolizumab + Etoposide + Carboplatin (SCLC 1st line, IMpower133)",
         # --- Added 2026-06 ---
         "Platinum + Vinorelbine (adjuvant NSCLC, IALT/ANITA)",
+        # --- Added 2026-08 ---
+        "Docetaxel monotherapy (NSCLC 2nd line after platinum failure) ⚠️ UNREVIEWED",
     ])
 
     if chemo_choice == "Carboplatin + Paclitaxel":
@@ -155,6 +157,9 @@ def lung(bsa, weight=None):
         ChemoDDP(bsa, "etoposide.json")
     elif chemo_choice == "Topotecan + G-CSF (SCLC 2nd line)":
         Chemo(bsa, "topotecan.json")
+    elif chemo_choice == "Docetaxel monotherapy (NSCLC 2nd line after platinum failure) ⚠️ UNREVIEWED":
+        st.warning("⚠️ UNREVIEWED — this entry has not yet been approved by Filip, verify dosing and source before clinical use.")
+        Chemo(bsa, "docetaxellungmono.json")
     elif chemo_choice == "Pembrolizumab + Pemetrexed + Carboplatin (non-squamous NSCLC, KEYNOTE-189)":
         ChemoCBDCA(bsa, "pembrolizumab_pem_cbdca.json")
     elif chemo_choice == "Pembrolizumab + Carboplatin + Nab-Paclitaxel (squamous NSCLC, KEYNOTE-407)":

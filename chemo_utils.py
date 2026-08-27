@@ -6,6 +6,11 @@ def bsa(weight, height):
     return round((weight**0.425) * (height**0.725) * 0.007184, 2)
 
 
+def calvert_carboplatin_dose(crcl, auc):
+    """Calvertov vzorec: celková dávka karboplatiny v mg."""
+    return round((crcl + 25) * auc, 2)
+
+
 def load_json(filename):
     try:
         with open(f'data/{filename}', 'r') as f:
@@ -65,17 +70,25 @@ def Chemo(rbodysurf, chemoType, weight=None):
     show_evidence(chemoJson)
 
 
-def ChemoCBDCA(rbodysurf, chemoType):
-    """Chemoterapia s karboplatinou (Calvertov vzorec)."""
+def ChemoCBDCA(rbodysurf, chemoType, crcl=None, auc=None):
+    """Chemoterapia s karboplatinou (Calvertov vzorec).
+
+    Ak volajúci už má CrCl/AUC k dispozícii (napr. zozbierané vopred kvôli
+    gatingu tlačidla), odovzdá ich cez `crcl`/`auc` a tento vstup sa
+    nepýta znova."""
     chemoJson = load_json(chemoType)
     if not chemoJson:
         return
 
-    CrCl = st.number_input("Zadajte hodnotu clearance v ml/min", min_value=1, max_value=250, value=None, step=1)
-    AUC = st.number_input("Zadajte hodnotu AUC 2-6", min_value=2, max_value=6, value=None, step=1)
+    CrCl = crcl if crcl is not None else st.number_input(
+        "Zadajte hodnotu clearance v ml/min", min_value=1, max_value=250, value=None, step=1
+    )
+    AUC = auc if auc is not None else st.number_input(
+        "Zadajte hodnotu AUC 2-6", min_value=2, max_value=6, value=None, step=1
+    )
 
     if CrCl is not None and AUC is not None:
-        cbdca_dose = (CrCl + 25) * AUC
+        cbdca_dose = calvert_carboplatin_dose(CrCl, AUC)
         st.write(f"CBDCA AUC {AUC}............ {cbdca_dose} mg  D1")
         for i in chemoJson["Chemo"]:
             metric = i.get('DosageMetric', 'mg/m2')

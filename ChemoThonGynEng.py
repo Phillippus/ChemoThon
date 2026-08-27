@@ -1,6 +1,7 @@
 import streamlit as st
 import json
 from sk_to_eng import sk_to_eng, show_evidence_eng
+from chemo_utils import calvert_carboplatin_dose
 
 def load_chemotherapy_data():
     """Loads all chemotherapy data from a JSON file."""
@@ -15,8 +16,8 @@ def load_chemotherapy_data():
         return None
 
 def calculate_carboplatin_dose(crcl, auc):
-    """Calculates Carboplatin dose based on CrCl and AUC."""
-    return round((crcl + 25) * auc, 2)
+    """Calculates Carboplatin dose based on CrCl and AUC (Calvert formula, central chemo_utils implementation)."""
+    return calvert_carboplatin_dose(crcl, auc)
 
 def display_chemotherapy_details(protocol, bsa, weight, crcl=None, auc=None):
     """Displays details of the selected chemotherapy protocol."""
@@ -174,7 +175,15 @@ We welcome your feedback to improve this app further. Feel free to reach out at 
             crcl = st.number_input("Enter Creatinine Clearance (CrCl in mL/min):", min_value=1, max_value=200, step=1, value=None)
             auc = st.number_input("Enter AUC (typically 5):", min_value=2, max_value=6, step=1, value=None)
 
-        if st.button("Display Protocol"):
+        # Button is only enabled once the fields required for the selected regimen are filled:
+        # weight+height (already true here) plus CrCl+AUC for carboplatin/AUC-based regimens.
+        requires_auc_upfront = (
+            (protocol is not None and any(drug["Name"].lower() == "carboplatin" for drug in protocol.get("Chemo", [])))
+            or selected_protocol_name == "Pembrolizumab + Carboplatin + Paclitaxel (endometrial, NRG-GY018)"
+        )
+        ready = (not requires_auc_upfront) or (crcl is not None and auc is not None)
+
+        if st.button("Calculate chemotherapy", disabled=not ready):
             if selected_protocol_name == "Mirvetuximab soravtansine 6 mg/kg (FRα+ platinum-resistant ovarian, MIRASOL)":
                 display_simple_json("mirvetuximab.json", bsa, weight_val)
             elif selected_protocol_name == "Lenvatinib 20 mg/day + Pembrolizumab (endometrial, KEYNOTE-775)":
@@ -186,7 +195,7 @@ We welcome your feedback to improve this app further. Feel free to reach out at 
             elif selected_protocol_name == "Pembrolizumab + Carboplatin + Paclitaxel (endometrial, NRG-GY018)":
                 display_simple_json("pembrolizumab_carboplatin_paclitaxel_gyn.json", bsa, weight_val)
                 if crcl and auc:
-                    st.write(f"Carboplatin AUC {auc} ......... {(crcl + 25) * auc} mg D1")
+                    st.write(f"Carboplatin AUC {auc} ......... {calculate_carboplatin_dose(crcl, auc)} mg D1")
             elif selected_protocol_name == "Platinum + Paclitaxel + Bevacizumab + Pembrolizumab (endometrial/cervical)":
                 import json as _j
                 _bpj = _j.load(open("data/cbdca_taxol_beva_pembro_gyn.json", encoding="utf-8"))
@@ -196,7 +205,7 @@ We welcome your feedback to improve this app further. Feel free to reach out at 
                 if pt_choice == "Carboplatin AUC 5 D1":
                     crcl_b = st.number_input("Creatinine Clearance (ml/min):", min_value=1, max_value=250, value=None, key="crcl_bpj_eng")
                     if crcl_b is not None:
-                        cbdca_dose = (crcl_b + 25) * 5
+                        cbdca_dose = calculate_carboplatin_dose(crcl_b, 5)
                         st.write("#### Chemotherapy Drugs")
                         st.write(f"pembrolizumab 200 mg flat dose D1")
                         st.write(f"paclitaxel 175 mg/m2 ......... {taxol_dose} mg D1")

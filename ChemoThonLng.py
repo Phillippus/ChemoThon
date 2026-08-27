@@ -21,6 +21,8 @@ def lung(rbodysurf):
         "Atezolizumab + Etoposid + CBDCA (SCLC 1. línia, IMpower133)",
         # --- Nové 2026-06 doplnené ---
         "Platina + Vinorelbin (adjuvantná, IALT/ANITA)",
+        # --- Nové (2026-08) ---
+        "Docetaxel monoterapia (NSCLC 2. línia po zlyhaní platiny) ⚠️ NEOVERENÉ",
     ]
     lng = st.selectbox("Vyberte chemoterapiu, ktorú chcete podať:", chemo_options)
 
@@ -37,6 +39,9 @@ def lung(rbodysurf):
             ChemoDDP(rbodysurf, "etoposide.json")
         elif lng == "Topotecan + G-CSF":
             Chemo(rbodysurf, "topotecan.json")
+        elif lng == "Docetaxel monoterapia (NSCLC 2. línia po zlyhaní platiny) ⚠️ NEOVERENÉ":
+            st.warning("⚠️ NEOVERENÉ — tento záznam ešte neschválil Filip, over dávkovanie a zdroj pred klinickým použitím.")
+            Chemo(rbodysurf, "docetaxellungmono.json")
         elif lng == "Pembrolizumab + Pemetrexed + CBDCA (neskvamózny NSCLC, KEYNOTE-189)":
             ChemoCBDCA(rbodysurf, "pembrolizumab_pem_cbdca.json")
         elif lng == "Pembrolizumab + CBDCA + Nab-Paclitaxel (skvamózny NSCLC, KEYNOTE-407)":
