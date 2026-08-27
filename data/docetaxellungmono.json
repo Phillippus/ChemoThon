@@ -20,5 +20,5 @@
     ]
   },
   "_source": "SmPC Taxotere (docetaxel), EMA, sekcia dávkovanie pri NSCLC monoterapii (2. línia); Shepherd FA et al., J Clin Oncol 2000;18:2095 (TAX317, docetaxel 75 mg/m2 vs. best supportive care)",
-  "_revision": "2026-08 | NOVÝ ZÁZNAM, NEOVERENÉ POUŽÍVATEĽOM (Filipom) — monoterapia pre NSCLC 2. líniu po zlyhaní platinového režimu; dávka skopírovaná zo štruktúry docetaxelprostate.json, BEZ prednizónu (ten je pri prostate samostatný súbežne podávaný hormonálny komponent, nie súčasť tejto premedikácie). Premedikácia a infúzny rozpis upravené 2026-08-27 podľa pokynu Filipa: dexametazón len 20 mg i.v. pred infúziou (nie 3-dávkový perorálny režim), docetaxel v 500 ml FR, prvých 30 mg, zvyšok dotiecť do celkovo 90 min podľa znášanlivosti"
+  "_revision": "2026-08-27 | OVERENÉ POUŽÍVATEĽOM (Filipom) — monoterapia pre NSCLC 2. líniu po zlyhaní platinového režimu; dávka skopírovaná zo štruktúry docetaxelprostate.json, BEZ prednizónu (ten je pri prostate samostatný súbežne podávaný hormonálny komponent, nie súčasť tejto premedikácie). Premedikácia a infúzny rozpis upravené podľa pokynu Filipa: dexametazón len 20 mg i.v. pred infúziou (nie 3-dávkový perorálny režim), docetaxel v 500 ml FR, prvých 30 mg, zvyšok dotiecť do celkovo 90 min podľa znášanlivosti"
 }
