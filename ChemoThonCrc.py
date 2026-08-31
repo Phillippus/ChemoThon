@@ -26,6 +26,7 @@ def main():
 
     chemo_options = {
         "FOLFOX": "FOLFOX.json",
+        "b-FOL (bolus FOL, TREE-1/2)": "bFOL.json",
         "FOLFIRI": "FOLFIRI.json",
         "CapOX": "Capox.json",
         "CapIri": "Capiri.json",
@@ -128,6 +129,7 @@ with st.expander("📚 Zdroje k režimom / Sources"):
 Guidelines: [ESMO](https://www.esmo.org/guidelines/esmo-clinical-practice-guidelines-gastrointestinal-cancers) · [NCCN](https://www.nccn.org/guidelines/category_1). Vždy overte podľa aktuálnej verzie guidelines a dostupných balení liečiv. Stav: jún 2026.
 
 - **FOLFOX** — de Gramont et al., J Clin Oncol 2000; adjuvant MOSAIC – André et al., NEJM 2004.
+- **b-FOL (bolus FOL)** — chemoterapeutická chrbtica TREE-1/TREE-2; Hochster HS et al., J Clin Oncol 2008;26:3523. Bez bevacizumabu.
 - **FOLFIRI** — Douillard et al., Lancet 2000.
 - **CapOX (XELOX)** — NO16968 – Schmoll et al., J Clin Oncol 2011.
 - **CapIRI** — Fuchs et al., J Clin Oncol 2007 (BICC-C).
