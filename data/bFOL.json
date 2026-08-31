@@ -8,7 +8,7 @@
         },
         {
             "Name": "leukovorin",
-            "Dosage": 20,
+            "Dosage": 200,
             "DosageMetric": "mg/m2",
             "Day": "1, 8, 15"
         },
@@ -39,6 +39,6 @@
             }
         ]
     },
-    "_source": "bFOL (bolus FOL) – chemoterapeutická chrbtica TREE-1/TREE-2; Hochster HS et al. J Clin Oncol 2008;26:3523. Bez bevacizumabu (potvrdené používateľom 2026-08-31). OXA 85 mg/m2 D1,D15; leukovorín 20 mg/m2 + 5-FU 500 mg/m2 bolus D1,D8,D15; NC 28 dní.",
+    "_source": "bFOL (bolus FOL) – chemoterapeutická chrbtica TREE-1/TREE-2; Hochster HS et al. J Clin Oncol 2008;26:3523. Bez bevacizumabu (potvrdené používateľom 2026-08-31). OXA 85 mg/m2 D1,D15; 5-FU 500 mg/m2 bolus D1,D8,D15; NC 28 dní. POZOR: leukovorín 200 mg/m2 D1,D8,D15 je INŠTITUCIONÁLNA dávka potvrdená používateľom 2026-08-31 — VYŠŠIA ako publikovaných 20 mg/m2 v Hochster 2008 (nízkodávkový bolus leukovorín je typický znak bFOL oproti FOLFOX). Zámerná odchýlka od publikovanej literatúry, nie chyba.",
     "_revision": "2026-08"
 }
