@@ -147,6 +147,7 @@ We welcome your feedback to improve this app further. Feel free to reach out at 
         chemo_names = [protocol["name"] for protocol in data["chemotherapies"]]
         # New regimens (added 2026-06)
         extra_new = [
+            "b-FOL (bolus FOL, TREE-1/2)",
             "Encorafenib + Cetuximab (BRAF V600E mCRC, BEACON)",
             "Pembrolizumab 200 mg flat q3w (MSI-H/dMMR, KEYNOTE-177)",
             "Trifluridine/Tipiracil + Bevacizumab 5 mg/kg q2w (SUNLIGHT, 3rd line)",
@@ -169,7 +170,9 @@ We welcome your feedback to improve this app further. Feel free to reach out at 
             ], key='encora_admin')
 
         if st.button("Display Protocol"):
-            if selected_protocol_name == "Encorafenib + Cetuximab (BRAF V600E mCRC, BEACON)":
+            if selected_protocol_name == "b-FOL (bolus FOL, TREE-1/2)":
+                display_simple_json("bFOL.json", bsa, weight_val)
+            elif selected_protocol_name == "Encorafenib + Cetuximab (BRAF V600E mCRC, BEACON)":
                 import json as _j
                 enc = _j.load(open("data/encorafenib_cetuximab.json", encoding="utf-8"))
                 if encora_admin == "Weekly (1st administration, 400 mg/m²)":
@@ -235,6 +238,7 @@ with st.expander("📚 Zdroje k režimom / Sources"):
 Guidelines: [ESMO](https://www.esmo.org/guidelines/esmo-clinical-practice-guidelines-gastrointestinal-cancers) · [NCCN](https://www.nccn.org/guidelines/category_1). Always verify against the current guideline version and available drug vial sizes. As of: June 2026.
 
 - **FOLFOX** — de Gramont et al., J Clin Oncol 2000; adjuvant MOSAIC – André et al., NEJM 2004.
+- **b-FOL (bolus FOL)** — bolus FOL backbone of TREE-1/TREE-2; Hochster HS et al., J Clin Oncol 2008;26:3523. Without bevacizumab.
 - **FOLFIRI** — Douillard et al., Lancet 2000.
 - **CapOX (XELOX)** — NO16968 – Schmoll et al., J Clin Oncol 2011.
 - **CapIRI** — Fuchs et al., J Clin Oncol 2007 (BICC-C).
