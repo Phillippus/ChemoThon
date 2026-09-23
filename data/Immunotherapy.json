@@ -78,7 +78,7 @@
       "regimen name": "Ipi 3mg/kg + Nivo 1mg/kg q3w × 4, potom Nivo 240mg q2w (melanóm, CheckMate-067)",
       "dosage": "3 mg/kg (ipi) + 1 mg/kg (nivo)",
       "frequency": "21 dní (indukcia 4 cykly), potom nivolumab 240 mg q2w",
-      "administration": "ipilimumab v 250ml FR i.v./30 min, potom nivolumab v 100ml FR i.v./30 min. Indukcia: 4 cykly q3w, potom nivolumab monoterapia.",
+      "administration": "ipilimumab v 250ml FR i.v./30 min, potom nivolumab v 500ml FR i.v./30 min. Indukcia: 4 cykly q3w, potom nivolumab monoterapia.",
       "premedication": "Bez premedikácie",
       "source": "Larkin J et al. NEJM 2015;373:23 (CheckMate-067). Melanóm 1. línia."
     },
@@ -87,7 +87,7 @@
       "regimen name": "Ipi 1mg/kg + Nivo 3mg/kg q3w × 4, potom Nivo 240mg q2w (NSCLC, CheckMate-227)",
       "dosage": "1 mg/kg (ipi) + 3 mg/kg (nivo)",
       "frequency": "21 dní (indukcia 4 cykly), potom nivolumab 240 mg q2w",
-      "administration": "nivolumab v 100ml FR i.v./30 min, potom ipilimumab v 250ml FR i.v./30 min. Indukcia: 4 cykly q3w.",
+      "administration": "nivolumab v 500ml FR i.v./30 min, potom ipilimumab v 250ml FR i.v./30 min. Indukcia: 4 cykly q3w.",
       "premedication": "Bez premedikácie",
       "source": "Hellmann MD et al. NEJM 2019;381:2020 (CheckMate-227). NSCLC 1. línia."
     },
@@ -105,7 +105,7 @@
       "regimen name": "Ipi 1mg/kg + Nivo 3mg/kg q3w (mRCC, CheckMate-214)",
       "dosage": "1 mg/kg (ipi) + 3 mg/kg (nivo)",
       "frequency": "21 dní (indukcia 4 cykly), potom nivolumab 480 mg q4w",
-      "administration": "nivolumab v 100ml FR i.v./30 min, potom ipilimumab v 250ml FR i.v./30 min. Udržiavanie: nivolumab 480 mg q4w.",
+      "administration": "nivolumab v 500ml FR i.v./30 min, potom ipilimumab v 250ml FR i.v./30 min. Udržiavanie: nivolumab 480 mg q4w.",
       "premedication": "Bez premedikácie",
       "source": "Motzer RJ et al. NEJM 2018;378:1277 (CheckMate-214). mRCC 1. línia."
     },
