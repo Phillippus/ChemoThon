@@ -78,7 +78,7 @@
       "regimen name": "Ipi 3mg/kg + Nivo 1mg/kg q3w × 4, then Nivo 240mg q2w (melanoma, CheckMate-067)",
       "dosage": "3 mg/kg (ipi) + 1 mg/kg (nivo)",
       "frequency": "21 days (induction 4 cycles), then nivolumab 240 mg q2w",
-      "administration": "ipilimumab in 250 ml NaCl i.v./30 min, then nivolumab in 100 ml NaCl i.v./30 min. Induction: 4 cycles q3w, then nivolumab monotherapy.",
+      "administration": "ipilimumab in 250 ml NaCl i.v./30 min, then nivolumab in 500 ml NaCl i.v./30 min. Induction: 4 cycles q3w, then nivolumab monotherapy.",
       "premedication": "No premedication required",
       "source": "Larkin J et al. NEJM 2015;373:23 (CheckMate-067). Melanoma 1st line."
     },
@@ -87,7 +87,7 @@
       "regimen name": "Ipi 1mg/kg + Nivo 3mg/kg q3w × 4, then Nivo 240mg q2w (NSCLC, CheckMate-227)",
       "dosage": "1 mg/kg (ipi) + 3 mg/kg (nivo)",
       "frequency": "21 days (induction 4 cycles), then nivolumab 240 mg q2w",
-      "administration": "nivolumab in 100 ml NaCl i.v./30 min, then ipilimumab in 250 ml NaCl i.v./30 min. Induction: 4 cycles q3w.",
+      "administration": "nivolumab in 500 ml NaCl i.v./30 min, then ipilimumab in 250 ml NaCl i.v./30 min. Induction: 4 cycles q3w.",
       "premedication": "No premedication required",
       "source": "Hellmann MD et al. NEJM 2019;381:2020 (CheckMate-227). NSCLC 1st line."
     },
@@ -105,7 +105,7 @@
       "regimen name": "Ipi 1mg/kg + Nivo 3mg/kg q3w × 4, then Nivo 480mg q4w (mRCC, CheckMate-214)",
       "dosage": "1 mg/kg (ipi) + 3 mg/kg (nivo)",
       "frequency": "21 days (induction 4 cycles), then nivolumab 480 mg q4w",
-      "administration": "nivolumab in 100 ml NaCl i.v./30 min, then ipilimumab in 250 ml NaCl i.v./30 min. Maintenance: nivolumab 480 mg q4w.",
+      "administration": "nivolumab in 500 ml NaCl i.v./30 min, then ipilimumab in 250 ml NaCl i.v./30 min. Maintenance: nivolumab 480 mg q4w.",
       "premedication": "No premedication required",
       "source": "Motzer RJ et al. NEJM 2018;378:1277 (CheckMate-214). mRCC 1st line."
     },
