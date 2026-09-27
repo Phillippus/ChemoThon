@@ -1,4 +1,6 @@
 {
+  "_source": "SmPC Erbitux (EMA), oddiel 4.2 – biweekly dose regimen",
+  "_revision": "2026-09-27",
   "Chemo": [
     {
       "Name": "cetuximab",
@@ -10,12 +12,12 @@
   "NC": "14",
   "Day1": {
     "Premed": {
-      "Note": "Dexametazon 12mg iv, Pantoprazol 40mg p.o., Dithiaden 1 amp iv"
+      "Note": "Dexametazon 12mg iv, Pantoprazol 40mg p.o., Dithiaden 1 amp iv (najmenej 1h pred infúziou; pred 1. dávkou povinné, pred ďalšími odporúčané)"
     },
     "Instructions": [
       {
         "Name": "cetuximab",
-        "Inst": "prvých 100 mg v 500ml FR iv/60 min, zvyšok v 500ml FR iv/90 min"
+        "Inst": "v 250-500ml FR iv/ 120 min (rýchlosť neprekročiť 10mg/min), rovnako pri každej ďalšej dávke"
       }
     ]
   }

@@ -51,16 +51,20 @@ def main():
         selected_chemo = st.selectbox("Vyberte režim chemoterapie:", list(chemo_options.keys()))
 
         if selected_chemo == "Cetuximab":
-            ctx = st.radio("Je to prvá dávka cetuximabu?", ('Áno', 'Nie'), key='cetuximab_admin')
+            ctx = st.radio("Schéma cetuximabu:", ["Weekly (1. podanie)", "Weekly (ďalšie podania)", "Biweekly (500 mg/m2 q2w)"], key='cetuximab_admin')
         elif selected_chemo == "Encorafenib + Cetuximab (BRAF V600E, BEACON CRC)":
             encora_ctx = st.radio("Schéma cetuximabu:", ["Weekly (1. podanie)", "Weekly (ďalšie podania)", "Biweekly (500 mg/m2 q2w)"], key='encora_admin')
 
-    def execute_chemotherapy(option, cetuximab_first_admin=None, encora_admin=None):
+    def execute_chemotherapy(option, cetuximab_schedule=None, encora_admin=None):
         rbodysurf = st.session_state['rbodysurf']
         if option in ["FOLFOX", "FOLFIRI", "FOLFIRINOX"]:
             Chemo5FU(rbodysurf, chemo_options[option])
         elif option == "Cetuximab":
-            cetuximab_file = "1cetuximab.json" if cetuximab_first_admin == 'Áno' else "elsecetuximab.json"
+            cetuximab_file = {
+                "Weekly (1. podanie)": "1cetuximab.json",
+                "Weekly (ďalšie podania)": "elsecetuximab.json",
+                "Biweekly (500 mg/m2 q2w)": "cetuximab2w500.json",
+            }[cetuximab_schedule or "Weekly (1. podanie)"]
             Chemo(rbodysurf, cetuximab_file)
         elif option == "Encorafenib + Cetuximab (BRAF V600E, BEACON CRC)":
             encora_dose_ctx = encora_admin or "Weekly (1. podanie)"
@@ -111,7 +115,7 @@ def main():
 
     if selected_chemo and st.button("Zobraziť protokol chemoterapie"):
         if selected_chemo == "Cetuximab":
-            execute_chemotherapy(selected_chemo, cetuximab_first_admin=ctx)
+            execute_chemotherapy(selected_chemo, cetuximab_schedule=ctx)
         elif selected_chemo == "Encorafenib + Cetuximab (BRAF V600E, BEACON CRC)":
             execute_chemotherapy(selected_chemo, encora_admin=encora_ctx)
         else:
@@ -136,7 +140,7 @@ Guidelines: [ESMO](https://www.esmo.org/guidelines/esmo-clinical-practice-guidel
 - **Kapecitabín** — X-ACT – Twelves et al., NEJM 2005.
 - **FOLFIRINOX** — Použitie pri agresívnom mCRC; analogicky Conroy et al., NEJM 2011.
 - **Bevacizumab** — Hurwitz et al., NEJM 2004.
-- **Cetuximab (RAS wt)** — CRYSTAL – Van Cutsem et al., NEJM 2009.
+- **Cetuximab (RAS wt)** — CRYSTAL – Van Cutsem et al., NEJM 2009. Biweekly 500 mg/m2 podľa SmPC Erbitux (rovnocenná alternatíva k weekly schéme).
 - **Panitumumab (RAS wt)** — PRIME – Douillard et al., J Clin Oncol 2010.
 - **Trifluridín/tipiracil (TAS-102)** — RECOURSE – Mayer et al., NEJM 2015; +bevacizumab SUNLIGHT – Prager et al., NEJM 2023.
 - **Irinotekan** — Monoterapia 2. línia – Cunningham et al., Lancet 1998.
