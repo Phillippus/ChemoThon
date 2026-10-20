@@ -76,6 +76,7 @@ def gynecology(rbodysurf):
         "Cisplatina/ paclitaxel",
         "Topotecan + G-CSF",
         "PEG-doxorubicin",
+        "Doxorubicin (Adriamycin) solo 75 mg/m² q3w",
         "CBDCA/ PEG-doxorubicin",
         "CBDCA/ gemcitabin",
         "Bevacizumab 15 mg/kg",
@@ -111,6 +112,8 @@ def gynecology(rbodysurf):
         Chemo(rbodysurf, "topotecan.json")
     elif chemo_choice == "PEG-doxorubicin":
         Chemo(rbodysurf, "pegdoxo.json")
+    elif chemo_choice == "Doxorubicin (Adriamycin) solo 75 mg/m² q3w":
+        Chemo(rbodysurf, "doxorubicin.json")
     elif chemo_choice == "Bevacizumab 15 mg/kg":
         if 'weight' in st.session_state:
             ChemoWeightBased(st.session_state.weight, "bevacizumab3w15.json")
@@ -220,6 +223,7 @@ Guidelines: [ESMO](https://www.esmo.org/guidelines/esmo-clinical-practice-guidel
 - **Cisplatina / paklitaxel (cervix)** — GOG-240 – Tewari et al., NEJM 2014 (so/bez bevacizumabu).
 - **Topotekan + G-CSF** — Topotekan pri relapse ovaria – ten Bokkel Huinink et al., J Clin Oncol 1997.
 - **PEG-doxorubicín** — PLD pri rekurentnom ovariu – Gordon et al., J Clin Oncol 2001.
+- **Doxorubicín (adriamycín) solo 75 mg/m² q3w** — dávkovanie podľa data/doxorubicin.json (Judson et al., Lancet Oncol 2014, EORTC 62012, sarkóm mäkkých tkanív; ESMO STS guideline 2024).
 - **CBDCA / PEG-doxorubicín** — CALYPSO – Pujade-Lauraine et al., J Clin Oncol 2010.
 - **CBDCA / gemcitabín** — Pfisterer et al., J Clin Oncol 2006 (AGO-OVAR/ICON4-like).
 - **Bevacizumab 15 mg/kg** — GOG-218 – Burger et al., NEJM 2011; ICON7 – Perren et al., NEJM 2011.

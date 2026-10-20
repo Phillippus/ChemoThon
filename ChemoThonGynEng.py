@@ -153,6 +153,7 @@ We welcome your feedback to improve this app further. Feel free to reach out at 
 
         # New regimens (added 2026-06)
         extra_new = [
+            "Doxorubicin (Adriamycin) single agent 75 mg/m² q3w",
             "Mirvetuximab soravtansine 6 mg/kg (FRα+ platinum-resistant ovarian, MIRASOL)",
             "Lenvatinib 20 mg/day + Pembrolizumab (endometrial, KEYNOTE-775)",
             "Pembrolizumab + Carboplatin + Paclitaxel (endometrial, NRG-GY018)",
@@ -184,7 +185,9 @@ We welcome your feedback to improve this app further. Feel free to reach out at 
         ready = (not requires_auc_upfront) or (crcl is not None and auc is not None)
 
         if st.button("Calculate chemotherapy", disabled=not ready):
-            if selected_protocol_name == "Mirvetuximab soravtansine 6 mg/kg (FRα+ platinum-resistant ovarian, MIRASOL)":
+            if selected_protocol_name == "Doxorubicin (Adriamycin) single agent 75 mg/m² q3w":
+                display_simple_json("doxorubicin.json", bsa, weight_val)
+            elif selected_protocol_name == "Mirvetuximab soravtansine 6 mg/kg (FRα+ platinum-resistant ovarian, MIRASOL)":
                 display_simple_json("mirvetuximab.json", bsa, weight_val)
             elif selected_protocol_name == "Lenvatinib 20 mg/day + Pembrolizumab (endometrial, KEYNOTE-775)":
                 display_simple_json("lenvatinib.json", bsa, weight_val)
@@ -264,6 +267,7 @@ Guidelines: [ESMO](https://www.esmo.org/guidelines/esmo-clinical-practice-guidel
 - **Cisplatina / paklitaxel (cervix)** — GOG-240 – Tewari et al., NEJM 2014 (so/bez bevacizumabu).
 - **Topotekan + G-CSF** — Topotekan pri relapse ovaria – ten Bokkel Huinink et al., J Clin Oncol 1997.
 - **PEG-doxorubicín** — PLD pri rekurentnom ovariu – Gordon et al., J Clin Oncol 2001.
+- **Doxorubicin (adriamycin) single agent 75 mg/m² q3w** — dosing per data/doxorubicin.json (Judson et al., Lancet Oncol 2014, EORTC 62012, soft-tissue sarcoma; ESMO STS guideline 2024).
 - **CBDCA / PEG-doxorubicín** — CALYPSO – Pujade-Lauraine et al., J Clin Oncol 2010.
 - **CBDCA / gemcitabín** — Pfisterer et al., J Clin Oncol 2006 (AGO-OVAR/ICON4-like).
 - **Bevacizumab 15 mg/kg** — GOG-218 – Burger et al., NEJM 2011; ICON7 – Perren et al., NEJM 2011.
